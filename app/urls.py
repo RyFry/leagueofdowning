@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^about', views.about, name='about'),
     url(r'^test', views.test, name='test'),
     url(r'^champions/dr_mundo', views.mundo, name='dr_mundo')
+#    url(r'^players', views.players, name='players')
 ]
