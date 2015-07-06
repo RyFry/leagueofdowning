@@ -61,3 +61,7 @@ target/
 
 # Node modules
 node_modules/*
+
+# Temp files
+#*#
+*~
