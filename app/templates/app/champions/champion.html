@@ -29,25 +29,40 @@
 	    <h1>{{ champion_name }}</h1>
 	  </div>
 	  <div class="col-xs-6 col-sm-3 placeholder">
-	    <img src="{{ image }}"><br>
+	    <img src="{{ image }}" class="img-circle"><br>
           </div>
 	</div>
       </div>
     Role: {{ role }}<br>
     Lane: {{ lane }}<br>
     <h2>Abilities</h2>
-    <div class="row placeholders">
-      <div class="col-xs-6 col-sm-3 placeholder">
+    <div class="row">
+      <div class="col-xs-7 col-sm-1 placeholder">
 	<img src="{{ passive_image }}">
       </div>
-      <div class="col-xs-6 col-sm-9 placeholder">
-	Passive: {{ passive }}<br>
+      <div class="col-md-8">
+	<div class="col-md-6">
+	  Passive: {{ passive }}
+	</div>
+	<div class=
+      </div>
+      <div class="col-sm-7 col-sm-11 placeholder">
+	{{ passive_description|linebreaks }}
       </div>
 
-    {{ passive_description|linebreaks }}
-    Q: {{ q }}<br>
-    <img src="{{ q_image }}">
-    {{ q_description|linebreaks }}
+      <div class="col-xs-6 col-sm-1 placeholder">
+	<img src="{{ q_image }}">
+      </div>
+      <div class="col-xs-6 col-sm-11 placeholder">
+	Q: {{ q }}<br>
+      </div>
+      <div class="col-xs-6 col-sm-11 placeholder">
+          {{ q_description|linebreaks }}
+      </div>
+
+    </div>
+
+      
     W: {{ w }}<br>
     <img src="{{ w_image }}">
     {{ w_description|linebreaks }}

@@ -19,6 +19,11 @@ def players(request):
     context = RequestContext(request, {})
     return HttpResponse(template.render(context))
 
+def items(request):
+    template = loader.get_template('app/items.html')
+    context = RequestContext(request, {})
+    return HttpResponse(template.render(context))
+
 def mundo(request):
     template = loader.get_template('app/champions/champion.html')
     context = RequestContext(request, {
@@ -29,7 +34,7 @@ def mundo(request):
         'w_image' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/spell/BurningAgony.png",
         'e_image' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/spell/Masochism.png",
         'r_image' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/spell/Sadism.png",
-        'passive_name' : "Adrenaline Rush",
+        'passive' : "Adrenaline Rush",
         'passive_description' : "Dr. Mundo regenerates 0.3% of his maximum Health each second.",
         'q' : "Infected Cleaver",
         'q_description' : "Dr. Mundo hurls his cleaver, dealing damage equal to a portion of his target's current Health and slowing them for a short time. Dr. Mundo delights in the suffering of others, so he is returned half of the Health cost when he successfully lands a cleaver (increased to the full Health cost on killing blows).\n\nDr. Mundo hurls his cleaver, dealing magic damage equal to 15/18/21/23/25% of the target's current Health (80/130/180/230/280 damage minimum) and slowing them by 40% for 2 seconds.Half of the Health cost is refunded if the cleaver hits a target (increased to the full Health cost on killing blows).",
