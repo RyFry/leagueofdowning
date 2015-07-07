@@ -2,6 +2,9 @@
 # Rename it ".travis.yml".
 # http://docs.travis-ci.com/user/build-configuration/
 
+notifications:
+  slack: leagueofdowning:YDrB0xj6c1kH5Aw4tipOMwlz#general
+
 sudo: required
 
 language: python
