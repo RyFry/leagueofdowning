@@ -121,20 +121,19 @@ A single champion object with all its details
 
         [
             {
-                "biography": "",
-                "birth_date": "1986-09-08",
-                "clubname": "AS Monaco",
-                "first_international_appearance": "",
-                "full_name": "Joao Moutinho",
-                "goals": 0,
-                "height": 0,
-                "id": 1,
-                "international_caps": 0,
-                "player_image": "https://googledrive.com/host/0B3-zO2AfoiQjWXRqUVVUX19mdFk/players/Portugal/Joao_MOUTINHO.png",
-                "position": "Midfielder",
-                "resource_uri": "/api/players/Joao%20Moutinho/",
-                "shirt_number": 8,
-                "sur_name": "Iria Santos Moutinho"
+                "Name": "Bjergsen",
+                "Age": "19",
+                "Position": "Mid",
+                "Total Wins": "9",
+                "Season Wins": "9-3",
+                "Team": "TSM",
+                "Avg. KDA": "4.7",
+                "Avg. Gold per Min": "408",
+                "Avg. Total Gold": "18k",
+                "Most played champions": "Azir, Ezreal, Ekko",
+
+                "Player_picture": "http://hydra-media.cursecdn.com/lol.gamepedia.com/thumb/7/7f/TSM_Bjergsen.jpg/225px-TSM_Bjergsen.jpg?version=770c9e42251dbbbbb2c9cd279b2a2f93",
+                
             },
             {
                 "etc..." : "more"
@@ -147,76 +146,77 @@ A single champion object with all its details
 A single Player object with all its details
 
 + Parameters
-    + id (required, string, `Joao Moutinho`) ... String `id` of the champion to perform action with. Has example value.
+    + id (required, string, `Bjergsen`) ... String `id` of the champion to perform action with. Has example value.
 
 ### Retrieve a Player [GET]
 + Response 200 (application/json)
 
 
         {
-            "biography": "",
-            "birth_date": "1986-09-08",
-            "clubname": "AS Monaco",
-            "first_international_appearance": "",
-            "full_name": "Joao Moutinho",
-            "goals": 0,
-            "height": 0,
-            "id": 1,
-            "international_caps": 0,
-            "player_image": "https://googledrive.com/host/0B3-zO2AfoiQjWXRqUVVUX19mdFk/players/Portugal/Joao_MOUTINHO.png",
-            "position": "Midfielder",
-            "resource_uri": "/api/players/Joao%20Moutinho/",
-            "shirt_number": 8,
-            "sur_name": "Iria Santos Moutinho"
+                "Name": "Bjergsen",
+                "Age": "19",
+                "Position": "Mid",
+                "Total Wins": "9",
+                "Season Wins": "9-3",
+                "Team": "TSM",
+                "Avg. KDA": "4.7",
+                "Avg. Gold per Min": "408",
+                "Avg. Total Gold": "18k",
+                "Most played champions": "Azir, Ezreal, Ekko",
+
+                "Player_picture": "http://hydra-media.cursecdn.com/lol.gamepedia.com/thumb/7/7f/TSM_Bjergsen.jpg/225px-TSM_Bjergsen.jpg?version=770c9e42251dbbbbb2c9cd279b2a2f93",
+              
         }
  
 
-# Group Matches
-## Matches Collection [/api/matches/?offset={offset}&limit={limit}]
+# Group Items
+## Items Collection [/api/Items/?offset={offset}&limit={limit}]
 + Parameters
-    + offset (required, number, `1`) ... number `offset` of the Matches to perform action with. Has example value.
-    + limit (required, number, `1`) ... number `limit` of the Matches to perform action with. Has example value.
+    + offset (required, number, `1`) ... number `offset` of the Items to perform action with. Has example value.
+    + limit (required, number, `1`) ... number `limit` of the Items to perform action with. Has example value.
 
 
 
-### List first {limit} Matches starting from {offset}. Queries are bounded by the number of matches which is 64 [GET]
+### List first {limit} Items starting from {offset}. Queries are bounded by the number of Items which is 64 [GET]
 
 + Response 200 (application/json)
 
         [
             {
-                "highlight_url": "http://player.espn.com/player.js?pcode=B4a3E63GKeEtO92XK7NI067ak980&width=576&height=324&externalId=intl:1876413",
-                "location": "Arena de Sao Paulo",
-                "map_location": "https://www.google.com/maps/embed/v1/place?q=Arena de Sao Paulo+Brazil&key=AIzaSyDZQEI-0qREquMzHQf8Gl6Z2zYt_YBjrmQ",
-                "match_date": "2014-06-12",
-                "match_num": 1,
-                "merge_flag": "https://googledrive.com/host/0B3-zO2AfoiQjWXRqUVVUX19mdFk/match_symbol/bra_cro.jpg",
-                "resource_uri": "/api/matches/1/",
-                "score": "3-1",
-                "winner": "Brazil"
+                "item_name": "Athene's Unholy Grail",
+                "Stats": "+60 Ability Power, +25 Magic Resist, +20% Cooldown Reduction, +100% Base Mana Regen ",
+                "Description": "UNIQUE Passive: Restores 30% of maximum Mana on kill or assist.
+                UNIQUE Passive - Mana Font: Restores 2% of missing Mana every 5 seconds.
+                (Unique Passives with the same name do not stack.)",
+
+                "Cost":"2700",
+                "Recipe": "Fiendish Codex, Chalice of Harmony",
+
+                "item_picture": "http://img3.wikia.nocookie.net/__cb20130111231157/leagueoflegends/images/c/cc/Athene%27s_Unholy_Grail_item.png",  
             },
             {
                 etc...
             }
         ]
 
-## Matches [/api/matches/{id}]
-A single Match object with all its details
+## Items [/api/Items/{id}]
+A single Item object with all its details
 
 + Parameters
     + id (required, number, `1`) ... Int `id` of the champion to perform action with. Has example value.
 
-### Retrieve a Match [GET]
+### Retrieve a Item [GET]
 + Response 200 (application/json)
 
         {
-            "highlight_url": "http://player.espn.com/player.js?pcode=B4a3E63GKeEtO92XK7NI067ak980&width=576&height=324&externalId=intl:1876413",
-            "location": "Arena de Sao Paulo",
-            "map_location": "https://www.google.com/maps/embed/v1/place?q=Arena de Sao Paulo+Brazil&key=AIzaSyDZQEI-0qREquMzHQf8Gl6Z2zYt_YBjrmQ",
-            "match_date": "2014-06-12",
-            "match_num": 1,
-            "merge_flag": "https://googledrive.com/host/0B3-zO2AfoiQjWXRqUVVUX19mdFk/match_symbol/bra_cro.jpg",
-            "resource_uri": "/api/matches/1/",
-            "score": "3-1",
-            "winner": "Brazil"
+                "item_name": "Athene's Unholy Grail",
+                "Stats": "+60 Ability Power, +25 Magic Resist, +20% Cooldown Reduction, +100% Base Mana Regen ",
+                "Description": "UNIQUE Passive: Restores 30% of maximum Mana on kill or assist.
+                UNIQUE Passive - Mana Font: Restores 2% of missing Mana every 5 seconds.
+                (Unique Passives with the same name do not stack.)",
+
+                "Cost":"2700",
+                "Recipe": "Fiendish Codex, Chalice of Harmony",
+
+                "item_picture": "http://img3.wikia.nocookie.net/__cb20130111231157/leagueoflegends/images/c/cc/Athene%27s_Unholy_Grail_item.png",  
         }
