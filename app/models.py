@@ -91,8 +91,8 @@ class Item(models.Model):
     item_name = models.CharField(max_length=200)
     item_stats = models.CharField(max_length=2000)
     recommended_for = models.CharField(max_length=2000)
-    item_cost = average_kda = models.IntegerField(default=0)
-    item_stats = models.CharField(max_length=2000)
+    item_cost = models.IntegerField(default=0)
+    average_kda = models.IntegerField(default=0)
     item_recipe = models.CharField(max_length=2000)
 
     def get_absolute_url(self):
@@ -104,21 +104,21 @@ class Item(models.Model):
 
 
 
-import watson
+#import watson
 
 """
 This is where the models are registered. Only the text fields can be registered or else and error will
 occur. 
 """
 
-watson.register(Champion,fields=("champion_name","champion_role", "champion_lane", "champion_counters", 
-                                    "champion_items", "champion_abilities"))
+#watson.register(Champion,fields=("champion_name","champion_role", "champion_lane", "champion_counters", 
+#                                    "champion_items", "champion_abilities"))
 
-watson.register(Player,fields=("player_name","player_age","player_position", "total_wins", "season_wins", 
-                               "season_losses", "team_name", "average_kda", "average_gold_match", 
-                               "average_gold_total", "pref_champions" ))
+#watson.register(Player,fields=("player_name","player_age","player_position", "total_wins", "season_wins", 
+#                               "season_losses", "team_name", "average_kda", "average_gold_match", 
+#                               "average_gold_total", "pref_champions" ))
 
-watson.register(Item,fields=("item_name", "item_stats", "recommended_for", "item_cost", "item_recipe"))
+#watson.register(Item,fields=("item_name", "item_stats", "recommended_for", "item_cost", "item_recipe"))
 
 # watson.register(Champion)
 # watson.register(Player)
