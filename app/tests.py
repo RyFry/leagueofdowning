@@ -218,7 +218,7 @@ class ModelTestCase(TestCase):
 	#Dictionary Key: Item name
         #Dictionary Value: [stats, recfor, cost, recipe]
 
-        item_test_dict2 = { "athenes" : [ ["ap", "mr", "cdr", "bmr"], "mage", "2700", ["codex", "chalice"]], "rabadons": [["ap"], "mage", "3300", ["blasting_wand", "needlessly_large_rod"]]}
+        item_test_dict3 = { "athenes" : [ ["ap", "mr", "cdr", "bmr"], "mage", "2700", ["codex", "chalice"]], "rabadons": [["ap"], "mage", "3300", ["blasting_wand", "needlessly_large_rod"]]}
 
         Item.objects.create(item_name = "athenes", stats = item_test_dict3["athenes"][0], recfor = item_test_dict3["athenes"][1], cost = item_test_dict3["athenes"][2], recipe = item_test_dict3["athenes"][3])
 	Item_Athenes = Items.objects.get(item_name = "athenes")
