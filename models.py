@@ -91,7 +91,7 @@ class Item(models.Model):
     item_name = models.CharField(max_length=200)
     item_stats = models.CharField(max_length=2000)
     recommended_for = models.CharField(max_length=2000)
-    item_cost = average_kda = models.IntegerField(default=0)
+    item_cost = models.IntegerField(default=0)
     item_stats = models.CharField(max_length=2000)
     item_recipe = models.CharField(max_length=2000)
 
