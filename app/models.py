@@ -56,13 +56,12 @@ class Player(models.Model):
     player_age = models.IntegerField(default=0)
     
     player_position = models.CharField(max_length=50)
-    total_wins = models.IntegerField(default=0)
     season_wins = models.IntegerField(default=0)
     season_losses = models.IntegerField(default=0)
     team_name = models.CharField(max_length=200)
 
     average_kda = models.IntegerField(default=0)
-    average_gold_match = models.IntegerField(default=0)
+    average_gold_min = models.IntegerField(default=0)
     average_gold_total = models.IntegerField(default=0)
 
     pref_champions = models.CharField(max_length=1000)
@@ -90,10 +89,11 @@ class Item(models.Model):
 
     item_name = models.CharField(max_length=200)
     item_stats = models.CharField(max_length=2000)
-    recommended_for = models.CharField(max_length=2000)
+    item_description = models.CharField(max_length=2000)
+    recommended_for = models.CharField(max_length=20)
     item_cost = models.IntegerField(default=0)
-    average_kda = models.IntegerField(default=0)
     item_recipe = models.CharField(max_length=2000)
+    item_picture = models.CharField(max_length=2000)
 
     def get_absolute_url(self):
         return "/items/%d/" % self.item_name
