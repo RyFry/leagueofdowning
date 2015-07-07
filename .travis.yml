@@ -3,7 +3,7 @@
 # http://docs.travis-ci.com/user/build-configuration/
 
 notifications:
-  slack: leagueofdowning:YDrB0xj6c1kH5Aw4tipOMwlz#general
+  slack: leagueofdowning:YDrB0xj6c1kH5Aw4tipOMwlz#travis
 
 sudo: required
 
