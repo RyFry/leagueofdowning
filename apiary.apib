@@ -1,13 +1,15 @@
 FORMAT: 1A
-HOST: http://leagueofdowning.me
+HOST: http://polls.apiblueprint.org/
 
-# WWC
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+
+
+# LeagueofDowningAPI
+LeagueofDowningAPI is a service for retrieving information on characters, items, or players
 
 # Group Champions
-Notes related resources of the **WCC API**
+Notes related resources of the **LeagueofDowningAPI**
 
-## champions Collection [/api/champions/?offset={offset}&limit={limit}]
+## Champions Collection [/api/champions/?offset={offset}&limit={limit}]
 
 + Parameters
     + offset (required, number, `1`) ... number `offset` of the champion to perform action with. Has example value.
@@ -61,13 +63,13 @@ Notes related resources of the **WCC API**
             
         ]
 
-## champions [/api/champions/{id}]
+## Champions [/api/champions/{id}]
 A single champion object with all its details
 
 + Parameters
     + id (required, string, `USA`) ... String `id` of the champion to perform action with. Has example value.
 
-### Retrieve a champion [GET]
+### Retrieve a Champion [GET]
 + Response 200 (application/json)
 
              {
