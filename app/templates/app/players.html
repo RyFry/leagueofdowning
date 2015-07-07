@@ -13,6 +13,11 @@
     	<script>
 			 var app = angular.module('app', [])
 
+			app.config(function($interpolateProvider) {
+ 				$interpolateProvider.startSymbol('{[{');
+  				$interpolateProvider.endSymbol('}]}');
+			});
+
 			app.controller('playerController', function($scope) {
 				$scope.sortType = 'name';
 				$scope.sortReverse = false;
@@ -149,17 +154,17 @@
 
 				<tbody>
 					<tr ng-repeat="player in players | orderBy:sortType:sortReverse">
-						<td>{{ player.name }}</td>
-						<td>{{ player.age }}</td>
-						<td>{{ player.position }}</td>
-						<td>{{ player.totalWins }}</td>
-						<td>{{ player.seasonWins }}</td>
-						<td>{{ player.seasonLosses }}</td>
-						<td>{{ player.team }}</td>
-						<td>{{ player.avgKDA }}</td>
-						<td>{{ player.avgGPM }}</td>
-						<td>{{ player.avgTotalGold }}</td>
-						<td>{{ player.champions }}</td>
+						<td>{[{ player.name }]}</td>
+						<td>{[{ player.age }]}</td>
+						<td>{[{ player.position }]}</td>
+						<td>{[{ player.totalWins }]}</td>
+						<td>{[{ player.seasonWins }]}</td>
+						<td>{[{ player.seasonLosses }]}</td>
+						<td>{[{ player.team }]}</td>
+						<td>{[{ player.avgKDA }]}</td>
+						<td>{[{ player.avgGPM }]}</td>
+						<td>{[{ player.avgTotalGold }]}</td>
+						<td>{[{ player.champions }]}</td>
 					</tr>
 				</tbody>
 
