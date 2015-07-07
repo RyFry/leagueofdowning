@@ -1,3 +1,41 @@
+commit b8d5d5ca5f2286127a732292460a52a1425c75d7
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 23:06:48 2015 +0000
+
+    Added # of commits, # of issues, and # of unit tests to about.html
+
+commit 5d097fa66c9c7eba5517dcb6421f632931f8813d
+Merge: 0b4ded7 f22423e
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 23:01:49 2015 +0000
+
+    Merge branch 'master' of https://github.com/RyFry/leagueofdowning
+
+commit 0b4ded7e53e3faba9ee3306ea060fa0873791461
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 23:01:36 2015 +0000
+
+    Making Travis push to #travis instead of #general in Slack
+
+commit f22423e313e4ad77a81ebd1c920ace3e22d987fc
+Merge: 11d515d 0543fc2
+Author: Richard Shin <rshin@cs.utexas.edu>
+Date:   Tue Jul 7 17:54:35 2015 -0500
+
+    Merge branch 'master' of https://github.com/RyFry/leagueofdowning
+
+commit 11d515dca2c024c72a0843f5cff6590e10271cd0
+Author: Richard Shin <rshin@cs.utexas.edu>
+Date:   Tue Jul 7 17:53:14 2015 -0500
+
+    fixed unit tests
+
+commit 0543fc2e42fa54fd73ba8c55c9b9199131501517
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 22:51:37 2015 +0000
+
+    Adding IDB.log
+
 commit 016ca7bded2157ea6837f0256580e030f0c10bfe
 Author: Ryan <ryanlorey@outlook.com>
 Date:   Tue Jul 7 22:47:09 2015 +0000
