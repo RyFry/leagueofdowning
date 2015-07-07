@@ -1,0 +1,32 @@
+# This file is named "travis.sample.yml".
+# Rename it ".travis.yml".
+# http://docs.travis-ci.com/user/build-configuration/
+
+sudo: required
+
+language: python
+
+python:
+    - "3.4"
+
+before_install:
+    - sudo apt-get update
+
+install:
+    - pip3 install --upgrade pip
+    - pip3 install coverage
+    - pip3 install requests
+    - pip3 install django
+
+before_script:
+    - uname -a
+    - printenv
+    - pip3 --version
+    - pip3 freeze
+    - python3 --version
+
+script:
+    - date
+    - ls -al
+    - pydoc3 -w ./app/models.py
+    - ls -al
