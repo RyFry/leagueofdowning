@@ -25,7 +25,7 @@ def items(request):
     return HttpResponse(template.render(context))
 
 def mundo(request):
-    template = loader.get_template('app/champions/champion.html')
+    template = loader.get_template('app/champion.html')
     context = RequestContext(request, {
         'champion_name' : "Dr. Mundo",
         'image' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png",
@@ -48,7 +48,7 @@ def mundo(request):
     return HttpResponse(template.render(context))
 
 def azir(request):
-    template = loader.get_template('app/champions/champion.html')
+    template = loader.get_template('app/champion.html')
     context = RequestContext(request, {
         'champion_name' : "Azir",
         'image' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Azir.png",
@@ -71,7 +71,7 @@ def azir(request):
     return HttpResponse(template.render(context))
 
 def ezreal(request):
-    template = loader.get_template('app/champions/champion.html')
+    template = loader.get_template('app/champion.html')
     context = RequestContext(request, {
         'champion_name' : "Ezreal",
         'image' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Ezreal.png",
@@ -103,5 +103,37 @@ def champions(request):
     context = RequestContext(request, {})
     return HttpResponse(template.render(context))
 
+def athenes(request):
+    template = loader.get_template('app/item.html')
+    context = RequestContext(request, {
+        'item_name' : "Athene's Unholy Grail",
+        'image' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/item/3174.png",
+        'stats' : "+60 Ability Power\n+25 Magic Resist\n+20% Cooldown Reduction\n+100% Base Mana Regen\n\nUNIQUE Passive: Restores 30% of maximum Mana on kill or assist.\nUNIQUE Passive - Mana Font: Restores 2% of missing Mana every 5 seconds.",
+        'recommended_roles' : "Mage",
+        'cost' : "2700 g"
+    })
+    return HttpResponse(template.render(context))
 
-#role, lane, counters, abilities, essential items
+def rabadons(request):
+    template = loader.get_template('app/item.html')
+    context = RequestContext(request, {
+        'item_name' : "Rabadon's Deathcap",
+        'image' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/item/3089.png",
+        'stats' : "+120 Ability Power\n\nUNIQUE Passive: Increases Ability Power by 30%.",
+        'recommended_roles' : "Mage",
+        'cost' : "3300 g"
+    })
+    return HttpResponse(template.render(context))
+
+def sorc_shoes(request):
+    template = loader.get_template('app/item.html')
+    context = RequestContext(request, {
+        'item_name' : "Sorcerer's Shoes",
+        'image' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/item/3020.png",
+        'stats' : "+15 Magic Penetration\n\nUNIQUE Passive - Enhanced Movement: +45 Movement Speed",
+        'recommended_roles' : "Mage",
+        'cost' : "1100 g"
+    })
+    return HttpResponse(template.render(context))
+
+
