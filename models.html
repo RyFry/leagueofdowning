@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module models</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>models</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/v/filer4b/v38q001/npw1990/373/leagueofdowning/app/thing.py">/v/filer4b/v38q001/npw1990/373/leagueofdowning/app/thing.py</a></font></td></tr></table>
+    <p><tt><a href="#models">models</a>.py</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Champion">class <strong>Champion</strong></a>(Model)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;model&nbsp;contains&nbsp;a&nbsp;<a href="#Champion">Champion</a>&nbsp;name,&nbsp;role,&nbsp;lane,&nbsp;counters,&nbsp;items,&nbsp;and&nbsp;abilities.<br>
+The&nbsp;__str__&nbsp;method&nbsp;is&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;<a href="#Champion">Champion</a>&nbsp;as&nbsp;string.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="thing.html#Champion">Champion</a></dd>
+<dd>Model</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Champion-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Champion-get_absolute_url"><strong>get_absolute_url</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>champion_abilities</strong> = None</dl>
+
+<dl><dt><strong>champion_counters</strong> = None</dl>
+
+<dl><dt><strong>champion_items</strong> = None</dl>
+
+<dl><dt><strong>champion_lane</strong> = None</dl>
+
+<dl><dt><strong>champion_name</strong> = None</dl>
+
+<dl><dt><strong>champion_role</strong> = None</dl>
+
+<hr>
+Methods inherited from Model:<br>
+<dl><dt><a name="Champion-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from Model:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Item">class <strong>Item</strong></a>(Model)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;model&nbsp;contains&nbsp;a&nbsp;item_name,&nbsp;item_stats,&nbsp;recommended_for,&nbsp;item_cost,&nbsp;item_recipe.<br>
+&nbsp;<br>
+The&nbsp;__str__&nbsp;method&nbsp;is&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;item&nbsp;name.&nbsp;<br>
+The&nbsp;get_absolute_url&nbsp;method&nbsp;overrides&nbsp;the&nbsp;default&nbsp;url&nbsp;so&nbsp;that&nbsp;watson&nbsp;get&nbsp;the&nbsp;correct&nbsp;url&nbsp;as&nbsp;a&nbsp;link.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="thing.html#Item">Item</a></dd>
+<dd>Model</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Item-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Item-get_absolute_url"><strong>get_absolute_url</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>item_cost</strong> = None</dl>
+
+<dl><dt><strong>item_description</strong> = None</dl>
+
+<dl><dt><strong>item_name</strong> = None</dl>
+
+<dl><dt><strong>item_picture</strong> = None</dl>
+
+<dl><dt><strong>item_recipe</strong> = None</dl>
+
+<dl><dt><strong>item_stats</strong> = None</dl>
+
+<dl><dt><strong>recommended_for</strong> = None</dl>
+
+<hr>
+Methods inherited from Model:<br>
+<dl><dt><a name="Item-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from Model:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Player">class <strong>Player</strong></a>(Model)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;model&nbsp;contains&nbsp;a&nbsp;player&nbsp;name,&nbsp;age,&nbsp;position,&nbsp;total_wins,&nbsp;season_wins,&nbsp;season_losses,&nbsp;team_name,&nbsp;average_kda,&nbsp;<br>
+average_gold_item,&nbsp;average_gold_total,&nbsp;pref_champions.<br>
+&nbsp;<br>
+The&nbsp;__str__&nbsp;method&nbsp;is&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;player.<br>
+The&nbsp;get_absolute_url&nbsp;method&nbsp;overrides&nbsp;the&nbsp;default&nbsp;url&nbsp;so&nbsp;that&nbsp;watson&nbsp;get&nbsp;the&nbsp;correct&nbsp;url&nbsp;as&nbsp;a&nbsp;link.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="thing.html#Player">Player</a></dd>
+<dd>Model</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Player-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>average_gold_min</strong> = None</dl>
+
+<dl><dt><strong>average_gold_total</strong> = None</dl>
+
+<dl><dt><strong>average_kda</strong> = None</dl>
+
+<dl><dt><strong>player_age</strong> = None</dl>
+
+<dl><dt><strong>player_name</strong> = None</dl>
+
+<dl><dt><strong>player_position</strong> = None</dl>
+
+<dl><dt><strong>pref_champions</strong> = None</dl>
+
+<dl><dt><strong>season_losses</strong> = None</dl>
+
+<dl><dt><strong>season_wins</strong> = None</dl>
+
+<dl><dt><strong>team_name</strong> = None</dl>
+
+<hr>
+Methods inherited from Model:<br>
+<dl><dt><a name="Player-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from Model:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+
+</body></html>
