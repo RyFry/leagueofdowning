@@ -90,7 +90,7 @@ class ModelTestCase(TestCase):
 	#Dictionary Key: Champion Name
         #Dictionary Value: [picture, champion_role, champion_lane, champion_counters, champion_items]
 
-	champion_test_dict2 = {"dr_mundo": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", "fighter", "top", ["olaf", "kog_maw", "trundle"], ["sunfire_cape", "spirit_visage", "randuins_omen"]], "azir": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Azir.png", "mage", "mid", ["ziggs", "talon", "xerath"], ["sorcerer's shoes", "athenes", "rabadons"]], "ezreal" : ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Ezreal.png", "adc", "bot", ["draven", "graves", "missfortune"], ["berserkers", "trinity", "bloodthirster"]]}
+	champion_test_dict3 = {"dr_mundo": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", "fighter", "top", ["olaf", "kog_maw", "trundle"], ["sunfire_cape", "spirit_visage", "randuins_omen"]], "azir": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Azir.png", "mage", "mid", ["ziggs", "talon", "xerath"], ["sorcerer's shoes", "athenes", "rabadons"]], "ezreal" : ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Ezreal.png", "adc", "bot", ["draven", "graves", "missfortune"], ["berserkers", "trinity", "bloodthirster"]]}
 
  	Champion.objects.create(champion_name="ezreal", picture=champion_test_dict3["ezreal"][0], champion_role=champion_test_dict3["ezreal"][1], champion_lane=champion_test_dict3["ezreal"][2], champion_counters=champion_test_dict3["ezreal"][3], champion_items=champion_test_dict3["ezreal"][4])
 
