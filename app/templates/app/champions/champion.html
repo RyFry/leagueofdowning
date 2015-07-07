@@ -21,7 +21,15 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <style>
+    #index {
+      color: "black";
+    text:"green";
+    }
+  </style>
+    
+
+  <body id="index">
     <div class="container">
       <div class="jumbotron">
 	<div class="row placeholders">
@@ -33,47 +41,52 @@
           </div>
 	</div>
       </div>
-    Role: {{ role }}<br>
-    Lane: {{ lane }}<br>
-    <h2>Abilities</h2>
-    <div class="row">
-      <div class="col-xs-7 col-sm-1 placeholder">
-	<img src="{{ passive_image }}">
-      </div>
-      <div class="col-md-8">
-	<div class="col-md-6">
-	  Passive: {{ passive }}
+    <div class="container">
+      <div class="row">
+	<div class="col-sm-2">
+	  <img src="{{ passive_image }}" class="img-circle">
 	</div>
-	<div class=
+	<div class="col-sm-10">
+	  <h4>Passive: {{ passive }}</h4>
+	  {{ passive_description|linebreaks }}
+	</div>
       </div>
-      <div class="col-sm-7 col-sm-11 placeholder">
-	{{ passive_description|linebreaks }}
-      </div>
-
-      <div class="col-xs-6 col-sm-1 placeholder">
-	<img src="{{ q_image }}">
-      </div>
-      <div class="col-xs-6 col-sm-11 placeholder">
-	Q: {{ q }}<br>
-      </div>
-      <div class="col-xs-6 col-sm-11 placeholder">
+      <div class="row">
+	<div class="col-sm-2">
+	  <img src="{{ q_image }}" class="img-circle">
+	</div>
+	<div class="col-sm-10">
+	  <h4>Q: {{ q }}</h4>
           {{ q_description|linebreaks }}
+	</div>      
       </div>
-
-    </div>
-
-      
-    W: {{ w }}<br>
-    <img src="{{ w_image }}">
-    {{ w_description|linebreaks }}
-    E: {{ e }}<br>
-    <img src="{{ e_image }}">
-    {{ e_description|linebreaks }}
-    R: {{ r }}<br>
-    <img src="{{ r_image }}">
-    {{ r_description|linebreaks }}
-
-
+      <div class="row">
+	<div class="col-sm-2">
+	  <img src="{{ w_image }}" class="img-circle">
+	</div>
+	<div class="col-sm-10">
+	  <h4>W: {{ w }}</h4>
+	  {{ w_description|linebreaks }}
+	</div>
+      </div>
+      <div class="row">
+	<div class="col-sm-2">
+	  <img src="{{ e_image }}" class="img-circle">
+	</div>
+	<div class="col-sm-10">
+	  <h4>E: {{ e }}</h4>
+	  {{ e_description|linebreaks }}
+	</div>
+      </div>
+      <div class="row">
+	<div class="col-sm-2">
+	  <img src="{{ r_image }}" class="img-circle">
+	</div>
+	<div class="col-sm-10">
+	  <h4>R: {{ r }}</h4>
+	  {{ r_description|linebreaks }}
+	</div>
+      </div>
     </div>
   </body>
 </html>
