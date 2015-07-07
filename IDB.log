@@ -1,0 +1,802 @@
+commit 016ca7bded2157ea6837f0256580e030f0c10bfe
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 22:47:09 2015 +0000
+
+    Merging into master
+
+commit 50238fdd77337403839eef7ca7662739ef0566de
+Merge: ca87a7d 0dd01fb
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 22:43:52 2015 +0000
+
+    Merge branch 'master' of https://github.com/RyFry/leagueofdowning
+
+commit ca87a7d49cffd7b293e00fca3704b21f3ee75c41
+Author: Richard Shin <rshin@cs.utexas.edu>
+Date:   Tue Jul 7 17:40:23 2015 -0500
+
+    updated about page
+
+commit 3ee763df0afc9b5c50dfe900d5ec87c9dc31b3f6
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Tue Jul 7 17:35:09 2015 -0500
+
+    add models.html
+
+commit 590d19823d6c90664165c6f05cb93f79e9e456e6
+Author: Richard Shin <rshin@cs.utexas.edu>
+Date:   Tue Jul 7 17:21:00 2015 -0500
+
+    edited unit tests
+
+commit 144b62c471affb28b3e127acc8ef6571d9dc75d1
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 22:14:55 2015 +0000
+
+    Uncentered the pictures on about.html because it looked like crap on mobile
+
+commit dbcbafe8e047052df7cfd967be9aca410f47e92a
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 17:11:21 2015 -0500
+
+    init
+
+commit 6cc11f45cbbc4b5affbfc4eecdcd82b96491f48e
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 17:09:20 2015 -0500
+
+    init
+
+commit 912aa9577097be3ba3845b647401b8f83a5ccbb9
+Merge: 4a74476 8a64068
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 17:07:19 2015 -0500
+
+    Merging about.html
+
+commit 4a74476969623bf69099033809f012e1b7e6c687
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 17:05:43 2015 -0500
+
+    Made the About page more compact and nice looking
+
+commit 8a64068485d7f6ecedc6a661799bf449d2be0dac
+Author: EvolutionVIII <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 7 16:38:43 2015 -0500
+
+    Delete grayscale.html
+
+commit a70d771f7c795501abea392fafdcf43f54392f40
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Tue Jul 7 16:35:16 2015 -0500
+
+    update about.html (nathan)
+
+commit 256af385acd2cd5389887235cb6ab6f94952361f
+Merge: 3e7ee31 2b455e8
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Tue Jul 7 16:32:50 2015 -0500
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 2b455e88f3713dbcd685b0429b2dcf088ffa1e52
+Author: Bao Nguyen <mannyxnguyen@utexas.edu>
+Date:   Tue Jul 7 16:31:09 2015 -0500
+
+    adding Manny_Bootstrap with newSplash page
+
+commit bd7b91b8ca96ddc5fca6668053945ece70b787bb
+Author: Bao Nguyen <mannyxnguyen@utexas.edu>
+Date:   Tue Jul 7 16:12:02 2015 -0500
+
+    added a Manny_Bootstrap with homepage example
+
+commit 84b04ba97dc21bdbb1c6470fe0761e66042e3738
+Author: Richard Shin <rshin@cs.utexas.edu>
+Date:   Tue Jul 7 16:00:06 2015 -0500
+
+    finished unit tests
+
+commit 396c9b33bb5b7433d79c311068b7c9d3aa408be7
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 15:50:44 2015 -0500
+
+    updated about
+
+commit 08aa65709bb048e2f72eb84e755995d182c4f0aa
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 15:37:38 2015 -0500
+
+    Added Ryan's bio to the About page
+
+commit 3e7ee3189930600ba323ffa6b7527f8ed67bce89
+Merge: b93c99f a640aec
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Tue Jul 7 15:35:27 2015 -0500
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit a640aec569f07e52cf8ca0e58ff0d02395a524cf
+Merge: 23e9f37 e54db9e
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 15:17:08 2015 -0500
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 23e9f37ca7c3db4662b471a8bc2aaf5ccddba4be
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 15:17:01 2015 -0500
+
+    Fixed links at the bottom of the About page
+
+commit e54db9ef8890068f2f612cfad0b41122afd36da5
+Author: Ryan Lorey <ryan.lorey@utexas.edu>
+Date:   Tue Jul 7 15:09:25 2015 -0500
+
+    Delete README.md
+
+commit 0dd01fb7c0517ca64bea88fbdc1c6ba936b80679
+Author: Ryan Lorey <ryan.lorey@utexas.edu>
+Date:   Tue Jul 7 15:09:12 2015 -0500
+
+    Delete README.md
+
+commit 88f08113a26958f96ba6ecfc03f9e7b3a88ce128
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 15:00:59 2015 -0500
+
+    Added Slack notifications to Travis CI (I think)
+
+commit 2da8b40ec5c0a5ba9f274ebd86f304ea9c923323
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 14:52:25 2015 -0500
+
+    added yml file
+
+commit b93c99fe96bb70665c493f5350cf062b1561b73a
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Tue Jul 7 14:25:40 2015 -0500
+
+    fixed some stuff in table pages
+
+commit 0e47de67231c88271107b74ed724eeea8b13a9bc
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 14:14:07 2015 -0500
+
+    changed back
+
+commit 97ec8514a70b5eb294b234524befec2300eeb10d
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 14:11:48 2015 -0500
+
+    changed init to app
+
+commit c84b42b7fc821424944a99afcad3b6b2c518e5ee
+Merge: 8b8d590 8f0a9d9
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 13:58:03 2015 -0500
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 8b8d590aea966b02d6c2c17351ce481cace59736
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 13:57:53 2015 -0500
+
+    Removed some extraneous style code that doesn't even work from champion.html
+
+commit 8f0a9d980208f867eebd7c50019cb192010bb401
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 13:46:33 2015 -0500
+
+    about updated richard pic
+
+commit 8a06cda9680554c365104698c4e7262c57720801
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 13:41:01 2015 -0500
+
+    about updated
+
+commit 11fbd936a4bbc47d532c138440d51a2d5782b237
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 13:39:37 2015 -0500
+
+    about updated
+
+commit 3de6c97a13639474f5c0dafd2df6b20e5b9f90a3
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 13:37:11 2015 -0500
+
+    added picture to about
+
+commit 2059a0a3f3aa86ef90a718624a535403d467d141
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 13:35:36 2015 -0500
+
+    updated about page
+
+commit 108bced9dc9c2d9e6936494dceca287d0195122f
+Merge: 3e72b87 38cfc6a
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 18:29:48 2015 +0000
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 3e72b874534422ba4a30d7a014636e2bde91f65f
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 18:29:33 2015 +0000
+
+    Adding the script that we use to start the server
+
+commit 38cfc6a6daa2b062e7203f0d57069084eb3ac155
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 13:24:04 2015 -0500
+
+    working on test cases
+
+commit 94f0f2b08cdb4e2ed84a55de667be921d19c1f37
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 12:51:44 2015 -0500
+
+    added shell for tests
+
+commit 155f5df47fc83dbbf421ce606e053a4efddf5260
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 12:44:32 2015 -0500
+
+    updated about
+
+commit db2e98b95d53ed0fb7a6acef9d98ab6a78ec9865
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 12:32:03 2015 -0500
+
+    updated apiary file and API
+
+commit 65b69f766198341e345b8df36e6fa939f33936bb
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 17:30:58 2015 +0000
+
+    Changed the models.py to match APIary and vice-versa
+
+commit df11435c56456098492cc7721b6793016906bff1
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 17:22:07 2015 +0000
+
+    fixed models.py
+
+commit b7b486c765cbdbdf76480a659ca110415f8a174d
+Merge: 7a3dbfe 5cd1c02
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 12:14:29 2015 -0500
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 7a3dbfe6ace4c367b0b88fb98dac68acd9d55a34
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 12:14:21 2015 -0500
+
+    Trying to fix footer on about page
+
+commit 5cd1c0233f65c0eb4d50a881403ea850c595be7a
+Merge: bd0a864 e831935
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 12:13:12 2015 -0500
+
+    moved models.py to app folder
+
+commit bd0a864a36784e31442caf0f8b80def2198e48ae
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 12:09:26 2015 -0500
+
+    moved models to app folder
+
+commit e8319353b29e40eb03afc85b5074fec711382e1c
+Author: Bao Nguyen <mannyxnguyen@utexas.edu>
+Date:   Tue Jul 7 11:59:03 2015 -0500
+
+    fixed typo for models.py
+
+commit a9122aab94694ee5e99aaa551f6e9b46d4a11bf6
+Merge: 1d5959b 6bc2ae0
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:57:49 2015 -0500
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 1d5959b5f03238ba59fb4bbd85f84de0c72c7c1b
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:57:43 2015 -0500
+
+    Trying to make the champion name not be left justified on mobile
+
+commit c8df93f8daddf5f9a16bf6c03a90cc1f1f512912
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:57:19 2015 -0500
+
+    made the about page use bootstrap
+
+commit 6bc2ae0e961d684c681919b6018a9e244ac62f23
+Author: Bao Nguyen <mannyxnguyen@utexas.edu>
+Date:   Tue Jul 7 11:53:14 2015 -0500
+
+    added models.py
+
+commit 03f9777a76429708ba0938207f830024fd9ab759
+Author: Michael Cantu <michaelcantu93@gmail.com>
+Date:   Tue Jul 7 11:43:17 2015 -0500
+
+    Delete hello.py
+
+commit 746909acc2768bddf4839a95d078285f98465d55
+Author: Michael Cantu <michaelcantu93@gmail.com>
+Date:   Tue Jul 7 11:42:36 2015 -0500
+
+    Delete wsgi.py
+
+commit 73e556e7e79de9c6d52dda2bb4857afdf76c0d6c
+Author: Michael Cantu <michaelcantu93@gmail.com>
+Date:   Tue Jul 7 11:42:32 2015 -0500
+
+    Delete urls.py
+
+commit 5578ba21d5024c641b6a3145980d316af97901f7
+Author: Michael Cantu <michaelcantu93@gmail.com>
+Date:   Tue Jul 7 11:42:26 2015 -0500
+
+    Delete settings.py
+
+commit 052825552d1407bbb8f0b07ed5b4104d94eff36f
+Author: Michael Cantu <michaelcantu93@gmail.com>
+Date:   Tue Jul 7 11:42:21 2015 -0500
+
+    Delete __init__.py
+
+commit d694f8f029baf25bf3c6c31712957a0e7073a51e
+Author: Michael Cantu <michaelcantu93@gmail.com>
+Date:   Tue Jul 7 11:42:15 2015 -0500
+
+    Delete #settings.py#
+
+commit 47f5b382b8f0c56f45d22fd4dff91a7345dc3b39
+Author: Michael Cantu <michaelcantu93@gmail.com>
+Date:   Tue Jul 7 11:41:56 2015 -0500
+
+    Delete manage.py
+
+commit d54436f25f273b58c02f3d474efef119c8685a1a
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:32:44 2015 -0500
+
+    Fixing broken footer
+
+commit 62be101d7dcae157af20209cc2b14c65c7f43f19
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:31:58 2015 -0500
+
+    Attempting to vertically center footer text
+
+commit 4bd04fea9a7bcad94f9a65a5242ec1f5eb9b79b8
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:28:40 2015 -0500
+
+    Attempting to vertically center footer text
+
+commit 575b63e415418529ff263d4b225f3289b8a0070b
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:26:16 2015 -0500
+
+    Fixing footer on splash page
+
+commit d24dca1edccc2eec460851000d7d99eb934b951c
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:19:35 2015 -0500
+
+    Fixing footer on splash page
+
+commit f872c7da1b12b28825679cdbcdf3e99155d79ae4
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:16:17 2015 -0500
+
+    Still trying to get image to scale
+
+commit 544f975ecf306d491002187c271b9e3cd1108938
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:15:50 2015 -0500
+
+    Still trying to get image to scale
+
+commit f241af0952fdef238c0f6eb6e9847f5a6c6fa3ee
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:12:50 2015 -0500
+
+    Still trying to get image to scale
+
+commit 96cd6c9ed0e8a437ec6d32d51acc53a08bc41828
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:10:49 2015 -0500
+
+    Still trying to get image to scale
+
+commit 78555dd87ed9db8def57b0fc9160f2acfb24d77e
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:09:48 2015 -0500
+
+    Still trying to get image to scale
+
+commit dafd022fde5c1e113bfe8d9fb8f07232266afc48
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:08:11 2015 -0500
+
+    Still trying to get image to scale
+
+commit 0d592742f5800e4ba7af325267bddc8153f9a204
+Merge: 600fefc a11a13f
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:03:16 2015 -0500
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 600fefca962abc3ec6724f8392a2975ee9715f1d
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Tue Jul 7 11:03:05 2015 -0500
+
+    Changed 'Age' to 'Role' in players.html and (hopefully) made the splash page image scale with the jumbotron it's in
+
+commit a11a13f6e63e895b4e48dbfd92e028225ffbfb3b
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 10:59:50 2015 -0500
+
+    updated links on about page
+
+commit 9dec958762556818e8f96b716faf3469fd8b8767
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 7 10:55:45 2015 -0500
+
+    Fixed the apirary file and made a link to the API on the apiary website
+
+commit 0180164a19f716c62a91426cdcc33493f928a89f
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 23:19:57 2015 -0500
+
+    (Hopefully) making a footer on splash page
+
+commit cc0f337a8c0532e87767685b919b14e86ce20a5e
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 23:14:54 2015 -0500
+
+    (Hopefully) making a footer on splash page
+
+commit 742d76abd321ac714e62e9b62c09745a63f5a77e
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 23:13:53 2015 -0500
+
+    (Hopefully) centering links on splash page
+
+commit 2a44b4cce3f0ff861848a509c9e31e9cbb043135
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 23:10:26 2015 -0500
+
+    (Hopefully) centering links on splash page
+
+commit 2fe24d91d1fc6abb851de9d13cfc42baafd5d04a
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 23:04:21 2015 -0500
+
+    (Hopefully) centering links on splash page
+
+commit a15474ffc45d16d504effafe8ede91c2daa0e4e3
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 23:01:12 2015 -0500
+
+    Formatting the splash page
+
+commit 4fc10179d49e9ddb5affb3265a049db546e0d721
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 22:57:10 2015 -0500
+
+    Making splash page match bootstrap style
+
+commit d0abb0c7c4909fa90e2b492915790bcdaef0eaec
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 22:51:45 2015 -0500
+
+    Formatting champions table
+
+commit 54b7eba83b38dc553573fef6f7d960bc0db3eca7
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 22:49:09 2015 -0500
+
+    Formatting items table
+
+commit 3517a18abd24767a40b41cabedf70ff706666cff
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 22:47:54 2015 -0500
+
+    Formatting items table
+
+commit b97eb33f72f69a0b2069d04bf04af906b3d70a06
+Author: RyFry <ryanlorey@outlook.com>
+Date:   Mon Jul 6 22:45:28 2015 -0500
+
+    Trying to format table
+
+commit 375658757c9c06a66e63fad4f9a14ef34e05c538
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 03:39:58 2015 +0000
+
+    Working on making the tables nicer
+
+commit 81dd89266a58db86d61b9c92fa54d11b26b4380c
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 03:20:42 2015 +0000
+
+    made the header pictures 120x120 for player, champion, and item. Also made it so that the player pages have pictures of their most played champions rather than a list of names
+
+commit 56261fed701abffff4ffc5f8df666dd15ed3faeb
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 22:17:50 2015 -0500
+
+    update angular etc to have proper linkage
+
+commit fcbe9e1c804ca487c4f4e6e01c9f4662e3fdaf92
+Merge: f01e69a 460ff9e
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 03:16:45 2015 +0000
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit f01e69ae6974746ce45f403c5994cbfe2b3e69f1
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 03:16:34 2015 +0000
+
+    Added the last two player profiles
+
+commit 460ff9efe82e563f8d47cd0685ef3ca8441ce425
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Mon Jul 6 21:50:23 2015 -0500
+
+    updated about page
+
+commit 4b2702de9ba4ba43a5d729788610a0843578fcba
+Merge: 3e6f44a e4c8c11
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 02:21:53 2015 +0000
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 3e6f44ab1db724948664b065daf0bcbe11e14818
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 02:21:41 2015 +0000
+
+    Finished adding item pages
+
+commit e4c8c11b5149a841f3ce79a3fd5ca44271ca7dd1
+Author: Richard Shin <rshin@cs.utexas.edu>
+Date:   Mon Jul 6 21:16:37 2015 -0500
+
+    added uml
+
+commit 989089bf8550ea284864951126c94392e3ec76f9
+Author: Bao Nguyen <baovn@cs.utexas.edu>
+Date:   Mon Jul 6 21:05:39 2015 -0500
+
+    updated apiary.apid
+
+commit c628516344d2520d21fe1f846a6ce459de5cd7b5
+Author: Bao Nguyen <baovn@cs.utexas.edu>
+Date:   Mon Jul 6 19:21:52 2015 -0500
+
+    apiary.apib added
+
+commit fddbd4c9f655195ca6917cd2d8653f5a01bb3ef9
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 00:19:32 2015 +0000
+
+    Added champions pages for Azir and Ezreal
+
+commit 87b3bfa03613bd2e149422c19f9496bd1cce8b19
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 19:12:54 2015 -0500
+
+    fix small bug in items.html
+
+commit 70d547948ce59f46e3922facbc9be6a75c4743c4
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 19:11:03 2015 -0500
+
+    fix angular
+
+commit 441804234520632bf3d5921f742fc4a1be86317c
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 19:02:02 2015 -0500
+
+    use interpolateProvider
+
+commit 68796314e0a5355ca5b321ad6e8f2dc8fe304f1f
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 18:55:44 2015 -0500
+
+    move around script tags
+
+commit f6bc4d1a5e727d2a453b7a49e60e6a472fc00a35
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 18:49:41 2015 -0500
+
+    try hardcode angular
+
+commit 4476a683b9502bbd60d8a3132f84e30fb108da27
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 18:37:27 2015 -0500
+
+    more players.html work
+
+commit f31680bb833c6dec6dfdb33926cbba73f99ef478
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 18:32:41 2015 -0500
+
+    make players.html angular link local
+
+commit e44567b43b8cfea0737bf9aa705707ac096d81d0
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 18:25:47 2015 -0500
+
+    hardcode path in players.html
+
+commit 71a767e0cd4956f72a11e76ce4179558bc0e47c7
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 18:19:58 2015 -0500
+
+    update items.html and players.html
+
+commit 3a62f4739bc0f60e1c65cce03af5350338490d9c
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 18:14:16 2015 -0500
+
+    modify angular path in players.html
+
+commit 20d0b8efcef0479ba8929b494c890db058c10e68
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 17:54:50 2015 -0500
+
+    modify items.html, add items.js
+
+commit 8d33ff3935c3483987d6902b64481943a17d8d91
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 17:40:59 2015 -0500
+
+    attempt at fixing angular
+
+commit 630c5fe1987979eeba5bb21adc60d357b2c98141
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Mon Jul 6 22:38:01 2015 +0000
+
+    update location of app.js and html files
+
+commit 1db9a17e335f68d2b6502ea39bd9b83e42e10433
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 17:08:04 2015 -0500
+
+    add items.html
+
+commit ede677083c0eac0f906ac45a0485af4f7671d9e1
+Merge: 5e0d33d bed354b
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Mon Jul 6 22:02:11 2015 +0000
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 5e0d33d9e115a388c3303f1fc2fa032a3c22d922
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Mon Jul 6 22:02:00 2015 +0000
+
+    Updated champion.html
+
+commit bed354b069c43f6db8a6a1595b4472d1cb1993f3
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 16:46:51 2015 -0500
+
+    add champions.html
+
+commit d51685ec41b3713be7dcb438f090b332702f9a51
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Mon Jul 6 16:42:57 2015 -0500
+
+    moved players
+
+commit 47b2407925fa6a94a9440d5a75e81ce0b493ecdd
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Mon Jul 6 16:41:19 2015 -0500
+
+    moved players.html
+
+commit f6db91098bc14a8bc2f6438da83e39f1bc1585a7
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Mon Jul 6 16:37:29 2015 -0500
+
+    fixed splash
+
+commit 53b55d86bb26ce3633528dc41187a6715f609b6d
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Mon Jul 6 16:34:47 2015 -0500
+
+    fixed splash
+
+commit f7eb84e256971bd43b8a9a6c7dcbf0cd63c92067
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Mon Jul 6 16:33:26 2015 -0500
+
+    added links to splash page
+
+commit 0aaf75156f2319f97be36cfef6b4084cebd26f9b
+Merge: 51fd903 8eb30d6
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 16:29:51 2015 -0500
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 51fd9032767949c3ee7db2561141801279adc5e6
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 16:29:32 2015 -0500
+
+    add players.html, remove roles.html
+
+commit 8eb30d68ad668dfe37d49f7a3f10d8f76df8e4f1
+Merge: 3fa8aa5 ed21ae5
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Mon Jul 6 21:01:34 2015 +0000
+
+    Merge branch 'dev' of https://github.com/RyFry/leagueofdowning into dev
+
+commit 3fa8aa5f70ae6596aa5d95997bc1d40d5a0cfc58
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Mon Jul 6 21:01:20 2015 +0000
+
+    Added some more views
+
+commit ed21ae573ff2e1b3519e69caa1934bc20b8995c2
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Mon Jul 6 15:16:09 2015 -0500
+
+    add prototype of roles table page
+
+commit fda29da76aa0229a4c21c8cd5418e23a81ef332f
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Mon Jul 6 11:42:49 2015 -0500
+
+    Added simple About html page
+
+commit da739941fc1b50408ed0d05f660b3946181cb219
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Mon Jul 6 11:11:22 2015 -0500
+
+    Made a site logo and a simple splash page
+
+commit 0b6df1aa4909208d7c2ea9510724116ee3e54396
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Mon Jul 6 01:06:15 2015 +0000
+
+    Django is loading a template file
+
+commit d7a1756dfad0fcedc7c5d44c12282509e3aa26fb
+Merge: b14f96e a6d560c
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Sun Jul 5 23:41:12 2015 +0000
+
+    Merge branch 'dev'
+
+commit a6d560ccc37f2057c1adbee39124a80087b328b5
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Sun Jul 5 23:28:39 2015 +0000
+
+    Got Django working
+
+commit b14f96e9b4b318f41334dc816437ebfbc39dcca9
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Sun Jul 5 23:26:37 2015 +0000
+
+    Got Django working
+
+commit fe244c3b834818ca13f208aa69ef231660f812e2
+Author: Ryan Lorey <ryan.lorey@utexas.edu>
+Date:   Thu Jul 2 00:08:52 2015 -0500
+
+    Initial commit
