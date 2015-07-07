@@ -1,8 +1,17 @@
 <html lang="en">
 
 	<head>
-
+	      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset="UTF-8">
+
+    <!-- Bootstrap -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
 		<title>Players</title>
 
@@ -84,107 +93,116 @@
 			});
     	</script>
 
-    </head>
-
+	</head>
+	
 	<body>
-
-		<div class="container" ng-app="app" ng-controller="appController">
-
-			<table>
-
-				<thead>
-					<tr>
-						<td>
-							<a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-								Player
-								<span ng-show="sortType == 'name'" class="fa fa-caret-down"></span>
-								<span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-						</td>
-						<td>
-							<a href="#" ng-click="sortType = 'age'; sortReverse = !sortReverse">
-								Age
-								<span ng-show="sortType == 'age'" class="fa fa-caret-down"></span>
-								<span ng-show="sortType == 'age' && sortReverse" class="fa fa-caret-up"></span>
-						</td>
-						<td>
-							<a href="#" ng-click="sortType = 'position'; sortReverse = !sortReverse">
-								Position
-								<span ng-show="sortType == 'position'" class="fa fa-caret-down"></span>
-								<span ng-show="sortType == 'position' && sortReverse" class="fa fa-caret-up"></span>
-						</td>
-						<td>
-							<a href="#" ng-click="sortType = 'totalWins'; sortReverse = !sortReverse">
-								Total Wins
-								<span ng-show="sortType == 'totalWins'" class="fa fa-caret-down"></span>
-								<span ng-show="sortType == 'totalWins' && sortReverse" class="fa fa-caret-up"></span>
-						</td>
-						<td>
-							<a href="#" ng-click="sortType = 'seasonWins'; sortReverse = !sortReverse">
-								Season Wins
-								<span ng-show="sortType == 'seasonWins'" class="fa fa-caret-down"></span>
-								<span ng-show="sortType == 'seasonWins' && sortReverse" class="fa fa-caret-up"></span>
-						</td>
-						<td>
-							<a href="#" ng-click="sortType = 'seasonLosses'; sortReverse = !sortReverse">
-								Season Losses
-								<span ng-show="sortType == 'seasonLosses'" class="fa fa-caret-down"></span>
-								<span ng-show="sortType == 'seasonLosses' && sortReverse" class="fa fa-caret-up"></span>
-						</td>
-						<td>
-							<a href="#" ng-click="sortType = 'team'; sortReverse = !sortReverse">
-								Team
-								<span ng-show="sortType == 'team'" class="fa fa-caret-down"></span>
-								<span ng-show="sortType == 'team' && sortReverse" class="fa fa-caret-up"></span>
-						</td>
-						<td>
-							<a href="#" ng-click="sortType = 'avgKDA'; sortReverse = !sortReverse">
-								Average KDA
-								<span ng-show="sortType == 'avgKDA'" class="fa fa-caret-down"></span>
-								<span ng-show="sortType == 'avgKDA' && sortReverse" class="fa fa-caret-up"></span>
-						</td>
-						<td>
-							<a href="#" ng-click="sortType = 'avgGPM'; sortReverse = !sortReverse">
-								Average Gold per Match
-								<span ng-show="sortType == 'avgGPM'" class="fa fa-caret-down"></span>
-								<span ng-show="sortType == 'avgGPM' && sortReverse" class="fa fa-caret-up"></span>
-						</td>
-						<td>
-							<a href="#" ng-click="sortType = 'avgTotalGold'; sortReverse = !sortReverse">
-								Average Total Gold
-								<span ng-show="sortType == 'avgTotalGold'" class="fa fa-caret-down"></span>
-								<span ng-show="sortType == 'avgTotalGold' && sortReverse" class="fa fa-caret-up"></span>
-						</td>
-						<td>
-							Champions
-						</td>
-					</tr>
-				</thead>
-
-				<tbody>
-					{% verbatim %}
-					<tr ng-repeat="player in players | orderBy:sortType:sortReverse">
-						<td><a ng-href="http://leagueofdowning.me/players/{{ player.url }}">{{ player.name }}</a></td>
-						<td>{{ player.age }}</td>
-						<td>{{ player.position }}</td>
-						<td>{{ player.totalWins }}</td>
-						<td>{{ player.seasonWins }}</td>
-						<td>{{ player.seasonLosses }}</td>
-						<td>{{ player.team }}</td>
-						<td>{{ player.avgKDA }}</td>
-						<td>{{ player.avgGPM }}</td>
-						<td>{{ player.avgTotalGold }}</td>
-						<td>
-							<p ng-repeat="champion in player.champions"><a ng-if="championExists(champion)" ng-href="http://leagueofdowning.me/champions/{{ championUrl(champion) }}">{{ champion }}</a><span ng-if="!championExists(champion)">{{ champion }}</span>
-						</td>
-					</tr>
-					{% endverbatim %}
-				</tbody>
-
-			</table>
-
+	  <div class="container" ng-app="app" ng-controller="appController">
+	    <div class="jumbotron">
+	      <div class="row placeholders">
+		<div class="col-xs-6 col-sm-9 placeholders">
+		  <h1>Players</h1>
 		</div>
-
+	      </div>
+	    </div>
+			  
+	    <table>
+	      <thead>
+		<div class="row">
+		  <tr>
+		    <div class="col-xs-6">
+		      <td>
+			<a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+			    Player
+			    <span ng-show="sortType == 'name'" class="fa fa-caret-down"></span>
+			    <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+			</td>
+			</div>
+			<td>
+			  <a href="#" ng-click="sortType = 'age'; sortReverse = !sortReverse">
+			    Age
+			    <span ng-show="sortType == 'age'" class="fa fa-caret-down"></span>
+			    <span ng-show="sortType == 'age' && sortReverse" class="fa fa-caret-up"></span>
+			</td>
+			<td>
+			  <a href="#" ng-click="sortType = 'position'; sortReverse = !sortReverse">
+			    Position
+			    <span ng-show="sortType == 'position'" class="fa fa-caret-down"></span>
+			    <span ng-show="sortType == 'position' && sortReverse" class="fa fa-caret-up"></span>
+			</td>
+			<td>
+			  <a href="#" ng-click="sortType = 'totalWins'; sortReverse = !sortReverse">
+			    Total Wins
+			    <span ng-show="sortType == 'totalWins'" class="fa fa-caret-down"></span>
+			    <span ng-show="sortType == 'totalWins' && sortReverse" class="fa fa-caret-up"></span>
+			</td>
+			<td>
+			  <a href="#" ng-click="sortType = 'seasonWins'; sortReverse = !sortReverse">
+			    Season Wins
+			    <span ng-show="sortType == 'seasonWins'" class="fa fa-caret-down"></span>
+			    <span ng-show="sortType == 'seasonWins' && sortReverse" class="fa fa-caret-up"></span>
+			</td>
+			<td>
+			  <a href="#" ng-click="sortType = 'seasonLosses'; sortReverse = !sortReverse">
+			    Season Losses
+			    <span ng-show="sortType == 'seasonLosses'" class="fa fa-caret-down"></span>
+			    <span ng-show="sortType == 'seasonLosses' && sortReverse" class="fa fa-caret-up"></span>
+			</td>
+			<td>
+			  <a href="#" ng-click="sortType = 'team'; sortReverse = !sortReverse">
+			    Team
+			    <span ng-show="sortType == 'team'" class="fa fa-caret-down"></span>
+			    <span ng-show="sortType == 'team' && sortReverse" class="fa fa-caret-up"></span>
+			</td>
+			<td>
+			  <a href="#" ng-click="sortType = 'avgKDA'; sortReverse = !sortReverse">
+			    Average KDA
+			    <span ng-show="sortType == 'avgKDA'" class="fa fa-caret-down"></span>
+			    <span ng-show="sortType == 'avgKDA' && sortReverse" class="fa fa-caret-up"></span>
+			</td>
+			<td>
+			  <a href="#" ng-click="sortType = 'avgGPM'; sortReverse = !sortReverse">
+			    Average Gold per Match
+			    <span ng-show="sortType == 'avgGPM'" class="fa fa-caret-down"></span>
+			    <span ng-show="sortType == 'avgGPM' && sortReverse" class="fa fa-caret-up"></span>
+			</td>
+			<td>
+			  <a href="#" ng-click="sortType = 'avgTotalGold'; sortReverse = !sortReverse">
+			    Average Total Gold
+			    <span ng-show="sortType == 'avgTotalGold'" class="fa fa-caret-down"></span>
+			    <span ng-show="sortType == 'avgTotalGold' && sortReverse" class="fa fa-caret-up"></span>
+			</td>
+			<td>
+			  Champions
+			</td>
+		      </tr>
+		      </div>
+		    </thead>
+		    
+		    <tbody>
+		      {% verbatim %}
+		      <tr ng-repeat="player in players | orderBy:sortType:sortReverse">
+			<td><a ng-href="http://leagueofdowning.me/players/{{ player.url }}">{{ player.name }}</a></td>
+			<td>{{ player.age }}</td>
+			<td>{{ player.position }}</td>
+			<td>{{ player.totalWins }}</td>
+			<td>{{ player.seasonWins }}</td>
+			<td>{{ player.seasonLosses }}</td>
+			<td>{{ player.team }}</td>
+			<td>{{ player.avgKDA }}</td>
+			<td>{{ player.avgGPM }}</td>
+			<td>{{ player.avgTotalGold }}</td>
+			<td>
+			  <p ng-repeat="champion in player.champions"><a ng-if="championExists(champion)" ng-href="http://leagueofdowning.me/champions/{{ championUrl(champion) }}">{{ champion }}</a><span ng-if="!championExists(champion)">{{ champion }}</span>
+			</td>
+		      </tr>
+		      {% endverbatim %}
+		    </tbody>
+		    
+		   </table>
+		  
+		</div>
+		
 	</body>
-
+	
 </html>
 

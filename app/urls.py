@@ -23,5 +23,7 @@ urlpatterns = [
     url(r'^players/balls', views.balls, name='balls'),
     url(r'^players/bjergsen', views.bjergsen, name='bjergsen'),
     url(r'^players/doublelift', views.doublelift, name='doublelift'),
-    url(r'^players/*', views.players, name='players')
+    url(r'^players/*', views.players, name='players'),
+
+    url(r'^.*/$', views.index, name='index')
 ]
