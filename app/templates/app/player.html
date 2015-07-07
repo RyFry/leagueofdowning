@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>{{ item_name }}</title>
+    <title>{{ player_name }}</title>
 
     <!-- Bootstrap -->
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -34,10 +34,10 @@
       <div class="jumbotron">
 	<div class="row placeholders">
 	  <div class="col-xs-6 col-sm-9 placeholder">
-	    <h1>{{ item_name }}</h1>
+	    <h1>{{ player_name }}</h1>
 	  </div>
 	  <div class="col-xs-6 col-sm-3 placeholder">
-	    <img src="{{ image }}" class="img-circle" height="120px" width="120px"><br>
+	    <img src="{{ image }}" class="img-circle" height="120px" width="120px" ><br>
           </div>
 	</div>
       </div>
@@ -45,19 +45,24 @@
       <div class="row">
 	<div class="col-sm-10">
 	  <h3>Stats</h3>
-	  {{ stats|linebreaks }}
-	</div>
-      </div>
-      <div class="row">
-	<div class="col-sm-10">
-	  <h3>Cost</h3>
-	  {{ cost|linebreaks }}
-	</div>
-      </div>
-      <div class="row">
-	<div class="col-sm-10">
-	  <h3>Recommended Roles</h3>
-	  {{ recommended_roles|linebreaks }}
+	  Age: {{ age|linebreaks }}
+	  Position: {{ position|linebreaks }}
+	  Total Wins: {{ total_wins|linebreaks }}
+	  Season Record: {{ season_record|linebreaks }}
+	  Team: {{ team|linebreaks }}
+	  Average KDA: {{ kda|linebreaks }}
+	  Average Gold per Minute: {{ avg_gpm|linebreaks }}
+	  Average Total Gold: {{ avg_gold|linebreaks }}
+	  Most played champions:<br>
+	  <div class="col-sm-4">
+	    <img src="{{ most_played.first }}" height="120px" width="120px" class="img-circle">
+	  </div>
+	  <div class="col-sm-4">
+	    <img src="{{ most_played.second }}" height="120px" width="120px" class="img-circle">
+	  </div>
+	  <div class="col-sm-3">
+	    <img src="{{ most_played.third }}" height="120px" width="120px" class="img-circle">
+	  </div>
 	</div>
       </div>
     </div>
