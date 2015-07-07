@@ -24,6 +24,22 @@ def items(request):
     context = RequestContext(request, {})
     return HttpResponse(template.render(context))
 
+def test(request):
+    template = loader.get_template('app/index.html')
+    context = RequestContext(request, {})
+    return HttpResponse(template.render(context))
+
+def champions(request):
+    template = loader.get_template('app/champions.html')
+    context = RequestContext(request, {})
+    return HttpResponse(template.render(context))
+
+
+
+#
+# Champion Pages
+#
+
 def mundo(request):
     template = loader.get_template('app/champion.html')
     context = RequestContext(request, {
@@ -93,15 +109,9 @@ def ezreal(request):
     })
     return HttpResponse(template.render(context))
 
-def test(request):
-    template = loader.get_template('app/index.html')
-    context = RequestContext(request, {})
-    return HttpResponse(template.render(context))
-
-def champions(request):
-    template = loader.get_template('app/champions.html')
-    context = RequestContext(request, {})
-    return HttpResponse(template.render(context))
+#
+# Item Pages
+#
 
 def athenes(request):
     template = loader.get_template('app/item.html')
@@ -133,6 +143,73 @@ def sorc_shoes(request):
         'stats' : "+15 Magic Penetration\n\nUNIQUE Passive - Enhanced Movement: +45 Movement Speed",
         'recommended_roles' : "Mage",
         'cost' : "1100 g"
+    })
+    return HttpResponse(template.render(context))
+
+#
+# Player Pages
+#
+
+def balls(request):
+    template = loader.get_template('app/player.html')
+    context = RequestContext(request, {
+        'player_name' : 'An "Balls" Le',
+        'image' : "http://hydra-media.cursecdn.com/lol.gamepedia.com/b/bc/BALLS.C9_lolesports.PP_0.jpg",
+        'age' : "21",
+        'position' : "Top",
+        'total_wins' : "3",
+        'season_record' : "3-9",
+        'team' : "Cloud9 (C9)",
+        'kda' : "1.8",
+        'avg_gpm' : "21",
+        'avg_gold' : "11k",
+        'most_played' : {
+            'first': "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Fizz.png",
+            'second' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Maokai.png",
+            'third' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Rumble.png"
+        }        
+    })
+    return HttpResponse(template.render(context))
+
+def bjergsen(request):
+    template = loader.get_template('app/player.html')
+    context = RequestContext(request, {
+        'player_name' : 'Søren "Bjergsen" Bjerg',
+        'image' : "http://hydra-media.cursecdn.com/lol.gamepedia.com/7/7f/TSM_Bjergsen.jpg",
+        'age' : "19",
+        'position' : "Mid",
+        'total_wins' : "9",
+        'season_record' : "9-3",
+        'team' : "Team SoloMid (TSM)",
+        'kda' : "4.7",
+        'avg_gpm' : "408",
+        'avg_gold' : "18k",
+        'most_played' : {
+            'first': "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Azir.png",
+            'second' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Ezreal.png",
+            'third' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Ekko.png"
+        }        
+    })
+    return HttpResponse(template.render(context))
+
+def doublelift(request):
+    template = loader.get_template('app/player.html')
+    context = RequestContext(request, {
+        'player_name' : 'Yiliang "Doublelift" Peng',
+        'image' : "http://hydra-media.cursecdn.com/lol.gamepedia.com/b/b8/DOUBLELIFT.CLG_lolesports.PP_.jpg",
+        'age' : "21",
+        'position' : "ADC",
+        'total_wins' : "7",
+        'season_record' : "7-5",
+        'team' : "Counter Logic Gaming (CLG)",
+        'kda' : "4.1",
+        'avg_gpm' : "426",
+        'avg_gold' : "16k",
+        'most_played' : {
+            'first': "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Ashe.png",
+            'second' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Sivir.png",
+            'third' : "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Kalista.png"
+        }        
     })
     return HttpResponse(template.render(context))
 
