@@ -10,7 +10,7 @@
     	<script>
 			 var app = angular.module('app', [])
 
-			app.controller('playerController', function($scope) {
+			app.controller('appController', function($scope) {
 				$scope.sortType = 'name';
 				$scope.sortReverse = false;
 
@@ -18,57 +18,69 @@
 
 					{name: 'Bjergsen', age: 19, position: "mid", totalWins: 9, seasonWins: 9, 
 						seasonLosses: 3, team: "TSM", avgKDA: 4.7, avgGPM: 308, avgTotalGold: 18000,
-						champions: ['Azir', 'Ezreal', 'Ekko']},
+						champions: ['Azir', 'Ezreal', 'Ekko'], url: "bjergsen.html"},
 
 					{name: 'Doublelift', age: 21, position: "adc", totalWins: 7, seasonWins: 7, 
 						seasonLosses: 5, team: "CLG", avgKDA: 4.1, avgGPM: 426, avgTotalGold: 16000,
-						champions: ['Ashe', 'Sivir', 'Kalista']},
+						champions: ['Ashe', 'Sivir', 'Kalista'], url: "doublelift.html"},
 
 					{name: 'Balls', age: 21, position: "top", totalWins: 3, seasonWins: 3, 
 						seasonLosses: 9, team: "C9", avgKDA: 1.8, avgGPM: 301, avgTotalGold: 11000,
-						champions: ['Fizz', 'Maokai', 'Rumble']}
+						champions: ['Fizz', 'Maokai', 'Rumble'], url: "balls.html"}
 				];
-			});
-
-			app.controller('championController', function($scope) {
-				$scope.sortType = 'name';
-				$scope.sortReverse = false;
 
 				$scope.champions = [
 
 					{name: 'Azir', role: 'Mage', lane: 'Mid', counters: ['Ziggs', 'Talon', 'Xerath'],
 						items: ['Sorcerer\'s Shoes', 'Athene\'s Unholy Grail', 'Rabadon\'s Deathcap'],
 						abilities: ['Shurima\'s Legacy', 'Conquering Sands', 'Arise!', 'Shifting Sands',
-									'Emperor\'s Divide']},
+									'Emperor\'s Divide'], url: "azir.html"},
 
 					{name: 'Ezreal', role: 'Adc', lane: 'Bot', counters: ['Draven', 'Graves', 'Miss Fortune'],
 						items: ['Berserker\'s Greaves', 'Trinity Force', 'Bloodthirster'],
 						abilities: ['Rising Spell Force', 'Mystic Shot', 'Essence Flux', 'Arcane Shift',
-									'Trueshot Barrage']},
+									'Trueshot Barrage'], url: "ezreal.html"},
 
-					{name: 'Ekko', role: 'Mage', lane: 'Mid', counters: ['LeBlanc', 'Cho\'Gath', 'Diana'],
-						items: ['Luden\'s Echo', 'Sorcerer\'s Shoes', 'Lich Bane'],
-						abilities: ['Z-Drive Resonance', 'Timewinder', 'Parallel Convergence', 'Phase Dive',
-									'Chronobreak']}
+					{name: 'Dr. Mundo', role: 'Fighter', lane: 'Top', counters: ['Olaf', 'Kog\'Maw', 'Trundle'],
+						items: ['Sunfire Cape', 'Spirit Visage', 'Randuin\'s Omen'],
+						abilities: ['Adrenaline Rush', 'Infected Cleaver', 'Burning Agony', 'Masochism', 'Sadism'], url: "dr_mundo.html"}
 				];
-			});
-
-			app.controller('itemController', function($scope) {
-				$scope.sortType = 'name';
-				$scope.sortReverse = false;
 
 				$scope.items = [
 
 					{name: 'Sorcerer\'s Shoes', stats: ['+15 Magic Penetration'], recFor: 'Mage',
-						cost: 1100, recipe: ['Boots of Speed']},
+						cost: 1100, recipe: ['Boots of Speed'], url: "sorcerers_shoes.html"},
 
 					{name: 'Athene\'s Unholy Grail', stats: ['+60 Ability Power', '+25 Magic Resist',
 															'+20% Cooldown Reduction', '+100% Base Mana Regen'],
-						recFor: 'Mage', cost: 2700, recipe: ['Fiendish Codex', 'Chalice ofHarmony']},
+						recFor: 'Mage', cost: 2700, recipe: ['Fiendish Codex', 'Chalice ofHarmony'], url: "athenes_unholy_grail.html"},
 
 					{name: 'Rabadon\'s Deathcap', stats: ['+120 Ability Power'], recFor: 'Mage',
-						cost: 3300, recipe: ['Blasting Wand', 'Needlessly Large Rod']},
+						cost: 3300, recipe: ['Blasting Wand', 'Needlessly Large Rod'],
+						url: "rabadons_deathcap.html"},
 				];
+
+				$scope.championExists = function(champion) {
+					var ret = false;
+					for (var i = 0; i < $scope.champions.length; i++) {
+						if ($scope.champions[i].name == champion) {
+							ret = true;
+						}
+					}
+
+					return ret;
+				};
+
+				$scope.championUrl = function(champion) {
+					var ret = "";
+					for (var i = 0; i < $scope.champions.length; i++) {
+						if ($scope.champions[i].name == champion) {
+							ret = $scope.champions[i].url;
+						}
+					}
+
+					return ret;
+				}
 			});
     	</script>
 
@@ -76,7 +88,7 @@
 
 	<body>
 
-		<div class="container" ng-app="app" ng-controller="playerController">
+		<div class="container" ng-app="app" ng-controller="appController">
 
 			<table>
 
@@ -151,7 +163,7 @@
 				<tbody>
 					{% verbatim %}
 					<tr ng-repeat="player in players | orderBy:sortType:sortReverse">
-						<td>{{ player.name }}</td>
+						<td><a ng-href="http://leagueofdowning.me/players/{{ player.url }}">{{ player.name }}</a></td>
 						<td>{{ player.age }}</td>
 						<td>{{ player.position }}</td>
 						<td>{{ player.totalWins }}</td>
@@ -161,7 +173,9 @@
 						<td>{{ player.avgKDA }}</td>
 						<td>{{ player.avgGPM }}</td>
 						<td>{{ player.avgTotalGold }}</td>
-						<td>{{ player.champions }}</td>
+						<td>
+							<p ng-repeat="champion in player.champions"><a ng-if="championExists(champion)" ng-href="http://leagueofdowning.me/champions/{{ championUrl(champion) }}">{{ champion }}</a><span ng-if="!championExists(champion)">{{ champion }}</span>
+						</td>
 					</tr>
 					{% endverbatim %}
 				</tbody>
