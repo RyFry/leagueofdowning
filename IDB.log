@@ -1,3 +1,15 @@
+commit 5d8d4ea7d1b2ea38659d0b82b2ecedfef1513561
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 23:11:00 2015 +0000
+
+    Removed the footer because it's spazzing out
+
+commit 297955ac5621f51d046acd37046d6eeebd113a20
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Tue Jul 7 23:07:07 2015 +0000
+
+    Updating log for final commit
+
 commit b8d5d5ca5f2286127a732292460a52a1425c75d7
 Author: Ryan <ryanlorey@outlook.com>
 Date:   Tue Jul 7 23:06:48 2015 +0000
