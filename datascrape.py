@@ -55,9 +55,10 @@ for k in playerlist :
         for p in player2[k] :
             championarray.append(p.get('cid'))
         player_data[k]['champions'] = championarray
-    pp.pprint(player_data[k])  
+    #pp.pprint(player_data[k])  
         
-
+with open('players', 'w') as outfile:
+    json.dump(player_data, outfile)
 
 item_info = urlopen(itemsurl).info()
 raw_items = urlopen(itemsurl).read().decode(item_info.get_content_charset('utf8'))
@@ -78,9 +79,10 @@ for k, v in items['data'].items() :
         if i == 'description' :
             item_data[k][i] = re.sub("<br>", "\n", item_data[k][i])
             item_data[k][i] = re.sub("<.*?>", "", item_data[k][i])
-    pp.pprint(item_data[k])
+    #pp.pprint(item_data[k])
 
-
+with open('items', 'w') as outfile1:
+    json.dump(item_data, outfile1)
 
 
 championlist_info = urlopen(championlisturl).info()
@@ -139,7 +141,8 @@ for k in championlist["data"] :
                 #pp.pprint(champion_data[k1])
     
 
-
+with open('champions', 'w') as outfile2:
+    json.dump(champion_data, outfile2)
 
 
 
