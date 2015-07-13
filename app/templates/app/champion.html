@@ -1,88 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Bootstrap -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>{{ champion_name }}</title>
-
-    <!-- Bootstrap -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Grayscale - Start Bootstrap Theme</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
+    <link href="carousel.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   </head>
-  
 
-  <body>
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+          <i class="fa fa-bars"></i>
+          </button>
+          <a class="navbar-brand page-scroll" href="#page-top">
+          <i class="fa fa-play-circle"></i>  <span class="light">League of</span> Downing
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+          <ul class="nav navbar-nav">
+            <li class="hidden">
+              <a href="#page-top"></a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#players">Players</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#champions">Champions</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#items">Items</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#about">About</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+
+
+
     <div class="container">
-      <div class="jumbotron">
-	       <div class="row placeholders">
-	         <div class="col-xs-6 col-sm-9 placeholder">
-            <h1>
-              {{ champion_name }}
-            </h1>
-	         </div>
-	         <div class="col-xs-6 col-sm-3 placeholder">
-	           <img src="{{ image }}" class="img-circle" height="120px" width="120px"><br>
-            </div>
-	       </div>
-      </div>
-    <div class="container">
-      <div class="row">
-	<div class="col-sm-2">
-	  <img src="{{ passive_image }}" class="img-circle">
-	</div>
-	<div class="col-sm-10">
-	  <h4>Passive: {{ passive }}</h4>
-	  {{ passive_description|linebreaks }}
-	</div>
-      </div>
-      <div class="row">
-	<div class="col-sm-2">
-	  <img src="{{ q_image }}" class="img-circle">
-	</div>
-	<div class="col-sm-10">
-	  <h4>Q: {{ q }}</h4>
-          {{ q_description|linebreaks }}
-	</div>      
-      </div>
-      <div class="row">
-	<div class="col-sm-2">
-	  <img src="{{ w_image }}" class="img-circle">
-	</div>
-	<div class="col-sm-10">
-	  <h4>W: {{ w }}</h4>
-	  {{ w_description|linebreaks }}
-	</div>
-      </div>
-      <div class="row">
-	<div class="col-sm-2">
-	  <img src="{{ e_image }}" class="img-circle">
-	</div>
-	<div class="col-sm-10">
-	  <h4>E: {{ e }}</h4>
-	  {{ e_description|linebreaks }}
-	</div>
-      </div>
-      <div class="row">
-	<div class="col-sm-2">
-	  <img src="{{ r_image }}" class="img-circle">
-	</div>
-	<div class="col-sm-10">
-	  <h4>R: {{ r }}</h4>
-	  {{ r_description|linebreaks }}
-	</div>
+    <div class="jumbotron">
+      <div class="row placeholders">
+        <div class="col-xs-6 col-sm-9 placeholder">
+          <h1>
+            {{ champion_name }}
+          </h1>
+        </div>
+        <div class="col-xs-6 col-sm-3 placeholder">
+          <img src="{{ image }}" class="img-circle" height="120px" width="120px"><br>
+        </div>
       </div>
     </div>
+
+    <section id="champion" class="container content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-2">
+            <img src="{{ passive_image }}" class="img-circle">
+          </div>
+          <div class="col-sm-10">
+            <h4>Passive: {{ passive }}</h4>
+            {{ passive_description|linebreaks }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">
+            <img src="{{ q_image }}" class="img-circle">
+          </div>
+          <div class="col-sm-10">
+            <h4>Q: {{ q }}</h4>
+            {{ q_description|linebreaks }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">
+            <img src="{{ w_image }}" class="img-circle">
+          </div>
+          <div class="col-sm-10">
+            <h4>W: {{ w }}</h4>
+            {{ w_description|linebreaks }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">
+            <img src="{{ e_image }}" class="img-circle">
+          </div>
+          <div class="col-sm-10">
+            <h4>E: {{ e }}</h4>
+            {{ e_description|linebreaks }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">
+            <img src="{{ r_image }}" class="img-circle">
+          </div>
+          <div class="col-sm-10">
+            <h4>R: {{ r }}</h4>
+            {{ r_description|linebreaks }}
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
+
+
+  <!-- Footer -->
+  <footer>
+      <div class="container text-center">
+          <p>Copyright &copy; League of Downing 2015</p>
+      </div>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="js/jquery.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="js/jquery.easing.min.js"></script>
+
+  <!-- Custom Theme JavaScript --> 
+  <script src="js/grayscale.js"></script>
+
 </html>

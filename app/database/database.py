@@ -3,6 +3,9 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy import create_engine
+
+import json
 
 player_to_champion = Table('PlayerToChampion', Base.metadata,
                            Column('player_id', Integer),
@@ -10,6 +13,10 @@ player_to_champion = Table('PlayerToChampion', Base.metadata,
 champion_to_item = Table('ChampionToItem', Base.metadata,
                          Column('champion_id', Integer),
                          Column('item_id', Integer))
+
+from_item_to_item = Table('FromItemToItem', Base.metadata,
+                          Column('from_id', Integer),
+                          Column('to_id', Integer))
 
 class Champion (Base) :
     __tablename__ = "Champion"
@@ -62,11 +69,14 @@ class Item (Base) :
     sell_gold = Column(Integer)
     total_gold = Column(Integer)
     image = Column(String)
+
+    from_item_to_item = relationship('Item', secondary=from_item_to_item)
     
     def __repr__ (self) :
         return ("<Item(name='%s', role='%s', base_gold='%d', sell_gold='%d', total_gold='%d',"
                 "image='%s'") % \
                (self.name, self.role, self.base_gold, self.sell_gold, self.total_gold, self.image)
+
 
 class Player (Base) :
     __tablename__ = "Player"
@@ -74,6 +84,7 @@ class Player (Base) :
     id = Column(Integer)
     first_name = Column(String)
     last_name = Column(String)
+    team_name = Column(String)
     ign = Column(String)
     bio = Column(String)
     image = Column(String)
@@ -93,3 +104,15 @@ class Player (Base) :
 
 
 
+if __name__ == '__main__': 
+    # Connect to the SQL database
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+    # Add all of the tables to the database, first checking to make sure that the table
+    # does not already exist
+    Base.metadata.create_all(engine, checkFirst=True)
+    
+    champions = json.loads("champions")
+    items = json.loads("items")
+    players = json.loads("players")
+
+    load_players(players)
