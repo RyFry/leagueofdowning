@@ -16,7 +16,7 @@ urlpatterns = [
     url(r'^items/*', views.items),
 
     url(r'^players/$', views.players),
-    url(r'^players/.*', views.balls),
+    url(r'^players/.*', views.player),
     url(r'^players/*', views.players),
 
     url(r'^.*/$', views.index)
