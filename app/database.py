@@ -2,12 +2,19 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, ForeignKey
+
+player_to_champion = Table('PlayerToChampion', Base.metadata,
+                           Column('player_id', Integer),
+                           Column('champion_id', Integer))
+champion_to_item = Table('ChampionToItem', Base.metadata,
+                         Column('champion_id', Integer),
+                         Column('item_id', Integer))
 
 class Champion (Base) :
     __tablename__ = "Champion"
 
-    id = Column(Integer, primary_key=True) # key in the scrape
+    id = Column(Integer)
     name = Column(String)
     role = Column(String)
     title = Column(String)
@@ -29,6 +36,9 @@ class Champion (Base) :
     r_image = Column(String)
     r_description = Column(String)
 
+    champion_to_item = relationship('Item', secondary=champion_to_item)
+
+
     def __repr__ (self) :
         return ("<Champion(name='%s', role='%s', title='%s', image='%s', passive_name='%s',"
                 "passive_image='%s', passive_description='%s', q_name='%s', q_image='%s',"
@@ -45,7 +55,7 @@ class Champion (Base) :
 class Item (Base) :
     __tablename__ = "Item"
     
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer)
     name = Column(String)
     description = Column(String)
     base_gold = Column(Integer)
@@ -61,7 +71,7 @@ class Item (Base) :
 class Player (Base) :
     __tablename__ = "Player"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer)
     first_name = Column(String)
     last_name = Column(String)
     ign = Column(String)
@@ -72,17 +82,14 @@ class Player (Base) :
     gpm = Column(Float)
     total_gold = Column(Integer)
     games_played = Column(Integer)
+    
+    player_to_champion = relationship("Champion", secondary=player_to_champion)
 
     def __repr__ (self) :
         return ("<Player(first_name='%s', last_name='%s', ign='%s', bio='%s', image='%s', role='%s'"\
-                "kda='%f', gpm='%f', total_gold='%d', games_played='%d'") % \
+                "kda='%f', gpm='%f', total_gold='%d', games_played='%d')") % \
                (self.first_name, self.last_name, self.ign, self.bio, self.image, self.role, \
                 self.kda, self.gpm, self.total_gold, self.games_played)
 
 
-class Player2Item (Base) :
-
-class Champion2Item (Base) :
-
-class Player2Champion (Base) :
 
