@@ -13,23 +13,28 @@ class Champion(models.Model):
     The model contains a Champion name, role, lane, counters, items, and abilities.
     The __str__ method is used to return the name of the Champion as string.
     """
-
+    champion_id = models.IntegerField(default=0)
     champion_name = models.CharField(max_length=200)
     champion_role = models.CharField(max_length=100)
-    champion_lane = models.CharField(max_length=100)
-    champion_counters = models.CharField(max_length=500)
-    champion_items = models.CharField(max_length=1000)
-
-    # champion Statistics
-    champion_abilities = models.CharField(max_length=2000)
-
-    """
-    champion_passive = models.CharField(max_length=2000)
-    champion_Q = models.CharField(max_length=2000)
-    champion_W = models.CharField(max_length=2000)
-    champion_E = models.CharField(max_length=2000)
-    champion_R = models.CharField(max_length=2000)
-    """
+    champion_title = models.CharField(max_length=100)
+    champion_lore = models.CharField(max_length=5000)
+    champion_image = models.CharField(max_length=100)
+    champion_passive_name = models.CharField(max_length=100)
+    champion_passive_image = models.CharField(max_length=100)
+    champion_passive_description = models.CharField(max_length=1000)
+    champion_q_name = models.CharField(max_length=100)
+    champion_q_image = models.CharField(max_length=100)
+    champion_q_description = models.CharField(max_length=1000)
+    champion_w_name = models.CharField(max_length=100)
+    champion_w_image = models.CharField(max_length=100)
+    champion_w_description = models.CharField(max_length=1000)
+    champion_e_name = models.CharField(max_length=100)
+    champion_e_image = models.CharField(max_length=100)
+    champion_e_description = models.CharField(max_length=1000)
+    champion_r_name = models.CharField(max_length=100)
+    champion_r_image = models.CharField(max_length=100)
+    champion_r_description = models.CharField(max_length=1000)
+    champion_champion_to_item = models.CharField(max_length=1000)
 
 
     def get_absolute_url(self):
@@ -51,20 +56,18 @@ class Player(models.Model):
     The __str__ method is used to return the name of the player.
     The get_absolute_url method overrides the default url so that watson get the correct url as a link.
     """
-
-    player_name = models.CharField(max_length=200)
-    player_age = models.IntegerField(default=0)
-    
-    player_position = models.CharField(max_length=50)
-    season_wins = models.IntegerField(default=0)
-    season_losses = models.IntegerField(default=0)
-    team_name = models.CharField(max_length=200)
-
-    average_kda = models.IntegerField(default=0)
-    average_gold_min = models.IntegerField(default=0)
-    average_gold_total = models.IntegerField(default=0)
-
-    pref_champions = models.CharField(max_length=1000)
+    player_id = models.IntegerField(default=0)
+    player_first_name = models.CharField(max_length=100)
+    player_last_name = models.CharField(max_length=100)
+    player_ign = models.CharField(max_length=100)
+    player_bio = models.CharField(max_length=5000)
+    player_image = models.CharField(max_length=100)
+    player_role = models.CharField(max_length=100)
+    player_kda = models.FloatField(default=0)
+    player_gpm = models.FloatField(default=0)
+    player_total_gold = models.IntegerField(default=0)
+    player_games_played = models.IntegerField(default=0)
+    player_player_to_champion = models.CharField(max_length=1000)
 
 
     """
@@ -86,14 +89,13 @@ class Item(models.Model):
     The __str__ method is used to return the item name. 
     The get_absolute_url method overrides the default url so that watson get the correct url as a link. 
     """
-
+    item_id = models.IntegerField(default=0)
     item_name = models.CharField(max_length=200)
-    item_stats = models.CharField(max_length=2000)
-    item_description = models.CharField(max_length=2000)
-    recommended_for = models.CharField(max_length=20)
-    item_cost = models.IntegerField(default=0)
-    item_recipe = models.CharField(max_length=2000)
-    item_picture = models.CharField(max_length=2000)
+    item_description = models.CharField(max_length=5000)
+    item_base_gold = models.IntegerField(default=0)
+    item_sell_gold = models.IntegerField(default=0)
+    item_total_gold = models.IntegerField(default=0)
+    item_image = models.CharField(max_length=100)
 
     def get_absolute_url(self):
         return "/items/%d/" % self.item_name
