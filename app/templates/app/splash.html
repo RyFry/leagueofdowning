@@ -1,97 +1,193 @@
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>League of Downing</title>
+
+<head>
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <!-- Bootstrap -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    
-    <style>
-      .jumbotronwidth {
-         max-width: 100%;
-      }
-      
-      .footer
-      {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      /* Set the fixed height of the footer here */
-      height: 60px;
-      background-color: #f5f5f5;
-      }
-    </style>
-    
-  </head>
-  <body style="margin-bottom: 60px">
-    <div class="container">
-      <div class="jumbotron">
+    <title>Grayscale - Start Bootstrap Theme</title>
 
-	  <div class="product">
-	    <div class="product-img">
-	      <img class="jumbotronwidth center-block" src="http://i.imgur.com/BNIm5ov.png">
-	    </div>
-	  </div>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-	  
-      </div>
+    <!-- Custom CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
 
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
+</head>
 
-      <h1>
-	<p class="text-center">
-	  Welcome to the League of Downing
-	</p>
-      </h1>
-      <h2>
-	<a href="http://leagueofdowning.me/champions/">
-	  <p class="text-center">Champions</p>
-	</a>
-      </h2>
-      
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i>  <span class="light">League of</span> Downing
+                </a>
+            </div>
 
-      <h2>
-	<a href="http://leagueofdowning.me/items/">
-	  <p class="text-center">
-	    Items
-	  </p>
-	</a>
-      </h2>
-
-      <h2>
-	<a href="http://leagueofdowning.me/players/">
-	  <p class="text-center">
-	    Players
-	  </p>
-	</a>
-      </h2>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from players link when scrolled up past players section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#players">Players</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#champions">Champions</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#items">Items</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
 
-      <h2>
-	<a href="http://leagueofdowning.me/about/">
-	  <p class="text-center">
-	    About
-	  </p>
-	</a>
-      </h2>
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-md-8 col-md-offset-2"> -->
+                        <div class="product-img">
+                            <img class="jumbotronwidth center-block" src="http://i.imgur.com/BNIm5ov.png">
+                        </div>
+
+                        <a href="#players" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </header>
 
 
-    </div>
-<!--
-    <footer class="footer">
-      <div class="container">
-	<p class="text-center text-muted">
-	  Copyright 2015, by Land of Legends
-	</p>
-      </div>
+
+    <!-- Players Section -->
+    <section id="players" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Players </h2>
+                <p>League of Legends Championship Series (LCS) in Europe and North America. This is a league system where ten teams compete to stay in the league. The top three teams from each continent advance to the world championships. The World Championship had grand prizes reaching over $1 million dollars</p>
+
+              <!--   <p>  <a href="http://leagueofdowning.me/players/">Current Top Players in League of Legends.</a> 
+                </p> -->
+
+                <a href="http://leagueofdowning.me/players/" class="btn btn-default btn-lg">Current Top Players in League of Legends.</a>
+                
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Champions Section -->
+    <section id="champions" class="content-section text-center">
+        <div class="champions-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Champions</h2>
+                    <p>The champions of the League of Justice are as diverse as they are powerful, all of them bringing unique styles and abilities into the Institute of War. Each fighting for their own political faction, they bring abilities and fighting styles from around Valoran into the arena to resolve conflicts and of course, entertain. </p>
+
+                    <a href="http://leagueofdowning.me/champions/" class="btn btn-default btn-lg">Choose your Champion!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Items Section -->
+    <section id="items" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Items</h2>
+                <p>Each player can choose a variety of champion varying in many different roles, each having their own unique characteristics and abilities, with all champions starting off each game fairly weak and progressing by accumulating gold and experience over the course of the game. As each player accumulate gold, they can use it on items that boost their champion's statistics that enhances various abilities.</p>
+
+                <p>
+                <!-- <a href="http://leagueofdowning.me/items/">Choose your items wisely.</a> -->
+                <a href="http://leagueofdowning.me/items/" class="btn btn-default btn-lg">Choose your items wisely!</a>
+                </p>
+                
+            </div>
+        </div>
+    </section>
+
+
+
+<!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About Our Team</h2>
+                <p> Ryan, Michael, Nathan, Richard, & Manny</p>
+
+                <p>
+                <a href="http://leagueofdowning.me/about/" class="btn btn-default btn-lg">More About Our Team!</a>
+                </p>
+
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https:twitter.com" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                    </li>
+                </ul>
+                
+                   
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; League of Downing 2015</p>
+        </div>
     </footer>
--->
-  </body>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Custom Theme JavaScript --> 
+    <script src="js/grayscale.js"></script>
+
+</body>
+
 </html>
