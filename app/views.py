@@ -25,17 +25,23 @@ def test(request):
 
 def players(request):
     template = loader.get_template('app/players.html')
-    context = RequestContext(request, {})
+    context = RequestContext(request, {
+        'playerdata' : ''
+    })
     return HttpResponse(template.render(context))
 
 def items(request):
     template = loader.get_template('app/items.html')
-    context = RequestContext(request, {})
+    context = RequestContext(request, {
+        'itemdata' : ''
+    })
     return HttpResponse(template.render(context))
 
 def champions(request):
     template = loader.get_template('app/champions.html')
-    context = RequestContext(request, {})
+    context = RequestContext(request, {
+        'championdata' : ''
+    })
     return HttpResponse(template.render(context))
 
 
@@ -44,10 +50,10 @@ def champions(request):
 # Champion Pages
 #
 
-def champion(request, name):
+def champion(request, id):
     template = loader.get_template('app/champion.html')
     context = RequestContext(request, {
-        'champion_name' : name
+        'id' : name
     })
     return HttpResponse(template.render(context))
 
@@ -55,10 +61,10 @@ def champion(request, name):
 # Item Pages
 #
 
-def item(request, name):
+def item(request, id):
     template = loader.get_template('app/item.html')
     context = RequestContext(request, {
-        'item_name' : name
+        'id' : id
     })
     return HttpResponse(template.render(context))
 
@@ -66,10 +72,10 @@ def item(request, name):
 # Player Pages
 #
 
-def player(request, name):
+def player(request, id):
     template = loader.get_template('app/player.html')
     context = RequestContext(request, {
-        'player_name' : name       
+        'id' : id       
     })
     return HttpResponse(template.render(context))
 
