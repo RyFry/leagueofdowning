@@ -18,7 +18,6 @@ from django.http import HttpResponse
 
 from json import dumps, loads
 
-
 from django.test import TestCase
 from app.models import *
 
@@ -63,9 +62,9 @@ class ModelTestCase(TestCase):
 
 	champion_test_dict2 = {"dr_mundo": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", "fighter", "top", ["olaf", "kog_maw", "trundle"], ["sunfire_cape", "spirit_visage", "randuins_omen"]], "azir": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Azir.png", "mage", "mid", ["ziggs", "talon", "xerath"], ["sorcerer's shoes", "athenes", "rabadons"]]}
 
-
         Champion.objects.create(champion_name="dr_mundo", picture=champion_test_dict2["dr_mundo"][0], champion_role=champion_test_dict2["dr_mundo"][1], champion_lane=champion_test_dict2["dr_mundo"][2], champion_counters=champion_test_dict2["dr_mundo"][3], champion_items=champion_test_dict2["dr_mundo"][4])
- 	Champion.objects.create(champion_name="azir", picture=champion_test_dict2["azir"][0], champion_role=champion_test_dict2["azir"][1], champion_lane=champion_test_dict2["azir"][2], champion_counters=champion_test_dict2["azir"][3], champion_items=champion_test_dict2["azir"][4])
+ 	
+	Champion.objects.create(champion_name="azir", picture=champion_test_dict2["azir"][0], champion_role=champion_test_dict2["azir"][1], champion_lane=champion_test_dict2["azir"][2], champion_counters=champion_test_dict2["azir"][3], champion_items=champion_test_dict2["azir"][4])
 
         Champion_Mundo = Champion.objects.get(champion_name="dr_mundo")
         self.assertEqual(Champion_Mundo.champion_name, "dr_mundo")
@@ -89,6 +88,8 @@ class ModelTestCase(TestCase):
     def test_champion_model3(self):
 	#Dictionary Key: Champion Name
         #Dictionary Value: [picture, champion_role, champion_lane, champion_counters, champion_items]
+
+	#s = open("app/champions")
 
 	champion_test_dict3 = {"dr_mundo": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", "fighter", "top", ["olaf", "kog_maw", "trundle"], ["sunfire_cape", "spirit_visage", "randuins_omen"]], "azir": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Azir.png", "mage", "mid", ["ziggs", "talon", "xerath"], ["sorcerer's shoes", "athenes", "rabadons"]], "ezreal" : ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Ezreal.png", "adc", "bot", ["draven", "graves", "missfortune"], ["berserkers", "trinity", "bloodthirster"]]}
 
