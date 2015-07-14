@@ -19,8 +19,8 @@
       var app = angular.module('app', []).config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{');
         $interpolateProvider.endSymbol('}]}');
-      });
-
+      })
+      
       app.controller('appController', function($scope) {
         $scope.sortType = 'name';
         $scope.sortReverse = false;
