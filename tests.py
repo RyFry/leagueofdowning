@@ -44,8 +44,9 @@ class ModelTestCase(TestCase):
 """
 key, name, role, title, lore, image, passive_name, passive_image, passive_description, q_name, q_image, q_description, w_name, w_image, w_description, e_name, e_image, e_description, r_name, r_image, r_description, recommended_items, 
 """
+
         Champion.objects.create(champions_name="dr_mundo", picture = "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", champion_role = "fighter", champion_lane = "top", champion_counters = ["olaf", "kog_maw", "trundle"], champion_items = ["sunfire_cape", "spirit_visage", "randuins_omen"])
- 
+
         Champion_Mundo = Champion.objects.get(champion_name="dr_mundo")
         self.assertEqual(Champion_Mundo.champion_name, "dr_mundo")
         self.assertEqual(Champion_Mundo.picture, "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png")
