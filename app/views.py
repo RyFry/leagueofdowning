@@ -134,6 +134,9 @@ def Champion_List_API(request):
     return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Champion_ID_API(request, id):
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Champion" where champion_id=' + id)
     jsonout = {}
     for row in result:
         champ_name = row['champion_id']
