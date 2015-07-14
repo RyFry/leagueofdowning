@@ -2,25 +2,30 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
-from sqlalchemy import create_engine
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table
+from sqlalchemy import create_engine, insert
+from sqlalchemy.orm import relationship, sessionmaker
 
 import json
 
 player_to_champion = Table('PlayerToChampion', Base.metadata,
-                           Column('player_id', Integer),
-                           Column('champion_id', Integer))
+                           Column('player_id', Integer, ForeignKey('Player.id')),
+                           Column('champion_id', Integer, ForeignKey('Champion.id')))
+item_to_item = Table('ItemToItem', Base.metadata,
+                     Column('item_id', Integer, ForeignKey('Item.id')),
+                     Column('item_id', Integer, ForeignKey('Item.id')))
 champion_to_item = Table('ChampionToItem', Base.metadata,
-                         Column('champion_id', Integer),
-                         Column('item_id', Integer))
+                         Column('champion_id', Integer, ForeignKey('Champion.id')),
+                         Column('item_id', Integer, ForeignKey('Item.id')))
 
-from_item_to_item = Table('FromItemToItem', Base.metadata,
-                          Column('from_id', Integer),
-                          Column('to_id', Integer))
+
 
 class Champion (Base) :
     __tablename__ = "Champion"
 
+    # We need a primary key for SQLAlchemy to not puke on us, but we don't need
+    # to actually use the primary key, because 'id' is our unique key
+    dummy = Column(Integer, primary_key=True)
     id = Column(Integer)
     name = Column(String)
     role = Column(String)
@@ -43,8 +48,7 @@ class Champion (Base) :
     r_image = Column(String)
     r_description = Column(String)
 
-    champion_to_item = relationship('Item', secondary=champion_to_item)
-
+    recommended_items = relationship('Item', secondary=champion_to_item)
 
     def __repr__ (self) :
         return ("<Champion(name='%s', role='%s', title='%s', image='%s', passive_name='%s',"
@@ -62,7 +66,7 @@ class Champion (Base) :
 class Item (Base) :
     __tablename__ = "Item"
     
-    id = Column(Integer)
+    id = Column(Integer, primary_key=True)
     name = Column(String)
     description = Column(String)
     base_gold = Column(Integer)
@@ -70,8 +74,9 @@ class Item (Base) :
     total_gold = Column(Integer)
     image = Column(String)
 
-    from_item_to_item = relationship('Item', secondary=from_item_to_item)
-    
+    from_items = relationship('Item', secondary=item_to_item)
+    into_items = relationship('Item', secondary=item_to_item)
+
     def __repr__ (self) :
         return ("<Item(name='%s', role='%s', base_gold='%d', sell_gold='%d', total_gold='%d',"
                 "image='%s'") % \
@@ -81,6 +86,9 @@ class Item (Base) :
 class Player (Base) :
     __tablename__ = "Player"
 
+    # We need a primary key for SQLAlchemy to not puke on us, but we don't need
+    # to actually use the primary key, because 'id' is our unique key 
+    dummy = Column(Integer, primary_key=True)
     id = Column(Integer)
     first_name = Column(String)
     last_name = Column(String)
@@ -93,9 +101,9 @@ class Player (Base) :
     gpm = Column(Float)
     total_gold = Column(Integer)
     games_played = Column(Integer)
-    
-    player_to_champion = relationship("Champion", secondary=player_to_champion)
 
+    played_champions = relationship('Champion', secondary=player_to_champion)
+    
     def __repr__ (self) :
         return ("<Player(first_name='%s', last_name='%s', ign='%s', bio='%s', image='%s', role='%s'"\
                 "kda='%f', gpm='%f', total_gold='%d', games_played='%d')") % \
@@ -104,15 +112,65 @@ class Player (Base) :
 
 
 
+def load_items(items, session) :
+    
+    for k, v in items.items() :
+        item = Item(description=v['description'],
+                    base_gold=int(v['gold']['base']),
+                    sell_gold=int(v['gold']['sell']),
+                    total_gold=int(v['gold']['total']),
+                    name=v['name'],
+                    image=v['image'],
+                    id=int(k))
+        for frm in v['fromItem'] :
+            item.from_items += [int(frm)]
+        for into in v['intoItem'] :
+            item.into_items += [int(into)]
+        session.add(item)
+    session.commit()
+
+
+"""
+def load_players(players):
+    '''
+    players is a dictionary of player information loaded from a json of the form:
+    {
+       "playername" : {"bio" : "",
+                       "champions : [len <= 3 <champion_id>],
+                       "firstname" : "",
+                       "lastname" : "",
+                       "name" : "<ign>",
+                       "photoUrl" : "",
+                       "role" : "",
+                       "teamName" : "",
+                       "id" : "<player_id>",
+                       "kda" : "<float>",
+                       "gpm" : "<int>",
+                       "totalGold": "<int>",
+                       "gamesPlayed": "<int>"                      
+    }
+    '''
+    for k, v in players :
+"""        
+    
+
+
 if __name__ == '__main__': 
     # Connect to the SQL database
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
     # Add all of the tables to the database, first checking to make sure that the table
     # does not already exist
-    Base.metadata.create_all(engine, checkFirst=True)
+    Base.metadata.bind = engine
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
     
-    champions = json.loads("champions")
-    items = json.loads("items")
-    players = json.loads("players")
+    
+    items = json.load(open("items"))
+    champions = json.load(open("champions"))
+    players = json.load(open("players"))
 
-    load_players(players)
+    load_items(items, session)
+#    load_champions(champions)
+#    load_players(players)
+
+
