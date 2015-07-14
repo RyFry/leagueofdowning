@@ -40,8 +40,9 @@ class ModelTestCase(TestCase):
         #Dictionary Key: Champion Name
         #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image}
 
-
         champion_test_dict1 = {"Nidalee": {"key": "76", "role": "Assassin", "name": "Nidalee"}}
+
+        Champion.objects.create(champion_name="Nidalee", champion_role="Assassin", champion_key="76")
 
         Champion_Nidalee = Champion.objects.get(champion_name="Nidalee")
         self.assertEqual(Champion_Nidalee.champion_name, "Nidalee")
