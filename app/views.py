@@ -134,7 +134,7 @@ def Item_ID_API(request, id):
     for row in result:
         jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': row['image']}
     if jsonout == {}:
-        h = HttpResponse(json.dumps({"error: Item " + id + " does not exist"}),   content_type="application/json")
+        h = HttpResponse(json.dumps({"error": "Item " + id + " does not exist."}),   content_type="application/json")
         h.status_code = 404
         return h
 
