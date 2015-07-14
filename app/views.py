@@ -38,34 +38,17 @@ def error(request):
 
 def players(request):
     template = loader.get_template('app/players.html')
-    context = RequestContext(request, {
-        'playerdata' : ''
-    })
+    context = RequestContext(request, {})
     return HttpResponse(template.render(context))
 
 def items(request):
     template = loader.get_template('app/items.html')
-
-    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
-
-    result = engine.execute('select * from "Item"')
-    List = {}
-    for row in result:
-        List[row['item_id']] = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
-
-    jsonout = json.dumps(List)
-    jsonout = jsonout[1:-1]
-
-    context = RequestContext(request, {
-        'itemdata' : '' + jsonout
-    })
+    context = RequestContext(request, {})
     return HttpResponse(template.render(context))
 
 def champions(request):
     template = loader.get_template('app/champions.html')
-    context = RequestContext(request, {
-        'championdata' : ''
-    })
+    context = RequestContext(request, {})
     return HttpResponse(template.render(context))
 
 
