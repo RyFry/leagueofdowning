@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 
+from sqlalchemy import create_engine, insert
+from sqlalchemy.orm import relationship, sessionmaker, backref
+
+
 
 
 
@@ -109,7 +113,6 @@ def Player_List_API(request):
     })
     return HttpResponse(template.render(context))
 
-
 def Player_ID_API(request, id):
     template = loader.get_template('app/player.html')
     context = RequestContext(request, {
@@ -118,11 +121,16 @@ def Player_ID_API(request, id):
     return HttpResponse(template.render(context))
 
 def Item_List_API(request):
-    template = loader.get_template('app/player.html')
-    context = RequestContext(request, {
-             
-    })
-    return HttpResponse(template.render(context))
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    Session = sessionmaker(bind=engine)
+
+    session = Session()   
+
+    ItemObjects = session.query('* FROM "Item"').all()
+
+    return HttpResponse(json.dumps(ItemObjects), content_type="application/json")
+
 
 def Item_ID_API(request, id):
     template = loader.get_template('app/player.html')
