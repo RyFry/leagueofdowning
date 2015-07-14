@@ -9,13 +9,13 @@
       var app = angular.module('app', []);
 
       app.controller('appController', function($scope, $http) {
-        $scope.sortType = 'item.name';
-        $scope.sortReverse = false;
         $scope.items;
 
         $http.get("http://leagueofdowning.me/api/items/").then(function(response) {
           $scope.items = response.data;
         })
+        $scope.sortType = 'item.base_gold';
+        $scope.sortReverse = false;
       });
     </script>
 
