@@ -127,7 +127,7 @@ def Champion_List_API(request):
         result1 = engine.execute('select item_id from "ChampionToItem" where champion_id = champ_name')
         dic = List[champ_name]
         for row1 in result1:
-            dic['recommended_items'] : row1['item_id']
+            dic['recommended_items'] = row1['item_id']
 
 
     return HttpResponse(json.dumps(List), content_type='application/json')
