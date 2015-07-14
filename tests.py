@@ -40,6 +40,14 @@ class ModelTestCase(TestCase):
         #Dictionary Key: Champion Name
         #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image}
 
+
+        champion_test_dict1 = {"Nidalee": {"key": "76", "role": "Assassin", "name": "Nidalee"}}
+
+        Champion_Nidalee = Champion.objects.get(champion_name="Nidalee")
+        self.assertEqual(Champion_Nidalee.champion_name, "Nidalee")
+        self.assertEqual(Champion_Nidalee.champion_role, "Assassin")
+        self.assertEqual(Champion_Nidalee.champion_key, "76")
+"""
         s = open("app/database/champions")
         champion_test_dict1 = json.load(s)
         s.close()
@@ -52,7 +60,7 @@ class ModelTestCase(TestCase):
             self.assertEqual(temp.champion_name, current_champion)
             self.assertEqual(temp.role, champion_test_dict1['role'])
             self.assertEqual(temp.champion_key, champion_test_dict1['key'])
-"""
+
     def test_champion_model2(self):
         #Dictionary Key: Champion Name
         #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image}
