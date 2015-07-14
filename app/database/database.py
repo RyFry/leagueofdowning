@@ -186,6 +186,7 @@ def load_items(items, session) :
                      'name' : v['name'],
                      'image' : v['image'],
                      'item_id' : int(k)})
+    engine.execute(item.)
     session.commit()
 """
         for frm in v['fromItem'] :
@@ -226,16 +227,13 @@ engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning'
 # Add all of the tables to the database, first checking to make sure that the table
 # does not already exist
 
-metadata.create_all(engine)
-
-# Commit the change
-trans.commit()
+metadata.create_all(engine, checkfirst=True)
 
 items = json.load(open("items"))
 champions = json.load(open("champions"))
 players = json.load(open("players"))
 
-#load_items(items, session)
+load_items(items, session)
 #    load_champions(champions)
 #    load_players(players)
 
