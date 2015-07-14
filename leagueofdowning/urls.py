@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from rest_framework import routers
-from leagueofdowning.app import views
+from app import views
 
 router = routers.DefaultRouter()
 router.register(r'champion', views.ChampionViewSet)
