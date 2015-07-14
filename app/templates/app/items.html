@@ -1,16 +1,6 @@
 <html lang="en">
-
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-
-    <!-- Bootstrap -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    {% include "app/header.html" %}
 
     <title>Items</title>
 
@@ -73,23 +63,19 @@
 	<tbody>
     {% verbatim %}
     {{items}}
-	  <tr ng-repeat="(key, value) in items | orderBy:sortType:sortReverse">
-	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ key }}</a></td>
-	    <td>{{ value }}</td>
-	    <td>{{ thing }}</td>
-	    <td>{{ items }}</td>
-	    <td>{{ item.total_gold }}</td>
+	  <tr ng-repeat="item in items | orderBy:sortType:sortReverse">
+	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item }}</a></td>
 	  </tr>
+    {% endverbatim %}
     
 	</tbody>
-      {{items}}
-      {% endverbatim %}
 
       </table>
 
     </div>
 
   </body>
+  {% include "app/footer.html" %}
 
 </html>
 
