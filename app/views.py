@@ -83,7 +83,7 @@ def item(request, id):
 def player(request, id):
     template = loader.get_template('app/player.html')
     context = RequestContext(request, {
-        'id' : id       
+        'id' : id
     })
     return HttpResponse(template.render(context))
 
@@ -94,29 +94,25 @@ def player(request, id):
 #
 def Champion_List_API(request):
     template = loader.get_template('app/player.html')
-    context = RequestContext(request, {
-             
-    })
+    context = RequestContext(request, {})
     return HttpResponse(template.render(context))
 
 def Champion_ID_API(request, id):
     template = loader.get_template('app/player.html')
     context = RequestContext(request, {
-        'id' : id       
+        'id' : id
     })
     return HttpResponse(template.render(context))
 
 def Player_List_API(request):
     template = loader.get_template('app/player.html')
-    context = RequestContext(request, {
-             
-    })
+    context = RequestContext(request, {})
     return HttpResponse(template.render(context))
 
 def Player_ID_API(request, id):
     template = loader.get_template('app/player.html')
     context = RequestContext(request, {
-        'id' : id       
+        'id' : id
     })
     return HttpResponse(template.render(context))
 
@@ -142,7 +138,7 @@ def Item_List_API(request):
 def Item_ID_API(request, id):
     template = loader.get_template('app/player.html')
     context = RequestContext(request, {
-        'id' : id       
+        'id' : id
     })
     return HttpResponse(template.render(context))
     
