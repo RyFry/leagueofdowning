@@ -127,7 +127,7 @@ def Item_List_API(request):
 
     session = Session()   
 
-    ItemObjects = session.query('Item').all()
+    ItemObjects = session.query('SELECT * FROM Item').all()
 
     return HttpResponse(json.dumps(ItemObjects), content_type="application/json")
 
