@@ -79,7 +79,8 @@ def champions(request):
 def champion(request, id):
     template = loader.get_template('app/champion.html')
     context = RequestContext(request, {
-        'id' : name
+        'id' : id
+        'name' : id
     })
     return HttpResponse(template.render(context))
 
