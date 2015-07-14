@@ -127,7 +127,7 @@ def player(request, id):
         int(id)
         engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
-        result = engine.execute('select * from "Player" where item_id=' + id)
+        result = engine.execute('select * from "Player" where player_id=' + id)
         jsonout = {}
 
         for row in result:
