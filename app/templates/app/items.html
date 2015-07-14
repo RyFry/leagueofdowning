@@ -23,21 +23,14 @@
         $interpolateProvider.endSymbol('}]}');
       });
 
-      app.controller('appController', function($scope) {
+      app.controller('appController', function($scope, $http) {
         $scope.sortType = 'name';
         $scope.sortReverse = false;
+        $scope.items;
 
-        $scope.players = [
-          {{playerdata}}
-        ];
-
-        $scope.champions = [
-          {{championdata}}
-        ];
-
-        $scope.djangoitems = "" + {{itemdata}};
-
-        $scope.items = JSON.parse($scope.djangoitems);
+        $http.get("http://leagueofdowning.me/api/items/").success(function(response) {
+          $scope.items = JSON.parse(response);
+        })
 
         $scope.thing = 'asdf'
       });
@@ -88,7 +81,7 @@
 	  <tr ng-repeat="(key, value) in items | orderBy:sortType:sortReverse">
 	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{[{ key }]}</a></td>
 	    <td>{[{ value }]}</td>
-	    <td>{{ thing }}</td>
+	    <td>{[{ thing }]}</td>
 	    <td>{{ item.sell_gold }}</td>
 	    <td>{{ item.total_gold }}</td>
 	  </tr>
