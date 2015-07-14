@@ -16,8 +16,6 @@
         $http.get("http://leagueofdowning.me/api/items/").then(function(response) {
           $scope.items = response.data;
         })
-
-        $scope.thing = 'asdf'
       });
     </script>
 
@@ -62,9 +60,8 @@
 
 	<tbody>
     {% verbatim %}
-    {{items}}
 	  <tr ng-repeat="item in items | orderBy:sortType:sortReverse">
-	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item }}</a></td>
+	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item.name }}</a></td>
 	  </tr>
     {% endverbatim %}
     
