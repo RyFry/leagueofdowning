@@ -123,11 +123,28 @@ def item(request, id):
 #
 
 def player(request, id):
-    template = loader.get_template('app/player.html')
-    context = RequestContext(request, {
-        'id' : id
-    })
-    return HttpResponse(template.render(context))
+    try:
+        int(id)
+        engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+        result = engine.execute('select * from "Player" where item_id=' + id)
+        jsonout = {}
+
+        for row in result:
+            jsonout = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': row['kda'], 'gpm': row['gpm'], 'total_gold': row['total_gold'], 'games_played': row['games_played']}
+
+        if jsonout == {}:
+            template = loader.get_template('app/error.html')
+            context = RequestContext(request, {})
+            return HttpResponse(template.render(context))
+        else:
+            template = loader.get_template('app/player.html')
+            context = RequestContext(request, jsonout)
+            return HttpResponse(template.render(context))
+    except ValueError:
+        template = loader.get_template('app/error.html')
+        context = RequestContext(request, {})
+        return HttpResponse(template.render(context))
 
 
 
