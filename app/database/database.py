@@ -228,8 +228,15 @@ engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning'
 connection = engine.connect()
 trans = connection.begin()
 metadata.bind = engine
-for tbl in reversed(metadata.sorted_tables):
-    engine.execute(tbl.create())
+
+# Create the tables
+engine.execute(metadata['Champion'].create())
+engine.execute(metadata['Player'].create())
+engine.execute(metadata['Item'].create())
+engine.execute(metadata['ChampionToItem'].create())
+engine.execute(metadata['PlayerToChampion'].create())
+
+# Commit the change
 trans.commit()
 
 items = json.load(open("items"))
