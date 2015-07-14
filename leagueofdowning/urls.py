@@ -16,11 +16,19 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from rest_framework import routers
+from leagueofdowning.app import views
+
+router = routers.DefaultRouter()
+router.register(r'champion', views.ChampionViewSet)
+router.register(r'player', views.PlayerViewSet)
+router.register(r'item', views.ItemViewSet)
 
 urlpatterns = [
-    url(r'^', include('app.urls')),
+    url(r'^', include('router.urls')),
     url(r'^app/', include('app.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
