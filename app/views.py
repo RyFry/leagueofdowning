@@ -127,11 +127,14 @@ def Item_List_API(request):
     return HttpResponse(json.dumps(jsonout), content_type='application/json')
 
 def Item_ID_API(request, id):
-    template = loader.get_template('app/player.html')
-    context = RequestContext(request, {
-        'id' : id
-    })
-    return HttpResponse(template.render(context))
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Item" where item_id=' + id)
+    jsonout = {}
+    for row in result:
+        jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': row['image']}
+
+    return HttpResponse(json.dumps(jsonout), content_type='application/json')    
     
 
 
