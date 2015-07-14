@@ -47,8 +47,15 @@ def items(request):
     for row in result:
         List.append({'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]})
 
+    out = ""
+    for item in List:
+        out = out + json.dumps(item) + ", "
+
+    out = out[0:-2]
+
+
     context = RequestContext(request, {
-        'itemdata' : ', '.join(List)
+        'itemdata' : out
     })
     return HttpResponse(template.render(context))
 
