@@ -230,11 +230,11 @@ trans = connection.begin()
 metadata.bind = engine
 
 # Create the tables
-engine.execute(metadata['Champion'].create())
-engine.execute(metadata['Player'].create())
-engine.execute(metadata['Item'].create())
-engine.execute(metadata['ChampionToItem'].create())
-engine.execute(metadata['PlayerToChampion'].create())
+engine.execute(metadata.tables['Champion'].create())
+engine.execute(metadata.tables['Player'].create())
+engine.execute(metadata.tables['Item'].create())
+engine.execute(metadata.tables['ChampionToItem'].create())
+engine.execute(metadata.tables['PlayerToChampion'].create())
 
 # Commit the change
 trans.commit()
