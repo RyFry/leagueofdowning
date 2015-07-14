@@ -153,6 +153,7 @@ def Champion_List_API(request):
 
 def Champion_ID_API(request, id):
     try:
+        int(id)
         engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
         result = engine.execute('select * from "Champion" where champion_id=' + id)
@@ -191,6 +192,7 @@ def Player_List_API(request):
 
 def Player_ID_API(request, id):
     try:
+        int(id)
         engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
         result = engine.execute('select * from "Player" where player_id=' + id)
