@@ -7,6 +7,7 @@ from sqlalchemy.orm import relationship, sessionmaker, backref
 from app.database import database
 
 import json
+import re
 
 
 # Create your views here.
@@ -43,19 +44,15 @@ def items(request):
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
     result = engine.execute('select * from "Item"')
-    List = []
+    List = {}
     for row in result:
-        List.append({'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]})
+        List[row['item_id']] = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
 
-    out = ""
-    for item in List:
-        out = out + json.dumps(item) + ", "
-
-    out = out[0:-2]
-
+    jsonout = json.dumps(List)
+    jsonout = jsonout[1:-1]
 
     context = RequestContext(request, {
-        'itemdata' : out
+        'itemdata' : '' + jsonout
     })
     return HttpResponse(template.render(context))
 
@@ -74,10 +71,21 @@ def champions(request):
 
 def champion(request, id):
     template = loader.get_template('app/champion.html')
-    context = RequestContext(request, {
-        'id' : id,
-        'champion_name' : id
-    })
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Champion" where champion_id=' + id)
+    jsonout = {}
+    for row in result:
+        champ_name = row['champion_id']
+        result1 = engine.execute('select item_id from "ChampionToItem" where champion_id = %s' % champ_name)
+
+        itemlist = []
+        for row1 in result1:
+            itemlist.append(row1['item_id'])
+
+        jsonout = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': re.sub("5.13.1", "5.2.1", row['image']), 'passive_name': row['passive_name'], 'passive_image': re.sub("5.13.1", "5.2.1", row['passive_image']), 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': re.sub("5.13.1", "5.2.1", row['q_image']), 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': re.sub("5.13.1", "5.2.1", row['w_image']), 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': re.sub("5.13.1", "5.2.1", row['e_image']), 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': re.sub("5.13.1", "5.2.1", row['r_image']), 'r_description': row['r_description'], 'recommended_items': itemlist}
+
+    context = RequestContext(request, jsonout)
     return HttpResponse(template.render(context))
 
 #
@@ -119,16 +127,39 @@ def Champion_List_API(request):
     result = engine.execute('select * from "Champion"')
     List = {}
     for row in result:
-        List[row['champion_id']] = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/' + row['image'][-8:], 'passive_name': row['passive_name'], 'passive_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/passive/' + row['passive_image'][-8:], 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['q_image'][-8:], 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['w_image'][-8:], 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['e_image'][-8:], 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['r_image'][-8:], 'r_description': row['r_description']}
+        champ_name = row['champion_id']
+        List[row['champion_id']] = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': re.sub("5.13.1", "5.2.1", row['image']), 'passive_name': row['passive_name'], 'passive_image': re.sub("5.13.1", "5.2.1", row['passive_image']), 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': re.sub("5.13.1", "5.2.1", row['q_image']), 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': re.sub("5.13.1", "5.2.1", row['w_image']), 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': re.sub("5.13.1", "5.2.1", row['e_image']), 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': re.sub("5.13.1", "5.2.1", row['r_image']), 'r_description': row['r_description']}
+        result1 = engine.execute('select item_id from "ChampionToItem" where champion_id = %s' % champ_name)
+        dic = List[champ_name]
+        itemlist = []
+        for row1 in result1:
+            itemlist.append(row1['item_id'])
+        dic['recommended_items'] = itemlist
 
     return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Champion_ID_API(request, id):
-    template = loader.get_template('app/player.html')
-    context = RequestContext(request, {
-        'id' : id
-    })
-    return HttpResponse(template.render(context))
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Champion" where champion_id=' + id)
+    jsonout = {}
+    for row in result:
+        champ_name = row['champion_id']
+        result1 = engine.execute('select item_id from "ChampionToItem" where champion_id = %s' % champ_name)
+
+        itemlist = []
+        for row1 in result1:
+            itemlist.append(row1['item_id'])
+
+        jsonout = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': re.sub("5.13.1", "5.2.1", row['image']), 'passive_name': row['passive_name'], 'passive_image': re.sub("5.13.1", "5.2.1", row['passive_image']), 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': re.sub("5.13.1", "5.2.1", row['q_image']), 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': re.sub("5.13.1", "5.2.1", row['w_image']), 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': re.sub("5.13.1", "5.2.1", row['e_image']), 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': re.sub("5.13.1", "5.2.1", row['r_image']), 'r_description': row['r_description'], 'recommended_items': itemlist}
+
+    if jsonout == {}:
+        h = HttpResponse(json.dumps({"error": "Champion " + id + " does not exist."}),   content_type="application/json")
+        h.status_code = 404
+        return h
+
+    return HttpResponse(json.dumps(jsonout), content_type='application/json')    
+
 
 def Player_List_API(request):
     template = loader.get_template('app/player.html')
