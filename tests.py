@@ -41,9 +41,9 @@ class ModelTestCase(TestCase):
         #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image]}
         champion_test_dict1 = {"dr_mundo": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", "fighter", "top", ["olaf", "kog_maw", "trundle"], ["sunfire_cape", "spirit_visage", "randuins_omen"]]}
 
-"""
-key, name, role, title, lore, image, passive_name, passive_image, passive_description, q_name, q_image, q_description, w_name, w_image, w_description, e_name, e_image, e_description, r_name, r_image, r_description, recommended_items, 
-"""
+        """
+        key, name, role, title, lore, image, passive_name, passive_image, passive_description, q_name, q_image, q_description, w_name, w_image, w_description, e_name, e_image, e_description, r_name, r_image, r_description, recommended_items, 
+        """
 
         Champion.objects.create(champion_name="dr_mundo", picture = "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", champion_role = "fighter", champion_lane = "top", champion_counters = ["olaf", "kog_maw", "trundle"], champion_items = ["sunfire_cape", "spirit_visage", "randuins_omen"])
 
