@@ -1,32 +1,91 @@
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table, MetaData
 from sqlalchemy import create_engine, insert
-from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.orm import relationship, sessionmaker, backref
 
 import json
 
-player_to_champion = Table('PlayerToChampion', Base.metadata,
+
+metadata = MetaData()
+
+champion = Table('Champion', metadata,
+                 Column('id', Integer, primary_key=True),
+                 Column('champion_id', Integer, nullable=False, unique=True),
+                 Column('name', String(50)),
+                 Column('role', String(10)),
+                 Column('title', String(50)),
+                 Column('lore', String(1000)),
+                 Column('image', String(1000)),
+                 Column('passive_name', String(20)),
+                 Column('passive_image', String(1000)),
+                 Column('passive_description', String(1000)),
+                 Column('q_name', String(20)),
+                 Column('q_image', String(1000)),
+                 Column('q_description', String(1000)),
+                 Column('w_name', String(20)),
+                 Column('w_image', String(1000)),
+                 Column('w_description', String(1000)),
+                 Column('e_name', String(20)),
+                 Column('e_image', String(1000)),
+                 Column('e_description ', String(1000)),
+                 Column('r_name', String(20)),
+                 Column('r_image', String(1000)),
+                 Column('r_description', String(2000))
+             )
+
+champion_to_item = Table('ChampionToItem', metadata,
+		         Column('id', Integer, primary_key=True),
+			 Column('champion_id', Integer, ForeignKey('Champion.champion_id')),
+                         Column('item_id', Integer, ForeignKey('Item.item_id'))
+		   )
+
+item = Table('Item', metadata,
+             Column('id', Integer, primary_key=True),
+             Column('item_id', Integer, unique=True, nullable=False),
+             Column('name', String),
+             Column('description', String),
+             Column('base_gold', Integer),
+             Column('sell_gold', Integer),
+             Column('total_gold', Integer),
+             Column('image', String)
+)
+"""
+item_to_item = Table('ItemToItem', metadata,
+	             Column('id', Integer, primary_key=True),
+		     Column('from_id', Integer, ForeignKey('Item.id'), nullable=False),
+                     Column('into_id', Integer, ForeignKey('Item.id'), nullable=False)
+               )
+
+"""
+
+player = Table('Player', metadata,
+               Column('id', Integer, primary_key=True),
+               Column('first_name', String),
+               Column('last_name', String),
+               Column('team_name', String),
+               Column('ign', String),
+               Column('bio', String),
+               Column('image', String),
+               Column('role', String), 
+               Column('kda', Float),
+               Column('gpm', Float),
+               Column('total_gold', Integer),
+               Column('games_played', Integer)
+           )
+
+player_to_champion = Table('PlayerToChampion', metadata,
+			   Column('id', Integer, primary_key=True),
                            Column('player_id', Integer, ForeignKey('Player.id')),
                            Column('champion_id', Integer, ForeignKey('Champion.id')))
-item_to_item = Table('ItemToItem', Base.metadata,
-                     Column('item_id', Integer, ForeignKey('Item.id')),
-                     Column('item_id', Integer, ForeignKey('Item.id')))
-champion_to_item = Table('ChampionToItem', Base.metadata,
-                         Column('champion_id', Integer, ForeignKey('Champion.id')),
-                         Column('item_id', Integer, ForeignKey('Item.id')))
 
 
-
+"""
 class Champion (Base) :
     __tablename__ = "Champion"
 
     # We need a primary key for SQLAlchemy to not puke on us, but we don't need
     # to actually use the primary key, because 'id' is our unique key
-    dummy = Column(Integer, primary_key=True)
-    id = Column(Integer)
+    id = Column(Integer, primary_key=True)
+    champion_id = Column(Integer, nullable=False, unique=True)
     name = Column(String)
     role = Column(String)
     title = Column(String)
@@ -66,23 +125,28 @@ class Champion (Base) :
 class Item (Base) :
     __tablename__ = "Item"
     
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    description = Column(String)
-    base_gold = Column(Integer)
-    sell_gold = Column(Integer)
-    total_gold = Column(Integer)
-    image = Column(String)
-
-    from_items = relationship('Item', secondary=item_to_item)
-    into_items = relationship('Item', secondary=item_to_item)
+    
 
     def __repr__ (self) :
-        return ("<Item(name='%s', role='%s', base_gold='%d', sell_gold='%d', total_gold='%d',"
-                "image='%s'") % \
-               (self.name, self.role, self.base_gold, self.sell_gold, self.total_gold, self.image)
+        return ("<Item(item_id='%d', name='%s', description='%s', base_gold='%d', sell_gold='%d',"\
+                "total_gold='%d', image='%s'") % \
+               (self.item_id, self.name, self.description, self.base_gold, self.sell_gold,\
+                self.total_gold, self.image)
+"""
+'''
+class ItemToItem (Base) :
+    __tablename__ = "ItemToItem"
+    
 
 
+    from_item = relationship("Item", foreign_keys=[from_id])
+    into_item = relationship("Item", foreign_keys=[into_id])
+
+    def __repr__ (self) :
+        return ("<Item(from_id='%d', into_id='%d'") % \
+               (self.from_id, self.into_id)
+'''    
+"""
 class Player (Base) :
     __tablename__ = "Player"
 
@@ -109,25 +173,27 @@ class Player (Base) :
                 "kda='%f', gpm='%f', total_gold='%d', games_played='%d')") % \
                (self.first_name, self.last_name, self.ign, self.bio, self.image, self.role, \
                 self.kda, self.gpm, self.total_gold, self.games_played)
-
+"""
 
 
 def load_items(items, session) :
     
     for k, v in items.items() :
-        item = Item(description=v['description'],
-                    base_gold=int(v['gold']['base']),
-                    sell_gold=int(v['gold']['sell']),
-                    total_gold=int(v['gold']['total']),
-                    name=v['name'],
-                    image=v['image'],
-                    id=int(k))
-        for frm in v['fromItem'] :
-            item.from_items += [int(frm)]
-        for into in v['intoItem'] :
-            item.into_items += [int(into)]
-        session.add(item)
+        item.insert({'description' : v['description'],
+                     'base_gold' : int(v['gold']['base']),
+                     'sell_gold' : int(v['gold']['sell']),
+                     'total_gold' : int(v['gold']['total']),
+                     'name' : v['name'],
+                     'image' : v['image'],
+                     'item_id' : int(k)})
     session.commit()
+"""
+        for frm in v['fromItem'] :
+            session.add(ItemToItem(from_id=int(frm), into_id=int(k)))
+        for into in v['intoItem'] :
+            session.add(ItemToItem(from_id=int(k), into_id=int(into)))
+"""
+
 
 
 """
@@ -155,22 +221,22 @@ def load_players(players):
     
 
 
-if __name__ == '__main__': 
-    # Connect to the SQL database
-    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
-    # Add all of the tables to the database, first checking to make sure that the table
-    # does not already exist
-    Base.metadata.bind = engine
-    DBSession = sessionmaker(bind=engine)
-    session = DBSession()
-    
-    
-    items = json.load(open("items"))
-    champions = json.load(open("champions"))
-    players = json.load(open("players"))
+# Connect to the SQL database
+engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+# Add all of the tables to the database, first checking to make sure that the table
+# does not already exist
+connection = engine.connect()
+trans = connection.begin()
+metadata.bind = engine
+for tbl in reversed(metadata.sorted_tables):
+    engine.execute(tbl.delete())
+trans.commit()
 
-    load_items(items, session)
+items = json.load(open("items"))
+champions = json.load(open("champions"))
+players = json.load(open("players"))
+
+#load_items(items, session)
 #    load_champions(champions)
 #    load_players(players)
-
 
