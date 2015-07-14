@@ -1,6 +1,31 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
+from django.contrib.auth.models import Champion, Player, Item
+from rest_framework import viewsets
+from tutorial.quickstart.serializers import ChampionSerializer, PlayerSerializer, ItemSerializer
+
+class ChampionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Champion.objects.all()
+    serializer_class = ChampionSerializer
+
+class PlayerViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
+
+class ItemViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+
 
 # Create your views here.
 
