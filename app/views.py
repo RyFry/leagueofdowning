@@ -128,15 +128,30 @@ def Champion_List_API(request):
             itemlist.append(row1['item_id'])
         dic['recommended_items'] = itemlist
 
-
     return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Champion_ID_API(request, id):
-    template = loader.get_template('app/player.html')
-    context = RequestContext(request, {
-        'id' : id
-    })
-    return HttpResponse(template.render(context))
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Champion" where champion_id=' + id)
+    jsonout = {}
+    for row in result:
+        champ_name = row['champion_id']
+        result1 = engine.execute('select item_id from "ChampionToItem" where champion_id = %s' % champ_name)
+
+        itemlist = []
+        for row1 in result1:
+            itemlist.append(row1['item_id'])
+
+        jsonout = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/' + row['image'][-8:], 'passive_name': row['passive_name'], 'passive_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/passive/' + row['passive_image'][-8:], 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['q_image'][-8:], 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['w_image'][-8:], 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['e_image'][-8:], 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['r_image'][-8:], 'r_description': row['r_description'], 'recommended_items': itemlist}
+
+    if jsonout == {}:
+        h = HttpResponse(json.dumps({"error": "Champion " + id + " does not exist."}),   content_type="application/json")
+        h.status_code = 404
+        return h
+
+    return HttpResponse(json.dumps(jsonout), content_type='application/json')    
+
 
 def Player_List_API(request):
     template = loader.get_template('app/player.html')
