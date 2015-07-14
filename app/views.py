@@ -127,7 +127,7 @@ def Item_List_API(request):
 
     session = Session()   
 
-    Item1 = session.query('"Item"').filter('"Item"'.item_id == 3266).one()
+    Item1 = session.query(database.Item).filter((database.Item).item_id == 3266).one()
    
     jsonout = {'id': Item1.id, 'description': Item1.description}
 
