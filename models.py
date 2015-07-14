@@ -10,7 +10,7 @@ from django.conf import settings
 
 class Champion(models.Model):
     """
-    The model contains a champion id, name, role, title, lore, image, and a name, image, and description for each ability. It also has a champion-to-item relation.
+    The model contains a champion id, name, role, title, lore, image, the name, image, and description for each ability, and recommended items.
     The __str__ method is used to return the name of the champion as string.
     """
     champion_id = models.IntegerField(default=0)
@@ -34,7 +34,7 @@ class Champion(models.Model):
     champion_r_name = models.CharField(max_length=100)
     champion_r_image = models.CharField(max_length=100)
     champion_r_description = models.CharField(max_length=1000)
-    champion_champion_to_item = models.CharField(max_length=1000)
+    champion_recommended_items = models.CharField(max_length=1000)
 
 
     def get_absolute_url(self):
@@ -50,7 +50,7 @@ class Champion(models.Model):
 
 class Player(models.Model):
     """
-    The model contains a player id, first name, last name, team name, in-game name, bio, image, role, kda, gpm, total gold, games played, and a player-to-champion relation.
+    The model contains a player id, first name, last name, team name, in-game name, bio, image, role, kda, gpm, total gold, games played, and played champions.
 
     The __str__ method is used to return the name of the player.
     The get_absolute_url method overrides the default url so that watson get the correct url as a link.
@@ -67,7 +67,7 @@ class Player(models.Model):
     player_gpm = models.FloatField(default=0)
     player_total_gold = models.IntegerField(default=0)
     player_games_played = models.IntegerField(default=0)
-    player_player_to_champion = models.CharField(max_length=1000)
+    player_played_champions = models.CharField(max_length=1000)
 
 
     """
