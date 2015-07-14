@@ -9,7 +9,7 @@
     text:"green";
     }
   </style>
-  <body id="index" data-spy="scroll" data-target=".navbar-fixed-top">
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
       <div class="container">
@@ -17,10 +17,12 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
           <i class="fa fa-bars"></i>
           </button>
-          <a class="navbar-brand page-scroll" href="#page-top">
+          <a class="navbar-brand page-scroll" href="http://leagueofdowning.me/">
           <i class="fa fa-play-circle"></i>  <span class="light">League of</span> Downing
           </a>
         </div>
+
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
@@ -28,16 +30,16 @@
               <a href="#page-top"></a>
             </li>
             <li>
-              <a class="page-scroll" href="#players">Players</a>
+              <a class="page-scroll" href="http://leagueofdowning.me/players/">Players</a>
             </li>
             <li>
-              <a class="page-scroll" href="#champions">Champions</a>
+              <a class="page-scroll" href="http://leagueofdowning.me/champions/">Champions</a>
             </li>
             <li>
-              <a class="page-scroll" href="#items">Items</a>
+              <a class="page-scroll" href="http://leagueofdowning.me/items/">Items</a>
             </li>
             <li>
-              <a class="page-scroll" href="#about">About</a>
+              <a class="page-scroll" href="http://leagueofdowning.me/about/">About</a>
             </li>
           </ul>
         </div>
@@ -45,21 +47,33 @@
       </div>
       <!-- /.container -->
     </nav>
-    <div class="container">
-    <div class="jumbotron">
-      <div class="row placeholders">
-        <div class="col-xs-6 col-sm-9 placeholder">
-          <h1>{{ player_name }}</h1>
-        </div>
-        <div class="col-xs-6 col-sm-3 placeholder">
-          <img src="{{ image }}" class="img-circle" height="120px" width="120px" ><br>
-        </div>
-      </div>
-    </div>
+
+    <!-- Intro Header -->
+        <header class="intro">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="center-block">
+                            <h1>{{ player_name }} </h1>
+                            
+                        </div>
+                        <div class="center-block">
+                          <img src="{{ image }}" class="img-square" height="250px" width="250px" ><br>
+
+                          <a href="#player" class="btn btn-circle page-scroll">
+                              <i class="fa fa-angle-double-down animated"></i>
+                          </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
     <section id="player" class="container content-section text-center">
       <div class="container">
         <div class="row">
-          <div class="col-sm-10">
+          <div class="center-block">
             <h3>Stats</h3>
             Age: {{ age|linebreaks }}
             Position: {{ position|linebreaks }}
