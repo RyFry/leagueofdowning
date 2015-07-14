@@ -1,4 +1,4 @@
-from django.contrib.auth.models import Champion, Player, Item
+from app.models import Champion, Player, Item
 from rest_framework import serializers
 
 
