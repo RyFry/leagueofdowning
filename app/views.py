@@ -50,7 +50,9 @@ def items(request):
     jsonout = json.dumps(List)
     jsonout = jsonout[1:-1]
 
-    context = RequestContext(request, jsonout)
+    context = RequestContext(request, {
+        'itemdata' = jsonout
+    })
     return HttpResponse(template.render(context))
 
 def champions(request):
