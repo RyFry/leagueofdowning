@@ -89,16 +89,23 @@ def player(request, id):
 #API Pages
 #
 def Champion_List_API(request):
+    return 0;
 
 def Champion_ID_API(request, id):
+    return 0;
 
 def Player_List_API(request):
+    return 0;
+
 
 def Player_ID_API(request, id):
+    return 0;
 
 def Item_List_API(request):
+    return 0;
 
 def Item_ID_API(request, id):
+    return 0;
     
 
 
