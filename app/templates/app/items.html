@@ -17,6 +17,20 @@
         $scope.sortType = 'item.base_gold';
         $scope.sortReverse = false;
       });
+
+      app.filter('orderObjectBy', function() {
+        return function(input, attribute, reverse) {
+          var array = [];
+          for (var objectKey in input) {
+            array.push(input[objectKey]);
+          };
+          array.sort(function(a, b) {
+            return (a[attribute] > b[attribute] ? 1 : -1);
+          });
+          if (reverse) array.reverse();
+          return array;
+        };
+      });
     </script>
 
   </head>
@@ -62,7 +76,7 @@
 
 	<tbody>
     {% verbatim %}
-	  <tr ng-repeat="item in items | orderBy:item.base_gold:sortReverse">
+	  <tr ng-repeat="item in items | orderObjectBy:sortType">
       <td><img ng-src="{{ item.image }}"></td>
 	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item.item_id }}</a></td>
       <td>{{ item.name }}</td>
