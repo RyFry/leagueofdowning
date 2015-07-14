@@ -49,10 +49,7 @@ def items(request):
 
     out = ""
     for item in List:
-        out += "{"
-        for k, v in item.items():
-            out = out + k + " : " + v + ", "
-        out = out[0:-2] + "}, "
+        out = out + json.dumps(item) + ", "
 
     out = out[0:-2]
 
