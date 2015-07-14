@@ -225,16 +225,8 @@ def load_players(players):
 engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 # Add all of the tables to the database, first checking to make sure that the table
 # does not already exist
-connection = engine.connect()
-trans = connection.begin()
-metadata.bind = engine
 
-# Create the tables
-engine.execute(metadata.tables['Champion'].create())
-engine.execute(metadata.tables['Player'].create())
-engine.execute(metadata.tables['Item'].create())
-engine.execute(metadata.tables['ChampionToItem'].create())
-engine.execute(metadata.tables['PlayerToChampion'].create())
+metadata.create_all(engine)
 
 # Commit the change
 trans.commit()
