@@ -38,22 +38,24 @@ class ModelTestCase(TestCase):
 
     def test_champion_model1(self):
         #Dictionary Key: Champion Name
-        #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image]}
-        champion_test_dict1 = {"dr_mundo": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", "fighter", "top", ["olaf", "kog_maw", "trundle"], ["sunfire_cape", "spirit_visage", "randuins_omen"]]}
+        #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image}
 
-        Champion.objects.create(champion_name="dr_mundo", picture = "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", champion_role = "fighter", champion_lane = "top", champion_counters = ["olaf", "kog_maw", "trundle"], champion_items = ["sunfire_cape", "spirit_visage", "randuins_omen"])
+        s = open("app/database/champions")
+        champion_test_dict1 = json.load(s)
+        s.close()
 
-        Champion_Mundo = Champion.objects.get(champion_name="dr_mundo")
-        self.assertEqual(Champion_Mundo.champion_name, "dr_mundo")
-        self.assertEqual(Champion_Mundo.picture, "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png")
-        self.assertEqual(Champion_Mundo.champion_role, "fighter")
-        self.assertEqual(Champion_Mundo.champion_lane, "top")
-        self.assertEqual(Champion_Mundo.champion_counters, ["olaf", "kog_maw", "trundle"])
-        self.assertEqual(Champion_Mundo.champion_items, ["sunfire_cape", "spirit_visage", "randuins_omen"])
+        for champion in champion_test_dict1.keys():
+            Champion.objects.create(champion_name=champion, champion_role=champion_test_dict1[role], champion_key=champion_test_dict1[key])
 
+        for current_champion in champion_test_dict1.keys():
+            temp = Champion.objects.get(champion_name=current_champion)
+            self.assertEqual(temp.champion_name, current_champion)
+            self.assertEqual(temp.role, champion_test_dict1[role])
+            self.assertEqual(temp.champion_key, champion_test_dict1[key])
+"""
     def test_champion_model2(self):
         #Dictionary Key: Champion Name
-        #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image]}
+        #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image}
 
         champion_test_dict2 = {"dr_mundo": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", "fighter", "top", ["olaf", "kog_maw", "trundle"], ["sunfire_cape", "spirit_visage", "randuins_omen"]], "azir": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Azir.png", "mage", "mid", ["ziggs", "talon", "xerath"], ["sorcerer's shoes", "athenes", "rabadons"]]}
 
@@ -77,14 +79,16 @@ class ModelTestCase(TestCase):
         self.assertEqual(Champion_Azir.champion_counters, ["ziggs", "talon", "xerath"])
         self.assertEqual(Champion_Azir.champion_items, ["sorcerer's shoes", "athenes", "rabadons"])
 
-    
+        
 
 
     def test_champion_model3(self):
         #Dictionary Key: Champion Name
-        #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image]}
+        #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image}
 
         champion_test_dict3 = {"dr_mundo": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png", "fighter", "top", ["olaf", "kog_maw", "trundle"], ["sunfire_cape", "spirit_visage", "randuins_omen"]], "azir": ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Azir.png", "mage", "mid", ["ziggs", "talon", "xerath"], ["sorcerer's shoes", "athenes", "rabadons"]], "ezreal" : ["http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/Ezreal.png", "adc", "bot", ["draven", "graves", "missfortune"], ["berserkers", "trinity", "bloodthirster"]]}
+
+        
 
         Champion.objects.create(champion_name="ezreal", picture=champion_test_dict3["ezreal"][0], champion_role=champion_test_dict3["ezreal"][1], champion_lane=champion_test_dict3["ezreal"][2], champion_counters=champion_test_dict3["ezreal"][3], champion_items=champion_test_dict3["ezreal"][4])
 
@@ -226,6 +230,7 @@ class ModelTestCase(TestCase):
         self.assertEqual(Item_Rabadons.recfor, "mage")
         self.assertEqual(Item_Rabadons.cost, "3300")
         self.assertEqual(Item_Rabadons.recipe, ["blasting_wand", "needlessly_large_rod"])
+"""
 # ----
 # main
 # ----
