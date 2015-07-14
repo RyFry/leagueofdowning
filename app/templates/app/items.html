@@ -16,22 +16,25 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script>
-      var app = angular.module('app', [])
+      var app = angular.module('app', []).config(function($interpolateProvider) {
+        $interpolateProvider.startSymbol('{[{');
+        $interpolateProvider.endSymbol('}]}');
+      });
 
       app.controller('appController', function($scope) {
         $scope.sortType = 'name';
         $scope.sortReverse = false;
 
         $scope.players = [
-          {playerdata}
+          {{playerdata}}
         ];
 
         $scope.champions = [
-          {championdata}
+          {{championdata}}
         ];
 
         $scope.items = [
-          {itemdata}
+          {{itemdata}}
         ];
       });
     </script>
@@ -53,36 +56,36 @@
 	<thead>
 	  <tr>
 	    <td>
+	      <a href="#" ng-click="sortType = 'item_id'; sortReverse = !sortReverse">
+		    Item
+	    </td>
+	    <td>
 	      <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-		Item
+		    Name
 	    </td>
 	    <td>
-	      Stats
+	      <a href="#" ng-click="sortType = 'base_gold'; sortReverse = !sortReverse">
+		    Base Gold
 	    </td>
-	    <td>
-	      <a href="#" ng-click="sortType = 'recFor'; sortReverse = !sortReverse">
-		Recommended For
-	    </td>
-	    <td>
-	      <a href="#" ng-click="sortType = 'cost'; sortReverse = !sortReverse">
-		Cost
-	    </td>
-	    <td>
-	      Recipe
-	    </td>
+      <td>
+        <a href="#" ng-click="sortType = 'sell_gold'; sortReverse = !sortReverse">
+        Sell Gold
+      </td>
+      <td>
+        <a href="#" ng-click="sortType = 'total_gold'; sortReverse = !sortReverse">
+        Total Gold
+      </td>
 	  </tr>
 	</thead>
 
 	<tbody>
-	  {% verbatim %}
 	  <tr ng-repeat="item in items | orderBy:sortType:sortReverse">
-	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.url }}">{{ item.name }}</a></td>
-	    <td><p ng-repeat="stat in item.stats"> {{ stat }}</td>
-	    <td>{{ item.recFor }}</td>
-	    <td>{{ item.cost }}</td>
-	    <td><p ng-repeat="ingredient in item.recipe">{{ ingredient }}</td>
+	    <td><a ng-href="http://leagueofdowning.me/items/{[{ item.item_id }]}">{[{ item.item_id }]}</a></td>
+	    <td>{[{ item.name }]}</td>
+	    <td>{[{ item.base_gold }]}</td>
+	    <td>{[{ item.sell_gold }]}</td>
+	    <td>{[{ item.total_gold }]}</td>
 	  </tr>
-	  {% endverbatim %}
 	</tbody>
 
       </table>
