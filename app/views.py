@@ -209,18 +209,23 @@ def Item_List_API(request):
     return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Item_ID_API(request, id):
-    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+    try:
+        int(id)
+        engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
-    result = engine.execute('select * from "Item" where item_id=' + id)
-    jsonout = {}
-    for row in result:
-        jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
-    if jsonout == {}:
+        result = engine.execute('select * from "Item" where item_id=' + id)
+        jsonout = {}
+        for row in result:
+            jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
+        if jsonout == {}:
+            h = HttpResponse(json.dumps({"error": "Item " + id + " does not exist."}),   content_type="application/json")
+            h.status_code = 404
+            return h
+
+        return HttpResponse(json.dumps(jsonout), content_type='application/json')    
+    except ValueError:
         h = HttpResponse(json.dumps({"error": "Item " + id + " does not exist."}),   content_type="application/json")
         h.status_code = 404
         return h
-
-    return HttpResponse(json.dumps(jsonout), content_type='application/json')    
-    
 
 
