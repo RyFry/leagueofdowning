@@ -25,7 +25,7 @@ router.register(r'player', views.PlayerViewSet)
 router.register(r'item', views.ItemViewSet)
 
 urlpatterns = [
-    url(r'^', include('router.urls')),
+    url(r'^', include('app.urls')),
     url(r'^app/', include('app.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
