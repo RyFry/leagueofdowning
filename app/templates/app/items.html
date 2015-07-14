@@ -30,9 +30,7 @@
           {{championdata}}
         ];
 
-        $scope.items = [
-          JSON.parse({{itemdata}})
-        ];
+        $scope.items = JSON.parse({{itemdata}});
       });
     </script>
 
@@ -78,9 +76,9 @@
 	<tbody>
     {{itemdata}}
     {% verbatim %}
-	  <tr ng-repeat="item in items | orderBy:sortType:sortReverse">
-	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item.item_id }}</a></td>
-	    <td>{{ item.name }}</td>
+	  <tr ng-repeat="(key, value) in items | orderBy:sortType:sortReverse">
+	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ key }}</a></td>
+	    <td>{{ value }}</td>
 	    <td>{{ item.base_gold }}</td>
 	    <td>{{ item.sell_gold }}</td>
 	    <td>{{ item.total_gold }}</td>
