@@ -45,13 +45,13 @@ class ModelTestCase(TestCase):
         s.close()
 
         for champion in champion_test_dict1.keys():
-            Champion.objects.create(champion_name=champion, champion_role=champion_test_dict1[role], champion_key=champion_test_dict1[key])
+            Champion.objects.create(champion_name=champion, champion_role=champion_test_dict1['role'], champion_key=champion_test_dict1['key'])
 
         for current_champion in champion_test_dict1.keys():
             temp = Champion.objects.get(champion_name=current_champion)
             self.assertEqual(temp.champion_name, current_champion)
-            self.assertEqual(temp.role, champion_test_dict1[role])
-            self.assertEqual(temp.champion_key, champion_test_dict1[key])
+            self.assertEqual(temp.role, champion_test_dict1['role'])
+            self.assertEqual(temp.champion_key, champion_test_dict1['key'])
 """
     def test_champion_model2(self):
         #Dictionary Key: Champion Name
