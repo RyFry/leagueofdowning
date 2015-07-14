@@ -100,7 +100,6 @@ def champion(request, id):
 def item(request, id):
     try:
         int(id)
-        template = loader.get_template('app/item.html')
         engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
         result = engine.execute('select * from "Item" where item_id=' + id)
@@ -109,8 +108,14 @@ def item(request, id):
         for row in result:
             jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
 
-        context = RequestContext(request, jsonout)
-        return HttpResponse(template.render(context))
+        if jsonout == {}:
+            template = loader.get_template('app/error.html')
+            context = RequestContext(request, {})
+            return HttpResponse(template.render(context))
+        else:
+            template = loader.get_template('app/item.html')
+            context = RequestContext(request, jsonout)
+            return HttpResponse(template.render(context))
     except ValueError:
         template = loader.get_template('app/error.html')
         context = RequestContext(request, {})
