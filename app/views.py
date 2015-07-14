@@ -175,9 +175,14 @@ def Champion_ID_API(request, id):
 
 
 def Player_List_API(request):
-    template = loader.get_template('app/player.html')
-    context = RequestContext(request, {})
-    return HttpResponse(template.render(context))
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Player"')
+    List = {}
+    for row in result:
+        List[row['player_id']] = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': row['kda'], 'gpm': row['gpm'], 'total_gold': row['total_gold'], 'games_played': row['games_played']}
+
+    return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Player_ID_API(request, id):
     template = loader.get_template('app/player.html')
