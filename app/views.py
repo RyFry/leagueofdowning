@@ -119,7 +119,7 @@ def Player_ID_API(request, id):
 def Item_List_API(request):
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
-    result = engine.execute('select item_id from "Item"')
+    result = engine.execute('select * from "Item"')
     List = {}
     for row in result:
         List[row['item_id']] = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': row['image']}
