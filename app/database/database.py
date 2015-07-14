@@ -229,7 +229,8 @@ connection = engine.connect()
 trans = connection.begin()
 metadata.bind = engine
 for tbl in reversed(metadata.sorted_tables):
-    engine.execute(tbl.delete())
+    print(tbl.__tablename__)
+    #engine.execute(tbl.delete())
 trans.commit()
 
 items = json.load(open("items"))
