@@ -6,7 +6,7 @@ from sqlalchemy import create_engine, insert
 from sqlalchemy.orm import relationship, sessionmaker, backref
 from app.database import database
 
-
+import json
 
 
 # Create your views here.
