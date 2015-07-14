@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 
-from django.contrib.auth.models import Champion, Player, Item
+from app.models import Champion, Player, Item
 from rest_framework import viewsets
 from app.serializers import ChampionSerializer, PlayerSerializer, ItemSerializer
 
