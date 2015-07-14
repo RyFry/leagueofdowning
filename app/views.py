@@ -150,6 +150,8 @@ def Champion_ID_API(request, id):
         h.status_code = 404
         return h
 
+    return HttpResponse(json.dumps(jsonout), content_type='application/json')    
+
 
 def Player_List_API(request):
     template = loader.get_template('app/player.html')
