@@ -39,9 +39,18 @@ def players(request):
 
 def items(request):
     template = loader.get_template('app/items.html')
-    context = RequestContext(request, {
-        'itemdata' : ''
-    })
+
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Item"')
+    List = {}
+    for row in result:
+        List[row['item_id']] = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
+
+    jsonout = json.dumps(List)
+    jsonout = jsonout[1:-1]
+
+    context = RequestContext(request, jsonout)
     return HttpResponse(template.render(context))
 
 def champions(request):
@@ -130,7 +139,7 @@ def Item_List_API(request):
     for row in result:
         List[row['item_id']] = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
 
-    return HttpResponse(json.dumps(List), content_type='application/json')
+    return HttpResponse(json.dumps(List[1:-1]), content_type='application/json')
 
 def Item_ID_API(request, id):
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
