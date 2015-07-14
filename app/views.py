@@ -124,16 +124,7 @@ def Item_List_API(request):
     for row in result:
         jsonout = {'id': row['id'], 'description': row['description']}
 
-'''
-    Session = sessionmaker(bind=engine)
-
-    session = Session()   
-
-    Item1 = session.query(Item).filter(Item.item_id == 3266).one()
-   
-    jsonout = {'id': Item1.id, 'description': Item1.description}
-'''
-    return HttpResponse(json.dumps(jsonout), content_type="application/json")
+    return HttpResponse(json.dumps(jsonout), content_type='application/json')
 
 def Item_ID_API(request, id):
     template = loader.get_template('app/player.html')
