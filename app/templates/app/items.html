@@ -29,7 +29,7 @@
         $scope.items;
 
         $http.get("http://leagueofdowning.me/api/items/").success(function(response) {
-          $scope.items = JSON.parse(response);
+          $scope.items = JSON.parse(response.data);
         })
 
         $scope.thing = 'asdf'
