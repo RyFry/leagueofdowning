@@ -7,7 +7,7 @@ from django.core.management import call_command
 
 #New Imports
 from django.utils import unittest
-from django.test import TestCase
+from django.test import main, TestCase
 from django.http import HttpResponse
 
 from json import dumps, loads
