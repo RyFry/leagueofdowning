@@ -1,163 +1,125 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-
-    {% include "app/header.html" %}
-
-  </head>
-
-  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  <span class="light">League of</span> Downing
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from players link when scrolled up past players section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#players">Players</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#champions">Champions</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#items">Items</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-
-    <!-- Intro Header -->
-    <header class="intro">
-        <div class="intro-body">
+    <head>
+        {% include "app/header.html" %}
+    </head>
+    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
             <div class="container">
-                <div class="row">
-                    <!-- <div class="col-md-8 col-md-offset-2"> -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i>  <span class="light">League of</span> Downing
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Hidden li included to remove active class from players link when scrolled up past players section -->
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#players">Players</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#champions">Champions</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#items">Items</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#about">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+        <!-- Intro Header -->
+        <header class="intro">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <!-- <div class="col-md-8 col-md-offset-2"> -->
                         <div class="product-img">
                             <img class="jumbotronwidth center-block" src="http://i.imgur.com/BNIm5ov.png">
                         </div>
-
                         <a href="#players" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
+                        <i class="fa fa-angle-double-down animated"></i>
                         </a>
-                    <!-- </div> -->
+                        <!-- </div> -->
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-
-
-
-    <!-- Players Section -->
-    <section id="players" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Players </h2>
-                <p>League of Legends Championship Series (LCS) in Europe and North America. This is a league system where ten teams compete to stay in the league. The top three teams from each continent advance to the world championships. The World Championship had grand prizes reaching over $1 million dollars</p>
-
-              <!--   <p>  <a href="http://leagueofdowning.me/players/">Current Top Players in League of Legends.</a> 
-                </p> -->
-
-                <a href="http://leagueofdowning.me/players/" class="btn btn-default btn-lg">Current Top Players in League of Legends.</a>
-                
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Champions Section -->
-    <section id="champions" class="content-section text-center">
-        <div class="champions-section">
-            <div class="container">
+        </header>
+        <!-- Players Section -->
+        <section id="players" class="container content-section text-center">
+            <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Champions</h2>
-                    <p>The champions of the League of Justice are as diverse as they are powerful, all of them bringing unique styles and abilities into the Institute of War. Each fighting for their own political faction, they bring abilities and fighting styles from around Valoran into the arena to resolve conflicts and of course, entertain. </p>
-
-                    <a href="http://leagueofdowning.me/champions/" class="btn btn-default btn-lg">Choose your Champion!</a>
+                    <h2>Players </h2>
+                    <p>League of Legends Championship Series (LCS) in Europe and North America. This is a league system where ten teams compete to stay in the league. The top three teams from each continent advance to the world championships. The World Championship had grand prizes reaching over $1 million dollars</p>
+                    <!--   <p>  <a href="http://leagueofdowning.me/players/">Current Top Players in League of Legends.</a> 
+                        </p> -->
+                    <a href="http://leagueofdowning.me/players/" class="btn btn-default btn-lg">Current Top Players in League of Legends.</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-
-
-
-    <!-- Items Section -->
-    <section id="items" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Items</h2>
-                <p>Each player can choose a variety of champion varying in many different roles, each having their own unique characteristics and abilities, with all champions starting off each game fairly weak and progressing by accumulating gold and experience over the course of the game. As each player accumulate gold, they can use it on items that boost their champion's statistics that enhances various abilities.</p>
-
-                <p>
-                <!-- <a href="http://leagueofdowning.me/items/">Choose your items wisely.</a> -->
-                <a href="http://leagueofdowning.me/items/" class="btn btn-default btn-lg">Choose your items wisely!</a>
-                </p>
-                
+        </section>
+        <!-- Champions Section -->
+        <section id="champions" class="content-section text-center">
+            <div class="champions-section">
+                <div class="container">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h2>Champions</h2>
+                        <p>The champions of the League of Justice are as diverse as they are powerful, all of them bringing unique styles and abilities into the Institute of War. Each fighting for their own political faction, they bring abilities and fighting styles from around Valoran into the arena to resolve conflicts and of course, entertain. </p>
+                        <a href="http://leagueofdowning.me/champions/" class="btn btn-default btn-lg">Choose your Champion!</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-
-
-
-<!-- About Section -->
-    <section id="about" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>About Our Team</h2>
-                <p> Ryan, Michael, Nathan, Richard, & Manny</p>
-
-                <p>
-                <a href="http://leagueofdowning.me/about/" class="btn btn-default btn-lg">More About Our Team!</a>
-                </p>
-
-                <ul class="list-inline banner-social-buttons">
-                    <li>
-                        <a href="https://github.com/RyFry/leagueofdowning" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                    </li>
-		    <li>
-		      <a href="https://github.com/RyFry/leagueofdowning/wiki" class="btn btn-default btn-lg"><i class="fa fa-wiki fa-fw"></i> <span class="network-name">Wiki</span></a>
-		    </li>
-                </ul>
-                
-                   
+        </section>
+        <!-- Items Section -->
+        <section id="items" class="container content-section text-center">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Items</h2>
+                    <p>Each player can choose a variety of champion varying in many different roles, each having their own unique characteristics and abilities, with all champions starting off each game fairly weak and progressing by accumulating gold and experience over the course of the game. As each player accumulate gold, they can use it on items that boost their champion's statistics that enhances various abilities.</p>
+                    <p>
+                        <!-- <a href="http://leagueofdowning.me/items/">Choose your items wisely.</a> -->
+                        <a href="http://leagueofdowning.me/items/" class="btn btn-default btn-lg">Choose your items wisely!</a>
+                    </p>
+                </div>
             </div>
-        </div>
-    </section>
-
-
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>Copyright &copy; League of Downing 2015</p>
-        </div>
-    </footer>
-
-    {% include "app/footer.html" %}
-
-</body>
-
+        </section>
+        <!-- About Section -->
+        <section id="about" class="container content-section text-center">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>About Our Team</h2>
+                    <p> Ryan, Michael, Nathan, Richard, & Manny</p>
+                    <p>
+                        <a href="http://leagueofdowning.me/about/" class="btn btn-default btn-lg">More About Our Team!</a>
+                    </p>
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://github.com/RyFry/leagueofdowning" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/RyFry/leagueofdowning/wiki" class="btn btn-default btn-lg"><i class="fa fa-wiki fa-fw"></i> <span class="network-name">Wiki</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer>
+            <div class="container text-center">
+                <p>Copyright &copy; League of Downing 2015</p>
+            </div>
+        </footer>
+        {% include "app/footer.html" %}
+    </body>
 </html>
