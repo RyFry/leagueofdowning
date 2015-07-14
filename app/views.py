@@ -119,10 +119,10 @@ def Player_ID_API(request, id):
 def Item_List_API(request):
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
-    result = engine.execute('select * from "Item" where id=3266')
+    result = engine.execute('select * from "Item" where item_id=3266')
     jsonout = {}
     for row in result:
-        jsonout = {'id': row['id'], 'description': row['description']}
+        jsonout = {'id': row['item_id'], 'description': row['description']}
 
     return HttpResponse(json.dumps(jsonout), content_type='application/json')
 
