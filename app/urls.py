@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^api/items/$',  views.Item_List_API),
     url(r'^api/items/(?P<id>.*)/$',  views.Item_ID_API),   
 
-    url(r'^.*/$', views.index)
+    url(r'^.*/$', views.error)
 ]

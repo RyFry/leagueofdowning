@@ -1,82 +1,31 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table, MetaData
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table
 from sqlalchemy import create_engine, insert
 from sqlalchemy.orm import relationship, sessionmaker, backref
-
+from sqlalchemy.ext.declarative import declarative_base
 import json
+from pprint import pprint
 
-"""
-metadata = MetaData()
+Base = declarative_base()
 
-champion = Table('Champion', metadata,
-                 Column('id', Integer, primary_key=True),
-                 Column('champion_id', Integer, nullable=False, unique=True),
-                 Column('name', String(50)),
-                 Column('role', String(10)),
-                 Column('title', String(50)),
-                 Column('lore', String(1000)),
-                 Column('image', String(1000)),
-                 Column('passive_name', String(20)),
-                 Column('passive_image', String(1000)),
-                 Column('passive_description', String(1000)),
-                 Column('q_name', String(20)),
-                 Column('q_image', String(1000)),
-                 Column('q_description', String(1000)),
-                 Column('w_name', String(20)),
-                 Column('w_image', String(1000)),
-                 Column('w_description', String(1000)),
-                 Column('e_name', String(20)),
-                 Column('e_image', String(1000)),
-                 Column('e_description ', String(1000)),
-                 Column('r_name', String(20)),
-                 Column('r_image', String(1000)),
-                 Column('r_description', String(2000))
-             )
-"""
-champion_to_item = Table('ChampionToItem', metadata,
+
+champion_to_item = Table('ChampionToItem', Base.metadata,
 		         Column('id', Integer, primary_key=True),
 			 Column('champion_id', Integer, ForeignKey('Champion.champion_id')),
                          Column('item_id', Integer, ForeignKey('Item.item_id'))
 		   )
-"""
-item = Table('Item', metadata,
-             Column('id', Integer, primary_key=True),
-             Column('item_id', Integer, unique=True, nullable=False),
-             Column('name', String),
-             Column('description', String),
-             Column('base_gold', Integer),
-             Column('sell_gold', Integer),
-             Column('total_gold', Integer),
-             Column('image', String)
-)
 
-
-player = Table('Player', metadata,
-               Column('id', Integer, primary_key=True),
-               Column('first_name', String),
-               Column('last_name', String),
-               Column('team_name', String),
-               Column('ign', String),
-               Column('bio', String),
-               Column('image', String),
-               Column('role', String), 
-               Column('kda', Float),
-               Column('gpm', Float),
-               Column('total_gold', Integer),
-               Column('games_played', Integer)
-           )
-"""
-player_to_champion = Table('PlayerToChampion', metadata,
+player_to_champion = Table('PlayerToChampion', Base.metadata,
 			   Column('id', Integer, primary_key=True),
-                           Column('player_id', Integer, ForeignKey('Player.id')),
-                           Column('champion_id', Integer, ForeignKey('Champion.id')))
+                           Column('player_id', Integer, ForeignKey('Player.player_id')),
+                           Column('champion_id', Integer, ForeignKey('Champion.champion_id')))
 """
-class PlayerToChampion (Base) :
-    __tablename__ = "PlayerToChampion"
-    
-    id = Column(Integer, primary_key=True)
-    player_id = Column(Integer, ForeignKey('Player.id'))
-    champion_id = Column(Integer, ForeignKey('Champion.id'))
+item_to_item = Table('ItemToItem', Base.metadata,
+                     Column('id', Integer, primary_key=True),
+                     Column('from_item', Integer, ForeignKey('Item.item_id')),
+                     Column('into_item', Integer, ForeignKey('Item.item_id'))
+                 )
 """
+
 
 class Champion (Base) :
     __tablename__ = "Champion"
@@ -88,7 +37,7 @@ class Champion (Base) :
     name = Column(String)
     role = Column(String)
     title = Column(String)
-    lore = Column(String)
+    lore = Column(String(4000))
     image = Column(String)
     passive_name = Column(String)
     passive_image = Column(String)
@@ -120,18 +69,30 @@ class Champion (Base) :
                  self.e_name, self.e_image, self.e_description, self.r_name, self.r_image, \
                  self.r_description)
 
+class ItemToItem (Base) :
+    __tablename__ = "ItemToItem"
+
+    id = Column(Integer, primary_key=True)
+    from_item = Column(Integer, ForeignKey('Item.item_id'))
+    into_item = Column(Integer, ForeignKey('Item.item_id'))
+
 
 class Item (Base) :
     __tablename__ = "Item"
     
     id = Column(Integer, primary_key=True)
     item_id = Column(Integer, unique=True, nullable=False)
-    name = Column(String)
-    description = Column('description', String),
-    base_gold = Column(Integer),
-    sell_gold = Column(Integer),
-    total_gold = Column(Integer),
-    image = Column(String)
+    name = Column(String, nullable=False)
+    description = Column(String, nullable=False)
+    base_gold = Column(Integer)
+    sell_gold = Column(Integer, nullable=False)
+    total_gold = Column(Integer, nullable=False)
+    image = Column(String, nullable=False)
+
+    from_into = relationship("ItemToItem",
+                              primaryjoin=item_id==ItemToItem.from_item)
+    into_from = relationship("ItemToItem",
+                             primaryjoin=item_id==ItemToItem.into_item)
     
 
     def __repr__ (self) :
@@ -159,8 +120,8 @@ class Player (Base) :
 
     # We need a primary key for SQLAlchemy to not puke on us, but we don't need
     # to actually use the primary key, because 'id' is our unique key 
-    dummy = Column(Integer, primary_key=True)
-    id = Column(Integer)
+    id = Column(Integer, primary_key=True)
+    player_id = Column(Integer, unique=True)
     first_name = Column(String)
     last_name = Column(String)
     team_name = Column(String)
@@ -177,26 +138,23 @@ class Player (Base) :
     
     def __repr__ (self) :
         return ("<Player(first_name='%s', last_name='%s', ign='%s', bio='%s', image='%s', role='%s'"\
-                "kda='%f', gpm='%f', total_gold='%d', games_played='%d')") % \
+                "kda='%f', gpm='%f', total_gold='%d', games_played='%d', player_id='%d')") % \
                (self.first_name, self.last_name, self.ign, self.bio, self.image, self.role, \
-                self.kda, self.gpm, self.total_gold, self.games_played)
+                self.kda, self.gpm, self.total_gold, self.games_played, self.player_id)
 
 
 
 def load_items(items, session) :
     for k, v in items.items() :
-        item.insert({'description' : v['description'],
-                     'base_gold' : int(v['gold']['base']),
-                     'sell_gold' : int(v['gold']['sell']),
-                     'total_gold' : int(v['gold']['total']),
-                     'name' : v['name'],
-                     'image' : v['image'],
-                     'item_id' : int(k)})
-<<<<<<< HEAD
-        session.add(item)
-=======
-    engine.execute(item.)
->>>>>>> e3bba7f1e6b4ce26052030769649ec47b0f1e1a1
+        if not session.query(Item).filter_by(item_id=int(k)).first() :
+            item = Item(description=v['description'],
+                        base_gold=int(v['gold']['base']),
+                        sell_gold=int(v['gold']['sell']),
+                        total_gold=int(v['gold']['total']),
+                        name=v['name'],
+                        image=v['image'],
+                        item_id=int(k))
+            session.add(item)
     session.commit()
 """
         for frm in v['fromItem'] :
@@ -207,8 +165,8 @@ def load_items(items, session) :
 
 
 
-"""
-def load_players(players):
+
+def load_players(players, session):
     '''
     players is a dictionary of player information loaded from a json of the form:
     {
@@ -227,12 +185,92 @@ def load_players(players):
                        "gamesPlayed": "<int>"                      
     }
     '''
-    for k, v in players :
-"""        
+    with session.no_autoflush:
+        for k, v in players.items() :
+            if not session.query(Player).filter_by(player_id=int(k)).first() :
+                player = Player(bio=(v['bio'] if v['bio'] else ''),
+                                first_name=(v['firstname'] if v['firstname'] else ''),
+                                last_name=(v['lastname'] if v['lastname'] else ''),
+                                ign=(v['name'] if v['name'] else ''),
+                                player_id=(int(v['id']) if v['id'] else 0),
+                                image=(v['photoUrl'] if v['photoUrl'] else ''),
+                                role=(v['role'] if v['role'] else ''),
+                                team_name=(v['teamName'] if v['teamName'] else 'No Team'),
+                                kda=(float(v['kda']) if v['kda'] else 0.0),
+                                gpm=(float(v['gpm']) if v['gpm'] else 0.0),
+                                total_gold=(int(v['totalGold']) if v['totalGold'] else  0),
+                                games_played=(int(v['gamesPlayed']) if v['gamesPlayed'] else 0))
+                session.add(player)
+        session.commit()
+
+def load_players_to_champions(players, session):
+    with session.no_autoflush :
+        for k, v in players.items() :
+            player = session.query(Player).filter_by(player_id=int(k)).first()
+            for champ in v['champions'] :
+                if champ is not None:
+                    champ = session.query(Champion).filter_by(champion_id=int(champ)).first()
+                    player.played_champions.append(champ)
+            session.add(player)
+        session.commit()
+
+def load_item_to_item(items, session):
+    with session.no_autoflush :
+        for k, v in items.items() :
+            this_item = session.query(Item).filter_by(item_id=int(k)).first()
+            for into in v['intoItem'] :
+                into_itm = session.query(Item).filter_by(item_id=int(into)).first()
+                this_item.from_into.append(into_itm)
+                session.add(this_item)
+            for frm in v['fromItem'] :
+                from_item = session.query(Item).filter_by(item_id=int(frm)).first()
+                from_item.into_from.append(this_item)
+                session.add(from_item)
+        session.commit()
+
+
+def load_champions(champions, session):
+    with session.no_autoflush :
+        for k, v in champions.items() :
+            if not session.query(Champion).filter_by(champion_id=int(v['key'])).first() :
+                champion = Champion(champion_id = int(v['key']),
+                                    name = v['name'],
+                                    role = v['role'],
+                                    title = v['title'],
+                                    lore = v['lore'],
+                                    image = v['image'],
+                                    passive_name = v['passive_name'],
+                                    passive_image = v['passive_image'],
+                                    passive_description = v['passive_description'],
+                                    q_name = v['q_name'],
+                                    q_image = v['q_image'],
+                                    q_description = v['q_description'],
+                                    w_name = v['w_name'],
+                                    w_image = v['w_image'],
+                                    w_description = v['w_description'],
+                                    e_name = v['e_name'],
+                                    e_image = v['e_image'],
+                                    e_description = v['e_description'],
+                                    r_name = v['r_name'],
+                                    r_image = v['r_image'],
+                                    r_description = v['r_description'])
+                try:
+                    for item in v['recommended_items'] :
+                        i = session.query(Item).filter_by(item_id=int(item)).first()
+                        champion.recommended_items.append(i)
+                        session.add(champion)
+                except KeyError as e:
+                    pass
+        session.commit()
+
     
 
+def delete_all(session) :
+    for row in session.query(Item).all():
+        session.delete(row)
+    session.commit()
 
-<<<<<<< HEAD
+
 if __name__ == "__main__" :
     # Connect to the SQL database
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
@@ -241,26 +279,19 @@ if __name__ == "__main__" :
     Session = sessionmaker(bind=engine)
 
     session = Session()
-=======
-# Connect to the SQL database
-engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
-# Add all of the tables to the database, first checking to make sure that the table
-# does not already exist
-
-metadata.create_all(engine, checkfirst=True)
->>>>>>> e3bba7f1e6b4ce26052030769649ec47b0f1e1a1
+    
+    #delete_all(session)
 
     items = json.load(open("items"))
     champions = json.load(open("champions"))
     players = json.load(open("players"))
 
-<<<<<<< HEAD
     load_items(items, session)
-    #    load_champions(champions)
-    #    load_players(players)
-=======
-load_items(items, session)
-#    load_champions(champions)
-#    load_players(players)
->>>>>>> e3bba7f1e6b4ce26052030769649ec47b0f1e1a1
+    load_champions(champions, session)
+    load_players(players, session)
+    #load_players_to_champions(players, session)
+    load_item_to_item(items, session)
+    
+    session.close()
+
 
