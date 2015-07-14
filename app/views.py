@@ -110,9 +110,14 @@ def player(request, id):
 #API Pages
 #
 def Champion_List_API(request):
-    template = loader.get_template('app/player.html')
-    context = RequestContext(request, {})
-    return HttpResponse(template.render(context))
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Champion"')
+    List = {}
+    for row in result:
+        List[row['champion_id']] = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/' + row['image'][-8:], 'passive_name': row['passive_name'], 'passive_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/passive/' + row['passive_image'][-8:], 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['q_image'][-8:], 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['w_image'][-8:], 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['e_image'][-8:], 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/' + row['r_image'][-8:], 'r_description': row['r_description']}
+
+    return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Champion_ID_API(request, id):
     template = loader.get_template('app/player.html')
