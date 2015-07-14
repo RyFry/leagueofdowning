@@ -139,7 +139,6 @@ def Item_List_API(request):
 '''
     return HttpResponse(json.dumps(jsonout), content_type="application/json")
 
-
 def Item_ID_API(request, id):
     template = loader.get_template('app/player.html')
     context = RequestContext(request, {
