@@ -51,7 +51,7 @@ def items(request):
     jsonout = jsonout[1:-1]
 
     context = RequestContext(request, {
-        'itemdata' = jsonout
+        'itemdata' : '' + jsonout
     })
     return HttpResponse(template.render(context))
 

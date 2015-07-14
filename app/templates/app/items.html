@@ -23,15 +23,15 @@
         $scope.sortReverse = false;
 
         $scope.players = [
-          {playerdata}
+          {{playerdata}}
         ];
 
         $scope.champions = [
-          {championdata}
+          {{championdata}}
         ];
 
         $scope.items = [
-          {itemdata}
+          {{itemdata}}
         ];
       });
     </script>
@@ -53,36 +53,38 @@
 	<thead>
 	  <tr>
 	    <td>
+	      <a href="#" ng-click="sortType = 'item_id'; sortReverse = !sortReverse">
+		    Item
+	    </td>
+	    <td>
 	      <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-		Item
+		    Name
 	    </td>
 	    <td>
-	      Stats
+	      <a href="#" ng-click="sortType = 'base_gold'; sortReverse = !sortReverse">
+		    Base Gold
 	    </td>
-	    <td>
-	      <a href="#" ng-click="sortType = 'recFor'; sortReverse = !sortReverse">
-		Recommended For
-	    </td>
-	    <td>
-	      <a href="#" ng-click="sortType = 'cost'; sortReverse = !sortReverse">
-		Cost
-	    </td>
-	    <td>
-	      Recipe
-	    </td>
+      <td>
+        <a href="#" ng-click="sortType = 'sell_gold'; sortReverse = !sortReverse">
+        Sell Gold
+      </td>
+      <td>
+        <a href="#" ng-click="sortType = 'total_gold'; sortReverse = !sortReverse">
+        Total Gold
+      </td>
 	  </tr>
 	</thead>
 
 	<tbody>
-	  {% verbatim %}
+    {% verbatim %}
 	  <tr ng-repeat="item in items | orderBy:sortType:sortReverse">
-	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.url }}">{{ item.name }}</a></td>
-	    <td><p ng-repeat="stat in item.stats"> {{ stat }}</td>
-	    <td>{{ item.recFor }}</td>
-	    <td>{{ item.cost }}</td>
-	    <td><p ng-repeat="ingredient in item.recipe">{{ ingredient }}</td>
+	    <td><a ng-href="http://leagueofdowning.me/items/{{ items.item_id }}">{{ items.item_id }}</a></td>
+	    <td>{{ items.name }}</td>
+	    <td>{{ items.base_gold }}</td>
+	    <td>{{ items.sell_gold }}</td>
+	    <td>{{ items.total_gold }}</td>
 	  </tr>
-	  {% endverbatim %}
+    {% endverbatim %}
 	</tbody>
 
       </table>
