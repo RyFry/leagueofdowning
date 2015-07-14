@@ -192,7 +192,11 @@ def load_items(items, session) :
                      'name' : v['name'],
                      'image' : v['image'],
                      'item_id' : int(k)})
+<<<<<<< HEAD
         session.add(item)
+=======
+    engine.execute(item.)
+>>>>>>> e3bba7f1e6b4ce26052030769649ec47b0f1e1a1
     session.commit()
 """
         for frm in v['fromItem'] :
@@ -228,6 +232,7 @@ def load_players(players):
     
 
 
+<<<<<<< HEAD
 if __name__ == "__main__" :
     # Connect to the SQL database
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
@@ -236,12 +241,26 @@ if __name__ == "__main__" :
     Session = sessionmaker(bind=engine)
 
     session = Session()
+=======
+# Connect to the SQL database
+engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+# Add all of the tables to the database, first checking to make sure that the table
+# does not already exist
+
+metadata.create_all(engine, checkfirst=True)
+>>>>>>> e3bba7f1e6b4ce26052030769649ec47b0f1e1a1
 
     items = json.load(open("items"))
     champions = json.load(open("champions"))
     players = json.load(open("players"))
 
+<<<<<<< HEAD
     load_items(items, session)
     #    load_champions(champions)
     #    load_players(players)
+=======
+load_items(items, session)
+#    load_champions(champions)
+#    load_players(players)
+>>>>>>> e3bba7f1e6b4ce26052030769649ec47b0f1e1a1
 
