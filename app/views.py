@@ -185,11 +185,18 @@ def Player_List_API(request):
     return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Player_ID_API(request, id):
-    template = loader.get_template('app/player.html')
-    context = RequestContext(request, {
-        'id' : id
-    })
-    return HttpResponse(template.render(context))
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Player" where player_id=' + id)
+    jsonout = {}
+    for row in result:
+        jsonout = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': row['kda'], 'gpm': row['gpm'], 'total_gold': row['total_gold'], 'games_played': row['games_played']}
+    if jsonout == {}:
+        h = HttpResponse(json.dumps({"error": "Player " + id + " does not exist."}),   content_type="application/json")
+        h.status_code = 404
+        return h
+
+    return HttpResponse(json.dumps(jsonout), content_type='application/json')   
 
 def Item_List_API(request):
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
@@ -202,18 +209,23 @@ def Item_List_API(request):
     return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Item_ID_API(request, id):
-    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+    try:
+        int(id)
+        engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
-    result = engine.execute('select * from "Item" where item_id=' + id)
-    jsonout = {}
-    for row in result:
-        jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
-    if jsonout == {}:
+        result = engine.execute('select * from "Item" where item_id=' + id)
+        jsonout = {}
+        for row in result:
+            jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
+        if jsonout == {}:
+            h = HttpResponse(json.dumps({"error": "Item " + id + " does not exist."}),   content_type="application/json")
+            h.status_code = 404
+            return h
+
+        return HttpResponse(json.dumps(jsonout), content_type='application/json')    
+    except ValueError:
         h = HttpResponse(json.dumps({"error": "Item " + id + " does not exist."}),   content_type="application/json")
         h.status_code = 404
         return h
-
-    return HttpResponse(json.dumps(jsonout), content_type='application/json')    
-    
 
 
