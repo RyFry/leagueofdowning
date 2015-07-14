@@ -13,7 +13,7 @@ class Champion(models.Model):
     The model contains a Champion name, role, lane, counters, items, and abilities.
     The __str__ method is used to return the name of the Champion as string.
     """
-    champion_champion_id = models.IntegerField(default=0)
+    champion_id = models.IntegerField(default=0)
     champion_name = models.CharField(max_length=200)
     champion_role = models.CharField(max_length=100)
     champion_title = models.CharField(max_length=100)
@@ -89,7 +89,7 @@ class Item(models.Model):
     The __str__ method is used to return the item name. 
     The get_absolute_url method overrides the default url so that watson get the correct url as a link. 
     """
-    item_item_id = models.IntegerField(default=0)
+    item_id = models.IntegerField(default=0)
     item_name = models.CharField(max_length=200)
     item_description = models.CharField(max_length=5000)
     item_base_gold = models.IntegerField(default=0)
