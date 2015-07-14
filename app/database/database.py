@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship, sessionmaker, backref
 
 import json
 
-
+"""
 metadata = MetaData()
 
 champion = Table('Champion', metadata,
@@ -31,13 +31,13 @@ champion = Table('Champion', metadata,
                  Column('r_image', String(1000)),
                  Column('r_description', String(2000))
              )
-
+"""
 champion_to_item = Table('ChampionToItem', metadata,
 		         Column('id', Integer, primary_key=True),
 			 Column('champion_id', Integer, ForeignKey('Champion.champion_id')),
                          Column('item_id', Integer, ForeignKey('Item.item_id'))
 		   )
-
+"""
 item = Table('Item', metadata,
              Column('id', Integer, primary_key=True),
              Column('item_id', Integer, unique=True, nullable=False),
@@ -48,14 +48,7 @@ item = Table('Item', metadata,
              Column('total_gold', Integer),
              Column('image', String)
 )
-"""
-item_to_item = Table('ItemToItem', metadata,
-	             Column('id', Integer, primary_key=True),
-		     Column('from_id', Integer, ForeignKey('Item.id'), nullable=False),
-                     Column('into_id', Integer, ForeignKey('Item.id'), nullable=False)
-               )
 
-"""
 
 player = Table('Player', metadata,
                Column('id', Integer, primary_key=True),
@@ -71,14 +64,20 @@ player = Table('Player', metadata,
                Column('total_gold', Integer),
                Column('games_played', Integer)
            )
-
+"""
 player_to_champion = Table('PlayerToChampion', metadata,
 			   Column('id', Integer, primary_key=True),
                            Column('player_id', Integer, ForeignKey('Player.id')),
                            Column('champion_id', Integer, ForeignKey('Champion.id')))
-
-
 """
+class PlayerToChampion (Base) :
+    __tablename__ = "PlayerToChampion"
+    
+    id = Column(Integer, primary_key=True)
+    player_id = Column(Integer, ForeignKey('Player.id'))
+    champion_id = Column(Integer, ForeignKey('Champion.id'))
+"""
+
 class Champion (Base) :
     __tablename__ = "Champion"
 
@@ -125,6 +124,14 @@ class Champion (Base) :
 class Item (Base) :
     __tablename__ = "Item"
     
+    id = Column(Integer, primary_key=True)
+    item_id = Column(Integer, unique=True, nullable=False)
+    name = Column(String)
+    description = Column('description', String),
+    base_gold = Column(Integer),
+    sell_gold = Column(Integer),
+    total_gold = Column(Integer),
+    image = Column(String)
     
 
     def __repr__ (self) :
@@ -132,7 +139,7 @@ class Item (Base) :
                 "total_gold='%d', image='%s'") % \
                (self.item_id, self.name, self.description, self.base_gold, self.sell_gold,\
                 self.total_gold, self.image)
-"""
+
 '''
 class ItemToItem (Base) :
     __tablename__ = "ItemToItem"
@@ -146,7 +153,7 @@ class ItemToItem (Base) :
         return ("<Item(from_id='%d', into_id='%d'") % \
                (self.from_id, self.into_id)
 '''    
-"""
+
 class Player (Base) :
     __tablename__ = "Player"
 
@@ -173,11 +180,10 @@ class Player (Base) :
                 "kda='%f', gpm='%f', total_gold='%d', games_played='%d')") % \
                (self.first_name, self.last_name, self.ign, self.bio, self.image, self.role, \
                 self.kda, self.gpm, self.total_gold, self.games_played)
-"""
+
 
 
 def load_items(items, session) :
-    
     for k, v in items.items() :
         item.insert({'description' : v['description'],
                      'base_gold' : int(v['gold']['base']),
@@ -186,6 +192,7 @@ def load_items(items, session) :
                      'name' : v['name'],
                      'image' : v['image'],
                      'item_id' : int(k)})
+        session.add(item)
     session.commit()
 """
         for frm in v['fromItem'] :
@@ -221,21 +228,20 @@ def load_players(players):
     
 
 
-# Connect to the SQL database
-engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
-# Add all of the tables to the database, first checking to make sure that the table
-# does not already exist
+if __name__ == "__main__" :
+    # Connect to the SQL database
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+    # Add all of the tables to the database, first checking to make sure that the table
+    # does not already exist
+    Session = sessionmaker(bind=engine)
 
-metadata.create_all(engine)
+    session = Session()
 
-# Commit the change
-trans.commit()
+    items = json.load(open("items"))
+    champions = json.load(open("champions"))
+    players = json.load(open("players"))
 
-items = json.load(open("items"))
-champions = json.load(open("champions"))
-players = json.load(open("players"))
-
-#load_items(items, session)
-#    load_champions(champions)
-#    load_players(players)
+    load_items(items, session)
+    #    load_champions(champions)
+    #    load_players(players)
 
