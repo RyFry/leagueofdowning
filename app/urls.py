@@ -26,4 +26,4 @@ urlpatterns = [
     url(r'^players/*', views.players, name='players'),
 
     url(r'^.*/$', views.index, name='index')
-]
+] 

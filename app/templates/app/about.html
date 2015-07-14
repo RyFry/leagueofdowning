@@ -1,22 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<!-- Bootstrap -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<title>Grayscale - Start Bootstrap Theme</title>
-		<!-- Bootstrap Core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<!-- Custom CSS -->
-		<link href="css/grayscale.css" rel="stylesheet">
-		<link href="carousel.css" rel="stylesheet">
-		<!-- Custom Fonts -->
-		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-		<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	  {% include "app/header.html" %}
 		<style>
 			.footer
 			{
@@ -32,12 +17,7 @@
 		<title>
 			About
 		</title>
-		<style>
-			.vcenter
-			{
-			<!--      transform: translateY(20%); -->
-			}
-		</style>
+
 	</head>
 
 
@@ -218,17 +198,7 @@
             <p>Copyright &copy; League of Downing 2015</p>
         </div>
     </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-
-    <!-- Custom Theme JavaScript --> 
-    <script src="js/grayscale.js"></script>
+    
+    {% include "app/footer.html" %}
 
 </html>
