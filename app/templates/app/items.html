@@ -78,11 +78,11 @@
 	<tbody>
     {% verbatim %}
 	  <tr ng-repeat="item in items | orderBy:sortType:sortReverse">
-	    <td><a ng-href="http://leagueofdowning.me/items/{{ items.item_id }}">{{ items.item_id }}</a></td>
-	    <td>{{ items.name }}</td>
-	    <td>{{ items.base_gold }}</td>
-	    <td>{{ items.sell_gold }}</td>
-	    <td>{{ items.total_gold }}</td>
+	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item.item_id }}</a></td>
+	    <td>{{ item.name }}</td>
+	    <td>{{ item.base_gold }}</td>
+	    <td>{{ item.sell_gold }}</td>
+	    <td>{{ item.total_gold }}</td>
 	  </tr>
     {% endverbatim %}
 	</tbody>
