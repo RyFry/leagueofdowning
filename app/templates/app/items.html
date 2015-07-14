@@ -25,10 +25,8 @@
             array.push(input[objectKey]);
           };
           array.sort(function(a, b) {
-            return (a[attribute] > b[attribute] ? 1 : -1);
+            return (a[attribute] > b[attribute] ? 1 : -1) && reverse;
           });
-          if (reverse) array.reverse();
-          return array;
         };
       });
     </script>
