@@ -10,8 +10,8 @@ from django.conf import settings
 
 class Champion(models.Model):
     """
-    The model contains a Champion name, role, lane, counters, items, and abilities.
-    The __str__ method is used to return the name of the Champion as string.
+    The model contains a champion id, name, role, title, lore, image, and a name, image, and description for each ability. It also has a champion-to-item relation.
+    The __str__ method is used to return the name of the champion as string.
     """
     champion_id = models.IntegerField(default=0)
     champion_name = models.CharField(max_length=200)
@@ -50,8 +50,7 @@ class Champion(models.Model):
 
 class Player(models.Model):
     """
-    The model contains a player name, age, position, total_wins, season_wins, season_losses, team_name, average_kda, 
-    average_gold_item, average_gold_total, pref_champions.
+    The model contains a player id, first name, last name, in-game name, bio, image, role, kda, gpm, total gold, games played, and a player-to-champion relation.
 
     The __str__ method is used to return the name of the player.
     The get_absolute_url method overrides the default url so that watson get the correct url as a link.
@@ -84,7 +83,7 @@ class Player(models.Model):
 
 class Item(models.Model):
     """
-    The model contains a item_name, item_stats, recommended_for, item_cost, item_recipe.
+    The model contains an item id, name, description, base gold, sell gold, total gold, and an image.
 
     The __str__ method is used to return the item name. 
     The get_absolute_url method overrides the default url so that watson get the correct url as a link. 
