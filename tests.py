@@ -9,6 +9,7 @@ from django.core.management import call_command
 from django.utils import unittest
 from django.test import TestCase
 from django.http import HttpResponse
+from unittest import main, TestCase
 
 from json import dumps, loads
 
@@ -229,6 +230,6 @@ class ModelTestCase(TestCase):
 # main
 # ----
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     main()
 

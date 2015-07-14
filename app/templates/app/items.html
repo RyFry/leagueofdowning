@@ -76,6 +76,7 @@
 	</thead>
 
 	<tbody>
+    {{itemdata}}
     {% verbatim %}
 	  <tr ng-repeat="item in items | orderBy:sortType:sortReverse">
 	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item.item_id }}</a></td>
