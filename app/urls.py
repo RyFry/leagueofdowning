@@ -18,5 +18,12 @@ urlpatterns = [
     url(r'^players/(?P<id>.*)', views.player),
     url(r'^players/*', views.players),
 
+    url(r'^api/champions/$', Champion_List_API),
+    url(r'^api/champions/(?P<id>.*)/$', Champion_ID_API),   
+    url(r'^api/players/$', Player_List_API),
+    url(r'^api/players/(?P<id>.*)/$', Players_ID_API),   
+    url(r'^api/items/$', Item_List_API),
+    url(r'^api/items/(?P<id>.*)/$', Item_ID_API),   
+
     url(r'^.*/$', views.index)
 ]
