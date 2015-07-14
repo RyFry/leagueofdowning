@@ -43,19 +43,15 @@ def items(request):
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
     result = engine.execute('select * from "Item"')
-    List = []
+    List = {}
     for row in result:
-        List.append({'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]})
+        List[row['item_id']] = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
 
-    out = ""
-    for item in List:
-        out = out + json.dumps(item) + ", "
-
-    out = out[0:-2]
-
+    jsonout = json.dumps(List)
+    jsonout = jsonout[1:-1]
 
     context = RequestContext(request, {
-        'itemdata' : out
+        'itemdata' : '' + jsonout
     })
     return HttpResponse(template.render(context))
 
