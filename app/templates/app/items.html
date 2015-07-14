@@ -63,17 +63,12 @@
 	<tbody>
     {% verbatim %}
     {{items}}
-	  <tr ng-repeat="(key, value) in items | orderBy:sortType:sortReverse">
-	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ key }}</a></td>
-	    <td>{{ value }}</td>
-	    <td>{{ thing }}</td>
-	    <td>{{ items }}</td>
-	    <td>{{ item.total_gold }}</td>
+	  <tr ng-repeat="item in items | orderBy:sortType:sortReverse">
+	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item }}</a></td>
 	  </tr>
+    {% endverbatim %}
     
 	</tbody>
-      {{items}}
-      {% endverbatim %}
 
       </table>
 
