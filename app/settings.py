@@ -36,7 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+    'rest_framework'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,6 +83,11 @@ DATABASES = {
     }
 }
 
+
+REST_FRAMEWORK = {
+    
+    'PAGE_SIZE': 10
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
