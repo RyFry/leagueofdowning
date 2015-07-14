@@ -18,6 +18,11 @@
     <script>
       var app = angular.module('app', []);
 
+      app.config(function($interpolateProvider) {
+        $interpolateProvider.startSymbol('{[{');
+        $interpolateProvider.endSymbol('}]}');
+      });
+
       app.controller('appController', function($scope) {
         $scope.sortType = 'name';
         $scope.sortReverse = false;
@@ -30,7 +35,9 @@
           {{championdata}}
         ];
 
-        $scope.items = JSON.parse({{itemdata}});
+        $scope.djangoitems = "" + {{itemdata}};
+
+        $scope.items = JSON.parse($scope.djangoitems);
 
         $scope.thing = 'asdf'
       });
@@ -79,9 +86,9 @@
     {{itemdata}}
     {% verbatim %}
 	  <tr ng-repeat="(key, value) in items | orderBy:sortType:sortReverse">
-	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ key }}</a></td>
-	    <td>{{ value }}</td>
-	    <td>{{ item.base_gold }}</td>
+	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{[{ key }]}</a></td>
+	    <td>{[{ value }]}</td>
+	    <td>{{ thing }}</td>
 	    <td>{{ item.sell_gold }}</td>
 	    <td>{{ item.total_gold }}</td>
 	  </tr>
