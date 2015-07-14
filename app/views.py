@@ -4,7 +4,7 @@ from django.template import RequestContext, loader
 
 from sqlalchemy import create_engine, insert
 from sqlalchemy.orm import relationship, sessionmaker, backref
-import app.database
+import app.database.database
 
 
 
