@@ -50,7 +50,7 @@ class Champion(models.Model):
 
 class Player(models.Model):
     """
-    The model contains a player id, first name, last name, in-game name, bio, image, role, kda, gpm, total gold, games played, and a player-to-champion relation.
+    The model contains a player id, first name, last name, team name, in-game name, bio, image, role, kda, gpm, total gold, games played, and a player-to-champion relation.
 
     The __str__ method is used to return the name of the player.
     The get_absolute_url method overrides the default url so that watson get the correct url as a link.
@@ -58,6 +58,7 @@ class Player(models.Model):
     player_id = models.IntegerField(default=0)
     player_first_name = models.CharField(max_length=100)
     player_last_name = models.CharField(max_length=100)
+    player_team_name = models.CharField(max_length=100)
     player_ign = models.CharField(max_length=100)
     player_bio = models.CharField(max_length=5000)
     player_image = models.CharField(max_length=100)
