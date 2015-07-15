@@ -65,18 +65,34 @@
 			</header>
 			<section id="item" class="container content-section text-center">
 				 <div class="container">
-						<div class="row">
+
+
+				 		<div class="row">
 							 <div class="center-block">
-									<h3>Stats</h3>
-									{{ stats|linebreaks }}
+									<h3>Description</h3>
+									{{ description|linebreaks }}
 							 </div>
 						</div>
+
+
 						<div class="row">
 							 <div class="center-block">
 									<h3>Cost</h3>
-									{{ base_gold }}
+									{{ total_gold|linebreaks }}
 							 </div>
 						</div>
+
+
+						<div class="row">
+							 <div class="center-block">
+									<h3>Resell Value</h3>
+									{{ sell_gold|linebreaks }}
+							 </div>
+						</div>
+
+						
+
+
 						<div class="row">
 							 <div class="center-block">
 									<h3>Recommended Roles</h3>
