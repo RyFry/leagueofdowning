@@ -5,6 +5,11 @@ from django.test.utils import setup_test_environment
 from django.core.urlresolvers import reverse
 from django.core.management import call_command
 
+from urllib.request import urlopen
+import urllib
+import re
+import requests
+
 #New Imports
 from django.utils import unittest
 from django.test import TestCase
@@ -15,6 +20,7 @@ from json import dumps, loads
 
 from django.test import TestCase
 from app.models import *
+
 
 try:
     from urllib.request import urlopen, Request
@@ -40,19 +46,30 @@ class ModelTestCase(TestCase):
         #Dictionary Key: Champion Name
         #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image}
 
-        #champtest1 = {"Nidalee": {"role": "Assassin", "name": "Nidalee"}}
+        #champtest1 = {"Nidalee": {"role": "Assassin", "name": "Nidalee"}} WORKS
         #self.assertEqual(champtest1['Nidalee']['name'], "Nidalee")
         #self.assertEqual(champtest1['Nidalee']['role'], "Assassin")
+
         #Champion.objects.create(champion_name="Nidalee", champion_role="Assassin")
         #Champion_Nidalee = Champion.objects.get(champion_name="Nidalee")
         #self.assertEqual(Champion_Nidalee.champion_name, "Nidalee")
         #self.assertEqual(Champion_Nidalee.champion_role, "Assassin")
-        s = open("app/database/champions")
-        champion_test_dict1 = json.load(s)
-        s.close()
-        champtest = champion_test_dict1
-        self.assertEqual(champtest['Nidalee']['name'], "Nidalee")
-        self.assertEqual(champtest['Nidalee']['role'], "Assassin")
+
+        #s = open("app/database/champions")                                 WORKS
+        #champion_test_dict1 = json.load(s)
+        #s.close()
+        #champtest = champion_test_dict1
+        #self.assertEqual(champtest['Nidalee']['name'], "Nidalee")
+        #self.assertEqual(champtest['Nidalee']['role'], "Assassin")
+
+        champurl = "leagueofdowning.me/api/champions/1"
+
+        champinfo = urlopen(champurl).info()
+        raw_champ = urlopen(champurl).read().decode(champinfo.get_content_charset('utf8'))
+        champ = json.loads(raw_champ) 
+
+        self.assertEqual(champ['name'], "Annie")
+        self.assertEqual(champ['role'], "Mage")
         """Champion.objects.create(champion_name=champion, champion_role=champion['role'], champion_key=champion['key'])
         for current_champion in champion_test_dict1.keys():
             temp = Champion.objects.get(champion_name=current_champion)
