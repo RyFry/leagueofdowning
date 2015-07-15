@@ -40,22 +40,30 @@ class ModelTestCase(TestCase):
         #Dictionary Key: Champion Name
         #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image}
 
-        champtest1 = {"Nidalee": {"role": "Assassin", "name": "Nidalee"}}
-        self.assertEqual(champtest1['Nidalee']['name'], "Nidalee")
-        self.assertEqual(champtest1['Nidalee']['role'], "Assassin")
+        #champtest1 = {"Nidalee": {"role": "Assassin", "name": "Nidalee"}}
+        #self.assertEqual(champtest1['Nidalee']['name'], "Nidalee")
+        #self.assertEqual(champtest1['Nidalee']['role'], "Assassin")
         #Champion.objects.create(champion_name="Nidalee", champion_role="Assassin")
-
         #Champion_Nidalee = Champion.objects.get(champion_name="Nidalee")
         #self.assertEqual(Champion_Nidalee.champion_name, "Nidalee")
         #self.assertEqual(Champion_Nidalee.champion_role, "Assassin")
-"""
         s = open("app/database/champions")
         champion_test_dict1 = json.load(s)
         s.close()
+        champtest = champion_test_dict1['Nidalee']
+        self.assertEqual(champtest['Nidalee']['name'], "Nidalee")
+        self.assertEqual(champtest['Nidalee']['role'], "Assassin")
+        """Champion.objects.create(champion_name=champion, champion_role=champion['role'], champion_key=champion['key'])
+        for current_champion in champion_test_dict1.keys():
+            temp = Champion.objects.get(champion_name=current_champion)
+            self.assertEqual(temp.champion_name, current_champion)
+            self.assertEqual(temp.role, champion_test_dict1['role'])
+            self.assertEqual(temp.champion_key, champion_test_dict1['key'])
+
+
 
         for champion in champion_test_dict1.keys():
             Champion.objects.create(champion_name=champion, champion_role=champion['role'], champion_key=champion['key'])
-
         for current_champion in champion_test_dict1.keys():
             temp = Champion.objects.get(champion_name=current_champion)
             self.assertEqual(temp.champion_name, current_champion)
