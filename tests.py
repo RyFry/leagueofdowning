@@ -42,12 +42,13 @@ class ModelTestCase(TestCase):
 
         champion_test_dict1 = {"Nidalee": {"role": "Assassin", "name": "Nidalee"}}
 
-        Champion.objects.create(champion_name="Nidalee", champion_role="Assassin")
+        self.assertEqual(champion_test_dict1['Nidalee']['name'] = "Nidalee")
+        self.assertEqual(champion_test_dict1['Nidalee']['role'] = "Assassin")
+        #Champion.objects.create(champion_name="Nidalee", champion_role="Assassin")
 
-        Champion_Nidalee = Champion.objects.get(champion_name="Nidalee")
-        self.assertEqual(Champion_Nidalee.champion_name, "Nidalee")
-        self.assertEqual(Champion_Nidalee.champion_role, "Assassin")
-        #self.assertEqual(Champion_Nidalee.champion_key, "76")
+        #Champion_Nidalee = Champion.objects.get(champion_name="Nidalee")
+        #self.assertEqual(Champion_Nidalee.champion_name, "Nidalee")
+        #self.assertEqual(Champion_Nidalee.champion_role, "Assassin")
 """
         s = open("app/database/champions")
         champion_test_dict1 = json.load(s)
