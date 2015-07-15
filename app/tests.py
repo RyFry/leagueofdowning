@@ -38,19 +38,15 @@ import json
     # -----------
 
 class ModelTestCase(TestCase):
-    # -------------
-    # Champion_model
-    # -------------
-
     def test_champion_model1(self):
         champtest = {"Nidalee": {"role": "Assassin", "name": "Nidalee"}}
         self.assertEqual(champtest['Nidalee']['name'], "Nidalee")
         self.assertEqual(champtest['Nidalee']['role'], "Assassin")
 
     def test_champion_model2(self):
-        s = open("app/database/champions")
-        champion_test_dict = json.load(s)
-        s.close()
+        cs = open("app/database/champions")
+        champion_test_dict = json.load(cs)
+        cs.close()
         champtest1 = champion_test_dict
         self.assertEqual(champtest1['Nidalee']['name'], "Nidalee")
         self.assertEqual(champtest1['Nidalee']['role'], "Assassin")
@@ -69,9 +65,9 @@ class ModelTestCase(TestCase):
         self.assertEqual(playertest['4347']['role'], "Support")
 
     def test_player_model2(self):
-        s = open("app/database/players")
-        player_test_dict = json.load(s)
-        s.close()
+        ps = open("app/database/players")
+        player_test_dict = json.load(ps)
+        ps.close()
         playertest1 = player_test_dict
         self.assertEqual(playertest1['4347']['name'], "viviD")
         self.assertEqual(playertest1['4347']['role'], "Support")
@@ -90,15 +86,15 @@ class ModelTestCase(TestCase):
         self.assertEqual(itemtest['3266']['image'], "http://ddragon.leagueoflegends.com/cdn/5.13.1/img/item/3266.png")
 
     def test_item_model2(self):
-        s = open("app/database/items")
-        item_test_dict = json.load(s)
-        s.close()
+        ts = open("app/database/items")
+        item_test_dict = json.load(ts)
+        ts.close()
         itemtest = item_test_dict
         self.assertEqual(itemtest['3266']['name'], "Enchantment: Captain")
         self.assertEqual(itemtest['3266']['image'], "http://ddragon.leagueoflegends.com/cdn/5.13.1/img/item/3266.png")
 
     def test_item_model3(self):
-        itemurl = 'http://leagueofdowning.me/api/champions/1'
+        itemurl = 'http://leagueofdowning.me/api/items/3266'
         iteminfo = urlopen(itemurl).info()
         raw_item = urlopen(itemurl).read().decode(iteminfo.get_content_charset('utf8'))
         item1 = json.loads(raw_item) 
