@@ -2,7 +2,7 @@
 
   <head>
     <title>Players</title>
-
+	{% include "app/header.html" %}
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script>
       var app = angular.module('app', []);
@@ -12,7 +12,7 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("http://leagueofdowning.me/api/players/").then(function(response) {
+        $http.get("http://104.239.165.229/api/players/").then(function(response) {
           $scope.players = response.data;
         })
       });
@@ -82,8 +82,8 @@
 	      <tbody>
 		{% verbatim %}
 		<tr ng-repeat="player in players | orderObjectBy:sortType:sortReverse">
-		  <td><img ng-src="{{ player.image }}"></td>
-		  <td><a ng-href="http://leagueofdowning.me/items/{{ player.player_id }}">{{ player.player_id }}</a></td>
+		  <td><img ng-src="{{ player.image }}" height=100></td>
+		  <td><a ng-href="{{ player.player_id }}">{{ player.player_id }}</a></td>
 		  <td>{{ player.ign }}</td>
 		  <td>{{ player.team_name }}</td>
 		  <td>{{ player.role }}</td>
@@ -98,6 +98,6 @@
 	  </div>
 	  
 	</body>
-	
+	{% include "app/footer.html" %}
 </html>
 

@@ -12,7 +12,7 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("http://leagueofdowning.me/api/items/").then(function(response) {
+        $http.get("http://104.239.165.229/api/items/").then(function(response) {
           $scope.items = response.data;
         })
       });
@@ -77,7 +77,7 @@
     {% verbatim %}
 	  <tr ng-repeat="item in items | orderObjectBy:sortType:sortReverse">
       <td><img ng-src="{{ item.image }}"></td>
-	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item.item_id }}</a></td>
+	    <td><a ng-href="{{ item.item_id }}">{{ item.item_id }}</a></td>
       <td>{{ item.name }}</td>
       <td>{{ item.base_gold }}</td>
       <td>{{ item.sell_gold }}</td>
