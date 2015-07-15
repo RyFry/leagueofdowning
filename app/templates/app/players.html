@@ -12,7 +12,7 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("http://104.239.165.229/api/players/").then(function(response) {
+        $http.get("http://leagueofdowning.link/api/players/").then(function(response) {
           $scope.players = response.data;
         })
       });
