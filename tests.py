@@ -43,13 +43,13 @@ class ModelTestCase(TestCase):
         self.assertEqual(champtest['Nidalee']['name'], "Nidalee")
         self.assertEqual(champtest['Nidalee']['role'], "Assassin")
 
-    """def test_champion_model2(self):
+    def test_champion_model2(self):
         cs = open("app/database/champions")
         champion_test_dict = json.load(cs)
         cs.close()
         champtest1 = champion_test_dict
         self.assertEqual(champtest1['Nidalee']['name'], "Nidalee")
-        self.assertEqual(champtest1['Nidalee']['role'], "Assassin")"""
+        self.assertEqual(champtest1['Nidalee']['role'], "Assassin")
 
     def test_champion_model3(self):
         champurl = 'http://leagueofdowning.link/api/champions/76'
@@ -64,13 +64,13 @@ class ModelTestCase(TestCase):
         self.assertEqual(playertest['4347']['ign'], "viviD")
         self.assertEqual(playertest['4347']['role'], "Support")
 
-    """def test_player_model2(self):
+    def test_player_model2(self):
         ps = open("app/database/players")
         player_test_dict = json.load(ps)
         ps.close()
         playertest1 = player_test_dict
         self.assertEqual(playertest1['4347']['ign'], "viviD")
-        self.assertEqual(playertest1['4347']['role'], "Support")"""
+        self.assertEqual(playertest1['4347']['role'], "Support")
 
     def test_player_model3(self):
         playerurl = 'http://leagueofdowning.link/api/players/4347'
@@ -85,13 +85,13 @@ class ModelTestCase(TestCase):
         self.assertEqual(itemtest['3266']['name'], "Enchantment: Captain")
         self.assertEqual(itemtest['3266']['image'], "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/3266.png")
 
-   """ def test_item_model2(self):
+    def test_item_model2(self):
         ts = open("app/database/items")
         item_test_dict = json.load(ts)
         ts.close()
         itemtest = item_test_dict
         self.assertEqual(itemtest['3266']['name'], "Enchantment: Captain")
-        self.assertEqual(itemtest['3266']['image'], "http://ddragon.leagueoflegends.com/cdn/5..1/img/item/3266.png")"""
+        self.assertEqual(itemtest['3266']['image'], "http://ddragon.leagueoflegends.com/cdn/5..1/img/item/3266.png")
 
     def test_item_model3(self):
         itemurl = 'http://leagueofdowning.link/api/items/3266'
