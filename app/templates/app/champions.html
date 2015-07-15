@@ -1,17 +1,6 @@
 <html lang="en">
 
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-
-    <!-- Bootstrap -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
     <title>Champions</title>
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
@@ -19,13 +8,27 @@
       var app = angular.module('app', []);
 
       app.controller('appController', function($scope, $http) {
-        $scope.sortType = 'item.name';
-        $scope.sortReverse = false;
         $scope.items;
+        $scope.sortType = '';
+        $scope.sortReverse = false;
 
         $http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
-          $scope.items = response.data;
+          $scope.champions = response.data;
         })
+      });
+
+      app.filter('orderObjectBy', function() {
+        return function(input, attribute, reverse) {
+          var array = [];
+          for (var objectKey in input) {
+            array.push(input[objectKey]);
+          };
+          array.sort(function(a, b) {
+            return (a[attribute] > b[attribute] ? 1 : -1);
+          });
+          if (reverse) array.reverse();
+          return array;
+        };
       });
     </script>
 
@@ -44,43 +47,30 @@
 
 	<thead>
 	  <tr>
+      <td>
+      </td>
 	    <td>
-	      <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+	      <a href="#" ng-click="sortType = 'champion_id'; sortReverse = !sortReverse">
 		Champion
 	    </td>
+      <td>
+        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+    Name
+      </td>
 	    <td>
 	      <a href="#" ng-click="sortType = 'role'; sortReverse = !sortReverse">
 		Role
-	    </td>
-	    <td>
-	      <a href="#" ng-click="sortType = 'lane'; sortReverse = !sortReverse">
-		Lane
-	    </td>
-	    <td>
-	      Counters
-	    </td>
-	    <td>
-	      Items
-	    </td>
-	    <td>
-
-	      Abilities
 	    </td>
 	  </tr>
 	</thead>
 
 	<tbody>
 	  {% verbatim %}
-	  <tr ng-repeat="champion in champions | orderBy:sortType:sortReverse">
-	    <td><a ng-href="http://leagueofdowning.me/champions/{{ champion.url }}">{{ champion.name }}</a></td>
+	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse">
+      <td><img ng-src="{{ champion.image }}"></td>
+	    <td><a ng-href="http://leagueofdowning.me/champions/{{ champion.champion_id }}">{{ champion.champion_id}}</a></td>
+	    <td>{{ champion.name }}</td>
 	    <td>{{ champion.role }}</td>
-	    <td>{{ champion.lane }}</td>
-	    <td><p ng-repeat="counter in champion.counters">{{ counter }}</td>
-	    <td>
-	      <p ng-if="champion.name == 'Azir'" ng-repeat="item in items"><a ng-href="http://leagueofdowning.me/items/{{ item.url }}">{{ item.name }}</a>
-	      <p ng-if="champion.name != 'Azir'" ng-repeat="item in champion.items">{{ item }}
-	    </td>
-	    <td><p ng-repeat="ability in champion.abilities">{{ ability }}</td>
 	  </tr>
 	  {% endverbatim %}
 	</tbody>
