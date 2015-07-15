@@ -62,7 +62,7 @@ class ModelTestCase(TestCase):
         #self.assertEqual(champtest['Nidalee']['name'], "Nidalee")
         #self.assertEqual(champtest['Nidalee']['role'], "Assassin")
 
-        champurl = 'leagueofdowning.me/api/champions/1'
+        champurl = 'http://leagueofdowning.me/api/champions/1'
 
         champinfo = urlopen(champurl).info()
         raw_champ = urlopen(champurl).read().decode(champinfo.get_content_charset('utf8'))
