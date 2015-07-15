@@ -76,7 +76,7 @@
 
 	<tbody>
     {% verbatim %}
-	  <tr ng-repeat="item in items | orderObjectBy:sortType:true">
+	  <tr ng-repeat="item in items | orderObjectBy:sortType">
       <td><img ng-src="{{ item.image }}"></td>
 	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item.item_id }}</a></td>
       <td>{{ item.name }}</td>
