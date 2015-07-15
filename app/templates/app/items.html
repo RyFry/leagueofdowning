@@ -77,8 +77,8 @@
     {% verbatim %}
 	  <tr ng-repeat="item in items | orderObjectBy:sortType:sortReverse">
       <td><img ng-src="{{ item.image }}"></td>
-	    <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item.item_id }}</a></td>
-      <td>{{ item.name }}</td>
+	    <td>{{ item.item_id }}</td>
+      <td><a ng-href="http://leagueofdowning.me/items/{{ item.item_id }}">{{ item.name }}</a></td>
       <td>{{ item.base_gold }}</td>
       <td>{{ item.sell_gold }}</td>
       <td>{{ item.total_gold }}</td>

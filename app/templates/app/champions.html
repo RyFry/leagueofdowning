@@ -68,8 +68,8 @@
 	  {% verbatim %}
 	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse">
       <td><img ng-src="{{ champion.image }}"></td>
-	    <td><a ng-href="http://leagueofdowning.me/champions/{{ champion.champion_id }}">{{ champion.champion_id}}</a></td>
-	    <td>{{ champion.name }}</td>
+	    <td>{{ champion.champion_id}}</td>
+	    <td><a ng-href="http://leagueofdowning.me/champions/{{ champion.champion_id }}">{{ champion.name }}</a></td>
 	    <td>{{ champion.role }}</td>
 	  </tr>
 	  {% endverbatim %}
