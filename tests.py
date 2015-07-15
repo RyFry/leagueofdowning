@@ -51,8 +51,8 @@ class ModelTestCase(TestCase):
         champion_test_dict1 = json.load(s)
         s.close()
         champtest = champion_test_dict1['Nidalee']
-        self.assertEqual(champtest1['Nidalee']['name'], "Nidalee")
-        self.assertEqual(champtest1['Nidalee']['role'], "Assassin")
+        self.assertEqual(champtest['Nidalee']['name'], "Nidalee")
+        self.assertEqual(champtest['Nidalee']['role'], "Assassin")
         """Champion.objects.create(champion_name=champion, champion_role=champion['role'], champion_key=champion['key'])
         for current_champion in champion_test_dict1.keys():
             temp = Champion.objects.get(champion_name=current_champion)
