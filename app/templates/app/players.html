@@ -1,39 +1,34 @@
 <html lang="en">
 
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-
-    <!-- Bootstrap -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
     <title>Players</title>
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script>
-      var app = angular.module('app', [])
+      var app = angular.module('app', []);
 
-      app.controller('appController', function($scope) {
-        $scope.sortType = 'name';
+      app.controller('appController', function($scope, $http) {
+        $scope.items;
+        $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $scope.players = [
-          {playerdata}
-        ];
+        $http.get("http://leagueofdowning.me/api/players/").then(function(response) {
+          $scope.players = response.data;
+        })
+      });
 
-        $scope.champions = [
-          {championdata}
-        ];
-
-        $scope.items = [
-          {itemdata}
-        ];
+      app.filter('orderObjectBy', function() {
+        return function(input, attribute, reverse) {
+          var array = [];
+          for (var objectKey in input) {
+            array.push(input[objectKey]);
+          };
+          array.sort(function(a, b) {
+            return (a[attribute] > b[attribute] ? 1 : -1);
+          });
+          if (reverse) array.reverse();
+          return array;
+        };
       });
     </script>
 
@@ -54,49 +49,35 @@
 		<div class="row">
 		  <tr>
 		    <div class="col-xs-6">
+		    	<td></td>
 		      <td>
-			<a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+			<a href="#" ng-click="sortType = 'player_id'; sortReverse = !sortReverse">
 			  Player
 		      </td>
 		    </div>
 		    <td>
-		      <a href="#" ng-click="sortType = 'age'; sortReverse = !sortReverse">
-			Age
+		      <a href="#" ng-click="sortType = 'ign'; sortReverse = !sortReverse">
+			Name
 		    </td>
 		    <td>
-		      <a href="#" ng-click="sortType = 'position'; sortReverse = !sortReverse">
-			Position
+		      <a href="#" ng-click="sortType = 'team_name'; sortReverse = !sortReverse">
+			Team Name
 		    </td>
 		    <td>
-		      <a href="#" ng-click="sortType = 'totalWins'; sortReverse = !sortReverse">
-			Total Wins
+		      <a href="#" ng-click="sortType = 'role'; sortReverse = !sortReverse">
+			Role
 		    </td>
 		    <td>
-		      <a href="#" ng-click="sortType = 'seasonWins'; sortReverse = !sortReverse">
-			Season Wins
+		      <a href="#" ng-click="sortType = 'kda'; sortReverse = !sortReverse">
+			KDA
 		    </td>
 		    <td>
-		      <a href="#" ng-click="sortType = 'seasonLosses'; sortReverse = !sortReverse">
-			Season Losses
+		      <a href="#" ng-click="sortType = 'gpm'; sortReverse = !sortReverse">
+			GPM
 		    </td>
 		    <td>
-		      <a href="#" ng-click="sortType = 'team'; sortReverse = !sortReverse">
-			Team
-		    </td>
-		    <td>
-		      <a href="#" ng-click="sortType = 'avgKDA'; sortReverse = !sortReverse">
-			Average KDA
-		    </td>
-		    <td>
-		      <a href="#" ng-click="sortType = 'avgGPM'; sortReverse = !sortReverse">
-			Average Gold per Match
-		    </td>
-		    <td>
-		      <a href="#" ng-click="sortType = 'avgTotalGold'; sortReverse = !sortReverse">
-			Average Total Gold
-		    </td>
-		    <td>
-		      Champions
+		      <a href="#" ng-click="sortType = '{{total_gold / games_played}}'; sortReverse = !sortReverse">
+			Avg. Total Gold
 		    </td>
 		  </tr>
 		</div>
@@ -104,20 +85,15 @@
 	      
 	      <tbody>
 		{% verbatim %}
-		<tr ng-repeat="player in players | orderBy:sortType:sortReverse">
-		  <td><a ng-href="http://leagueofdowning.me/players/{{ player.url }}">{{ player.name }}</a></td>
-		  <td>{{ player.age }}</td>
-		  <td>{{ player.position }}</td>
-		  <td>{{ player.totalWins }}</td>
-		  <td>{{ player.seasonWins }}</td>
-		  <td>{{ player.seasonLosses }}</td>
-		  <td>{{ player.team }}</td>
-		  <td>{{ player.avgKDA }}</td>
-		  <td>{{ player.avgGPM }}</td>
-		  <td>{{ player.avgTotalGold }}</td>
-		  <td>
-		    <p ng-repeat="champion in player.champions"><a ng-if="championExists(champion)" ng-href="http://leagueofdowning.me/champions/{{ championUrl(champion) }}">{{ champion }}</a><span ng-if="!championExists(champion)">{{ champion }}</span>
-		  </td>
+		<tr ng-repeat="player in players | orderObjectBy:sortType:sortReverse">
+		  <td><img ng-src="{{ player.image }}"></td>
+		  <td><a ng-href="http://leagueofdowning.me/items/{{ player.player_id }}">{{ player.player_id }}</a></td>
+		  <td>{{ player.ign }}</td>
+		  <td>{{ player.team_name }}</td>
+		  <td>{{ player.role }}</td>
+		  <td>{{ player.kda }}</td>
+		  <td>{{ player.gpm }}</td>
+		  <td>{{ player.total_gold / player.games_played }}</td>
 		</tr>
 		{% endverbatim %}
 	      </tbody>
