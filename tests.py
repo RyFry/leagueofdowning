@@ -41,8 +41,8 @@ class ModelTestCase(TestCase):
         #Dictionary Value: {w_description, image, q_name, q_description, w_name, title, r_description, lore, key, recommended_items, r_name, passive_description, w_image, q_image, e_name, r_image, passive_name, role, e_description, e_image, name, passive_image}
 
         champtest1 = {"Nidalee": {"role": "Assassin", "name": "Nidalee"}}
-        self.assertEqual(champtest1['Nidalee']['name'] == "Nidalee")
-        self.assertEqual(champtest1['Nidalee']['role'] == "Assassin")
+        self.assertEqual(champtest1['Nidalee']['name'], "Nidalee")
+        self.assertEqual(champtest1['Nidalee']['role'], "Assassin")
         #Champion.objects.create(champion_name="Nidalee", champion_role="Assassin")
 
         #Champion_Nidalee = Champion.objects.get(champion_name="Nidalee")
