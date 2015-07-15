@@ -82,51 +82,57 @@
 
     <section id="champion" class="container content-section text-center">
       <div class="container">
+
         <div class="row">
           <div class="col-sm-2">
             <img src="{{ passive_image }}" class="img-circle">
           </div>
           <div class="col-sm-10">
-            <h4>Passive: {{ passive }}</h4>
+            <h4>Passive: {{ passive_name }}</h4>
             {{ passive_description|linebreaks }}
           </div>
         </div>
+
         <div class="row">
           <div class="col-sm-2">
             <img src="{{ q_image }}" class="img-circle">
           </div>
           <div class="col-sm-10">
-            <h4>Q: {{ q }}</h4>
+            <h4>Q: {{ q_name }}</h4>
             {{ q_description|linebreaks }}
           </div>
         </div>
+
         <div class="row">
           <div class="col-sm-2">
             <img src="{{ w_image }}" class="img-circle">
           </div>
           <div class="col-sm-10">
-            <h4>W: {{ w }}</h4>
+            <h4>W: {{ w_name }}</h4>
             {{ w_description|linebreaks }}
           </div>
         </div>
+
         <div class="row">
           <div class="col-sm-2">
             <img src="{{ e_image }}" class="img-circle">
           </div>
           <div class="col-sm-10">
-            <h4>E: {{ e }}</h4>
+            <h4>E: {{ e_name }}</h4>
             {{ e_description|linebreaks }}
           </div>
         </div>
+
         <div class="row">
           <div class="col-sm-2">
             <img src="{{ r_image }}" class="img-circle">
           </div>
           <div class="col-sm-10">
-            <h4>R: {{ r }}</h4>
+            <h4>R: {{ r_name }}</h4>
             {{ r_description|linebreaks }}
           </div>
         </div>
+
       </div>
     </section>
   </body>

@@ -58,7 +58,7 @@
                             
                         </div>
                         <div class="center-block">
-                          <img src="{{ image }}" class="img-square" height="250px" width="250px" ><br>
+                          <img src="{{ image }}" class="img-square" height="470px" width="400px" ><br>
 
                           <a href="#player" class="btn btn-circle page-scroll">
                               <i class="fa fa-angle-double-down animated"></i>
@@ -75,14 +75,18 @@
         <div class="row">
           <div class="center-block">
             <h3>Stats</h3>
-            Age: {{ age|linebreaks }}
-            Position: {{ position|linebreaks }}
-            Total Wins: {{ total_wins|linebreaks }}
+            Bio: {{ bio|linebreaks }}
+            IGN: {{ ign|linebreaks }}
+            Team: {{ team_name|linebreaks }}
+            Role: {{ role|linebreaks }}
+            Games Played: {{ games_played|linebreaks }}
+            
+            <!-- Total Wins: {{ total_wins|linebreaks }}
             Season Record: {{ season_record|linebreaks }}
-            Team: {{ team|linebreaks }}
+            Team: {{ team|linebreaks }} -->
             Average KDA: {{ kda|linebreaks }}
-            Average Gold per Minute: {{ avg_gpm|linebreaks }}
-            Average Total Gold: {{ avg_gold|linebreaks }}
+            Average Gold per Minute: {{ gpm|linebreaks }}
+            Average Total Gold: {{ total_gold|linebreaks }}
             Most played champions:<br>
             <div class="col-sm-4">
               <img src="{{ most_played.first }}" height="120px" width="120px" class="img-circle">

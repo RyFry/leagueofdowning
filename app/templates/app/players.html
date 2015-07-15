@@ -75,10 +75,6 @@
 		      <a href="#" ng-click="sortType = 'gpm'; sortReverse = !sortReverse">
 			GPM
 		    </td>
-		    <td>
-		      <a href="#" ng-click="sortType = '{{total_gold / games_played}}'; sortReverse = !sortReverse">
-			Avg. Total Gold
-		    </td>
 		  </tr>
 		</div>
 	      </thead>
@@ -93,7 +89,6 @@
 		  <td>{{ player.role }}</td>
 		  <td>{{ player.kda }}</td>
 		  <td>{{ player.gpm }}</td>
-		  <td>{{ player.total_gold / player.games_played }}</td>
 		</tr>
 		{% endverbatim %}
 	      </tbody>
