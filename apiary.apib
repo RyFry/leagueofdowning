@@ -22,38 +22,27 @@ Notes related resources of the **LeagueofDowningAPI**
 
         [
             {
-                "champion_name": "dr_mundo",
-                "picture": "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png",
-                "abilities": {"q" : 
-                                    "Q: Infected Cleaver
-
-                                    Dr. Mundo hurls his cleaver, dealing damage equal to a portion of his target's current Health and slowing them for a short time. Dr. Mundo delights in the suffering of others, so he is returned half of the Health cost when he successfully lands a cleaver (increased to the full Health cost on killing blows).
-
-                                    Dr. Mundo hurls his cleaver, dealing magic damage equal to 15/18/21/23/25% of the target's current Health (80/130/180/230/280 damage minimum) and slowing them by 40% for 2 seconds.Half of the Health cost is refunded if the cleaver hits a target (increased to the full Health cost on killing blows)." , 
-                                "w": 
-                                    "W: Burning Agony
-
-                                    Dr. Mundo drains his Health to reduce the duration of disables and deal continual damage to nearby enemies.
-
-                                    Toggle: Dr. Mundo deals 35/50/65/80/95 (+20% Ability Power) magic damage to nearby enemies, and reduces the duration of disables on Dr. Mundo by 10/15/20/25/30%.", 
-                                "e": 
-                                    "E: Masochism
-
-                                    Masochism increases Dr. Mundo's Attack Damage by a flat amount for 5 seconds. In addition, Dr. Mundo also gains an additional amount of Attack Damage for each percentage of Health he is missing.
-
-                                    Increases Attack Damage by 40/55/70/85/100 for 5 seconds. Dr. Mundo gains an additional +0.4/0.55/0.7/0.85/1 Attack Damage for each percentage of Health he is missing." , 
-                                "r": 
-                                    "R: Sadism
-
-                                    Dr. Mundo sacrifices a portion of his Health for increased Movement Speed and drastically increased Health Regeneration.
-
-                                    Dr. Mundo regenerates 0 health (40/50/60% of max health) over 12 seconds. Additionally, he gains 15/25/35% movement speed during this time." },
-
-                "champion_role": "fighter",
-                "champion_lane": "top",
-                "champion_counters": ["olaf", "kog_maw", "trundle"],
-                "champion_items": ["sunfire_cape", "spirit_visage", "randuins_omen"],
-                "resource_uri": "/api/champions/dr_mundo/",
+                "w_image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/Incinerate.png", 
+                "r_description": "Annie wills her bear Tibbers to life, dealing damage to units in the area. Tibbers can attack and also burns enemies that stand near him.", 
+                "e_name": "Molten Shield", 
+                "passive_name": "Pyromania", 
+                "recommended_items": [1056, 1056, 1028, 1001, 3010, 3151], 
+                "e_description": "Increases Annie's Armor and Magic Resist and damages enemies who hit Annie with basic attacks.", 
+                "q_description": "Annie hurls a Mana infused fireball, dealing damage and refunding the Mana cost if it destroys the target.", 
+                "q_image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/Disintegrate.png", 
+                "role": "Mage", 
+                "r_image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/InfernalGuardian.png", 
+                "lore": "In the time shortly before the League, there were those within the sinister city-state of Noxus who did not agree with the evils perpetrated by the Noxian High Command. The High Command had just put down a coup attempt from the self-proclaimed Crown Prince Raschallion, and a crack down on any form of dissent against the new government was underway. These political and social outcasts, known as the Gray Order, sought to leave their neighbors in peace as they pursued dark arcane knowledge. The leaders of this outcast society were a married couple: Gregori Hastur, the Gray Warlock, and his wife Amoline, the Shadow Witch. Together they led an exodus of magicians and other intelligentsia from Noxus, resettling their followers beyond the Great Barrier to the northern reaches of the unforgiving Voodoo Lands. Though survival was a challenge at times, the Gray Order's colony managed to thrive in a land where so many others would have failed.\n\nYears after the exodus, Gregori and Amoline had a child: Annie. Early on, Annie's parents knew there was something special about their daughter. At the age of two, Annie miraculously ensorcelled a shadow bear - a ferocious denizen of the petrified forests outside the colony - turning it into her pet. To this day she keeps her bear ''Tibbers'' by her side, often keeping him spellbound as a stuffed doll to be carried like a child's toy. The combination of Annie's lineage and the dark magic of her birthplace have given this little girl tremendous arcane power. It is this same girl who now finds herself as one of the most sought-after champions within the League of Legends - even by the city-state that would have exiled her parents had they not fled beforehand.\n\n''Annie may be one of the most powerful champions ever to have fought in a Field of Justice. I shudder to think of her capabilities when she becomes an adult.''\n-- High Councilor Kiersta Mandrake", 
+                "r_name": "Summon: Tibbers", 
+                "q_name": "Disintegrate", 
+                "image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/Annie.png", 
+                "name": "Annie", "title": "the Dark Child", 
+                "w_description": "Annie casts a blazing cone of fire, dealing damage to all enemies in the area.", 
+                "e_image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/MoltenShield.png", 
+                "w_name": "Incinerate", 
+                "champion_id": 1, 
+                "passive_image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/passive/Annie_Passive.png",
+                "passive_description": "After casting 4 spells, Annie's next offensive spell will stun the target for a short duration.",
             },
             {
                 "etc..."
@@ -71,38 +60,27 @@ A single champion object with all its details
 + Response 200 (application/json)
 
              {
-                "champion_name": "dr_mundo",
-                "picture": "http://ddragon.leagueoflegends.com/cdn/5.10.1/img/champion/DrMundo.png",
-                "abilities": {"q" : 
-                                    "Q: Infected Cleaver
-
-                                    Dr. Mundo hurls his cleaver, dealing damage equal to a portion of his target's current Health and slowing them for a short time. Dr. Mundo delights in the suffering of others, so he is returned half of the Health cost when he successfully lands a cleaver (increased to the full Health cost on killing blows).
-
-                                    Dr. Mundo hurls his cleaver, dealing magic damage equal to 15/18/21/23/25% of the target's current Health (80/130/180/230/280 damage minimum) and slowing them by 40% for 2 seconds.Half of the Health cost is refunded if the cleaver hits a target (increased to the full Health cost on killing blows)." , 
-                                "w": 
-                                    "W: Burning Agony
-
-                                    Dr. Mundo drains his Health to reduce the duration of disables and deal continual damage to nearby enemies.
-
-                                    Toggle: Dr. Mundo deals 35/50/65/80/95 (+20% Ability Power) magic damage to nearby enemies, and reduces the duration of disables on Dr. Mundo by 10/15/20/25/30%.", 
-                                "e": 
-                                    "E: Masochism
-
-                                    Masochism increases Dr. Mundo's Attack Damage by a flat amount for 5 seconds. In addition, Dr. Mundo also gains an additional amount of Attack Damage for each percentage of Health he is missing.
-
-                                    Increases Attack Damage by 40/55/70/85/100 for 5 seconds. Dr. Mundo gains an additional +0.4/0.55/0.7/0.85/1 Attack Damage for each percentage of Health he is missing." , 
-                                "r": 
-                                    "R: Sadism
-
-                                    Dr. Mundo sacrifices a portion of his Health for increased Movement Speed and drastically increased Health Regeneration.
-
-                                    Dr. Mundo regenerates 0 health (40/50/60% of max health) over 12 seconds. Additionally, he gains 15/25/35% movement speed during this time." },
-
-                "champion_role": "fighter",
-                "champion_lane": "top",
-                "champion_counters": ["olaf", "kog_maw", "trundle"],
-                "champion_items": ["sunfire_cape", "spirit_visage", "randuins_omen"],
-                "resource_uri": "/api/champions/dr_mundo/",
+                "w_image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/Incinerate.png", 
+                "r_description": "Annie wills her bear Tibbers to life, dealing damage to units in the area. Tibbers can attack and also burns enemies that stand near him.", 
+                "e_name": "Molten Shield", 
+                "passive_name": "Pyromania", 
+                "recommended_items": [1056, 1056, 1028, 1001, 3010, 3151], 
+                "e_description": "Increases Annie's Armor and Magic Resist and damages enemies who hit Annie with basic attacks.", 
+                "q_description": "Annie hurls a Mana infused fireball, dealing damage and refunding the Mana cost if it destroys the target.", 
+                "q_image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/Disintegrate.png", 
+                "role": "Mage", 
+                "r_image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/InfernalGuardian.png", 
+                "lore": "In the time shortly before the League, there were those within the sinister city-state of Noxus who did not agree with the evils perpetrated by the Noxian High Command. The High Command had just put down a coup attempt from the self-proclaimed Crown Prince Raschallion, and a crack down on any form of dissent against the new government was underway. These political and social outcasts, known as the Gray Order, sought to leave their neighbors in peace as they pursued dark arcane knowledge. The leaders of this outcast society were a married couple: Gregori Hastur, the Gray Warlock, and his wife Amoline, the Shadow Witch. Together they led an exodus of magicians and other intelligentsia from Noxus, resettling their followers beyond the Great Barrier to the northern reaches of the unforgiving Voodoo Lands. Though survival was a challenge at times, the Gray Order's colony managed to thrive in a land where so many others would have failed.\n\nYears after the exodus, Gregori and Amoline had a child: Annie. Early on, Annie's parents knew there was something special about their daughter. At the age of two, Annie miraculously ensorcelled a shadow bear - a ferocious denizen of the petrified forests outside the colony - turning it into her pet. To this day she keeps her bear ''Tibbers'' by her side, often keeping him spellbound as a stuffed doll to be carried like a child's toy. The combination of Annie's lineage and the dark magic of her birthplace have given this little girl tremendous arcane power. It is this same girl who now finds herself as one of the most sought-after champions within the League of Legends - even by the city-state that would have exiled her parents had they not fled beforehand.\n\n''Annie may be one of the most powerful champions ever to have fought in a Field of Justice. I shudder to think of her capabilities when she becomes an adult.''\n-- High Councilor Kiersta Mandrake", 
+                "r_name": "Summon: Tibbers", 
+                "q_name": "Disintegrate", 
+                "image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/Annie.png", 
+                "name": "Annie", "title": "the Dark Child", 
+                "w_description": "Annie casts a blazing cone of fire, dealing damage to all enemies in the area.", 
+                "e_image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/MoltenShield.png", 
+                "w_name": "Incinerate", 
+                "champion_id": 1, 
+                "passive_image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/passive/Annie_Passive.png",
+                "passive_description": "After casting 4 spells, Annie's next offensive spell will stun the target for a short duration.",
             }
 
 
