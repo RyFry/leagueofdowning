@@ -8,6 +8,9 @@ from app.database import database
 
 import json
 import re
+from urllib.request import urlopen
+import urllib
+import requests
 
 
 # Create your views here.
