@@ -70,6 +70,7 @@ def champions(request):
 #
 
 def champion(request, id):
+    # champion_id 0 is the dummy champion that doesn't actually exist
     if id == 0 :
         template = loader.get_template('app/error.html')
         context = RequestContext(request, {})
