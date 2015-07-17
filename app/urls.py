@@ -18,9 +18,9 @@ urlpatterns = [
     url(r'^players/(?P<id>.*)', views.player),
     url(r'^players/*', views.players),
 
-    url(r'^volumemax/*', views.artist),
-    url(r'^volumemax/$', views.artist),
-    url(r'^volumemax/(?P<id>.*)', views.artist),
+    url(r'^artists/*', views.artists),
+    url(r'^artists/$', views.artists),
+    url(r'^artists/(?P<id>.*)', views.artist),
 
     url(r'^api/champions/$', views.Champion_List_API),
     url(r'^api/champions/(?P<id>.*)/$',  views.Champion_ID_API),   

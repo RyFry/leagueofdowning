@@ -149,6 +149,16 @@ def player(request, id):
 #
 #Artist Page
 #
+def champions(request):
+    artisturl = 'http://volumemax.me/api/artists/1'
+    artist_info = urlopen(artisturl).info()
+    raw_artist = urlopen(artisturl).read().decode(artist_info.get_content_charset('utf8'))
+    artist = json.loads(raw_artist)  
+
+    template = loader.get_template('app/artist.html')
+    context = RequestContext(request, {})
+    return HttpResponse(template.render(context))
+
 def artist(request, id):
     try:
         int(id)
