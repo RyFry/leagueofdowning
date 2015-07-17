@@ -134,8 +134,8 @@ def player(request, id):
         jsonout = {}
 
         for row in result:
-            player_name = row['player_id']
-            result1 = engine.execute('select champion_id from "PlayerToChampion" where player_id = %s' % player_name)
+            player_id = row['player_id']
+            result1 = engine.execute('select champion_id from "PlayerToChampion" where player_id = %d' % player_id)
 
             itemlist = []
             for row1 in result1:
