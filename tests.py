@@ -77,13 +77,13 @@ class ModelTestCase(TestCase):
         playerinfo = urlopen(playerurl).info()
         raw_player = urlopen(playerurl).read().decode(playerinfo.get_content_charset('utf8'))
         player1 = json.loads(raw_player) 
-        self.assertEqual(player1['name'], "viviD")
+        self.assertEqual(player1['ign'], "viviD")
         self.assertEqual(player1['role'], "Support")
 
     def test_item_model1(self):
-        itemtest = {"3266": {"image": "http://ddragon.leagueoflegends.com/cdn/5.13.1/img/item/3266.png", "name": "Enchantment: Captain"}}
+        itemtest = {"3266": {"image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/3266.png", "name": "Enchantment: Captain"}}
         self.assertEqual(itemtest['3266']['name'], "Enchantment: Captain")
-        self.assertEqual(itemtest['3266']['image'], "http://ddragon.leagueoflegends.com/cdn/5.13.1/img/item/3266.png")
+        self.assertEqual(itemtest['3266']['image'], "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/3266.png")
 
     def test_item_model2(self):
         ts = open("app/database/items")
@@ -91,7 +91,7 @@ class ModelTestCase(TestCase):
         ts.close()
         itemtest = item_test_dict
         self.assertEqual(itemtest['3266']['name'], "Enchantment: Captain")
-        self.assertEqual(itemtest['3266']['image'], "http://ddragon.leagueoflegends.com/cdn/5.13.1/img/item/3266.png")
+        self.assertEqual(itemtest['3266']['image'], "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/3266.png")
 
     def test_item_model3(self):
         itemurl = 'http://leagueofdowning.me/api/items/3266'
@@ -99,7 +99,7 @@ class ModelTestCase(TestCase):
         raw_item = urlopen(itemurl).read().decode(iteminfo.get_content_charset('utf8'))
         item1 = json.loads(raw_item) 
         self.assertEqual(item1['name'], "Enchantment: Captain")
-        self.assertEqual(item1['image'], "http://ddragon.leagueoflegends.com/cdn/5.13.1/img/item/3266.png")
+        self.assertEqual(item1['image'], "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/3266.png")
 
 # ----
 # main
