@@ -61,6 +61,10 @@ def champions(request):
 #
 
 def champion(request, id):
+    if id == 0 :
+        template = loader.get_template('app/error.html')
+        context = RequestContext(request, {})
+        return HttpResponse(template.render(context))  
     try:
         int(id)
         engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
@@ -229,6 +233,10 @@ def Champion_List_API(request):
     return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Champion_ID_API(request, id):
+    if id == 0 :
+        h = HttpResponse(json.dumps({"error": "Champion ID " + id + " does not exist."}),   content_type="application/json")
+        h.status_code = 404
+        return h  
     try:
         int(id)
         engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
