@@ -263,7 +263,15 @@ def Player_List_API(request):
     result = engine.execute('select * from "Player"')
     List = {}
     for row in result:
-        List[row['player_id']] = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': row['kda'], 'gpm': row['gpm'], 'total_gold': row['total_gold'], 'games_played': row['games_played']}
+        player_name = row['player_id']
+        result1 = engine.execute('select champion_id from "PlayerToChampion" where player_id = %d' % player_name)
+
+        itemlist = []
+        for row1 in result1:
+            if row1['champion_id'] != 0 :
+                itemlist.append(row1['champion_id'])
+
+        List[row['player_id']] = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': row['kda'], 'gpm': row['gpm'], 'total_gold': row['total_gold'], 'games_played': row['games_played'], 'most_played_champions' : itemlist}
 
     return HttpResponse(json.dumps(List), content_type='application/json')
 
@@ -302,7 +310,19 @@ def Item_List_API(request):
     result = engine.execute('select * from "Item"')
     List = {}
     for row in result:
-        List[row['item_id']] = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
+            item_id = row['item_id']
+            intoresult = engine.execute('select into_id from "ItemToItem" where from_id = %d' % item_id)
+            fromresult = engine.execute('select from_id from "ItemToItem" where into_id = %d' % item_id)
+
+            intolist = []
+            for row1 in intoresult:
+                intolist.append(row1['into_id'])
+
+            fromlist = []
+            for row2 in fromresult:
+                fromlist.append(row2['from_id'])
+
+        List[row['item_id']] = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:], 'from_items' : fromlist, 'into_items' : intolist}
 
     return HttpResponse(json.dumps(List), content_type='application/json')
 
