@@ -139,8 +139,8 @@ def player(request, id):
 
             itemlist = []
             for row1 in result1:
-                if(row1['item_id'] != 0)
-                    itemlist.append(row1['item_id'])
+                if(row1['champion_id'] != 0)
+                    itemlist.append(row1['champion_id'])
 
 
             jsonout = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': round(row['kda'], 2), 'gpm': round(row['gpm'],2), 'total_gold': row['total_gold'], 'games_played': row['games_played'], 'most_played_champions' : itemlist}
@@ -267,8 +267,8 @@ def Player_ID_API(request, id):
 
             itemlist = []
             for row1 in result1:
-                if(row1['item_id'] != 0)
-                    itemlist.append(row1['item_id'])
+                if(row1['champion_id'] != 0)
+                    itemlist.append(row1['champion_id'])
 
 
             jsonout = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': row['kda'], 'gpm': row['gpm'], 'total_gold': row['total_gold'], 'games_played': row['games_played'], 'most_played_champions' : itemlist}
