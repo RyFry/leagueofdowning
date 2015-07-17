@@ -4,20 +4,13 @@ HOST: http://polls.apiblueprint.org/
 
 
 # LeagueofDowningAPI
-LeagueofDowningAPI is a service for retrieving information on characters, items, or players
+LeagueofDowningAPI is a service for retrieving information on champions, items, or players
 
 # Group Champions
 Notes related resources of the **LeagueofDowningAPI**
 
-## Champions Collection [/api/champions/?offset={offset}&limit={limit}]
-
-+ Parameters
-    + offset (required, number, `1`) ... number `offset` of the champion to perform action with. Has example value.
-    + limit (required, number, `1`) ... number `limit` of the champion to perform action with. Has example value.
-
-
-
-### List first {limit} champions starting from {offset}. Queries are bounded by the number of champions which is 3 [GET]
+## Champions Collection [/api/champions/]
+### List all champions
 + Response 200 (application/json)
 
         [
@@ -54,7 +47,7 @@ Notes related resources of the **LeagueofDowningAPI**
 A single champion object with all its details
 
 + Parameters
-    + id (required, string, `USA`) ... String `id` of the champion to perform action with. Has example value.
+    + id (required, number, `1`) ... Int `id` of the champion to perform action with. Has example value.
 
 ### Retrieve a Champion [GET]
 + Response 200 (application/json)
@@ -85,31 +78,25 @@ A single champion object with all its details
 
 
 # Group Players
-## Players Collection [/api/players/?offset={offset}&limit={limit}]
-
-+ Parameters
-    + offset (required, number, `1`) ... number `offset` of the Players to perform action with. Has example value.
-    + limit (required, number, `1`) ... number `limit` of the Players to perform action with. Has example value.
-
-
-
-### List first {limit} Players starting from {offset}. Queries are bounded by the number of players which is 736. [GET]
+## Players Collection [/api/players/]
+### List all players
 + Response 200 (application/json)
 
         [
             {
-                "Name": "Bjergsen",
-                "Age": "19",
-                "Position": "Mid",
-                "Total Wins": "9",
-                "Season Wins": "9-3",
-                "Team": "TSM",
-                "Avg. KDA": "4.7",
-                "Avg. Gold per Min": "408",
-                "Avg. Total Gold": "18k",
-                "Most played champions": "Azir, Ezreal, Ekko",
-
-                "Player_picture": "http://hydra-media.cursecdn.com/lol.gamepedia.com/thumb/7/7f/TSM_Bjergsen.jpg/225px-TSM_Bjergsen.jpg?version=770c9e42251dbbbbb2c9cd279b2a2f93",
+                "ign": "Mickey", 
+                "player_id": 3190, 
+                "gpm": 370.25507129946, 
+                "image": "http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/Anarchy-Mickey-2015lck.jpg", 
+                "kda": 2.1428571428571,
+                "bio": "", 
+                "last_name": "", 
+                "team_name": "Rebels Anarchy", 
+                "total_gold": 61450, 
+                "most_played_champions": [117, 4, 103], 
+                "role": "Mid Lane", 
+                "games_played": 5, 
+                "first_name": "Yongmin"
             },
             {
                 "etc..." : "more"
@@ -122,77 +109,69 @@ A single champion object with all its details
 A single Player object with all its details
 
 + Parameters
-    + id (required, string, `Bjergsen`) ... String `id` of the champion to perform action with. Has example value.
+    + id (required, id, `3190`) ... Int `id` of the player to perform action with. Has example value.
 
 ### Retrieve a Player [GET]
 + Response 200 (application/json)
 
 
         {
-                "Name": "Bjergsen",
-                "Age": "19",
-                "Position": "Mid",
-                "Total Wins": "9",
-                "Season Wins": "9-3",
-                "Team": "TSM",
-                "Avg. KDA": "4.7",
-                "Avg. Gold per Min": "408",
-                "Avg. Total Gold": "18k",
-                "Most played champions": "Azir, Ezreal, Ekko",
-
-                "Player_picture": "http://hydra-media.cursecdn.com/lol.gamepedia.com/thumb/7/7f/TSM_Bjergsen.jpg/225px-TSM_Bjergsen.jpg?version=770c9e42251dbbbbb2c9cd279b2a2f93",
-              
+                "ign": "Mickey", 
+                "player_id": 3190, 
+                "gpm": 370.25507129946, 
+                "image": "http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/Anarchy-Mickey-2015lck.jpg", 
+                "kda": 2.1428571428571,
+                "bio": "", 
+                "last_name": "", 
+                "team_name": "Rebels Anarchy", 
+                "total_gold": 61450, 
+                "most_played_champions": [117, 4, 103], 
+                "role": "Mid Lane", 
+                "games_played": 5, 
+                "first_name": "Yongmin"
         }
  
 
 # Group Items
-## Items Collection [/api/Items/?offset={offset}&limit={limit}]
-+ Parameters
-    + offset (required, number, `1`) ... number `offset` of the Items to perform action with. Has example value.
-    + limit (required, number, `1`) ... number `limit` of the Items to perform action with. Has example value.
-
-
-
-### List first {limit} Items starting from {offset}. Queries are bounded by the number of Items which is 64 [GET]
+## Items Collection [/api/items/]
+### List all items
 
 + Response 200 (application/json)
 
         [
             {
-                "item_name": "Athene's Unholy Grail",
-                "Stats": "+60 Ability Power, +25 Magic Resist, +20% Cooldown Reduction, +100% Base Mana Regen ",
-                "Description": "UNIQUE Passive: Restores 30% of maximum Mana on kill or assist.
-                UNIQUE Passive - Mana Font: Restores 2% of missing Mana every 5 seconds.
-                (Unique Passives with the same name do not stack.)",
-                "Recommended for": "Mage",
-                "Cost":"2700",
-                "Recipe": ["Fiendish Codex", "Chalice of Harmony"],
-
-                "item_picture": "http://img3.wikia.nocookie.net/__cb20130111231157/leagueoflegends/images/c/cc/Athene%27s_Unholy_Grail_item.png",  
+                "total_gold": 1800, 
+                "name": "Enchantment: Captain", 
+                "sell_gold": 1260, 
+                "description": "Limited to 1 of each enchantment type.\nEnchants boots to have Captain bonus.\n\nUNIQUE Passive - Captain: Grants +10% Movement Speed to nearby approaching allied champions.\n\n(Unique Passives with the same name don't stack.)", 
+                "base_gold": 600, 
+                "image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/3266.png", 
+                "from_items": [3111], 
+                "into_items": [], 
+                "item_id": 3266
             },
             {
                 etc...
             }
         ]
 
-## Items [/api/Items/{id}]
+## Items [/api/items/{id}]
 A single Item object with all its details
 
 + Parameters
-    + id (required, number, `1`) ... Int `id` of the champion to perform action with. Has example value.
+    + id (required, number, `3266`) ... Int `id` of the item to perform action with. Has example value.
 
 ### Retrieve a Item [GET]
 + Response 200 (application/json)
 
         {
-                "item_name": "Athene's Unholy Grail",
-                "Stats": "+60 Ability Power, +25 Magic Resist, +20% Cooldown Reduction, +100% Base Mana Regen ",
-                "Description": "UNIQUE Passive: Restores 30% of maximum Mana on kill or assist.
-                UNIQUE Passive - Mana Font: Restores 2% of missing Mana every 5 seconds.
-                (Unique Passives with the same name do not stack.)",
-                "Recommended for": "Mage",
-                "Cost":"2700",
-                "Recipe": ["Fiendish Codex", "Chalice of Harmony"],
-
-                "item_picture": "http://img3.wikia.nocookie.net/__cb20130111231157/leagueoflegends/images/c/cc/Athene%27s_Unholy_Grail_item.png",  
+                "total_gold": 1800, 
+                "name": "Enchantment: Captain", 
+                "sell_gold": 1260, 
+                "description": "Limited to 1 of each enchantment type.\nEnchants boots to have Captain bonus.\n\nUNIQUE Passive - Captain: Grants +10% Movement Speed to nearby approaching allied champions.\n\n(Unique Passives with the same name don't stack.)", 
+                "base_gold": 600, 
+                "image": "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/3266.png", 
+                "from_items": [3111], 
+                "into_items": [], 
+                "item_id": 3266
         }
