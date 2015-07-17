@@ -106,7 +106,19 @@ def item(request, id):
         jsonout = {}
 
         for row in result:
-            jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
+            item_id = row['item_id']
+            intoresult = engine.execute('select into_id from "ItemToItem" where from_id = %d' % item_id)
+            fromresult = engine.execute('select from_id from "ItemToItem" where into_id = %d' % item_id)
+
+            intolist = []
+            for row1 in intoresult:
+                intolist.append(row1['item_id'])
+
+            fromlist = []
+            for row2 in fromresult:
+                fromlist.append(row1['item_id'])
+
+            jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:], 'from_items' : fromlist, 'into_items' : intolist}
 
         if jsonout == {}:
             template = loader.get_template('app/error.html')
@@ -302,7 +314,20 @@ def Item_ID_API(request, id):
         result = engine.execute('select * from "Item" where item_id=' + id)
         jsonout = {}
         for row in result:
-            jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
+            item_id = row['item_id']
+            intoresult = engine.execute('select into_id from "ItemToItem" where from_id = %d' % item_id)
+            fromresult = engine.execute('select from_id from "ItemToItem" where into_id = %d' % item_id)
+
+            intolist = []
+            for row1 in intoresult:
+                intolist.append(row1['item_id'])
+
+            fromlist = []
+            for row2 in fromresult:
+                fromlist.append(row1['item_id'])
+
+
+            jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:], 'from_items' : fromlist, 'into_items' : intolist}
         if jsonout == {}:
             h = HttpResponse(json.dumps({"error": "Item ID " + id + " does not exist."}),   content_type="application/json")
             h.status_code = 404
