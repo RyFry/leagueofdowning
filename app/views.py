@@ -112,11 +112,11 @@ def item(request, id):
 
             intolist = []
             for row1 in intoresult:
-                intolist.append(row1['item_id'])
+                intolist.append(row1['into_id'])
 
             fromlist = []
             for row2 in fromresult:
-                fromlist.append(row2['item_id'])
+                fromlist.append(row2['from_id'])
 
             jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:], 'from_items' : fromlist, 'into_items' : intolist}
 
@@ -320,11 +320,11 @@ def Item_ID_API(request, id):
 
             intolist = []
             for row1 in intoresult:
-                intolist.append(row1['item_id'])
+                intolist.append(row1['into_id'])
 
             fromlist = []
             for row2 in fromresult:
-                fromlist.append(row2['item_id'])
+                fromlist.append(row2['from_id'])
 
 
             jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:], 'from_items' : fromlist, 'into_items' : intolist}
