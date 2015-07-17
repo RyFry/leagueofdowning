@@ -18,13 +18,14 @@ player_to_champion = Table('PlayerToChampion', Base.metadata,
 			   Column('id', Integer, primary_key=True),
                            Column('player_id', Integer, ForeignKey('Player.player_id')),
                            Column('champion_id', Integer, ForeignKey('Champion.champion_id')))
-"""
+
+
 item_to_item = Table('ItemToItem', Base.metadata,
                      Column('id', Integer, primary_key=True),
-                     Column('from_item', Integer, ForeignKey('Item.item_id')),
-                     Column('into_item', Integer, ForeignKey('Item.item_id'))
+                     Column('from_id', Integer, ForeignKey('Item.item_id')),
+                     Column('into_id', Integer, ForeignKey('Item.item_id'))
                  )
-"""
+
 
 
 class Champion (Base) :
@@ -69,12 +70,17 @@ class Champion (Base) :
                  self.e_name, self.e_image, self.e_description, self.r_name, self.r_image, \
                  self.r_description)
 
+"""
 class ItemToItem (Base) :
     __tablename__ = "ItemToItem"
+    
+    from_id = relationship("Item", foreign_keys=[item_id])
+    into_id = relationship("Item", foreign_keys=[item_id])
 
-    id = Column(Integer, primary_key=True)
-    from_item = Column(Integer, ForeignKey('Item.item_id'))
-    into_item = Column(Integer, ForeignKey('Item.item_id'))
+    def __repr__ (self) :
+        return ("<Item(from_id='%d', into_id='%d'") % \
+               (self.from_id, self.into_id)
+"""
 
 
 class Item (Base) :
@@ -89,11 +95,10 @@ class Item (Base) :
     total_gold = Column(Integer, nullable=False)
     image = Column(String, nullable=False)
 
-    from_into = relationship("ItemToItem",
-                              primaryjoin=item_id==ItemToItem.from_item)
-    into_from = relationship("ItemToItem",
-                             primaryjoin=item_id==ItemToItem.into_item)
-    
+    from_into = relationship("Item", secondary=item_to_item,
+                                     primaryjoin=item_id==item_to_item.c.from_id,
+                                     secondaryjoin=item_id==item_to_item.c.into_id)
+
 
     def __repr__ (self) :
         return ("<Item(item_id='%d', name='%s', description='%s', base_gold='%d', sell_gold='%d',"\
@@ -101,19 +106,7 @@ class Item (Base) :
                (self.item_id, self.name, self.description, self.base_gold, self.sell_gold,\
                 self.total_gold, self.image)
 
-'''
-class ItemToItem (Base) :
-    __tablename__ = "ItemToItem"
     
-
-
-    from_item = relationship("Item", foreign_keys=[from_id])
-    into_item = relationship("Item", foreign_keys=[into_id])
-
-    def __repr__ (self) :
-        return ("<Item(from_id='%d', into_id='%d'") % \
-               (self.from_id, self.into_id)
-'''    
 
 class Player (Base) :
     __tablename__ = "Player"
@@ -209,8 +202,14 @@ def load_players_to_champions(players, session):
             player = session.query(Player).filter_by(player_id=int(k)).first()
             for champ in v['champions'] :
                 if champ is not None:
-                    champ = session.query(Champion).filter_by(champion_id=int(champ)).first()
-                    player.played_champions.append(champ)
+                    champion = session.query(Champion).filter_by(champion_id=int(champ)).first()
+                    if champion is not None :
+                        player.played_champions.append(champion)
+                else :
+                    champion = session.query(Champion).filter_by(name='dummy').first()
+                    player.played_champions.append(champion)
+            if len(player.played_champions) == 0 :
+                print(player.played_champions)
             session.add(player)
         session.commit()
 
@@ -222,10 +221,6 @@ def load_item_to_item(items, session):
                 into_itm = session.query(Item).filter_by(item_id=int(into)).first()
                 this_item.from_into.append(into_itm)
                 session.add(this_item)
-            for frm in v['fromItem'] :
-                from_item = session.query(Item).filter_by(item_id=int(frm)).first()
-                from_item.into_from.append(this_item)
-                session.add(from_item)
         session.commit()
 
 
@@ -289,7 +284,7 @@ if __name__ == "__main__" :
     load_items(items, session)
     load_champions(champions, session)
     load_players(players, session)
-    #load_players_to_champions(players, session)
+    load_players_to_champions(players, session)
     load_item_to_item(items, session)
     
     session.close()
