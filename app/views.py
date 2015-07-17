@@ -61,6 +61,10 @@ def champions(request):
 #
 
 def champion(request, id):
+    if id == 0 :
+        template = loader.get_template('app/error.html')
+        context = RequestContext(request, {})
+        return HttpResponse(template.render(context))  
     try:
         int(id)
         engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
@@ -229,32 +233,37 @@ def Champion_List_API(request):
     return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Champion_ID_API(request, id):
-    try:
-        int(id)
-        engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+    if int(id) == 0 :
+        h = HttpResponse(json.dumps({"error": "Champion ID " + id + " does not exist."}),   content_type="application/json")
+        h.status_code = 404
+        return h  
+    else:
+        try:
+            int(id)
+            engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
-        result = engine.execute('select * from "Champion" where champion_id=' + id)
-        jsonout = {}
-        for row in result:
-            champ_name = row['champion_id']
-            result1 = engine.execute('select item_id from "ChampionToItem" where champion_id = %s' % champ_name)
+            result = engine.execute('select * from "Champion" where champion_id=' + id)
+            jsonout = {}
+            for row in result:
+                champ_name = row['champion_id']
+                result1 = engine.execute('select item_id from "ChampionToItem" where champion_id = %s' % champ_name)
 
-            itemlist = []
-            for row1 in result1:
-                itemlist.append(row1['item_id'])
+                itemlist = []
+                for row1 in result1:
+                    itemlist.append(row1['item_id'])
 
-            jsonout = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': re.sub("5.13.1", "5.2.1", row['image']), 'passive_name': row['passive_name'], 'passive_image': re.sub("5.13.1", "5.2.1", row['passive_image']), 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': re.sub("5.13.1", "5.2.1", row['q_image']), 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': re.sub("5.13.1", "5.2.1", row['w_image']), 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': re.sub("5.13.1", "5.2.1", row['e_image']), 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': re.sub("5.13.1", "5.2.1", row['r_image']), 'r_description': row['r_description'], 'recommended_items': itemlist}
+                jsonout = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': re.sub("5.13.1", "5.2.1", row['image']), 'passive_name': row['passive_name'], 'passive_image': re.sub("5.13.1", "5.2.1", row['passive_image']), 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': re.sub("5.13.1", "5.2.1", row['q_image']), 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': re.sub("5.13.1", "5.2.1", row['w_image']), 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': re.sub("5.13.1", "5.2.1", row['e_image']), 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': re.sub("5.13.1", "5.2.1", row['r_image']), 'r_description': row['r_description'], 'recommended_items': itemlist}
 
-        if jsonout == {}:
+            if jsonout == {}:
+                h = HttpResponse(json.dumps({"error": "Champion ID " + id + " does not exist."}),   content_type="application/json")
+                h.status_code = 404
+                return h
+
+            return HttpResponse(json.dumps(jsonout), content_type='application/json')    
+        except ValueError:
             h = HttpResponse(json.dumps({"error": "Champion ID " + id + " does not exist."}),   content_type="application/json")
             h.status_code = 404
             return h
-
-        return HttpResponse(json.dumps(jsonout), content_type='application/json')    
-    except ValueError:
-        h = HttpResponse(json.dumps({"error": "Champion ID " + id + " does not exist."}),   content_type="application/json")
-        h.status_code = 404
-        return h
 
 
 def Player_List_API(request):
