@@ -140,8 +140,7 @@ def player(request, id):
             itemlist = []
 
             for row1 in result1:
-                assert(type(row1) == int) 
-                if(row1['champion_id'] != 0)
+                if row1['champion_id'] != 0 :
                     itemlist.append(row1['champion_id'])
 
 
@@ -265,11 +264,11 @@ def Player_ID_API(request, id):
         jsonout = {}
         for row in result:
             player_name = row['player_id']
-            result1 = engine.execute('select champion_id from "PlayerToChampion" where player_id = %s' % player_name)
+            result1 = engine.execute('select champion_id from "PlayerToChampion" where player_id = %d' % player_name)
 
             itemlist = []
             for row1 in result1:
-                if(row1['champion_id'] != 0)
+                if row1['champion_id'] != 0 :
                     itemlist.append(row1['champion_id'])
 
 
