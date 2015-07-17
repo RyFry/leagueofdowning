@@ -149,7 +149,7 @@ def player(request, id):
 #
 #Artist Page
 #
-def champions(request):
+def artists(request):
     artisturl = 'http://volumemax.me/api/artists/1'
     artist_info = urlopen(artisturl).info()
     raw_artist = urlopen(artisturl).read().decode(artist_info.get_content_charset('utf8'))
