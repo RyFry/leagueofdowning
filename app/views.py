@@ -146,6 +146,31 @@ def player(request, id):
         context = RequestContext(request, {})
         return HttpResponse(template.render(context))
 
+#
+#Artist Page
+#
+def artist(request, id):
+    try:
+        int(id)
+        artisturl = 'http://volumemax.me/api/artists/' + id
+        artist_info = urlopen(artisturl).info()
+        raw_artist = urlopen(artisturl).read().decode(artist_info.get_content_charset('utf8'))
+        artist = json.loads(raw_artist)   
+
+        if artist == {}:
+            template = loader.get_template('app/error.html')
+            context = RequestContext(request, {})
+            return HttpResponse(template.render(context))
+        else:
+            template = loader.get_template('app/artist.html')
+            context = RequestContext(request, artist)
+            return HttpResponse(template.render(context))
+    except ValueError:
+        template = loader.get_template('app/error.html')
+        context = RequestContext(request, {})
+        return HttpResponse(template.render(context))
+
+
 
 
 #
