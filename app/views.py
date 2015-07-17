@@ -152,7 +152,7 @@ def player(request, id):
 def artist(request, id):
     try:
         int(id)
-        artisturl = 'http://volumemax.me/api/artists/' + id
+        artisturl = 'http://volumemax.me/api/artists/' + str(id)
         artist_info = urlopen(artisturl).info()
         raw_artist = urlopen(artisturl).read().decode(artist_info.get_content_charset('utf8'))
         artist = json.loads(raw_artist)   
