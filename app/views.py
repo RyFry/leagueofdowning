@@ -310,17 +310,17 @@ def Item_List_API(request):
     result = engine.execute('select * from "Item"')
     List = {}
     for row in result:
-            item_id = row['item_id']
-            intoresult = engine.execute('select into_id from "ItemToItem" where from_id = %d' % item_id)
-            fromresult = engine.execute('select from_id from "ItemToItem" where into_id = %d' % item_id)
+        item_id = row['item_id']
+        intoresult = engine.execute('select into_id from "ItemToItem" where from_id = %d' % item_id)
+        fromresult = engine.execute('select from_id from "ItemToItem" where into_id = %d' % item_id)
 
-            intolist = []
-            for row1 in intoresult:
-                intolist.append(row1['into_id'])
+        intolist = []
+        for row1 in intoresult:
+            intolist.append(row1['into_id'])
 
-            fromlist = []
-            for row2 in fromresult:
-                fromlist.append(row2['from_id'])
+        fromlist = []
+        for row2 in fromresult:
+            fromlist.append(row2['from_id'])
 
         List[row['item_id']] = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:], 'from_items' : fromlist, 'into_items' : intolist}
 
