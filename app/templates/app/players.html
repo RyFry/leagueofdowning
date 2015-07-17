@@ -12,7 +12,7 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("http://104.239.165.229/api/players/").then(function(response) {
+        $http.get("http://leagueofdowning.link/api/players/").then(function(response) {
           $scope.players = response.data;
         })
       });
@@ -35,15 +35,74 @@
 	</head>
 	
 	<body>
+		<!-- Navigation -->
+		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		  <div class="container">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+		      <i class="fa fa-bars"></i>
+		      </button>
+		      <a class="navbar-brand page-scroll" href="http://leagueofdowning.link/">
+		      <i class="fa fa-play-circle"></i>  <span class="light">League of</span> Downing
+		      </a>
+		    </div>
+
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+		      <ul class="nav navbar-nav">
+		        <li class="hidden">
+		          <a href="#page-top"></a>
+		        </li>
+		        <li>
+		          <a class="page-scroll" href="http://leagueofdowning.link/players/">Players</a>
+		        </li>
+		        <li>
+		          <a class="page-scroll" href="http://leagueofdowning.link/champions/">Champions</a>
+		        </li>
+		        <li>
+		          <a class="page-scroll" href="http://leagueofdowning.link/items/">Items</a>
+		        </li>
+		        <li>
+		          <a class="page-scroll" href="http://leagueofdowning.link/about/">About</a>
+		        </li>
+		      </ul>
+		    </div>
+		    <!-- /.navbar-collapse -->
+		  </div>
+		  <!-- /.container -->
+		</nav>
+
+		<!-- Intro Header -->
+        <header class="intro">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h1 class="brand-heading">Players</h1>
+                            
+                            <a href="#table" class="btn btn-circle page-scroll">
+                                <i class="fa fa-angle-double-down animated"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+
+		<!-- Section for tables of Items -->
+		<section id="table" class="container content-section text-center">
 	  <div class="container" ng-app="app" ng-controller="appController">
-	    <div class="jumbotron">
+<!--	    <div class="jumbotron">
 	      <div class="row placeholders">
 		<div class="col-xs-6 col-sm-9 placeholders">
 		  <h1>Players</h1>
 		</div>
 	      </div>
 	    </div>
-	    
+-->	    
 	    <table class="table table-hover">
 	      <thead>
 		<div class="row">
@@ -96,6 +155,7 @@
 	    </table>
 	    
 	  </div>
+	</section>
 	  
 	</body>
 	{% include "app/footer.html" %}

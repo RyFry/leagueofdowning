@@ -52,7 +52,7 @@ class ModelTestCase(TestCase):
         self.assertEqual(champtest1['Nidalee']['role'], "Assassin")
 
     def test_champion_model3(self):
-        champurl = 'http://leagueofdowning.me/api/champions/76'
+        champurl = 'http://leagueofdowning.link/api/champions/76'
         champinfo = urlopen(champurl).info()
         raw_champ = urlopen(champurl).read().decode(champinfo.get_content_charset('utf8'))
         champ = json.loads(raw_champ) 
@@ -60,8 +60,8 @@ class ModelTestCase(TestCase):
         self.assertEqual(champ['role'], "Assassin")
 
     def test_player_model1(self):
-        playertest = {"4347": {"role": "Support", "name": "viviD"}}
-        self.assertEqual(playertest['4347']['name'], "viviD")
+        playertest = {"4347": {"role": "Support", "ign": "viviD"}}
+        self.assertEqual(playertest['4347']['ign'], "viviD")
         self.assertEqual(playertest['4347']['role'], "Support")
 
     def test_player_model2(self):
@@ -69,11 +69,11 @@ class ModelTestCase(TestCase):
         player_test_dict = json.load(ps)
         ps.close()
         playertest1 = player_test_dict
-        self.assertEqual(playertest1['4347']['name'], "viviD")
+        self.assertEqual(playertest1['4347']['ign'], "viviD")
         self.assertEqual(playertest1['4347']['role'], "Support")
 
     def test_player_model3(self):
-        playerurl = 'http://leagueofdowning.me/api/players/4347'
+        playerurl = 'http://leagueofdowning.link/api/players/4347'
         playerinfo = urlopen(playerurl).info()
         raw_player = urlopen(playerurl).read().decode(playerinfo.get_content_charset('utf8'))
         player1 = json.loads(raw_player) 
@@ -93,8 +93,9 @@ class ModelTestCase(TestCase):
         self.assertEqual(itemtest['3266']['name'], "Enchantment: Captain")
         self.assertEqual(itemtest['3266']['image'], "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/3266.png")
 
+
     def test_item_model3(self):
-        itemurl = 'http://leagueofdowning.me/api/items/3266'
+        itemurl = 'http://leagueofdowning.link/api/items/3266'
         iteminfo = urlopen(itemurl).info()
         raw_item = urlopen(itemurl).read().decode(iteminfo.get_content_charset('utf8'))
         item1 = json.loads(raw_item) 
