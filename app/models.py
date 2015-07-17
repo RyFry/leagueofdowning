@@ -67,7 +67,7 @@ class Player(models.Model):
     player_gpm = models.FloatField(default=0)
     player_total_gold = models.IntegerField(default=0)
     player_games_played = models.IntegerField(default=0)
-    player_played_champions = models.CharField(max_length=1000)
+    player_most_played_champions = models.CharField(max_length=1000)
 
 
     """
@@ -96,6 +96,8 @@ class Item(models.Model):
     item_sell_gold = models.IntegerField(default=0)
     item_total_gold = models.IntegerField(default=0)
     item_image = models.CharField(max_length=100)
+    item_from_items = models.CharField(max_length=100)
+    item_into_items = models.CharField(max_length=100)
 
     def get_absolute_url(self):
         return "/items/%d/" % self.item_name
