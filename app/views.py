@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 
-from sqlalchemy import create_engine, insert
-from sqlalchemy.orm import relationship, sessionmaker, backref
+from sqlalchemy import create_engine
 from app.database import database
 
 import json
