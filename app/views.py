@@ -233,7 +233,7 @@ def Champion_List_API(request):
     return HttpResponse(json.dumps(List), content_type='application/json')
 
 def Champion_ID_API(request, id):
-    if id == 0 :
+    if int(id) == 0 :
         h = HttpResponse(json.dumps({"error": "Champion ID " + id + " does not exist."}),   content_type="application/json")
         h.status_code = 404
         return h  
