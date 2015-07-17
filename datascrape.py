@@ -27,6 +27,16 @@ teamurl = 'http://na.lolesports.com:80/api/team/'
 
 pp = pprint.PrettyPrinter(indent=1)
 
+artisturl = 'http://volumemax.me/api/artists/1'
+artist_info = urlopen(artisturl).info()
+raw_artist = urlopen(artisturl).read().decode(artist_info.get_content_charset('utf8'))
+artist = json.loads(raw_artist)  
+
+pp.pprint(artist)
+
+
+
+
 championlist_info = urlopen(championlisturl).info()
 raw_championlist = urlopen(championlisturl).read().decode(championlist_info.get_content_charset('utf8'))
 championlist = json.loads(raw_championlist)    

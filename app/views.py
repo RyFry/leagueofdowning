@@ -159,7 +159,7 @@ def artists(request):
     artist = json.loads(raw_artist)  
 
     template = loader.get_template('app/artist.html')
-    context = RequestContext(request, {})
+    context = RequestContext(request, artist)
     return HttpResponse(template.render(context))
 
 def artist(request, id):
