@@ -19,7 +19,7 @@ from unittest import main, TestCase
 from json import dumps, loads
 
 from django.test import TestCase
-from app.models import *
+from models import *
 
 
 try:
