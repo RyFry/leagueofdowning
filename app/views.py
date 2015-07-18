@@ -156,6 +156,7 @@ def champion(request, id):
 #
 
 def item(request, id):
+
     try:
         int(id)
         engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
@@ -165,8 +166,8 @@ def item(request, id):
 
         for row in result:
             item_id = row['item_id']
-            intoresult = engine.execute('select into_id from "ItemToItem" where from_id = %d' % item_id)
-            fromresult = engine.execute('select from_id from "ItemToItem" where into_id = %d' % item_id)
+            intoresult = engine.execute('select into_id from "ItemToItem" where from_id = %d' % int(item_id))
+            fromresult = engine.execute('select from_id from "ItemToItem" where into_id = %d' % int(item_id))
 
             intolist = []
             for row1 in intoresult:
