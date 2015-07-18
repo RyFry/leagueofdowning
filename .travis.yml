@@ -32,7 +32,7 @@ script:
     - date
     - ./nohupserver.sh
     - ls -al
-    - python3 tests.py
+    - python3 manage.py test
     - ls -al
     - pydoc3 -w ./app/models.py
     - ls -al

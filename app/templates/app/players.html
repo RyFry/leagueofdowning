@@ -12,7 +12,7 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("{% include "app/url.html" %}/api/players/").then(function(response) {
+        $http.get("http://leagueofdowning.me/api/players/").then(function(response) {
           $scope.players = response.data;
         })
       });

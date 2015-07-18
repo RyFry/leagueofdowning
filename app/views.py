@@ -272,7 +272,7 @@ def artist(request, id):
 def Champion_List_API(request):
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
-    result = engine.execute('select * from "Champion"')
+    result = engine.execute('select * from "Champion" where name != \'dummy\'')
     List = {}
     for row in result:
         champ_name = row['champion_id']

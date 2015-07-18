@@ -1,7 +1,9 @@
 <html lang="en">
 
   <head>
-    <title>Champions</title>
+    <title>
+      Champions
+    </title>
 	{% include "app/header.html" %}
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script>
@@ -12,7 +14,7 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("{% include "app/url.html" %}/api/champions/").then(function(response) {
+        $http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
           $scope.champions = response.data;
         })
       });
