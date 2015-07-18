@@ -31,5 +31,7 @@ before_script:
 script:
     - date
     - ls -al
+    - python3 tests.py
+    - ls -al
     - pydoc3 -w ./app/models.py
     - ls -al
