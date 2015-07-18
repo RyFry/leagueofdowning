@@ -22,8 +22,7 @@ from django.test import TestCase
 from app.models import *
 
 # Imports for Travis CI
-from leagueofdowning import settings
-from django.core.management import setup_environ
+from django.conf import settings
 
 
 try:
@@ -111,6 +110,6 @@ class ModelTestCase(TestCase):
 # ----
 
 if __name__ == "__main__":
-    setup_environ(settings)
+    settings.configure()
     main()
 
