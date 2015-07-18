@@ -21,6 +21,10 @@ from json import dumps, loads
 from django.test import TestCase
 from app.models import *
 
+# Imports for Travis CI
+from leagueofdowning import settings
+from django.core.management import setup_environ
+
 
 try:
     from urllib.request import urlopen, Request
@@ -107,5 +111,6 @@ class ModelTestCase(TestCase):
 # ----
 
 if __name__ == "__main__":
+    setup_environ(settings)
     main()
 
