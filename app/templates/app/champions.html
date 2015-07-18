@@ -111,15 +111,15 @@
       <td>
       </td>
 	    <td>
-	      <a href="#" ng-click="sortType = 'champion_id'; sortReverse = !sortReverse">
+	      <a href="" ng-click="sortType = 'champion_id'; sortReverse = !sortReverse">
 		Champion
 	    </td>
       <td>
-        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+        <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
     Name
       </td>
 	    <td>
-	      <a href="#" ng-click="sortType = 'role'; sortReverse = !sortReverse">
+	      <a href="" ng-click="sortType = 'role'; sortReverse = !sortReverse">
 		Role
 	    </td>
 	  </tr>
@@ -128,9 +128,9 @@
 	<tbody>
 	  {% verbatim %}
 	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse">
-      <td><img ng-src="{{ champion.image }}"></td>
-	    <td><a ng-href="{{ champion.champion_id }}">{{ champion.champion_id}}</a></td>
-	    <td>{{ champion.name }}</td>
+      <td><a ng-href="{{ champion.champion_id }}"><img ng-src="{{ champion.image }}"></a></td>
+	    <td>{{ champion.champion_id}}</td>
+	    <td><a ng-href="{{ champion.champion_id }}">{{ champion.name }}</a></td>
 	    <td>{{ champion.role }}</td>
 	  </tr>
 	  {% endverbatim %}
