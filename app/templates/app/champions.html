@@ -137,9 +137,8 @@
 	    <td>{{ champion.champion_id}}</td>
 	    <td><a ng-href="{{ champion.champion_id }}">{{ champion.name }}</a></td>
 	    <td>{{ champion.role }}</td>
-	    <td><span ng-repeat="c_item in champion.recommended_items"><span ng-repeat="item in items">
-	    	<p ng-if="c_item == {{ item.item_id }}">{{ item.name }}</p>
-	    </span></span></td>
+	    <td><span ng-repeat="c_item in champion.recommended_items"><p ng-repeat="item in items" ng-if="c_item == {{ item.item_id }}">{{ item.name }}</p>
+	    </span></td>
 	  </tr>
 	  {% endverbatim %}
 	</tbody>
