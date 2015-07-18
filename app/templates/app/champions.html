@@ -17,6 +17,10 @@
         $http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
           $scope.champions = response.data;
         })
+
+        $http.get("http://leagueofdowning.me/api/items/").then(function(response) {
+          $scope.items = response.data;
+        })
       });
 
       app.filter('orderObjectBy', function() {
@@ -122,6 +126,7 @@
 	      <a href="" ng-click="sortType = 'role'; sortReverse = !sortReverse">
 		Role
 	    </td>
+	    <td>Recommended Items</td>
 	  </tr>
 	</thead>
 
@@ -132,6 +137,7 @@
 	    <td>{{ champion.champion_id}}</td>
 	    <td><a ng-href="{{ champion.champion_id }}">{{ champion.name }}</a></td>
 	    <td>{{ champion.role }}</td>
+	    <td><p ng-repeat="item in champion.recommended_items">{{ items.item.name }}</p></td>
 	  </tr>
 	  {% endverbatim %}
 	</tbody>
