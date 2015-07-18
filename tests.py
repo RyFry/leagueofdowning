@@ -21,9 +21,6 @@ from json import dumps, loads
 from django.test import TestCase
 from app.models import *
 
-# Imports for Travis CI
-from django.conf import settings
-
 
 try:
     from urllib.request import urlopen, Request
@@ -110,6 +107,5 @@ class ModelTestCase(TestCase):
 # ----
 
 if __name__ == "__main__":
-    settings.configure()
     main()
 
