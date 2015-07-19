@@ -16,7 +16,7 @@ class Champion(models.Model):
     class Meta:
         db_table = 'Champion'
 
-    id = models.IntegerField(default=0)
+    champion_id = models.IntegerField(default=0)
     name = models.CharField(max_length=200)
     role = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
