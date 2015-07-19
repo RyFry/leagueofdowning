@@ -196,14 +196,16 @@ def player(request, id):
             player_id = row['player_id']
             result1 = engine.execute('select champion_id from "PlayerToChampion" where player_id = %d' % player_id)
 
-            itemlist = []
+            champlist = []
 
             for row1 in result1:
-                if row1['champion_id'] != 0 :
-                    itemlist.append(row1['champion_id'])
+                champ = engine.execute('select champion_id, image from "Champion" where champion_id= %s' % row1['champion_id'])
+                for i in champ:
+                    if row1['champion_id'] != 0 :
+                        champlist.append({'champion_id' : i['champion_id'], 'image' : i['image']})
 
 
-            jsonout = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': round(row['kda'], 2), 'gpm': round(row['gpm'],2), 'total_gold': row['total_gold'], 'games_played': row['games_played'], 'most_played_champions' : itemlist}
+            jsonout = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': round(row['kda'], 2), 'gpm': round(row['gpm'],2), 'total_gold': row['total_gold'], 'games_played': row['games_played'], 'most_played_champions' : champlist}
 
         if jsonout == {}:
             template = loader.get_template('app/error.html')

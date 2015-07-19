@@ -72,6 +72,22 @@
 -->
           </div>
         </div>
+	
+	<div class="row">
+	  <div class="col-sm-12">
+	    <h3>Most Played Champions:</h3>
+	  </div>
+	</div>
+	
+	<div class="row">
+	  {% for i in most_played_champions %}
+	  <div class="col-sm-4">
+	    <a href="{% include "app/url.html" %}/champions/{{ i.champion_id }}">
+	      <img src="{{ i.image }}" class="img-circle">
+	    </a>
+	  </div>
+	  {% endfor %}
+	</div>
       </div>
     </section>
   </body>
