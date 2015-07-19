@@ -4,7 +4,7 @@
 {{ champion.title }}
 {{ champion.lore }}
 {{ champion.image }}
-{{ champion.passive_ name }} 
+{{ champion.passive_name }} 
 {{ champion.passive_image }} 
 {{ champion.passive_description }} 
 {{ champion.q_name }} 
