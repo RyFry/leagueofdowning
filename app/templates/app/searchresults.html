@@ -2,7 +2,9 @@
 <html lang="en">
     <head>
         {% include "app/header.html" %}
-
+	<title>
+	  Search Result: "{{ query_string}}"
+	</title>
     </head>
     <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
         <!-- Navigation -->
@@ -63,18 +65,22 @@
                                 <form method="get" action="/search/">
                                           
 
- You searched for "{{ query_string }}" and the results are listed below.
-
-
-           <li> {{ found_entries }}}</li>
                                 <input type="search" placeholder="search" class="form-control">
                                 <span class="input-group-btn">
                                 <button class="btn btn-danger" type="button">Search</button>
                                 </span>
+
                              </div>
                              <!-- /input-group -->
                           </form>
                           <!-- /.max-width on this form -->
+			  You searched for "{{ query_string }}" and the results are listed below.
+
+			  {% for e in found_entries %}
+			  <a href={{ e.link }}>
+			     <li>Name: {{ e.name }}, Role: {{ e.role }}</li>
+			  </a>
+			  {% endfor %}
 
                        </div>
                        <!-- /.featurette-inner (display:table-cell) -->

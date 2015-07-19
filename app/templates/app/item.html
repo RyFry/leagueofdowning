@@ -61,6 +61,38 @@
 	    {{ sell_gold|linebreaks }}
 	  </div>
 	</div>
+
+	<div class="row">
+          <div class="col-sm-12">
+            <h3>Item {{ name }} builds into:</h3>
+          </div>
+        </div>
+
+	<div class="row">
+	  {% for i in into_items %}
+	  <div class="col-sm-{{ num_into }}">
+	    <a href="{% include "app/url.html" %}/items/{{ i.item_id }}">
+	      <img src="{{ i.image }}" class="img-circle">
+	    </a>
+	  </div>
+	  {% endfor %}
+	</div>
+	
+	<div class="row">
+          <div class="col-sm-12">
+            <h3>Items that build into {{ name }}:</h3>
+          </div>
+        </div>
+
+	<div class="row">
+	  {% for i in from_items %}
+	  <div class="col-sm-{{ num_from }}">
+	    <a href="{% include "app/url.html" %}/items/{{ i.item_id }}">
+	      <img src="{{ i.image }}" class="img-circle">
+	    </a>
+	  </div>
+	  {% endfor %}
+	</div>
 	
 	
       </div>

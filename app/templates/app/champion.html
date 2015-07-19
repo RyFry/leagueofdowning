@@ -33,23 +33,24 @@
             </div>
         </header>
 
-<!--     <div class="container">
-    <div class="jumbotron">
-      <div class="row placeholders">
-        <div class="col-xs-6 col-sm-9 placeholder">
-          <h1>
-            {{ champion_name }}
-          </h1>
-        </div>
-        <div class="col-xs-6 col-sm-3 placeholder">
-          <img src="{{ image }}" class="img-circle" height="120px" width="120px"><br>
-        </div>
-      </div>
-    </div> -->
 
     <section id="champion" class="container content-section text-center">
       <div class="container">
+	
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>Lore</h1>
+            {{ lore|linebreaks }}
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>Abilities</h1>
+          </div>
+        </div>
+
+	
         <div class="row">
           <div class="col-sm-2">
             <img src="{{ passive_image }}" class="img-circle">
@@ -99,6 +100,23 @@
             {{ r_description|linebreaks }}
           </div>
         </div>
+
+	<div class="row">
+          <div class="col-sm-12">
+            <h1>Recommended Items:</h1>
+          </div>
+        </div>
+	
+	<div class="row">
+	  {% for i in recommended_items %}
+	  <div class="col-sm-4">
+	    <a href="{% include "app/url.html" %}/items/{{ i.item_id }}">
+	      <img src="{{ i.image }}" class="img-circle">
+	    </a>
+	  </div>
+	  {% endfor %}
+	</div>
+
 
       </div>
     </section>
