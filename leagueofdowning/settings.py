@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'leagueofdowning.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'sqlalchemy',
         'NAME': 'leagueofdowning',
         'USER': 'postgres',
         'PASSWORD': 'h1Ngx0',
