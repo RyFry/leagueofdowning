@@ -37,7 +37,7 @@ class Champion(models.Model):
     r_name = models.CharField(max_length=100)
     r_image = models.CharField(max_length=100)
     r_description = models.CharField(max_length=1000)
-    recommended_items = models.CharField(max_length=1000)
+    recommended_items = models.ManyToManyField(Item)
 
 
     def get_absolute_url(self):
