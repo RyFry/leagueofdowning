@@ -132,6 +132,7 @@
 
 	<tbody>
 	  {% verbatim %}
+	  {{ champions }}
 	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse">
       <td><a ng-href="{{ champion.champion_id }}"><img ng-src="{{ champion.image }}"></a></td>
 	    <td>{{ champion.champion_id}}</td>
