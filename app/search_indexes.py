@@ -30,7 +30,7 @@ class ChampionIndex (indexes.SearchIndex, indexes.Indexable) :
     r_name = indexes.CharField(model_attr='r_name')
     r_image = indexes.CharField(model_attr='r_image')
     r_description = indexes.CharField(model_attr='r_description')
-    recommended_items = indexes.CharField(model_attr='recommended_items')
+
     
     def get_model (self) :
         return Champion
