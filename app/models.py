@@ -66,7 +66,6 @@ class Champion(models.Model):
     r_name = models.CharField(max_length=100, db_column = 'r_name')
     r_image = models.CharField(max_length=100, db_column = 'r_image')
     r_description = models.CharField(max_length=1000, db_column = 'r_description')
-    recommended_items = models.ManyToManyField(Item)
 
 
     def get_absolute_url(self):
@@ -74,6 +73,15 @@ class Champion(models.Model):
 
     def __str__ (self):
         return self.name
+
+
+class ChampionToItem(models.Model):
+    class Meta:
+        db_table = 'ChampionToItem'
+
+    id = models.IntegerField(primary_key = True)
+    champion_id = models.ForeignKey(Champion)
+    item_id = models.ForeignKey(Item)
 
 
 # ------------
