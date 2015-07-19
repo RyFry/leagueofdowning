@@ -94,10 +94,10 @@ DATABASES = {
 HAYSTACK_CONNECTIONS = {
     'default' : {
         'ENGINE' : 'haystack.backends.simple_backend.SimpleEngine'
-        '''
-        'URL' : 'http://104.239.228.16:9200/',
-        'INDEX_NAME' : 'haystack',
-        '''
+
+        #'URL' : 'http://104.239.228.16:9200/',
+        #'INDEX_NAME' : 'haystack',
+        
     }
 }
 
