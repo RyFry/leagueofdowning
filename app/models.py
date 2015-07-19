@@ -13,6 +13,9 @@ class Champion(models.Model):
     The model contains a champion id, name, role, title, lore, image, the name, image, and description for each ability, and recommended items.
     The __str__ method is used to return the name of the champion as string.
     """
+    class Meta:
+        db_table = 'Champion'
+
     champion_id = models.IntegerField(default=0)
     champion_name = models.CharField(max_length=200)
     champion_role = models.CharField(max_length=100)
