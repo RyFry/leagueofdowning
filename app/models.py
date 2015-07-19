@@ -4,6 +4,35 @@ from django.contrib.auth.models import User
 from django.utils.html import format_html
 from django.conf import settings
 
+# ------------
+# Item_model
+# ------------
+
+class Item(models.Model):
+    """
+    The model contains an item id, name, description, base gold, sell gold, total gold, and an image.
+
+    The __str__ method is used to return the item name. 
+    The get_absolute_url method overrides the default url so that watson get the correct url as a link. 
+    """
+    item_id = models.IntegerField(default=0)
+    item_name = models.CharField(max_length=200)
+    item_description = models.CharField(max_length=5000)
+    item_base_gold = models.IntegerField(default=0)
+    item_sell_gold = models.IntegerField(default=0)
+    item_total_gold = models.IntegerField(default=0)
+    item_image = models.CharField(max_length=100)
+    item_from_items = models.CharField(max_length=100)
+    item_into_items = models.CharField(max_length=100)
+
+    def get_absolute_url(self):
+        return "/items/%d/" % self.item_name
+
+    def __str__ (self):
+        return self.item_name
+
+
+
 # -------------
 # model
 # -------------
@@ -80,33 +109,6 @@ class Player(models.Model):
     """
     def __str__ (self):
         return self.player_name
-
-# ------------
-# Item_model
-# ------------
-
-class Item(models.Model):
-    """
-    The model contains an item id, name, description, base gold, sell gold, total gold, and an image.
-
-    The __str__ method is used to return the item name. 
-    The get_absolute_url method overrides the default url so that watson get the correct url as a link. 
-    """
-    item_id = models.IntegerField(default=0)
-    item_name = models.CharField(max_length=200)
-    item_description = models.CharField(max_length=5000)
-    item_base_gold = models.IntegerField(default=0)
-    item_sell_gold = models.IntegerField(default=0)
-    item_total_gold = models.IntegerField(default=0)
-    item_image = models.CharField(max_length=100)
-    item_from_items = models.CharField(max_length=100)
-    item_into_items = models.CharField(max_length=100)
-
-    def get_absolute_url(self):
-        return "/items/%d/" % self.item_name
-
-    def __str__ (self):
-        return self.item_name
 
 
 
