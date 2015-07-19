@@ -12,7 +12,7 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("http://leagueofdowning.link/api/items/").then(function(response) {
+        $http.get("http://leagueofdowning.me/api/items/").then(function(response) {
           $scope.items = response.data;
         })
       });
@@ -35,45 +35,7 @@
   </head>
 
   <body>
-
-    <!-- Navigation -->
-        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-              <i class="fa fa-bars"></i>
-              </button>
-              <a class="navbar-brand page-scroll" href="http://leagueofdowning.link/">
-              <i class="fa fa-play-circle"></i>  <span class="light">League of</span> Downing
-              </a>
-            </div>
-
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-              <ul class="nav navbar-nav">
-                <li class="hidden">
-                  <a href="#page-top"></a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="http://leagueofdowning.link/players/">Players</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="http://leagueofdowning.link/champions/">Champions</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="http://leagueofdowning.link/items/">Items</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="http://leagueofdowning.link/about/">About</a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-          </div>
-          <!-- /.container -->
-        </nav>
-
+    {% include "app/navigation.html" %}
 
     <!-- Intro Header -->
         <header class="intro">
@@ -111,23 +73,23 @@
       <td>
       </td>
 	    <td>
-	      <a href="#" ng-click="sortType = 'item_id'; sortReverse = !sortReverse">
+	      <a href="" ng-click="sortType = 'item_id'; sortReverse = !sortReverse">
 		    Item
 	    </td>
 	    <td>
-	      <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+	      <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
 		    Name
 	    </td>
 	    <td>
-	      <a href="#" ng-click="sortType = 'base_gold'; sortReverse = !sortReverse">
+	      <a href="" ng-click="sortType = 'base_gold'; sortReverse = !sortReverse">
 		    Base Gold
 	    </td>
       <td>
-        <a href="#" ng-click="sortType = 'sell_gold'; sortReverse = !sortReverse">
+        <a href="" ng-click="sortType = 'sell_gold'; sortReverse = !sortReverse">
         Sell Gold
       </td>
       <td>
-        <a href="#" ng-click="sortType = 'total_gold'; sortReverse = !sortReverse">
+        <a href="" ng-click="sortType = 'total_gold'; sortReverse = !sortReverse">
         Total Gold
       </td>
 	  </tr>
@@ -136,12 +98,12 @@
 	<tbody>
     {% verbatim %}
 	  <tr ng-repeat="item in items | orderObjectBy:sortType:sortReverse">
-      <td><img ng-src="{{ item.image }}"></td>
-	    <td><a ng-href="{{ item.item_id }}">{{ item.item_id }}</a></td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.base_gold }}</td>
-      <td>{{ item.sell_gold }}</td>
-      <td>{{ item.total_gold }}</td>
+	    <td><a ng-href="{{ item.item_id }}"><img ng-src="{{ item.image }}"></a></td>
+	    <td>{{ item.item_id }}</td>
+	    <td><a ng-href="{{ item.item_id }}">{{ item.name }}</a></td>
+	    <td>{{ item.base_gold }}</td>
+	    <td>{{ item.sell_gold }}</td>
+	    <td>{{ item.total_gold }}</td>
 	  </tr>
     {% endverbatim %}
     

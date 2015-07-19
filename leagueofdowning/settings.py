@@ -36,6 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'haystack',
+
     'app'
 )
 
@@ -77,6 +80,16 @@ WSGI_APPLICATION = 'leagueofdowning.wsgi.application'
 
 DATABASES = {
 
+}
+
+# Haystack engine
+
+HAYSTACK_CONNECTIONS = {
+    'default' : {
+        'ENGINE' : 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL' : 'http://127.0.0.1:9200/',
+        'INDEX_NAME' : 'haystack',
+    },
 }
 
 

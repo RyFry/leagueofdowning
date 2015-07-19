@@ -12,8 +12,12 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("http://leagueofdowning.link/api/players/").then(function(response) {
+        $http.get("http://leagueofdowning.me/api/players/").then(function(response) {
           $scope.players = response.data;
+        })
+
+        $http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
+          $scope.champions = response.data;
         })
       });
 
@@ -35,43 +39,7 @@
 	</head>
 	
 	<body>
-		<!-- Navigation -->
-		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-		  <div class="container">
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-		      <i class="fa fa-bars"></i>
-		      </button>
-		      <a class="navbar-brand page-scroll" href="http://leagueofdowning.link/">
-		      <i class="fa fa-play-circle"></i>  <span class="light">League of</span> Downing
-		      </a>
-		    </div>
-
-
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-		      <ul class="nav navbar-nav">
-		        <li class="hidden">
-		          <a href="#page-top"></a>
-		        </li>
-		        <li>
-		          <a class="page-scroll" href="http://leagueofdowning.link/players/">Players</a>
-		        </li>
-		        <li>
-		          <a class="page-scroll" href="http://leagueofdowning.link/champions/">Champions</a>
-		        </li>
-		        <li>
-		          <a class="page-scroll" href="http://leagueofdowning.link/items/">Items</a>
-		        </li>
-		        <li>
-		          <a class="page-scroll" href="http://leagueofdowning.link/about/">About</a>
-		        </li>
-		      </ul>
-		    </div>
-		    <!-- /.navbar-collapse -->
-		  </div>
-		  <!-- /.container -->
-		</nav>
+	  {% include "app/navigation.html" %}
 
 		<!-- Intro Header -->
         <header class="intro">
@@ -110,28 +78,28 @@
 		    <div class="col-xs-6">
 		    	<td></td>
 		      <td>
-			<a href="#" ng-click="sortType = 'player_id'; sortReverse = !sortReverse">
+			<a href="" ng-click="sortType = 'player_id'; sortReverse = !sortReverse">
 			  Player
 		      </td>
 		    </div>
 		    <td>
-		      <a href="#" ng-click="sortType = 'ign'; sortReverse = !sortReverse">
+		      <a href="" ng-click="sortType = 'ign'; sortReverse = !sortReverse">
 			Name
 		    </td>
 		    <td>
-		      <a href="#" ng-click="sortType = 'team_name'; sortReverse = !sortReverse">
+		      <a href="" ng-click="sortType = 'team_name'; sortReverse = !sortReverse">
 			Team Name
 		    </td>
 		    <td>
-		      <a href="#" ng-click="sortType = 'role'; sortReverse = !sortReverse">
+		      <a href="" ng-click="sortType = 'role'; sortReverse = !sortReverse">
 			Role
 		    </td>
 		    <td>
-		      <a href="#" ng-click="sortType = 'kda'; sortReverse = !sortReverse">
+		      <a href="" ng-click="sortType = 'kda'; sortReverse = !sortReverse">
 			KDA
 		    </td>
 		    <td>
-		      <a href="#" ng-click="sortType = 'gpm'; sortReverse = !sortReverse">
+		      <a href="" ng-click="sortType = 'gpm'; sortReverse = !sortReverse">
 			GPM
 		    </td>
 		  </tr>
@@ -141,9 +109,9 @@
 	      <tbody>
 		{% verbatim %}
 		<tr ng-repeat="player in players | orderObjectBy:sortType:sortReverse">
-		  <td><img ng-src="{{ player.image }}" height=100></td>
-		  <td><a ng-href="{{ player.player_id }}">{{ player.player_id }}</a></td>
-		  <td>{{ player.ign }}</td>
+		  <td><a ng-href="{{ player.player_id }}"><img ng-src="{{ player.image }}" height=100></a></td>
+		  <td>{{ player.player_id }}</td>
+		  <td><a ng-href="{{ player.player_id }}">{{ player.ign }}</a></td>
 		  <td>{{ player.team_name }}</td>
 		  <td>{{ player.role }}</td>
 		  <td>{{ player.kda }}</td>

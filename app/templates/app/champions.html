@@ -1,7 +1,9 @@
 <html lang="en">
 
   <head>
-    <title>Champions</title>
+    <title>
+      Champions
+    </title>
 	{% include "app/header.html" %}
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script>
@@ -12,8 +14,12 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("http://leagueofdowning.link/api/champions/").then(function(response) {
+        $http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
           $scope.champions = response.data;
+        })
+
+        $http.get("http://leagueofdowning.me/api/items/").then(function(response) {
+          $scope.items = response.data;
         })
       });
 
@@ -35,45 +41,7 @@
   </head>
 
   <body>
-
-    <!-- Navigation -->
-        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-              <i class="fa fa-bars"></i>
-              </button>
-              <a class="navbar-brand page-scroll" href="http://leagueofdowning.link/">
-              <i class="fa fa-play-circle"></i>  <span class="light">League of</span> Downing
-              </a>
-            </div>
-
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-              <ul class="nav navbar-nav">
-                <li class="hidden">
-                  <a href="#page-top"></a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="http://leagueofdowning.link/players/">Players</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="http://leagueofdowning.link/champions/">Champions</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="http://leagueofdowning.link/items/">Items</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="http://leagueofdowning.link/about/">About</a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-          </div>
-          <!-- /.container -->
-        </nav>
-
+    {% include "app/navigation.html" %}
         <!-- Intro Header -->
         <header class="intro">
             <div class="intro-body">
@@ -147,27 +115,29 @@
       <td>
       </td>
 	    <td>
-	      <a href="#" ng-click="sortType = 'champion_id'; sortReverse = !sortReverse">
+	      <a href="" ng-click="sortType = 'champion_id'; sortReverse = !sortReverse">
 		Champion
 	    </td>
       <td>
-        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+        <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
     Name
       </td>
 	    <td>
-	      <a href="#" ng-click="sortType = 'role'; sortReverse = !sortReverse">
+	      <a href="" ng-click="sortType = 'role'; sortReverse = !sortReverse">
 		Role
 	    </td>
+	    <td>Recommended Items</td>
 	  </tr>
 	</thead>
 
 	<tbody>
 	  {% verbatim %}
 	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse">
-      <td><img ng-src="{{ champion.image }}"></td>
-	    <td><a ng-href="{{ champion.champion_id }}">{{ champion.champion_id}}</a></td>
-	    <td>{{ champion.name }}</td>
+      <td><a ng-href="{{ champion.champion_id }}"><img ng-src="{{ champion.image }}"></a></td>
+	    <td>{{ champion.champion_id}}</td>
+	    <td><a ng-href="{{ champion.champion_id }}">{{ champion.name }}</a></td>
 	    <td>{{ champion.role }}</td>
+	    <td>{{ champion.recommended_items }}</td>
 	  </tr>
 	  {% endverbatim %}
 	</tbody>

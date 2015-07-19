@@ -30,6 +30,9 @@ before_script:
 
 script:
     - date
+    - ./nohupserver.sh
+    - ls -al
+    - python3 manage.py test
     - ls -al
     - pydoc3 -w ./app/models.py
     - ls -al

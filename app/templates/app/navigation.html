@@ -1,0 +1,43 @@
+<!-- Navigation -->
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand page-scroll" href="{% include "app/url.html" %}">
+        <i class="fa fa-play-circle"></i>  <span class="light">League of</span> Downing
+      </a>
+    </div>
+    
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+      <ul class="nav navbar-nav">
+        <li class="hidden">
+          <a href="#page-top"></a>
+        </li>
+        <li>
+          <a class="page-scroll" href="{% include "app/url.html" %}/players/">Players</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="{% include "app/url.html" %}/champions/">Champions</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="{% include "app/url.html" %}/items/">Items</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="{% include "app/url.html" %}/about/">About</a>
+        </li>
+	<li>
+	  <a class="page-scroll" href="{% include "app/url.html" %}/search/">Search</a>
+	</li>
+	<li>
+	  <a class="page-scroll" href="{% include "app/url.html" %}/artists/">Artists</a>
+	</li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
