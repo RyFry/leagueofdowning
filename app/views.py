@@ -13,6 +13,8 @@ import requests
 
 from django.db.models import Q
 
+from haystack.query import SearchQuerySet
+
 
 
 # Create your views here.
@@ -38,9 +40,34 @@ def error(request):
     return HttpResponse(template.render(context))
 
 def search(request):
-    template = loader.get_template('search/search.html')
+    template = loader.get_template('app/searchpage.html')
     context = RequestContext(request, {})
     return HttpResponse(template.render(context))
+
+def search_results(request, query):
+    template = loader.get_template('app/searchresults.html')
+
+    # We want to search for terms separated by ' ' individually
+    query_list = query.split(" ")
+    
+    query_result = list(SearchQuerySet().filter(content=query))
+#    for q in query_list:
+#        query_result += list(SearchQuerySet().filter(name=q))
+
+    data_to_send = []
+    for i in range(len(query_result)):
+        data_to_send += [{ 'name' : query_result[i].name,
+                           'role' : query_result[i].role,
+                           'link' : 'http://leagueofdowning.me/champions/' + str(query_result[i].champion_id)}]
+       
+
+    
+    context = RequestContext(request, {
+        'query_string' : query,
+        'found_entries' : data_to_send,
+    })
+    return HttpResponse(template.render(context))
+    
 
 #
 # Table Pages
@@ -85,7 +112,9 @@ def champion(request, id):
 
             itemlist = []
             for row1 in result1:
-                itemlist.append(row1['item_id'])
+                item = engine.execute('select item_id, image from "Item" where item_id= %s' % row1['item_id'])
+                for i in item:
+                    itemlist.append({'image' : i['image'], 'item_id' : i['item_id']})
 
             jsonout = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': re.sub("5.13.1", "5.2.1", row['image']), 'passive_name': row['passive_name'], 'passive_image': re.sub("5.13.1", "5.2.1", row['passive_image']), 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': re.sub("5.13.1", "5.2.1", row['q_image']), 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': re.sub("5.13.1", "5.2.1", row['w_image']), 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': re.sub("5.13.1", "5.2.1", row['e_image']), 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': re.sub("5.13.1", "5.2.1", row['r_image']), 'r_description': row['r_description'], 'recommended_items': itemlist}
 
@@ -120,18 +149,23 @@ def item(request, id):
 
         for row in result:
             item_id = row['item_id']
-            intoresult = engine.execute('select into_id from "ItemToItem" where from_id = %d' % int(item_id))
-            fromresult = engine.execute('select from_id from "ItemToItem" where into_id = %d' % int(item_id))
+            intoresult = engine.execute('select into_id as item_id from "ItemToItem" where from_id = %d' % int(item_id))
+            fromresult = engine.execute('select from_id as item_id from "ItemToItem" where into_id = %d' % int(item_id))
 
             intolist = []
             for row1 in intoresult:
-                intolist.append(row1['into_id'])
+                item = engine.execute('select item_id, image from "Item" where item_id= %s' % row1['item_id'])
+                for i in item:
+                    intolist.append({'image' : i['image'], 'item_id' : i['item_id']})
 
             fromlist = []
             for row2 in fromresult:
-                fromlist.append(row2['from_id'])
+                item = engine.execute('select item_id, image from "Item" where item_id= %s' % row2['item_id'])
+                for i in item:
+                    fromlist.append({'image' : i['image'], 'item_id' : i['item_id']})
 
-            jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:], 'from_items' : fromlist, 'into_items' : intolist}
+                
+            jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:], 'from_items' : fromlist, 'into_items' : intolist, 'num_from' : str(max(2, 12 // max(len(fromlist), 1))), 'num_into' : str(max(2, 12 // max(len(intolist), 1))) }
 
         if jsonout == {}:
             template = loader.get_template('app/error.html')
