@@ -5,7 +5,7 @@ from django.utils.html import format_html
 from django.conf import settings
 
 # -------------
-# Champion_model
+# model
 # -------------
 
 class Champion(models.Model):
@@ -16,35 +16,35 @@ class Champion(models.Model):
     class Meta:
         db_table = 'Champion'
 
-    champion_id = models.IntegerField(default=0)
-    champion_name = models.CharField(max_length=200)
-    champion_role = models.CharField(max_length=100)
-    champion_title = models.CharField(max_length=100)
-    champion_lore = models.CharField(max_length=5000)
-    champion_image = models.CharField(max_length=100)
-    champion_passive_name = models.CharField(max_length=100)
-    champion_passive_image = models.CharField(max_length=100)
-    champion_passive_description = models.CharField(max_length=1000)
-    champion_q_name = models.CharField(max_length=100)
-    champion_q_image = models.CharField(max_length=100)
-    champion_q_description = models.CharField(max_length=1000)
-    champion_w_name = models.CharField(max_length=100)
-    champion_w_image = models.CharField(max_length=100)
-    champion_w_description = models.CharField(max_length=1000)
-    champion_e_name = models.CharField(max_length=100)
-    champion_e_image = models.CharField(max_length=100)
-    champion_e_description = models.CharField(max_length=1000)
-    champion_r_name = models.CharField(max_length=100)
-    champion_r_image = models.CharField(max_length=100)
-    champion_r_description = models.CharField(max_length=1000)
-    champion_recommended_items = models.CharField(max_length=1000)
+    id = models.IntegerField(default=0)
+    name = models.CharField(max_length=200)
+    role = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    lore = models.CharField(max_length=5000)
+    image = models.CharField(max_length=100)
+    passive_name = models.CharField(max_length=100)
+    passive_image = models.CharField(max_length=100)
+    passive_description = models.CharField(max_length=1000)
+    q_name = models.CharField(max_length=100)
+    q_image = models.CharField(max_length=100)
+    q_description = models.CharField(max_length=1000)
+    w_name = models.CharField(max_length=100)
+    w_image = models.CharField(max_length=100)
+    w_description = models.CharField(max_length=1000)
+    e_name = models.CharField(max_length=100)
+    e_image = models.CharField(max_length=100)
+    e_description = models.CharField(max_length=1000)
+    r_name = models.CharField(max_length=100)
+    r_image = models.CharField(max_length=100)
+    r_description = models.CharField(max_length=1000)
+    recommended_items = models.CharField(max_length=1000)
 
 
     def get_absolute_url(self):
-        return "/champions/%s/" % self.champion_name
+        return "/champions/%s/" % self.name
 
     def __str__ (self):
-        return self.champion_name
+        return self.name
 
 
 # ------------
@@ -118,8 +118,8 @@ This is where the models are registered. Only the text fields can be registered 
 occur. 
 """
 
-#watson.register(Champion,fields=("champion_name","champion_role", "champion_lane", "champion_counters", 
-#                                    "champion_items", "champion_abilities"))
+#watson.register(Champion,fields=("name","role", "lane", "counters", 
+#                                    "items", "abilities"))
 
 #watson.register(Player,fields=("player_name","player_age","player_position", "total_wins", "season_wins", 
 #                               "season_losses", "team_name", "average_kda", "average_gold_match", 
