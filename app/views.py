@@ -38,7 +38,7 @@ def error(request):
     return HttpResponse(template.render(context))
 
 def search(request):
-    template = loader.get_template('app/searchpage.html')
+    template = loader.get_template('search/search.html')
     context = RequestContext(request, {})
     return HttpResponse(template.render(context))
 
