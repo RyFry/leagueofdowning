@@ -9,7 +9,7 @@ from app.models import *
 
 class ChampionIndex (indexes.SearchIndex, indexes.Indexable) :
     text = indexes.CharField(document=True, use_template=True)
-    id = models.IntegerField(model_attr='champion_id')
+    id = indexes.IntegerField(model_attr='champion_id')
     name = indexes.CharField(model_attr='champion_name')
     role = indexes.CharField(model_attr='champion_role')
     title = indexes.CharField(model_attr='champion_title')
