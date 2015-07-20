@@ -308,7 +308,7 @@ def Champion_List_API(request):
         itemNameList = []
         for row1 in result1:
             itemlist.append(row1['item_id'])
-            itemListName.append(row1['name'])
+            itemNameList.append(row1['name'])
         dic['recommended_items'] = itemlist
         dic_name['recommended_item_names'] = itemNameList
 
