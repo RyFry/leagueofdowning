@@ -54,7 +54,9 @@ def search_results(request):
     # We want to search for terms separated by ' ' individually
     query_list = query.split(" ")
 
-    query_result = SearchQuerySet().all().filter(champion_name=query).load_all().highlight()
+    sqs = SearchQuerySet().all()
+
+    query_result = sqs.filter(champion_name__in=query_list).load_all().highlight()
 
     and_data = []
     for q in query_result:
@@ -77,10 +79,11 @@ def search_results(request):
     or_data = {}
     if len(query_list) > 1:
         for q in query_list:
-            query_result = SearchQuerySet().all().filter(champion_name=q).load_all().highlight()
+            sqs = SearchQuerySet().all()
+            query_result = sqs.filter(champion_name=q).load_all().highlight()
             for r in query_result:
-                if len(list(filter(lambda v : v['page_title'].lower() == r.champion_name.lower(), and_data))) == 0:
-                    or_data[q] = {
+                if len(list(filter(lambda v : v['image'] == r.champion_image, and_data))) == 0:
+                    data = {
                         'result' : r,
                         'page_title' : r.highlighted.champion_name if r.highlighted else r.champion_name,
                         'role' : r.highlighted.champion_role if r.highlighted else r.champion_role,
@@ -93,9 +96,11 @@ def search_results(request):
                         'r_name' : r.highlighted.r_name if r.highlighted else r.r_name,
                         'image'  : r.champion_image,
                     }
-                    
-       
 
+                    if q not in or_data:
+                        or_data[q] = [data]
+                    else:
+                        or_data[q] += [data]
     
     context = RequestContext(request, {
         'query_string' : query,
