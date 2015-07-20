@@ -137,7 +137,7 @@
 	    <td>{{ champion.champion_id}}</td>
 	    <td><a ng-href="{{ champion.champion_id }}">{{ champion.name }}</a></td>
 	    <td>{{ champion.role }}</td>
-	    <td>{{ champion.recommended_items }}</td>
+	    <td><p ng-repeat="item in champion.recommended_items"><a ng-href="http://leagueofdowning.me/items/{{ item }}">{{ item }}</a></p></td>
 	  </tr>
 	  {% endverbatim %}
 	</tbody>
