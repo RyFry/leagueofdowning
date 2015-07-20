@@ -314,7 +314,7 @@ def Champion_List_API(request):
             itemlist.append(row1['item_id'])
             itemNameList.append(row1['name'])
         dic['recommended_items'] = itemlist
-        dic_name['recommended_items_name'] = itemNameList
+        dic_name['recommended_item_names'] = itemNameList
 
     return HttpResponse(json.dumps(List), content_type='application/json')
 
