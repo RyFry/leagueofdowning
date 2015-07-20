@@ -46,7 +46,24 @@ class ChampionIndex (indexes.SearchIndex, indexes.Indexable) :
 # -----------------
 # Item Search Index
 # -----------------
+class Item(indexes.SearchIndex, indexes.Indexable):
+    text = indexes.CharField(document=True, use_template=True)
+    id = indexes.IntegerField(model_attr= 'item_id')
+    name = indexes.CharField(model_attr= 'name')
+    description = indexes.CharField(model_attr= 'description')
+    base_gold = indexes.IntegerField(model_attr= 'base_gold')
+    sell_gold = indexes.IntegerField(model_attr= 'sell_gold')
+    total_gold = indexes.IntegerField(model_attr= 'total_gold')
+    image = indexes.CharField(model_attr= 'image')
 
+    def get_model (self) :
+        return Item
+
+    def index_queryset (self, using=None) :
+        """
+        Used when the entire index for model is updated
+        """
+        return self.get_model().objects
 
 
 

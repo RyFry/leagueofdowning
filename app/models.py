@@ -15,15 +15,14 @@ class Item(models.Model):
     The __str__ method is used to return the item name. 
     The get_absolute_url method overrides the default url so that watson get the correct url as a link. 
     """
-    item_id = models.IntegerField(default=0)
-    item_name = models.CharField(max_length=200)
-    item_description = models.CharField(max_length=5000)
-    item_base_gold = models.IntegerField(default=0)
-    item_sell_gold = models.IntegerField(default=0)
-    item_total_gold = models.IntegerField(default=0)
-    item_image = models.CharField(max_length=100)
-    item_from_items = models.CharField(max_length=100)
-    item_into_items = models.CharField(max_length=100)
+    item_id = models.IntegerField(default=0, db_column = 'item_id')
+    name = models.CharField(max_length=200, db_column = 'name')
+    description = models.CharField(max_length=5000, db_column = 'description')
+    base_gold = models.IntegerField(default=0, db_column = 'base_gold')
+    sell_gold = models.IntegerField(default=0, db_column = 'sell_gold')
+    total_gold = models.IntegerField(default=0, db_column = 'total_gold')
+    image = models.CharField(max_length=100, db_column = 'image')
+
 
     def get_absolute_url(self):
         return "/items/%d/" % self.item_name
@@ -31,6 +30,14 @@ class Item(models.Model):
     def __str__ (self):
         return self.item_name
 
+
+class ItemToItem(models.Model):
+    class Meta:
+        db_table = 'ItemToItem'
+
+    id = models.IntegerField(primary_key = True)
+    from_id = models.ForeignKey(Item)
+    into_id = models.ForeignKey(Item)
 
 
 # -------------
@@ -111,6 +118,7 @@ class Player(models.Model):
     gpm = models.FloatField(default=0, db_column = 'gpm')
     total_gold = models.IntegerField(default=0, db_column = 'total_gold')
     games_played = models.IntegerField(default=0, db_column = 'games_played')
+
 
 
     """
