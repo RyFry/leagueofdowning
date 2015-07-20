@@ -95,19 +95,22 @@ class Player(models.Model):
     The __str__ method is used to return the name of the player.
     The get_absolute_url method overrides the default url so that watson get the correct url as a link.
     """
-    player_id = models.IntegerField(default=0)
-    player_first_name = models.CharField(max_length=100)
-    player_last_name = models.CharField(max_length=100)
-    player_team_name = models.CharField(max_length=100)
-    player_ign = models.CharField(max_length=100)
-    player_bio = models.CharField(max_length=5000)
-    player_image = models.CharField(max_length=100)
-    player_role = models.CharField(max_length=100)
-    player_kda = models.FloatField(default=0)
-    player_gpm = models.FloatField(default=0)
-    player_total_gold = models.IntegerField(default=0)
-    player_games_played = models.IntegerField(default=0)
-    player_most_played_champions = models.CharField(max_length=1000)
+
+    class Meta:
+        db_table = 'Champion'
+
+    player_id = models.IntegerField(default=0, db_column = 'player_id')
+    first_name = models.CharField(max_length=100, db_column = 'first_name')
+    last_name = models.CharField(max_length=100, db_column = 'last_name')
+    team_name = models.CharField(max_length=100, db_column = 'team_name')
+    ign = models.CharField(max_length=100, db_column = 'ign')
+    bio = models.CharField(max_length=5000, db_column = 'bio')
+    image = models.CharField(max_length=100,db_column = 'image')
+    role = models.CharField(max_length=100, db_column = 'role')
+    kda = models.FloatField(default=0, db_column = 'kda')
+    gpm = models.FloatField(default=0, db_column = 'gpm')
+    total_gold = models.IntegerField(default=0, db_column = 'total_gold')
+    games_played = models.IntegerField(default=0, db_column = 'games_played')
 
 
     """
@@ -118,25 +121,15 @@ class Player(models.Model):
     def __str__ (self):
         return self.player_name
 
+class PlayerToChampion(models.Model):
+    class Meta:
+        db_table = 'PlayerToChampion'
+
+    id = models.IntegerField(primary_key = True)
+    player_id = models.ForeignKey(Player)
+    champion_id = models.ForeignKey(Champion)
 
 
 
-#import watson
 
-"""
-This is where the models are registered. Only the text fields can be registered or else and error will
-occur. 
-"""
 
-#watson.register(Champion,fields=("name","role", "lane", "counters", 
-#                                    "items", "abilities"))
-
-#watson.register(Player,fields=("player_name","player_age","player_position", "total_wins", "season_wins", 
-#                               "season_losses", "team_name", "average_kda", "average_gold_match", 
-#                               "average_gold_total", "pref_champions" ))
-
-#watson.register(Item,fields=("item_name", "item_stats", "recommended_for", "item_cost", "item_recipe"))
-
-# watson.register(Champion)
-# watson.register(Player)
-# watson.register(Item)

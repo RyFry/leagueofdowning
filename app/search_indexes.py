@@ -53,3 +53,28 @@ class ChampionIndex (indexes.SearchIndex, indexes.Indexable) :
 # -------------------
 # Player Search Index
 # -------------------
+class Player(indexes.SearchIndex, indexes.Indexable):
+    text = indexes.CharField(document=True, use_template=True)
+    id = indexes.IntegerField(model_attr= 'player_id')
+    first_name = indexes.CharField(model_attr= 'first_name')
+    last_name = indexes.CharField(model_attr= 'last_name')
+    team_name = indexes.CharField(model_attr= 'team_name')
+    ign = indexes.CharField(model_attr= 'ign')
+    bio = indexes.CharField(model_attr= 'bio')
+    image = indexes.CharField(model_attr= 'image')
+    role = indexes.CharField(model_attr= 'role')
+    kda = indexes.FloatField(model_attr= 'kda')
+    gpm = indexes.FloatField(model_attr= 'gpm')
+    total_gold = indexes.IntegerField(model_attr= 'total_gold')
+    games_played = indexes.IntegerField(model_attr= 'games_played')
+
+
+    
+    def get_model (self) :
+        return Player
+
+    def index_queryset (self, using=None) :
+        """
+        Used when the entire index for model is updated
+        """
+        return self.get_model().objects
