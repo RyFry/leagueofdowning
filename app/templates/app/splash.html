@@ -2,9 +2,25 @@
 <html lang="en">
     <head>
         {% include "app/header.html" %}
-        <!-- Warming Up -->
-        <link href='http://fonts.googleapis.com/css?family=Buenard:700' rel='stylesheet' type='text/css'>
-        <script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
+        <!-- Video CSS -->  
+        <style type="text/css">
+            .vid-background {
+            background-image: url("http://i.imgur.com/BNIm5ov.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+            .video-section .pattern-overlay {
+            padding: 110px 0 32px;
+            min-height: 496px; 
+            /* Incase of overlay problems just increase the min-height*/
+            }
+            .video-section .buttonBar{display:none;}
+            .player {font-size: 1px;}
+            .scroll-mod {
+            position: relative;
+            top: 200px;
+            }
+        </style>
 	<title>
 	  League of Downing
 	</title>
@@ -55,25 +71,26 @@
       </div>
       <!-- /.container -->
     </nav>
-    
 
-
-        <header class="intro">
-            <div class="intro-body">
-                <div class="container">
-                    <div class="row">
-                        <!-- <div class="col-md-8 col-md-offset-2"> -->
-                        <div class="product-img">
-                            <img class="jumbotronwidth center-block" src="http://i.imgur.com/BNIm5ov.png">
-                        </div>
-                        <a href="#players" class="btn btn-circle page-scroll">
+    <!-- Intro with Video -->
+    <header class="intro">
+        <div class="intro-body">
+            <!--Video Section-->
+            <section class="content-section video-section vid-background" >
+                <div class="pattern-overlay">
+                    <div>
+                        <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=vzHrjOMfHPY',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+                    </div>
+                    <div>
+                        <a href="#players" class="btn btn-circle page-scroll scroll-mod">
                         <i class="fa fa-angle-double-down animated"></i>
                         </a>
-                        <!-- </div> -->
                     </div>
                 </div>
-            </div>
-        </header>
+            </section>
+            <!--Video Section Ends Here-->
+        </div>
+    </header>
 
         <!-- Players Section -->
         <section id="players" class="container content-section text-center">
@@ -139,5 +156,13 @@
             </div>
         </footer>
         {% include "app/footer.html" %}
+        <script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+            
+               $(".player").mb_YTPlayer();
+            
+            });
+        </script>
     </body>
 </html>
