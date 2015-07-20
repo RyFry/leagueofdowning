@@ -53,8 +53,10 @@ def search_results(request):
 
     # We want to search for terms separated by ' ' individually
     query_list = query.split(" ")
-    
-    query_result = SearchQuerySet().all().filter(champion_name=query).load_all().highlight()
+
+    sqs = SearchQuerySet().all()
+
+    query_result = sqs.filter(champion_name__in=query_list).load_all().highlight()
 
     and_data = []
     for q in query_result:
@@ -73,29 +75,32 @@ def search_results(request):
                     'image'  : q.champion_image,
                 }
             ]
-            
+
     or_data = {}
     if len(query_list) > 1:
         for q in query_list:
-            query_result = SearchQuerySet().all().filter(champion_name=q).load_all().highlight()
+            sqs = SearchQuerySet().all()
+            query_result = sqs.filter(champion_name=q).load_all().highlight()
             for r in query_result:
-                if len(list(filter(lambda v : v['page_title'].lower() == r.champion_name.lower(), and_data))) == 0:
-                    or_data[q] = [
-                        {
-                            'page_title' : r.highlighted.champion_name if r.highlighted else r.champion_name,
-                            'role' : r.highlighted.champion_role if r.highlighted else r.champion_role,
-                            'link' : 'http://leagueofdowning.me/champions/' + str(r.champion_id),
-                            'lore' : (r.highlighted.lore[:500] if r.highlighted else r.lore[:500]) if r.lore is not None else '',
-                            'passive_name' : r.highlighted.passive_name if r.highlighted else r.passive_name,
-                            'q_name' : r.highlighted.q_name if r.highlighted else r.q_name,
-                            'w_name' : r.highlighted.w_name if r.highlighted else r.w_name,
-                            'e_name' : r.highlighted.e_name if r.highlighted else r.e_name,
-                            'r_name' : r.highlighted.r_name if r.highlighted else r.r_name,
-                            'image'  : r.champion_image,
-                        }
-                    ]
-       
+                if len(list(filter(lambda v : v['image'] == r.champion_image, and_data))) == 0:
+                    data = {
+                        'result' : r,
+                        'page_title' : r.highlighted.champion_name if r.highlighted else r.champion_name,
+                        'role' : r.highlighted.champion_role if r.highlighted else r.champion_role,
+                        'link' : 'http://leagueofdowning.me/champions/' + str(r.champion_id),
+                        'lore' : (r.highlighted.lore[:500] if r.highlighted else r.lore[:500]) if r.lore is not None else '',
+                        'passive_name' : r.highlighted.passive_name if r.highlighted else r.passive_name,
+                        'q_name' : r.highlighted.q_name if r.highlighted else r.q_name,
+                        'w_name' : r.highlighted.w_name if r.highlighted else r.w_name,
+                        'e_name' : r.highlighted.e_name if r.highlighted else r.e_name,
+                        'r_name' : r.highlighted.r_name if r.highlighted else r.r_name,
+                        'image'  : r.champion_image,
+                    }
 
+                    if q not in or_data:
+                        or_data[q] = [data]
+                    else:
+                        or_data[q] += [data]
     
     context = RequestContext(request, {
         'query_string' : query,
