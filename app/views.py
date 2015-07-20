@@ -364,14 +364,16 @@ def Player_List_API(request):
     List = {}
     for row in result:
         player_name = row['player_id']
-        result1 = engine.execute('select champion_id from "PlayerToChampion" where player_id = %d' % player_name)
+        result1 = engine.execute('select c.champion_id, c2.name from "PlayerToChampion" c inner join "Champion" c2 on c.champion_id = c2.champion_id where player_id = %d' % player_name)
 
         itemlist = []
+        itemNameList = []
         for row1 in result1:
             if row1['champion_id'] != 0 :
                 itemlist.append(row1['champion_id'])
+                itemNameList.append(row1['name'])
 
-        List[row['player_id']] = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': row['kda'], 'gpm': row['gpm'], 'total_gold': row['total_gold'], 'games_played': row['games_played'], 'most_played_champions' : itemlist}
+        List[row['player_id']] = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': row['kda'], 'gpm': row['gpm'], 'total_gold': row['total_gold'], 'games_played': row['games_played'], 'most_played_champions' : itemlist, 'most_played_champion_names' : itemNameList}
 
     return HttpResponse(json.dumps(List), content_type='application/json')
 
