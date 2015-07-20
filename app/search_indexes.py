@@ -9,12 +9,12 @@ from app.models import *
 
 class ChampionIndex (indexes.SearchIndex, indexes.Indexable) :
     text = indexes.CharField(document=True, use_template=True)
-    id = indexes.IntegerField(model_attr='champion_id')
-    name = indexes.CharField(model_attr='name')
-    role = indexes.CharField(model_attr='role')
+    champion_id = indexes.IntegerField(model_attr='champion_id')
+    champion_name = indexes.CharField(model_attr='name')
+    champion_role = indexes.CharField(model_attr='role')
     title = indexes.CharField(model_attr='title')
     lore = indexes.CharField(model_attr='lore')
-    image = indexes.CharField(model_attr='image')
+    champion_image = indexes.CharField(model_attr='image')
     passive_name = indexes.CharField(model_attr='passive_name')
     passive_image = indexes.CharField(model_attr='passive_image')
     passive_description = indexes.CharField(model_attr='passive_description')
@@ -48,13 +48,13 @@ class ChampionIndex (indexes.SearchIndex, indexes.Indexable) :
 # -----------------
 class Item(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-    id = indexes.IntegerField(model_attr= 'item_id')
-    name = indexes.CharField(model_attr= 'name')
-    description = indexes.CharField(model_attr= 'description')
+    item_id = indexes.IntegerField(model_attr= 'item_id')
+    item_name = indexes.CharField(model_attr= 'name')
+    item_description = indexes.CharField(model_attr= 'description')
     base_gold = indexes.IntegerField(model_attr= 'base_gold')
     sell_gold = indexes.IntegerField(model_attr= 'sell_gold')
     total_gold = indexes.IntegerField(model_attr= 'total_gold')
-    image = indexes.CharField(model_attr= 'image')
+    item_image = indexes.CharField(model_attr= 'image')
 
     def get_model (self) :
         return Item
@@ -72,14 +72,14 @@ class Item(indexes.SearchIndex, indexes.Indexable):
 # -------------------
 class Player(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-    id = indexes.IntegerField(model_attr= 'player_id')
+    player_id = indexes.IntegerField(model_attr= 'player_id')
     first_name = indexes.CharField(model_attr= 'first_name')
     last_name = indexes.CharField(model_attr= 'last_name')
     team_name = indexes.CharField(model_attr= 'team_name')
     ign = indexes.CharField(model_attr= 'ign')
     bio = indexes.CharField(model_attr= 'bio')
-    image = indexes.CharField(model_attr= 'image')
-    role = indexes.CharField(model_attr= 'role')
+    player_image = indexes.CharField(model_attr= 'image')
+    player_role = indexes.CharField(model_attr= 'role')
     kda = indexes.FloatField(model_attr= 'kda')
     gpm = indexes.FloatField(model_attr= 'gpm')
     total_gold = indexes.IntegerField(model_attr= 'total_gold')
