@@ -305,12 +305,16 @@ def Champion_List_API(request):
     for row in result:
         champ_name = row['champion_id']
         List[row['champion_id']] = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': re.sub("5.13.1", "5.2.1", row['image']), 'passive_name': row['passive_name'], 'passive_image': re.sub("5.13.1", "5.2.1", row['passive_image']), 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': re.sub("5.13.1", "5.2.1", row['q_image']), 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': re.sub("5.13.1", "5.2.1", row['w_image']), 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': re.sub("5.13.1", "5.2.1", row['e_image']), 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': re.sub("5.13.1", "5.2.1", row['r_image']), 'r_description': row['r_description']}
-        result1 = engine.execute('select item_id from "ChampionToItem" where champion_id = %s' % champ_name)
+        result1 = engine.execute('select c.item_id, i.name from "ChampionToItem" join "Item" on c.item_id = i.item_id where champion_id = %s' % champ_name)
         dic = List[champ_name]
+        dic_name = List[champ_name]
+        itemNameList = []
         itemlist = []
         for row1 in result1:
             itemlist.append(row1['item_id'])
+            itemNameList.append(row1['name'])
         dic['recommended_items'] = itemlist
+        dic_name['recommended_items_name'] = itemNameList
 
     return HttpResponse(json.dumps(List), content_type='application/json')
 
