@@ -15,6 +15,8 @@ from django.db.models import Q
 
 from haystack.query import SearchQuerySet
 
+from .search_indexes import Champion, Item, Player
+
 
 
 # Create your views here.
@@ -50,7 +52,7 @@ def search_results(request, query):
     # We want to search for terms separated by ' ' individually
     query_list = query.split(" ")
     
-    query_result = SearchQuerySet().filter(content=query).highlight()
+    query_result = SearchQuerySet().models(Champion).filter(content=query).highlight()
 #    for q in query_list:
 #        query_result += list(SearchQuerySet().filter(name=q))
 
@@ -73,7 +75,7 @@ def search_results(request, query):
     or_data = {}
     if len(query_list) > 1:
         for q in query_list:
-            query_result = SearchQuerySet().filter(content=q).highlight()
+            query_result = SearchQuerySet().models(Champion).filter(content=q).highlight()
             for r in query_result:
                 if len(list(filter(lambda v : v['page_title'] == r.name, and_data))) == 0:
                     or_data[q] = [
