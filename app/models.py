@@ -36,8 +36,8 @@ class ItemToItem(models.Model):
         db_table = 'ItemToItem'
 
     id = models.IntegerField(primary_key = True)
-    from_id = models.ForeignKey(Item)
-    into_id = models.ForeignKey(Item)
+    into_id = models.ForeignKey(Item, related_name='into_id')
+    from_id = models.ForeignKey(Item, related_name='from_id')
 
 
 # -------------
