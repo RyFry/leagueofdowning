@@ -15,6 +15,9 @@ class Item(models.Model):
     The __str__ method is used to return the item name. 
     The get_absolute_url method overrides the default url so that watson get the correct url as a link. 
     """
+    class Meta:
+        db_table = 'Item'
+
     item_id = models.IntegerField(default=0, db_column = 'item_id')
     name = models.CharField(max_length=200, db_column = 'name')
     description = models.CharField(max_length=5000, db_column = 'description')
