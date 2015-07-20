@@ -15,8 +15,6 @@ from django.db.models import Q
 
 from haystack.query import SearchQuerySet
 
-from .search_indexes import Champion, Item, Player
-
 
 
 # Create your views here.
@@ -52,41 +50,43 @@ def search_results(request, query):
     # We want to search for terms separated by ' ' individually
     query_list = query.split(" ")
     
-    query_result = SearchQuerySet().filter(content=query).load_all()
+    query_result = SearchQuerySet().filter(content=query).highlight()
+#    for q in query_list:
+#        query_result += list(SearchQuerySet().filter(name=q))
 
     and_data = []
-    for q in query_result:
+    for i in range(len(query_result)):
         and_data += [
             { 
-                'page_title' : q.highlighted.champion_name if q.highlighted else q.champion_name,
-                'role' : q.highlighted.champion_role if q.highlighted else q.champion_role,
-                'link' : 'http://leagueofdowning.me/champions/' + str(q.champion_id),
-                'lore' : q.highlight.lore[:690] if q.highlighted else q.lore[:690],
-                'passive_name' : q.highlight.passive_name if q.highlighted else q.passive_name,
-                'q_name' : q.highlight.q_name if q.highlighted else q.q_name,
-                'w_name' : q.highlight.w_name if q.highlighted else q.w_name,
-                'e_name' : q.highlight.e_name if q.highlighted else q.e_name,
-                'r_name' : q.highlight.r_name if q.highlighted else q.r_name,
+                'page_title' : query_result[i].highlighted.name if query_result[i].highlighted else query_result[i].name,
+                'role' : query_result[i].highlighted.role if query_result[i].highlighted else query_result[i].role,
+                'link' : 'http://leagueofdowning.me/champions/' + str(query_result[i].champion_id),
+                'lore' : query_result[i].highlight.lore[:600] if query_result[i].highlighted else query_result[i].lore[:600],
+                'passive_name' : query_result[i].highlight.passive_name if query_result[i].highlighted else query_result[i].passive_name,
+                'q_name' : query_result[i].highlight.q_name if query_result[i].highlighted else query_result[i].q_name,
+                'w_name' : query_result[i].highlight.w_name if query_result[i].highlighted else query_result[i].w_name,
+                'e_name' : query_result[i].highlight.e_name if query_result[i].highlighted else query_result[i].e_name,
+                'r_name' : query_result[i].highlight.r_name if query_result[i].highlighted else query_result[i].r_name,
             }
         ]
 
     or_data = {}
     if len(query_list) > 1:
         for q in query_list:
-            query_result = SearchQuerySet().filter(champion_name=q)
+            query_result = SearchQuerySet().filter(content=q).highlight()
             for r in query_result:
                 if len(list(filter(lambda v : v['page_title'] == r.name, and_data))) == 0:
                     or_data[q] = [
                         {
-                            'page_title' : q.highlighted.champion_name if q.highlighted else q.champion_name,
-                            'role' : q.highlighted.champion_role if q.highlighted else q.champion_role,
-                            'link' : 'http://leagueofdowning.me/champions/' + str(q.champion_id),
-                            'lore' : q.highlight.lore[:690] if q.highlighted else q.lore[:690],
-                            'passive_name' : q.highlight.passive_name if q.highlighted else q.passive_name,
-                            'q_name' : q.highlight.q_name if q.highlighted else q.q_name,
-                            'w_name' : q.highlight.w_name if q.highlighted else q.w_name,
-                            'e_name' : q.highlight.e_name if q.highlighted else q.e_name,
-                            'r_name' : q.highlight.r_name if q.highlighted else q.r_name,
+                            'page_title' : query_result[i].highlighted.name if query_result[i].highlighted else query_result[i].name,
+                            'role' : query_result[i].highlighted.role if query_result[i].highlighted else query_result[i].role,
+                            'link' : 'http://leagueofdowning.me/champions/' + str(query_result[i].champion_id),
+                            'lore' : query_result[i].highlight.lore[:600] if query_result[i].highlighted else query_result[i].lore[:600],
+                            'passive_name' : query_result[i].highlight.passive_name if query_result[i].highlighted else query_result[i].passive_name,
+                            'q_name' : query_result[i].highlight.q_name if query_result[i].highlighted else query_result[i].q_name,
+                            'w_name' : query_result[i].highlight.w_name if query_result[i].highlighted else query_result[i].w_name,
+                            'e_name' : query_result[i].highlight.e_name if query_result[i].highlighted else query_result[i].e_name,
+                            'r_name' : query_result[i].highlight.r_name if query_result[i].highlighted else query_result[i].r_name,
                         }
                     ]
        
@@ -296,16 +296,21 @@ def Champion_List_API(request):
     engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
 
     result = engine.execute('select * from "Champion" where name != \'dummy\'')
+    result_item = engine.execute('select item_id, name from "Item"')
     List = {}
     for row in result:
         champ_name = row['champion_id']
         List[row['champion_id']] = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': re.sub("5.13.1", "5.2.1", row['image']), 'passive_name': row['passive_name'], 'passive_image': re.sub("5.13.1", "5.2.1", row['passive_image']), 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': re.sub("5.13.1", "5.2.1", row['q_image']), 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': re.sub("5.13.1", "5.2.1", row['w_image']), 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': re.sub("5.13.1", "5.2.1", row['e_image']), 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': re.sub("5.13.1", "5.2.1", row['r_image']), 'r_description': row['r_description']}
-        result1 = engine.execute('select item_id from "ChampionToItem" where champion_id = %s' % champ_name)
+        result1 = engine.execute('select i.name, c.item_id from "ChampionToItem" c inner join "Item" i on i.item_id = c.item_id where c.champion_id = %s' % champ_name)
         dic = List[champ_name]
+        dic_name = List[champ_name]
         itemlist = []
+        itemNameList = []
         for row1 in result1:
             itemlist.append(row1['item_id'])
+            itemListName.append(row1['name'])
         dic['recommended_items'] = itemlist
+        dic_name['recommended_item_names'] = itemNameList
 
     return HttpResponse(json.dumps(List), content_type='application/json')
 
