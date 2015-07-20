@@ -1,9 +1,9 @@
-{{ champion.id }}
-{{ champion.name }}
-{{ champion.role }}
+{{ champion.champion_id }}
+{{ champion.champion_name }}
+{{ champion.champion_role }}
 {{ champion.title }}
 {{ champion.lore }}
-{{ champion.image }}
+{{ champion.champion_image }}
 {{ champion.passive_name }} 
 {{ champion.passive_image }} 
 {{ champion.passive_description }} 
@@ -19,4 +19,3 @@
 {{ champion.r_name }} 
 {{ champion.r_image }} 
 {{ champion.r_description }} 
-{{ champion.recommended_items }} 

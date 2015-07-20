@@ -1,9 +1,8 @@
-{{ item.id }} 
-{{ item.name }}
-{{ item.description }}
+{{ item.item_id }} 
+{{ item.item_name }}
+{{ item.item_description }}
 {{ item.base_gold }}
 {{ item.sell_gold }}
 {{ item.total_gold }}
-{{ item.image }}
-{{ item.from_items }}
-{{ item.into_items }}
+{{ item.item_image }}
+
