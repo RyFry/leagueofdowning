@@ -23,10 +23,10 @@
 	<div class="container">
 	  <div class="row">
 	    <div class="center-block">
-	      <h1>{{ name }} </h1>
+	      <h1>{{ name }}</h1>
 	    </div>
 	    <div class="center-block">
-	      <img src="{{ image }}" class="img-square" height="150px" width="150px" ><br>
+	      <img src="{{ image }}" class="img-square" height="150px" width="150px"><br>
 	      <a href="#item" class="btn btn-circle page-scroll">
 		<i class="fa fa-angle-double-down animated"></i>
 	      </a>
@@ -76,7 +76,7 @@
 	  {% for i in from_items %}
 	  <div class="col-sm-{{ num_from }}">
 	    <a href="{% include "app/url.html" %}/items/{{ i.item_id }}">
-	      <img src="{{ i.image }}" class="img-circle">
+	      <img src="{{ i.image }}" class="img-square">
 	    </a>
 	  </div>
 	  {% endfor %}
@@ -102,7 +102,7 @@
 	  {% for i in into_items %}
 	  <div class="col-sm-{{ num_into }}">
 	    <a href="{% include "app/url.html" %}/items/{{ i.item_id }}">
-	      <img src="{{ i.image }}" class="img-circle">
+	      <img src="{{ i.image }}" class="img-square">
 	    </a>
 	  </div>
 	  {% endfor %}

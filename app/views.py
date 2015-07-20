@@ -54,41 +54,44 @@ def search_results(request):
     # We want to search for terms separated by ' ' individually
     query_list = query.split(" ")
     
-    query_result = SearchQuerySet().filter(champion_name=query).load_all().highlight()
+    query_result = SearchQuerySet().all().filter(champion_name=query).load_all().highlight()
 
     and_data = []
     for q in query_result:
-        and_data += [
-            { 
-                'page_title' : q.highlighted.champion_name if q.highlighted else q.champion_name,
-                'role' : q.highlighted.champion_role if q.highlighted else q.champion_role,
-                'link' : 'http://leagueofdowning.me/champions/' + str(q.champion_id),
-                'lore' : q.highlight.lore[:690] if q.highlighted else q.lore[:690],
-                'passive_name' : q.highlight.passive_name if q.highlighted else q.passive_name,
-                'q_name' : q.highlight.q_name if q.highlighted else q.q_name,
-                'w_name' : q.highlight.w_name if q.highlighted else q.w_name,
-                'e_name' : q.highlight.e_name if q.highlighted else q.e_name,
-                'r_name' : q.highlight.r_name if q.highlighted else q.r_name,
-            }
-        ]
-
+        if q is not None:
+            and_data += [
+                { 
+                    'page_title' : q.highlighted.champion_name if q.highlighted else q.champion_name,
+                    'role' : q.highlighted.champion_role if q.highlighted else q.champion_role,
+                    'link' : 'http://leagueofdowning.me/champions/' + str(q.champion_id),
+                    'lore' : (q.highlighted.lore[:500] if q.highlighted else q.lore[:500]) if q.lore is not None else '',
+                    'passive_name' : q.highlighted.passive_name if q.highlighted else q.passive_name,
+                    'q_name' : q.highlighted.q_name if q.highlighted else q.q_name,
+                    'w_name' : q.highlighted.w_name if q.highlighted else q.w_name,
+                    'e_name' : q.highlighted.e_name if q.highlighted else q.e_name,
+                    'r_name' : q.highlighted.r_name if q.highlighted else q.r_name,
+                    'image'  : q.champion_image,
+                }
+            ]
+            
     or_data = {}
     if len(query_list) > 1:
         for q in query_list:
-            query_result = SearchQuerySet().filter(champion_name=q).load_all().highlight()
+            query_result = SearchQuerySet().all().filter(champion_name=q).load_all().highlight()
             for r in query_result:
-                if len(list(filter(lambda v : v['page_title'] == r.champion_name, and_data))) == 0:
+                if len(list(filter(lambda v : v['page_title'].lower() == r.champion_name.lower(), and_data))) == 0:
                     or_data[q] = [
                         {
                             'page_title' : r.highlighted.champion_name if r.highlighted else r.champion_name,
                             'role' : r.highlighted.champion_role if r.highlighted else r.champion_role,
                             'link' : 'http://leagueofdowning.me/champions/' + str(r.champion_id),
-                            'lore' : r.highlight.lore[:690] if r.highlighted else r.lore[:690],
-                            'passive_name' : r.highlight.passive_name if r.highlighted else r.passive_name,
-                            'q_name' : r.highlight.q_name if r.highlighted else r.q_name,
-                            'w_name' : r.highlight.w_name if r.highlighted else r.w_name,
-                            'e_name' : r.highlight.e_name if r.highlighted else r.e_name,
-                            'r_name' : r.highlight.r_name if r.highlighted else r.r_name,
+                            'lore' : (r.highlighted.lore[:500] if r.highlighted else r.lore[:500]) if r.lore is not None else '',
+                            'passive_name' : r.highlighted.passive_name if r.highlighted else r.passive_name,
+                            'q_name' : r.highlighted.q_name if r.highlighted else r.q_name,
+                            'w_name' : r.highlighted.w_name if r.highlighted else r.w_name,
+                            'e_name' : r.highlighted.e_name if r.highlighted else r.e_name,
+                            'r_name' : r.highlighted.r_name if r.highlighted else r.r_name,
+                            'image'  : r.champion_image,
                         }
                     ]
        
@@ -98,7 +101,7 @@ def search_results(request):
         'query_string' : query,
         'query_list' : query_list,
         'and_entries' : and_data,
-        'or_entries' : or_data
+        'or_entries' : or_data,
     })
     return HttpResponse(template.render(context))
     
@@ -148,7 +151,7 @@ def champion(request, id):
             for row1 in result1:
                 item = engine.execute('select item_id, image from "Item" where item_id= %s' % row1['item_id'])
                 for i in item:
-                    itemlist.append({'image' : i['image'], 'item_id' : i['item_id']})
+                    itemlist.append({'image' : re.sub("5.13.1", "5.2.1", i['image']), 'item_id' : i['item_id']})
 
             jsonout = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'], 'title': row['title'], 'lore': row['lore'],  'image': re.sub("5.13.1", "5.2.1", row['image']), 'passive_name': row['passive_name'], 'passive_image': re.sub("5.13.1", "5.2.1", row['passive_image']), 'passive_description': row['passive_description'], 'q_name': row['q_name'], 'q_image': re.sub("5.13.1", "5.2.1", row['q_image']), 'q_description': row['q_description'], 'w_name': row['w_name'], 'w_image': re.sub("5.13.1", "5.2.1", row['w_image']), 'w_description': row['w_description'], 'e_name': row['e_name'], 'e_image': re.sub("5.13.1", "5.2.1", row['e_image']), 'e_description': row['e_description'], 'r_name': row['r_name'], 'r_image': re.sub("5.13.1", "5.2.1", row['r_image']), 'r_description': row['r_description'], 'recommended_items': itemlist}
 
@@ -190,13 +193,13 @@ def item(request, id):
             for row1 in intoresult:
                 item = engine.execute('select item_id, image from "Item" where item_id= %s' % row1['item_id'])
                 for i in item:
-                    intolist.append({'image' : i['image'], 'item_id' : i['item_id']})
+                    intolist.append({'image' : re.sub("5.13.1", "5.2.1", i['image']), 'item_id' : i['item_id']})
 
             fromlist = []
             for row2 in fromresult:
                 item = engine.execute('select item_id, image from "Item" where item_id= %s' % row2['item_id'])
                 for i in item:
-                    fromlist.append({'image' : i['image'], 'item_id' : i['item_id']})
+                    fromlist.append({'image' : re.sub("5.13.1", "5.2.1", i['image']), 'item_id' : i['item_id']})
 
                 
             jsonout = {'item_id': row['item_id'], 'name': row['name'], 'description': row['description'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:], 'from_items' : fromlist, 'into_items' : intolist, 'num_from' : str(max(2, 12 // max(len(fromlist), 1))), 'num_into' : str(max(2, 12 // max(len(intolist), 1))) }
@@ -236,7 +239,7 @@ def player(request, id):
                 champ = engine.execute('select champion_id, image from "Champion" where champion_id= %s' % row1['champion_id'])
                 for i in champ:
                     if row1['champion_id'] != 0 :
-                        champlist.append({'champion_id' : i['champion_id'], 'image' : i['image']})
+                        champlist.append({'champion_id' : i['champion_id'], 'image' : re.sub("5.13.1", "5.2.1", i['image'])})
 
 
             jsonout = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': round(row['kda'], 2), 'gpm': round(row['gpm'], 2), 'total_gold': row['total_gold'], 'games_played': row['games_played'], 'most_played_champions' : champlist}
