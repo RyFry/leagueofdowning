@@ -97,7 +97,7 @@ class Player(models.Model):
     """
 
     class Meta:
-        db_table = 'Champion'
+        db_table = 'Player'
 
     player_id = models.IntegerField(default=0, db_column = 'player_id')
     first_name = models.CharField(max_length=100, db_column = 'first_name')
