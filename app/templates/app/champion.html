@@ -54,7 +54,7 @@
 	
         <div class="row">
           <div class="col-sm-2">
-            <img src="{{ passive_image }}" class="img-circle">
+            <img src="{{ passive_image }}" class="img-square">
           </div>
           <div class="col-sm-10">
             <h4>Passive: {{ passive_name }}</h4>
@@ -64,7 +64,7 @@
 
         <div class="row">
           <div class="col-sm-2">
-            <img src="{{ q_image }}" class="img-circle">
+            <img src="{{ q_image }}" class="img-square">
           </div>
           <div class="col-sm-10">
             <h4>Q: {{ q_name }}</h4>
@@ -74,7 +74,7 @@
 
         <div class="row">
           <div class="col-sm-2">
-            <img src="{{ w_image }}" class="img-circle">
+            <img src="{{ w_image }}" class="img-square">
           </div>
           <div class="col-sm-10">
             <h4>W: {{ w_name }}</h4>
@@ -84,7 +84,7 @@
 
         <div class="row">
           <div class="col-sm-2">
-            <img src="{{ e_image }}" class="img-circle">
+            <img src="{{ e_image }}" class="img-square">
           </div>
           <div class="col-sm-10">
             <h4>E: {{ e_name }}</h4>
@@ -94,7 +94,7 @@
 
         <div class="row">
           <div class="col-sm-2">
-            <img src="{{ r_image }}" class="img-circle">
+            <img src="{{ r_image }}" class="img-square">
           </div>
           <div class="col-sm-10">
             <h4>R: {{ r_name }}</h4>
@@ -112,7 +112,7 @@
 	  {% for i in recommended_items %}
 	  <div class="col-sm-4">
 	    <a href="{% include "app/url.html" %}/items/{{ i.item_id }}">
-	      <img src="{{ i.image }}" class="img-circle">
+	      <img src="{{ i.image }}" class="img-square">
 	    </a>
 	  </div>
 	  {% endfor %}

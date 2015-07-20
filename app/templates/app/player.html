@@ -67,13 +67,13 @@
 <!--
             Most played champions:<br>
             <div class="col-sm-4">
-              <img src="{{ most_played.first }}" height="120px" width="120px" class="img-circle">
+              <img src="{{ most_played.first }}" height="120px" width="120px" class="img-square">
             </div>
             <div class="col-sm-4">
-              <img src="{{ most_played.second }}" height="120px" width="120px" class="img-circle">
+              <img src="{{ most_played.second }}" height="120px" width="120px" class="img-square">
             </div>
             <div class="col-sm-3">
-              <img src="{{ most_played.third }}" height="120px" width="120px" class="img-circle">
+              <img src="{{ most_played.third }}" height="120px" width="120px" class="img-square">
             </div>
 -->
           </div>
@@ -89,7 +89,7 @@
 	  {% for i in most_played_champions %}
 	  <div class="col-sm-4">
 	    <a href="{% include "app/url.html" %}/champions/{{ i.champion_id }}">
-	      <img src="{{ i.image }}" class="img-circle">
+	      <img src="{{ i.image }}" class="img-square">
 	    </a>
 	  </div>
 	  {% endfor %}

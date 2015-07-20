@@ -2,40 +2,40 @@
 <html lang="en">
   <head>
     {% include "app/header.html" %}
-	 
-	 <script type="text/javascript">
-	   window.onload = function () {
-	      document.getElementById("search_button").onclick = function () {
-	         console.log("hello");
-	         query = document.getElementById("search_bar");
-	         if (query == null)
-	            console.log("uh oh");
-	         query_value = query.value.trim();
-	         query.value = "";
-	         if (query_value !== "")
-               window.location.replace("http://leagueofdowning.me/search/" + query_value);
-	      }
-	   }
-
-      function handle (e) {
-	      query = document.getElementById("search_bar");
-	      if (query == null)
-	         console.log("uh oh");
-	      query_value = query.value.trim();
-	      query.value = "";
-	      if (query_value !== "")
-         window.location.replace("http://leagueofdowning.me/search/" + query_value);
+    
+    <script type="text/javascript">
+      window.onload = function () {
+      document.getElementById("search_button").onclick = function () {
+      console.log("hello");
+      query = document.getElementById("search_bar");
+      if (query == null)
+      console.log("uh oh");
+      query_value = query.value.trim();
+      query.value = "";
+      if (query_value !== "")
+      window.location.replace("http://leagueofdowning.me/search/" + query_value);
+      }
       }
 
-	 </script>
+      function handle (e) {
+      query = document.getElementById("search_bar");
+      if (query == null)
+      console.log("uh oh");
+      query_value = query.value.trim();
+      query.value = "";
+      if (query_value !== "")
+      window.location.replace("http://leagueofdowning.me/search/" + query_value);
+      }
 
-	 <title>
-	   Search
-	 </title>
+    </script>
+
+    <title>
+      Search
+    </title>
   </head>
   <body>
     {% include "app/navigation.html" %}
-
+    <!--
     <header class="search">
       <section id="search" class="container content-section text-center">
 
@@ -50,39 +50,39 @@
                   <input id="search_bar" type="search" placeholder="search" class="form-control" onkeypress="handle">
                   <span class="input-group-btn">
                     <button id="search_button" class="btn btn-danger" type="button">
-				          Search
-				        </button>
+		      Search
+		    </button>
                   </span>
                 </div>
-                <!-- /input-group -->
+       
               </form>
-              <!-- /.max-width on this form -->
+       
 
             </div>
-            <!-- /.featurette-inner (display:table-cell) -->
+       
           </div>  
 
         </div>
       </section>
     </header>
-
+    -->
     <header class="search">
-       <section id="search" class="container content-section text-center">
-           <div class="container">
-               <div class="featurette">
+      <section id="search" class="container content-section text-center">
+        <div class="container">
+          <div class="featurette">
 
-                   <form class="search" role="search">
-                       <div class="input-group search">
-                           <input type="" class="form-control" placeholder="Search" name="q">
-                           <div class="input-group-btn">
-                               <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>  Search</button>
-                           </div>
-                       </div>
-                   </form>
-                   
-               </div>
-           </div>
-       </section>
+            <form class="search" role="search">
+              <div class="input-group search">
+                <input type="" class="form-control" placeholder="Search" name="q">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>  Search</button>
+                </div>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </section>
     </header>
 
 
@@ -91,50 +91,61 @@
     <section id="table" class="container content-section text-center">
       <div class="container">
         <!-- /.max-width on this form -->
-	     You searched for "{{ query_string }}" and the results are listed below.
-            
-	     {% for e in and_entries %}
+	<p>
+	  You searched for "{{ query_string }}" and the results are listed below.
+	</p>
+        
+	{% for e in and_entries %}
         <div class="row">
-          <div class="col-sm-12 text-left">
-	         <a href={{ e.link }}>
-		        <h4>{{ e.page_title }}</h4>
-              <b>Lore:</b>
-              {{ e.lore }} ...<br>
-              <b>Role:</b> {{ e.role }}<br>
-              <b>Abilities:</b> Passive: {{ e.passive_name }}, Q: {{ e.q_name }}, W: {{ e.w_name }}, E: {{ e.e_name }}, R: {{ e.r_name }}<br>
-              
-              
-	         </a>
-          </div>
+	  <a href={{ e.link }}>	 
+	    <div class="col-sm-2">
+	      <img src="{{ e.image }}">
+	    </div>
+	    <div class="col-sm-10 text-left">
+
+	      <h4>{{ e.page_title }}</h4>
+	      <b>Lore:</b>
+	      {{ e.lore }} ...<br>
+	      <b>Role:</b> {{ e.role }}<br>
+	      <b>Abilities:</b> Passive: {{ e.passive_name }}, Q: {{ e.q_name }}, W: {{ e.w_name }}, E: {{ e.e_name }}, R: {{ e.r_name }}<br>
+	      
+	      
+
+	    </div>
         </div>
-	     {% endfor %}
+	</a>	    
+	{% endfor %}
       </div>
     </section>
     {% endif %}
 
-    {% if query_list %}
+    {% if query_list|length > 1 %}
 
     <section id="table" class="container content-section text-center">
       {% for q in query_list %}
       <div class="container">
         <!-- /.max-width on this form -->
-	     You searched for "{{ q }}" and the results are listed below.
-            
-	     {% for e in or_entries.q %}
+	<p>
+	  You searched for "{{ q }}" and the results are listed below.
+	</p>
+        
+	{% for e in or_entries.q %}
         <div class="row">
-          <div class="col-sm-12 text-left">
-	         <a href={{ e.link }}>
-		        <h4>{{ e.page_title }}</h4>
+	  <a href={{ e.link }}>
+	    <div class="col-sm-2">
+	      <img src="{{ e.image }}">
+	    </div>
+            <div class="col-sm-12 text-left">
+
+	      <h4>{{ e.page_title }}</h4>
               <b>Lore:</b>
               {{ e.lore }} ...<br>
               <b>Role:</b> {{ e.role }}<br>
               <b>Abilities:</b> Passive: {{ e.passive_name }}, Q: {{ e.q_name }}, W: {{ e.w_name }}, E: {{ e.e_name }}, R: {{ e.r_name }}<br>
-              
-              
-	         </a>
-          </div>
+            </div>
+	  </a>
         </div>
-	     {% endfor %}
+	{% endfor %}
       </div>
       {% endfor %}
     </section>
