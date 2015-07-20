@@ -2,130 +2,133 @@
 
   <head>
     <title>Players</title>
-	{% include "app/header.html" %}
+	 {% include "app/header.html" %}
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script>
       var app = angular.module('app', []);
 
       app.controller('appController', function($scope, $http) {
-        $scope.items;
-        $scope.sortType = '';
-        $scope.sortReverse = false;
+      $scope.items;
+      $scope.sortType = '';
+      $scope.sortReverse = false;
 
-        $http.get("http://leagueofdowning.me/api/players/").then(function(response) {
-          $scope.players = response.data;
-        })
+      $http.get("http://leagueofdowning.me/api/players/").then(function(response) {
+      $scope.players = response.data;
+      })
 
-        $http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
-          $scope.champions = response.data;
-        })
+      $http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
+      $scope.champions = response.data;
+      })
       });
 
       app.filter('orderObjectBy', function() {
-        return function(input, attribute, reverse) {
-          var array = [];
-          for (var objectKey in input) {
-            array.push(input[objectKey]);
-          };
-          array.sort(function(a, b) {
-            return (a[attribute] > b[attribute] ? 1 : -1);
-          });
-          if (reverse) array.reverse();
-          return array;
-        };
+      return function(input, attribute, reverse) {
+      var array = [];
+      for (var objectKey in input) {
+      array.push(input[objectKey]);
+      };
+      array.sort(function(a, b) {
+      return (a[attribute] > b[attribute] ? 1 : -1);
+      });
+      if (reverse) array.reverse();
+      return array;
+      };
       });
     </script>
 
-	</head>
-	
-	<body>
-	  {% include "app/navigation.html" %}
+  </head>
+  
+  <body>
+	 {% include "app/navigation.html" %}
 
-		<!-- Intro Header -->
-        <header class="intro">
-            <div class="intro-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <h1 class="brand-heading">Players</h1>
-                            
-                            <a href="#table" class="btn btn-circle page-scroll">
-                                <i class="fa fa-angle-double-down animated"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+	 <!-- Intro Header -->
+    <header class="intro">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <h1 class="brand-heading">Players</h1>
+              
+              <a href="#table" class="btn btn-circle page-scroll">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
             </div>
-        </header>
+          </div>
+        </div>
+      </div>
+    </header>
 
 
 
-		<!-- Section for tables of Items -->
-		<section id="table" class="container content-section text-center">
-	  <div class="container" ng-app="app" ng-controller="appController">
-<!--	    <div class="jumbotron">
-	      <div class="row placeholders">
-		<div class="col-xs-6 col-sm-9 placeholders">
-		  <h1>Players</h1>
-		</div>
-	      </div>
-	    </div>
--->	    
-	    <table class="table table-hover">
-	      <thead>
-		<div class="row">
-		  <tr>
-		    <div class="col-xs-6">
-		    	<td></td>
-		      <td>
-			<a href="" ng-click="sortType = 'player_id'; sortReverse = !sortReverse">
-			  Player
-		      </td>
-		    </div>
-		    <td>
-		      <a href="" ng-click="sortType = 'ign'; sortReverse = !sortReverse">
-			Name
-		    </td>
-		    <td>
-		      <a href="" ng-click="sortType = 'team_name'; sortReverse = !sortReverse">
-			Team Name
-		    </td>
-		    <td>
-		      <a href="" ng-click="sortType = 'role'; sortReverse = !sortReverse">
-			Role
-		    </td>
-		    <td>
-		      <a href="" ng-click="sortType = 'kda'; sortReverse = !sortReverse">
-			KDA
-		    </td>
-		    <td>
-		      <a href="" ng-click="sortType = 'gpm'; sortReverse = !sortReverse">
-			GPM
-		    </td>
-		  </tr>
-		</div>
-	      </thead>
-	      
-	      <tbody>
-		{% verbatim %}
-		<tr ng-repeat="player in players | orderObjectBy:sortType:sortReverse">
-		  <td><a ng-href="{{ player.player_id }}"><img ng-src="{{ player.image }}" height=100></a></td>
-		  <td>{{ player.player_id }}</td>
-		  <td><a ng-href="{{ player.player_id }}">{{ player.ign }}</a></td>
-		  <td>{{ player.team_name }}</td>
-		  <td>{{ player.role }}</td>
-		  <td>{{ player.kda }}</td>
-		  <td>{{ player.gpm }}</td>
-		</tr>
-		{% endverbatim %}
-	      </tbody>
-	      
-	    </table>
-	    
-	  </div>
-	</section>
-	  
-	</body>
-	{% include "app/footer.html" %}
+	 <!-- Section for tables of Items -->
+	 <section id="table" class="container content-section text-center">
+	   <div class="container" ng-app="app" ng-controller="appController">
+        <!--	    <div class="jumbotron">
+	                <div class="row placeholders">
+		               <div class="col-xs-6 col-sm-9 placeholders">
+		                 <h1>Players</h1>
+		               </div>
+	                </div>
+	     </div>
+        -->	    
+	     <table class="table table-hover">
+	       <thead>
+		      <div class="row">
+		        <tr>
+		          <div class="col-xs-6">
+		    	      <td></td>
+		            <td>
+			           <a href="" ng-click="sortType = 'player_id'; sortReverse = !sortReverse">
+			             Player
+		            </td>
+		          </div>
+		          <td>
+		            <a href="" ng-click="sortType = 'ign'; sortReverse = !sortReverse">
+			           Name
+		          </td>
+		          <td>
+		            <a href="" ng-click="sortType = 'team_name'; sortReverse = !sortReverse">
+			           Team Name
+		          </td>
+		          <td>
+		            <a href="" ng-click="sortType = 'role'; sortReverse = !sortReverse">
+			           Role
+		          </td>
+		          <td>
+		            <a href="" ng-click="sortType = 'kda'; sortReverse = !sortReverse">
+			           KDA
+		          </td>
+		          <td>
+		            <a href="" ng-click="sortType = 'gpm'; sortReverse = !sortReverse">
+			           GPM
+		          </td>
+		        </tr>
+		      </div>
+	       </thead>
+	       
+	       <tbody>
+		      {% verbatim %}
+
+		      <tr ng-repeat="player in players | orderObjectBy:sortType:sortReverse">
+              
+		        <td><a ng-href="{{ player.player_id }}"><img ng-src="{{ player.image }}" height=100></a></td>
+              <td>{{ player.player_id }}</td>
+		        <td><a ng-href="{{ player.player_id }}">{{ player.ign }}</a></td>
+		        <td>{{ player.team_name }}</td>
+		        <td>{{ player.role }}</td>
+		        <td>{{ player.kda|number:2 }}</td>
+		        <td>{{ player.gpm|number:2 }} <img src="http://a.deviantart.net/avatars/p/a/pay-attention.png?1" height=25px></td>
+              
+		      </tr>
+		      {% endverbatim %}
+	       </tbody>
+	       
+	     </table>
+	     
+	   </div>
+	 </section>
+	 
+  </body>
+  {% include "app/footer.html" %}
 </html>
 

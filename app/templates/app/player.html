@@ -46,18 +46,24 @@
         <div class="row">
           <div class="center-block">
             <h3>Stats</h3>
-            Bio: {{ bio|linebreaks }}
-            IGN: {{ ign|linebreaks }}
-            Team: {{ team_name|linebreaks }}
-            Role: {{ role|linebreaks }}
-            Games Played: {{ games_played|linebreaks }}
+            <h4>Bio:</h4> {{ bio|linebreaks }}
+            <h4>IGN:</h4> {{ ign|linebreaks }}
+            <h4>Team:</h4> {{ team_name|linebreaks }}
+            <h4>Role:</h4> {{ role|linebreaks }}
+            <h4>Games Played:</h4> {{ games_played|linebreaks }}
             
             <!-- Total Wins: {{ total_wins|linebreaks }}
             Season Record: {{ season_record|linebreaks }}
             Team: {{ team|linebreaks }} -->
-            Average KDA: {{ kda|linebreaks }}
-            Average Gold per Minute: {{ gpm|linebreaks }}
-            Average Total Gold: {{ total_gold|linebreaks }}
+            <h4>Average KDA:</h4> {{ kda|linebreaks }}
+            <h4>Average Gold per Minute:</h4> 
+            <p>
+              {{ gpm }}  <img src="http://a.deviantart.net/avatars/p/a/pay-attention.png?1" height=25px>
+            </p>
+            <h4>Average Total Gold:</h4>
+            <p>
+              {{ total_gold }} <img src="http://a.deviantart.net/avatars/p/a/pay-attention.png?1" height=25px>
+            </p>
 <!--
             Most played champions:<br>
             <div class="col-sm-4">

@@ -1,67 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% include "app/header.html" %}
-	
-	<script type="text/javascript">
-	  window.onload = function () {
-	     document.getElementById("search_button").onclick = function () {
-	        console.log("hello");
-	        query = document.getElementById("search_bar");
-	        if (query == null)
-	           console.log("uh oh");
-	        query_value = query.value.trim();
-	        query.value = "";
-	        if (query_value !== "")
-                   window.location.replace("http://leagueofdowning.me/search/" + query_value);
-	     }
-	  }
-	</script>
+  <head>
+    {% include "app/header.html" %}
+	 
+	 <script type="text/javascript">
+	   window.onload = function () {
+	      document.getElementById("search_button").onclick = function () {
+	         console.log("hello");
+	         query = document.getElementById("search_bar");
+	         if (query == null)
+	            console.log("uh oh");
+	         query_value = query.value.trim();
+	         query.value = "";
+	         if (query_value !== "")
+               window.location.replace("http://leagueofdowning.me/search/" + query_value);
+	      }
+	   }
 
-	<title>
-	  Search
-	</title>
-    </head>
-    <body>
-      {% include "app/navigation.html" %}
+      function handle (e) {
+	      query = document.getElementById("search_bar");
+	      if (query == null)
+	         console.log("uh oh");
+	      query_value = query.value.trim();
+	      query.value = "";
+	      if (query_value !== "")
+         window.location.replace("http://leagueofdowning.me/search/" + query_value);
+      }
 
-        <header class="search">
-            <section id="search" class="container content-section text-center">
+	 </script>
 
-                <div class="container">
-                    <div class="featurette">
-                       <div class="featurette-inner text-center">
-                          <form role="form" class="search">
-                             <h3 class="no-margin-top h1">Search League of Downing</h3>
-                             <div class="input-group input-group-lg">
+	 <title>
+	   Search
+	 </title>
+  </head>
+  <body>
+    {% include "app/navigation.html" %}
 
- 
-                                <input id="search_bar" type="search" placeholder="search" class="form-control">
-                                <span class="input-group-btn">
-                                <button id="search_button" class="btn btn-danger" type="button">
-				  Search
-				</button>
-                                </span>
-                             </div>
-                             <!-- /input-group -->
-                          </form>
-                          <!-- /.max-width on this form -->
+    <header class="search">
+      <section id="search" class="container content-section text-center">
 
-                       </div>
-                       <!-- /.featurette-inner (display:table-cell) -->
-                    </div>  
+        <div class="container">
+          <div class="featurette">
+            <div class="featurette-inner text-center">
+              <form role="form" class="search" onsubmit="handle">
+                <h3 class="no-margin-top h1">Search League of Downing</h3>
+                <div class="input-group input-group-lg">
 
+                  
+                  <input id="search_bar" type="search" placeholder="search" class="form-control" onkeypress="handle">
+                  <span class="input-group-btn">
+                    <button id="search_button" class="btn btn-danger" type="button">
+				          Search
+				        </button>
+                  </span>
                 </div>
-            </section>
-        </header>
+                <!-- /input-group -->
+              </form>
+              <!-- /.max-width on this form -->
 
+            </div>
+            <!-- /.featurette-inner (display:table-cell) -->
+          </div>  
 
-      <!-- Footer -->
-      <footer>
-        <div class="container text-center">
-          <p>Copyright &copy; League of Downing 2015</p>
         </div>
-      </footer>
-      {% include "app/footer.html" %}
-    </body>
+      </section>
+    </header>
+
+    {% if query_string %}
+
+    <section id="table" class="container content-section text-center">
+      <div class="container">
+        <!-- /.max-width on this form -->
+	     You searched for "{{ query_string }}" and the results are listed below.
+            
+	     {% for e in and_entries %}
+        <div class="row">
+          <div class="col-sm-12 text-left">
+	         <a href={{ e.link }}>
+		        <h4>{{ e.page_title }}</h4>
+              <b>Lore:</b>
+              {{ e.lore }} ...<br>
+              <b>Role:</b> {{ e.role }}<br>
+              <b>Abilities:</b> Passive: {{ e.passive_name }}, Q: {{ e.q_name }}, W: {{ e.w_name }}, E: {{ e.e_name }}, R: {{ e.r_name }}<br>
+              
+              
+	         </a>
+          </div>
+        </div>
+	     {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if query_list %}
+
+    <section id="table" class="container content-section text-center">
+      {% for q in query_list %}
+      <div class="container">
+        <!-- /.max-width on this form -->
+	     You searched for "{{ q }}" and the results are listed below.
+            
+	     {% for e in or_entries.q %}
+        <div class="row">
+          <div class="col-sm-12 text-left">
+	         <a href={{ e.link }}>
+		        <h4>{{ e.page_title }}</h4>
+              <b>Lore:</b>
+              {{ e.lore }} ...<br>
+              <b>Role:</b> {{ e.role }}<br>
+              <b>Abilities:</b> Passive: {{ e.passive_name }}, Q: {{ e.q_name }}, W: {{ e.w_name }}, E: {{ e.e_name }}, R: {{ e.r_name }}<br>
+              
+              
+	         </a>
+          </div>
+        </div>
+	     {% endfor %}
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <p>Copyright &copy; League of Downing 2015</p>
+      </div>
+    </footer>
+    {% include "app/footer.html" %}
+  </body>
 </html>

@@ -45,26 +45,58 @@ def search(request):
     return HttpResponse(template.render(context))
 
 def search_results(request, query):
-    template = loader.get_template('app/searchresults.html')
+    template = loader.get_template('app/searchpage.html')
 
     # We want to search for terms separated by ' ' individually
     query_list = query.split(" ")
     
-    query_result = list(SearchQuerySet().filter(content=query))
+    query_result = SearchQuerySet().filter(content=query).highlight()
 #    for q in query_list:
 #        query_result += list(SearchQuerySet().filter(name=q))
 
-    data_to_send = []
+    and_data = []
     for i in range(len(query_result)):
-        data_to_send += [{ 'name' : query_result[i].name,
-                           'role' : query_result[i].role,
-                           'link' : 'http://leagueofdowning.me/champions/' + str(query_result[i].champion_id)}]
+        and_data += [
+            { 
+                'page_title' : query_result[i].highlighted.name if query_result[i].highlighted else query_result[i].name,
+                'role' : query_result[i].highlighted.role if query_result[i].highlighted else query_result[i].role,
+                'link' : 'http://leagueofdowning.me/champions/' + str(query_result[i].champion_id),
+                'lore' : query_result[i].highlight.lore[:600] if query_result[i].highlighted else query_result[i].lore[:600],
+                'passive_name' : query_result[i].highlight.passive_name if query_result[i].highlighted else query_result[i].passive_name,
+                'q_name' : query_result[i].highlight.q_name if query_result[i].highlighted else query_result[i].q_name,
+                'w_name' : query_result[i].highlight.w_name if query_result[i].highlighted else query_result[i].w_name,
+                'e_name' : query_result[i].highlight.e_name if query_result[i].highlighted else query_result[i].e_name,
+                'r_name' : query_result[i].highlight.r_name if query_result[i].highlighted else query_result[i].r_name,
+            }
+        ]
+
+    or_data = {}
+    if len(query_list) > 1:
+        for q in query_list:
+            query_result = SearchQuerySet().filter(content=q).highlight()
+            for r in query_result:
+                if len(list(filter(lambda v : v['page_title'] == r.name, and_data))) == 0:
+                    or_data[q] = [
+                        {
+                            'page_title' : query_result[i].highlighted.name if query_result[i].highlighted else query_result[i].name,
+                            'role' : query_result[i].highlighted.role if query_result[i].highlighted else query_result[i].role,
+                            'link' : 'http://leagueofdowning.me/champions/' + str(query_result[i].champion_id),
+                            'lore' : query_result[i].highlight.lore[:600] if query_result[i].highlighted else query_result[i].lore[:600],
+                            'passive_name' : query_result[i].highlight.passive_name if query_result[i].highlighted else query_result[i].passive_name,
+                            'q_name' : query_result[i].highlight.q_name if query_result[i].highlighted else query_result[i].q_name,
+                            'w_name' : query_result[i].highlight.w_name if query_result[i].highlighted else query_result[i].w_name,
+                            'e_name' : query_result[i].highlight.e_name if query_result[i].highlighted else query_result[i].e_name,
+                            'r_name' : query_result[i].highlight.r_name if query_result[i].highlighted else query_result[i].r_name,
+                        }
+                    ]
        
 
     
     context = RequestContext(request, {
         'query_string' : query,
-        'found_entries' : data_to_send,
+        'query_list' : query_list,
+        'and_entries' : and_data,
+        'or_entries' : or_data
     })
     return HttpResponse(template.render(context))
     
@@ -205,7 +237,7 @@ def player(request, id):
                         champlist.append({'champion_id' : i['champion_id'], 'image' : i['image']})
 
 
-            jsonout = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': round(row['kda'], 2), 'gpm': round(row['gpm'],2), 'total_gold': row['total_gold'], 'games_played': row['games_played'], 'most_played_champions' : champlist}
+            jsonout = {'player_id': row['player_id'], 'first_name': row['first_name'], 'last_name': row['last_name'], 'team_name': row['team_name'], 'ign': row['ign'], 'bio': row['bio'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': round(row['kda'], 2), 'gpm': round(row['gpm'], 2), 'total_gold': row['total_gold'], 'games_played': row['games_played'], 'most_played_champions' : champlist}
 
         if jsonout == {}:
             template = loader.get_template('app/error.html')
