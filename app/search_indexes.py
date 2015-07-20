@@ -46,7 +46,7 @@ class ChampionIndex (indexes.SearchIndex, indexes.Indexable) :
 # -----------------
 # Item Search Index
 # -----------------
-class Item(indexes.SearchIndex, indexes.Indexable):
+class ItemIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     item_id = indexes.IntegerField(model_attr= 'item_id')
     item_name = indexes.CharField(model_attr= 'name')
@@ -70,7 +70,7 @@ class Item(indexes.SearchIndex, indexes.Indexable):
 # -------------------
 # Player Search Index
 # -------------------
-class Player(indexes.SearchIndex, indexes.Indexable):
+class PlayerIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     player_id = indexes.IntegerField(model_attr= 'player_id')
     first_name = indexes.CharField(model_attr= 'first_name')
