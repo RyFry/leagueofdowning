@@ -52,18 +52,16 @@ def search_results(request, query):
     # We want to search for terms separated by ' ' individually
     query_list = query.split(" ")
     
-    query_result = SearchQuerySet().models(Champion).filter(content=query).highlight()
-#    for q in query_list:
-#        query_result += list(SearchQuerySet().filter(name=q))
+    query_result = SearchQuerySet().filter(champion_name=query)
 
     and_data = []
     for i in range(len(query_result)):
         and_data += [
             { 
-                'page_title' : query_result[i].highlighted.name if query_result[i].highlighted else query_result[i].name,
-                'role' : query_result[i].highlighted.role if query_result[i].highlighted else query_result[i].role,
+                'page_title' : query_result[i].highlighted.champion_name if query_result[i].highlighted else query_result[i].champion_name,
+                'role' : query_result[i].highlighted.champion_role if query_result[i].highlighted else query_result[i].champion_role,
                 'link' : 'http://leagueofdowning.me/champions/' + str(query_result[i].champion_id),
-                'lore' : query_result[i].highlight.lore[:600] if query_result[i].highlighted else query_result[i].lore[:600],
+                'lore' : query_result[i].highlight.lore[:690] if query_result[i].highlighted else query_result[i].lore[:690],
                 'passive_name' : query_result[i].highlight.passive_name if query_result[i].highlighted else query_result[i].passive_name,
                 'q_name' : query_result[i].highlight.q_name if query_result[i].highlighted else query_result[i].q_name,
                 'w_name' : query_result[i].highlight.w_name if query_result[i].highlighted else query_result[i].w_name,
@@ -75,15 +73,15 @@ def search_results(request, query):
     or_data = {}
     if len(query_list) > 1:
         for q in query_list:
-            query_result = SearchQuerySet().models(Champion).filter(content=q).highlight()
+            query_result = SearchQuerySet().filter(champion_name=q)
             for r in query_result:
                 if len(list(filter(lambda v : v['page_title'] == r.name, and_data))) == 0:
                     or_data[q] = [
                         {
-                            'page_title' : query_result[i].highlighted.name if query_result[i].highlighted else query_result[i].name,
-                            'role' : query_result[i].highlighted.role if query_result[i].highlighted else query_result[i].role,
+                            'page_title' : query_result[i].highlighted.champion_name if query_result[i].highlighted else query_result[i].champion_name,
+                            'role' : query_result[i].highlighted.champion_role if query_result[i].highlighted else query_result[i].champion_role,
                             'link' : 'http://leagueofdowning.me/champions/' + str(query_result[i].champion_id),
-                            'lore' : query_result[i].highlight.lore[:600] if query_result[i].highlighted else query_result[i].lore[:600],
+                            'lore' : query_result[i].highlight.lore[:690] if query_result[i].highlighted else query_result[i].lore[:690],
                             'passive_name' : query_result[i].highlight.passive_name if query_result[i].highlighted else query_result[i].passive_name,
                             'q_name' : query_result[i].highlight.q_name if query_result[i].highlighted else query_result[i].q_name,
                             'w_name' : query_result[i].highlight.w_name if query_result[i].highlighted else query_result[i].w_name,

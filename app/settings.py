@@ -92,12 +92,20 @@ DATABASES = {
 # Haystack engine
 
 HAYSTACK_CONNECTIONS = {
-    'default' : {
+    'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
         'URL': 'http://127.0.0.1:9200/',
         'INDEX_NAME': 'haystack'        
-    }
+    },
 }
+
+'''
+'default' : {
+
+    }        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+
+'''
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
