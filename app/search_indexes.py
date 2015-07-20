@@ -8,7 +8,7 @@ from app.models import *
 # ---------------------
 
 class ChampionIndex (indexes.SearchIndex, indexes.Indexable) :
-    text = indexes.CharField(document=True, use_template=True)
+    text = indexes.CharField(document=True, use_template=True, template_name="champion_text.txt")
     champion_id = indexes.IntegerField(model_attr='champion_id')
     champion_name = indexes.CharField(model_attr='name')
     champion_role = indexes.CharField(model_attr='role')
@@ -47,7 +47,7 @@ class ChampionIndex (indexes.SearchIndex, indexes.Indexable) :
 # Item Search Index
 # -----------------
 class Item(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
+    text = indexes.CharField(document=True, use_template=True, template_name="item_text.txt")
     item_id = indexes.IntegerField(model_attr= 'item_id')
     item_name = indexes.CharField(model_attr= 'name')
     item_description = indexes.CharField(model_attr= 'description')
@@ -71,7 +71,7 @@ class Item(indexes.SearchIndex, indexes.Indexable):
 # Player Search Index
 # -------------------
 class Player(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
+    text = indexes.CharField(document=True, use_template=True, template_name="player_text.txt")
     player_id = indexes.IntegerField(model_attr= 'player_id')
     first_name = indexes.CharField(model_attr= 'first_name')
     last_name = indexes.CharField(model_attr= 'last_name')
