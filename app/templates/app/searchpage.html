@@ -128,24 +128,23 @@
 	<p>
 	  You searched for "{{ q }}" and the results are listed below.
 	</p>
-        
-	{% for e in or_entries.q %}
+       
         <div class="row">
+	  {{ or_entries.q.result }}
 	  <a href={{ e.link }}>
 	    <div class="col-sm-2">
-	      <img src="{{ e.image }}">
+	      <img src="{{ or_entries.q.image }}">
 	    </div>
             <div class="col-sm-12 text-left">
 
 	      <h4>{{ e.page_title }}</h4>
               <b>Lore:</b>
-              {{ e.lore }} ...<br>
-              <b>Role:</b> {{ e.role }}<br>
-              <b>Abilities:</b> Passive: {{ e.passive_name }}, Q: {{ e.q_name }}, W: {{ e.w_name }}, E: {{ e.e_name }}, R: {{ e.r_name }}<br>
+              {{ or_entries.q.lore }} ...<br>
+              <b>Role:</b> {{ or_entries.q.role }}<br>
+              <b>Abilities:</b> Passive: {{ or_entries.q.passive_name }}, Q: {{ or_entries.q.q_name }}, W: {{ or_entries.q.w_name }}, E: {{ or_entries.q.e_name }}, R: {{ or_entries.q.r_name }}<br>
             </div>
 	  </a>
         </div>
-	{% endfor %}
       </div>
       {% endfor %}
     </section>
