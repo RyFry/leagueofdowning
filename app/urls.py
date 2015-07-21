@@ -4,8 +4,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^about', views.about, name='about'),
-    url(r'^unittests', views.unittests, name='unittests'),
+    url(r'^about/$', views.about, name='about'),
+    url(r'^unittests/$', views.unittests, name='unittests'),
     url(r'^search/$', views.search_results, name='search'),
     
     url(r'^champions/$', views.champions),
