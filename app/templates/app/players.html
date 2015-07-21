@@ -48,7 +48,7 @@
 			</ol>
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<img class="first-slide" src="http://mognation.com/wp-content/uploads/2015/04/League-of-Legends-LCS.png" alt="First slide 1920x1080" height="1080px" align="center">
+					<img class="first-slide" src="http://mognation.com/wp-content/uploads/2015/04/League-of-Legends-LCS.png" alt="First slide 1920x1080" width="100%">
 					<div class="container">
 						<div class="carousel-caption">
 							<p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 				<div class="item">
-					<img class="second-slide" src="http://static.ongamers.com/uploads/scale_super/0/3/2948-3238491884-23089.jpg" alt="Second slide" height="1080px" align="center">
+					<img class="second-slide" src="http://static.ongamers.com/uploads/scale_super/0/3/2948-3238491884-23089.jpg" alt="Second slide" width="100%">
 					<div class="container">
 						<div class="carousel-caption">
 							<p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
@@ -70,7 +70,7 @@
 					</div>
 				</div>
 				<div class="item">
-					<img class="third-slide" src="http://i.imgur.com/Vn6ffOm.png" alt="Third slide" height="1080px" align="center">
+					<img class="third-slide" src="http://i.imgur.com/Vn6ffOm.png" alt="Third slide" width="100%">
 					<div class="container">
 						<div class="carousel-caption">
 							<p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
@@ -128,18 +128,26 @@
 					</div>
 					</div>
 					-->	    
+										<form>
+				    <div class="form-group">
+				      <div class="input-group">
+				        <div class="input-group-addon"><i class="fa fa-search"></i></div>
 
-					<div style="height:500px; overflow:auto;">
+				        <input type="text" class="form-control" placeholder="Filter Players" ng-model="searchPlayer" style="width:200px;">
+
+				      </div>      
+				    </div>
+				  </form>
+
+					<div style="height:750px; overflow:auto;">
 				<table class="table table-hover">
 					<thead>
 							<tr>
-								<div class="col-xs-6">
 									<td></td>
 									<td>
 										<a href="" ng-click="sortType = 'player_id'; sortReverse = !sortReverse">
 											Player
 									</td>
-								</div>
 								<td>
 								<a href="" ng-click="sortType = 'ign'; sortReverse = !sortReverse">
 								Name
@@ -165,16 +173,6 @@
 								</td>
 							</tr>
 					</thead>
-					<form>
-				    <div class="form-group">
-				      <div class="input-group">
-				        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-
-				        <input type="text" class="form-control" placeholder="Search Players" ng-model="searchPlayer">
-
-				      </div>      
-				    </div>
-				  </form>
 					<tbody>
 					{% verbatim %}
 					<tr ng-repeat="player in players | orderObjectBy:sortType:sortReverse | filter:searchPlayer">
