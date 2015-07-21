@@ -129,16 +129,6 @@
 					</div>
 					-->	    
 
-				<form>
-				    <div class="form-group">
-				      <div class="input-group">
-				        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-
-				        <input type="text" class="form-control" placeholder="Search Players" ng-model="searchPlayer">
-
-				      </div>      
-				    </div>
-				  </form>
 
 				<table class="table table-hover">
 					<thead>
@@ -177,6 +167,16 @@
 							</tr>
 						</div>
 					</thead>
+					<form>
+				    <div class="form-group">
+				      <div class="input-group">
+				        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+				        <input type="text" class="form-control" placeholder="Search Players" ng-model="searchPlayer">
+
+				      </div>      
+				    </div>
+				  </form>
 					<tbody>
 					{% verbatim %}
 					<tr ng-repeat="player in players | orderObjectBy:sortType:sortReverse | filter:searchPlayer">
