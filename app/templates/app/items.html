@@ -166,6 +166,7 @@
 
   <div style="height:500px; overflow:auto;">
 	<tbody>
+    <div style="height:500px; overflow:auto;">
     {% verbatim %}
 	  <tr ng-repeat="item in items | orderObjectBy:sortType:sortReverse | filter:searchItem">
 	    <td><a ng-href="{{ item.item_id }}"><img ng-src="{{ item.image }}"></a></td>
@@ -176,9 +177,8 @@
 	    <td>{{ item.total_gold }} <img src="http://a.deviantart.net/avatars/p/a/pay-attention.png?1" height=25px></td>
 	  </tr>
     {% endverbatim %}
-    
+    </div>
 	</tbody>
-</div>
 
       </table>
 
