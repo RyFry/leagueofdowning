@@ -23,6 +23,7 @@ install:
     - pip3 install SQLAlchemy
     - pip3 install django-haystack
     - pip3 install psycopg2
+    - sudo apt-get install elasticsearch
 
 before_script:
     - uname -a
@@ -30,6 +31,7 @@ before_script:
     - pip3 --version
     - pip3 freeze
     - python3 --version
+    - curl -XGET 'http://localhost:9200/'
 
 script:
     - date
