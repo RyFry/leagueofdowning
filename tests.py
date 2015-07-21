@@ -73,6 +73,27 @@ class ModelTestCase (TestCase):
         self.assertEqual(champ['name'], "Nidalee")
         self.assertEqual(champ['role'], "Assassin")
 
+    def test_champion_model4(self):
+        champtest = {"Rammus": {"r_name": "Tremors", "title": "the Armordillo"}}
+        self.assertEqual(champtest['Rammus']['r_name'], "Tremors")
+        self.assertEqual(champtest['Rammus']['title'], "the Armordillo")
+
+    def test_champion_model5(self):
+        cs1 = open("app/database/champions")
+        champion_test_dict1 = json.load(cs1)
+        cs1.close()
+        champtest2 = champion_test_dict1
+        self.assertEqual(champtest2['Rammus']['r_name'], "Tremors")
+        self.assertEqual(champtest2['Rammus']['title'], "the Armordillo")
+
+    def test_champion_model6(self):
+        champurl = 'http://leagueofdowning.link/api/champions/33'
+        champinfo = urlopen(champurl).info()
+        raw_champ = urlopen(champurl).read().decode(champinfo.get_content_charset('utf8'))
+        champ = json.loads(raw_champ) 
+        self.assertEqual(champ['r_name'], "Tremors")
+        self.assertEqual(champ['title'], "the Armordillo")
+
 # -------
 # Player
 # -------
@@ -97,6 +118,27 @@ class ModelTestCase (TestCase):
         player1 = json.loads(raw_player) 
         self.assertEqual(player1['ign'], "viviD")
         self.assertEqual(player1['role'], "Support")
+
+    def test_player_model4(self):
+        playertest = {"2125": {"id": 2125, "teamName": "Longzhu Incredible Miracle"}}
+        self.assertEqual(playertest['2125']['id'], 2125)
+        self.assertEqual(playertest['2125']['teamName'], "Longzhu Incredible Miracle")
+
+    def test_player_model5(self):
+        ps = open("app/database/players")
+        player_test_dict = json.load(ps)
+        ps.close()
+        playertest1 = player_test_dict
+        self.assertEqual(playertest1['2125']['id'], '2125')
+        self.assertEqual(playertest1['2125']['teamName'], "Longzhu Incredible Miracle")
+
+    def test_player_model6(self):
+        playerurl = 'http://leagueofdowning.link/api/players/2125'
+        playerinfo = urlopen(playerurl).info()
+        raw_player = urlopen(playerurl).read().decode(playerinfo.get_content_charset('utf8'))
+        player1 = json.loads(raw_player) 
+        self.assertEqual(player1['player_id'], 2125)
+        self.assertEqual(player1['team_name'], "Longzhu Incredible Miracle")
 
 # -----
 # Item
@@ -123,6 +165,28 @@ class ModelTestCase (TestCase):
         item1 = json.loads(raw_item) 
         self.assertEqual(item1['name'], "Enchantment: Captain")
         self.assertEqual(item1['image'], "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/3266.png")
+
+    def test_item_model4(self):
+        itemtest = {"3135": {"base": 1000, "total_gold": 2295}}
+        self.assertEqual(itemtest['3135']['base'], 1000)
+        self.assertEqual(itemtest['3135']['total_gold'], 2295)
+
+    def test_item_model5(self):
+        ts = open("app/database/items")
+        item_test_dict = json.load(ts)
+        ts.close()
+        itemtest = item_test_dict
+        self.assertEqual(itemtest['3135']['gold']['base'], 1000)
+        self.assertEqual(itemtest['3135']['gold']['total'], 2295)
+
+
+    def test_item_model6(self):
+        itemurl = 'http://leagueofdowning.link/api/items/3135'
+        iteminfo = urlopen(itemurl).info()
+        raw_item = urlopen(itemurl).read().decode(iteminfo.get_content_charset('utf8'))
+        item1 = json.loads(raw_item) 
+        self.assertEqual(item1['base_gold'], 1000)
+        self.assertEqual(item1['total_gold'], 2295)
 
 # ----
 # API
