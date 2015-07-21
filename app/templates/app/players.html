@@ -11,11 +11,11 @@
 			$scope.sortType = '';
 			$scope.sortReverse = false;
 			
-			$http.get("http://leagueofdowning.me/api/players/").then(function(response) {
+			$http.get("http://leagueofdowning.link/api/players/").then(function(response) {
 			$scope.players = response.data;
 			})
 			
-			$http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
+			$http.get("http://leagueofdowning.link/api/champions/").then(function(response) {
 			$scope.champions = response.data;
 			})
 			});
@@ -175,7 +175,7 @@
 					<td>{{ player.role }}</td>
 					<td>{{ player.kda|number:2 }}</td>
 					<td>{{ player.gpm|number:2 }} <img src="http://a.deviantart.net/avatars/p/a/pay-attention.png?1" height=25px></td>
-					<td><span ng-repeat="champion in player.most_played_champions track by $index"><a ng-href="http://leagueofdowning.me/champions/{{ champion }}">{{ player.most_played_champion_names[$index] }}</a><br></span></td>
+					<td><span ng-repeat="champion in player.most_played_champions track by $index"><a ng-href="http://leagueofdowning.link/champions/{{ champion }}">{{ player.most_played_champion_names[$index] }}</a><br></span></td>
 					</tr>
 					{% endverbatim %}
 					</tbody>
