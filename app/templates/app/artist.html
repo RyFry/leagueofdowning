@@ -47,7 +47,7 @@
             <h4>Genre:</h4> {{ genre|linebreaks }}
             <h4>Popularity:</h4> {{ popularity|linebreaks }}
             <h4>Spotify URI:</h4> <br><iframe src="https://embed.spotify.com/?uri={{ spotify_artist_uri }}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe><br><br>
-            <h4>Bio:</h4> {{ biography }}
+            <h4>Bio:</h4> {{ biography|linebreaks }}
 
             
             <!-- Total Wins: {{ total_wins|linebreaks }}
