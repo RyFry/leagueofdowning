@@ -61,16 +61,17 @@ def search_results(request):
         'or_entries' : or_data,
     })
     return HttpResponse(template.render(context))
-def unittests(request):
+    """
+    def unittests(request):
     template = loader.get_template('app/unittests.html')
     context = RequestContext(request, tests.unittests())
     return HttpResponse(template.render(context))
     """
-    def unittests(request):
-    #context = {"results": tests.unittests()}
-    return render(request, "unittests.html", context)
-    return HttpResponse(tests.unittests(), content_type="application/json")
-    """
+def unittests(request):
+    context = {"results": tests.unittests()}
+    return render(request, 'app/unittests.html', context)
+    #return HttpResponse(tests.unittests(), content_type="application/json")
+    
     
 
 #
