@@ -14,7 +14,7 @@ import requests
 #from django.utils import unittest
 #from django.test import TestCase
 #from django.http import HttpResponse
-from unittest import main, TestCase
+from unittest import main, TestCase, TestLoader, TextTestRunner
 
 from json import dumps, loads
 
