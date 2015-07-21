@@ -29,6 +29,10 @@
             padding-top: 0;
             padding-bottom: 0;
             }            
+            .cmod {
+                position: absolute;
+                left: 47%;
+            }  
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -107,27 +111,25 @@
             </div>
             <!-- /.container -->
         </nav>
+
+
         <!-- Intro with Video -->
-        <header class="intro">
-            <div class="intro-body">
-                <!-- <div class="container"> -->
-                <!--Video Section-->
-                <section class="content-section video-section vid-background" >
-                    <div class="pattern-overlay">
-                        <div>
-                            <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=vzHrjOMfHPY',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
-                        </div>
-                        <div>
-                            <a href="#players" class="btn btn-circle page-scroll scroll-mod">
-                            <i class="fa fa-angle-double-down animated"></i>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-                <!--Video Section Ends Here-->
-                <!-- </div> -->
+        <!--Video Section-->
+        <section class="content-section video-section vid-background" >
+            <div class="pattern-overlay">
+                <div>
+                    <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=vzHrjOMfHPY',containment:'.video-section', quality:'hd720', autoPlay:true, mute:false, opacity: 1, optimizeDisplay:true, vol: 10, startAt:0, }">bg</a>
+                </div>
+                <div>
+                    <a href="#players" class="btn btn-circle page-scroll scroll-mod cmod">
+                    <i class="fa fa-angle-double-down animated"></i>
+                    </a>
+                </div>
             </div>
-        </header>
+        </section>
+        <!--Video Section Ends Here-->
+
+
         <!-- Players Section -->
         <section id="players" class="container content-section text-center">
             <div class="row">
