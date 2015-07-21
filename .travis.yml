@@ -23,6 +23,7 @@ install:
     - pip3 install SQLAlchemy
     - pip3 install django-haystack
     - pip3 install psycopg2
+    - pip3 install elasticsearch
     - sudo apt-get install elasticsearch
 
 before_script:
