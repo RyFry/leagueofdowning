@@ -10,7 +10,7 @@ import re
 from urllib.request import urlopen
 import urllib
 import requests
-
+import tests
 from django.db.models import Q
 
 from haystack.query import SearchQuerySet
