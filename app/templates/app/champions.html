@@ -128,6 +128,16 @@
 	  </div>
 	</div>
       </div>-->
+      <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Filters Champions" ng-model="searchChamp" style="width:200px;">
+
+      </div>      
+    </div>
+  </form>
       <div style="height:750px; overflow:auto;">
       <table class="table table-hover">
 
@@ -150,17 +160,6 @@
 	    <td>Recommended Items</td>
 	  </tr>
 	</thead>
-
-  <form>
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-
-        <input type="text" class="form-control" placeholder="Filters Champions" ng-model="searchChamp" style="width:200px;">
-
-      </div>      
-    </div>
-  </form>
 
 	<tbody>
 	  {% verbatim %}
