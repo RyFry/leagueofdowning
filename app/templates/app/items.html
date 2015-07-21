@@ -153,9 +153,20 @@
 	  </tr>
 	</thead>
 
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Search Items" ng-model="searchItem">
+
+      </div>      
+    </div>
+  </form>
+
 	<tbody>
     {% verbatim %}
-	  <tr ng-repeat="item in items | orderObjectBy:sortType:sortReverse">
+	  <tr ng-repeat="item in items | orderObjectBy:sortType:sortReverse | filter:searchItem">
 	    <td><a ng-href="{{ item.item_id }}"><img ng-src="{{ item.image }}"></a></td>
 	    <td>{{ item.item_id }}</td>
 	    <td><a ng-href="{{ item.item_id }}">{{ item.name }}</a></td>
