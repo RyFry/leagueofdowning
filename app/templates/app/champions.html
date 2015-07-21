@@ -14,11 +14,11 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("http://leagueofdowning.link/api/champions/").then(function(response) {
+        $http.get("http://leagueofdowning.link/api/championstable/").then(function(response) {
           $scope.champions = response.data;
         })
 
-        $http.get("http://leagueofdowning.link/api/items/").then(function(response) {
+        $http.get("http://leagueofdowning.link/api/itemstable/").then(function(response) {
           $scope.items = response.data;
         })
       });

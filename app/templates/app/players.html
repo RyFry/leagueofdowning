@@ -11,11 +11,11 @@
 			$scope.sortType = '';
 			$scope.sortReverse = false;
 			
-			$http.get("http://leagueofdowning.link/api/players/").then(function(response) {
+			$http.get("http://leagueofdowning.link/api/playerstable/").then(function(response) {
 			$scope.players = response.data;
 			})
 			
-			$http.get("http://leagueofdowning.link/api/champions/").then(function(response) {
+			$http.get("http://leagueofdowning.link/api/championstable/").then(function(response) {
 			$scope.champions = response.data;
 			})
 			});
