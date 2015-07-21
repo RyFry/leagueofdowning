@@ -33,6 +33,15 @@ import json
 #import watson
 #end New Imports
 
+#####
+def unittests():
+    suite = TestLoader().loadTestsFromTestCase(ModelTestCase)
+    stream = StringIO()
+    status = TextTestRunner(stream = stream, verbosity = 1).run(suite)
+    result = stream.getvalue()
+    return result
+#####
+
 # -----------
 # TestModels
 # -----------

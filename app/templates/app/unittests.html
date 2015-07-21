@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% for item in queryset %}
+<center> {{ item.results }} </center>
+{% endfor %}
+
+{% endblock %}

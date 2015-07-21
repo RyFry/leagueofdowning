@@ -413,4 +413,8 @@ def Item_ID_API(request, id):
         h.status_code = 404
         return h
 
+def unittests(request):
+  #context = {"results": tests.unittests()}
+  #return render(request, "unittests.html", context)
+  return HttpResponse(tests.unittests(), content_type="application/json")
 
