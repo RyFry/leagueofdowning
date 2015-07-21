@@ -128,7 +128,8 @@
 	  </div>
 	</div>
       </div>-->
-      <table>
+      <div style="height:500px; overflow:auto;">
+      <table class="table table-hover">
 
 	<thead>
 	  <tr>
@@ -150,9 +151,6 @@
 	  </tr>
 	</thead>
 
-    </table>
-
-    <table class="table table-hover">
   <form>
     <div class="form-group">
       <div class="input-group">
@@ -164,7 +162,6 @@
     </div>
   </form>
 
-  <div style="height:500px; overflow:auto;">
 	<tbody>
 	  {% verbatim %}
 	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse | filter:searchChamp">
@@ -176,9 +173,9 @@
 	  </tr>
 	  {% endverbatim %}
 	</tbody>
-</div>
 
       </table>
+    </div>
 
     </div>
     <br>
