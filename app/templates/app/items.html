@@ -164,8 +164,7 @@
     </div>
   </form>
 
-  <div style="height:500px; overflow:auto;">
-	<tbody>
+	<table>
     <div style="height:500px; overflow:auto;">
     {% verbatim %}
 	  <tr ng-repeat="item in items | orderObjectBy:sortType:sortReverse | filter:searchItem">
@@ -178,7 +177,7 @@
 	  </tr>
     {% endverbatim %}
     </div>
-	</tbody>
+	</table>
 
       </table>
 
