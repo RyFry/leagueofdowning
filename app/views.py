@@ -15,7 +15,7 @@ from django.db.models import Q
 
 from haystack.query import SearchQuerySet
 
-from .search import search
+from .search import lod_search
 
 
 
@@ -52,7 +52,7 @@ def search_results(request):
 
     template = loader.get_template('app/searchpage.html')
     
-    and_data, or_data = search(query)
+    and_data, or_data = lod_search(query)
 
     context = RequestContext(request, {
         'query_string' : query,

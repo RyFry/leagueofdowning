@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% load highlight %}
     {% include "app/header.html" %}
     
     <script type="text/javascript">
@@ -88,64 +89,126 @@
 
     {% if query_string %}
 
-      <div class="container text-center">
-        <!-- /.max-width on this form -->
-	<p>
-	  You searched for "{{ query_string }}" and the results are listed below.
-	</p>
-        
-	{% for e in and_entries %}
-        <div class="row">
-	  <a href={{ e.link }}>	 
-	    <div class="col-sm-2">
-	      <img src="{{ e.image }}">
-	    </div>
-	    <div class="col-sm-10 text-left">
+    <div class="container text-center">
+      <!-- /.max-width on this form -->
+	   <p>
+	     You searched for "{{ query_string }}" and the results are listed below.
+	   </p>
+      
+	   {% for type, data in and_entries.items %}
+      {% for v in data %}
+      <div class="row">
+	     <a href={{ v.link }}>	 
+          {% if type == "Champion" %}
+          <div class="col-sm-2">
+	         <img src="{{ v.image }}">
+	       </div>
+	       <div class="col-sm-10 text-left">
 
-	      <h4>{{ e.page_title }}</h4>
-	      <b>Lore:</b>
-	      {{ e.lore }} ...<br>
-	      <b>Role:</b> {{ e.role }}<br>
-	      <b>Abilities:</b> Passive: {{ e.passive_name }}, Q: {{ e.q_name }}, W: {{ e.w_name }}, E: {{ e.e_name }}, R: {{ e.r_name }}<br>
-	      
-	      
+	         <h4>{% highlight v.page_title with query_string html_tag "b" %}</h4>
+	         <b>Lore:</b>
+	         {% highlight v.lore with query_string max_length 500  html_tag "b" %}<br>
+	         <b>Role:</b> {% highlight v.role with query_string  html_tag "b" %}<br>
+	         <b>Abilities:</b>
+            Passive: {% highlight v.passive_name with query_string  html_tag "b" %}
+            Q: {% highlight v.q_name with query_string html_tag "b" %}
+            W: {% highlight v.w_name with query_string html_tag "b" %} 
+            E: {% highlight v.e_name with query_string html_tag "b" %}
+            R: {% highlight v.r_name with query_string html_tag "b" %}
+            <br>
+	       </div>
+          {% elif type == "Player" %}
+          <div class="col-sm-2">
+	         <img src="{{ v.image }}" height=100px>
+	       </div>
+	       <div class="col-sm-10 text-left">
 
-	    </div>
-	  </a>
-        </div>
-	{% endfor %}
+	         <h4>{% highlight v.page_title with query_string html_tag "b" %}</h4>
+	         <b></b>
+	         {% highlight v.bio with query_string max_length 500 html_tag "b" %}<br>
+	         <b>Role:</b> {% highlight v.role with query_string html_tag "b" %}
+	         <b>Team:</b> {% highlight v.team_name with query_string html_tag "b" %}<br>
+	       </div>
+          {% elif type == "Item" %}
+          <div class="col-sm-2">
+	         <img src="{{ v.image }}">
+	       </div>
+          <div class="col-sm-10 text-left">
+
+	         <h4>{% highlight v.page_title with query_string html_tag "b" %}</h4>
+	         <b></b>
+	         {% highlight v.description with query_string html_tag "b" %} ...<br>
+	       </div>
+          {% endif %}
+	     </a>
       </div>
+      <br><br>
+	   {% endfor %}
+      {% endfor %}
+    </div>
     {% endif %}
 
     {% if query_list|length > 1 %}
-      {% for q in query_list %}
-      <div class="container text-center">
-        <!-- /.max-width on this form -->
-	<p>
-	  You searched for "{{ q }}" and the results are listed below.
-	</p>
-       
-	{% for e in or_entries.q %}
-	{{ e.result }}
-        <div class="row">
-	  {{ e.result }}
-	  <a href={{ e.link }}>
-	    <div class="col-sm-2">
-	      <img src="{{ e.image }}">
-	    </div>
-            <div class="col-sm-12 text-left">
 
-	      <h4>{{ e.page_title }}</h4>
-              <b>Lore:</b>
-              {{ e.lore }} ...<br>
-              <b>Role:</b> {{ e.role }}<br>
-              <b>Abilities:</b> Passive: {{ e.passive_name }}, Q: {{ e.q_name }}, W: {{ e.w_name }}, E: {{ e.e_name }}, R: {{ e.r_name }}<br>
-            </div>
-	  </a>
-        </div>
-	{% endfor %}
+    <div class="container text-center">
+
+      {% for k, value in or_entries.items %}
+      <br><br><br><br><br><br>  
+      <p>
+	     You searched for "{{ k }}" and the results are listed below.
+	   </p>
+
+	   {% for type, data in value.items %}
+      {% for v in data %}
+      <div class="row">
+	     <a href={{ v.link }}>	 
+          {% if type == "Champion" %}
+          <div class="col-sm-2">
+	         <img src="{{ v.image }}">
+	       </div>
+	       <div class="col-sm-10 text-left">
+	         <h4>{% highlight v.page_title with k html_tag "b" %}</h4>
+	         <b>Lore:</b>
+	         {% highlight v.lore with k max_length 500 html_tag "b" %}<br>
+	         <b>Role:</b> {% highlight v.role with k html_tag "b" %}<br>
+	         <b>Abilities:</b>
+            Passive: {% highlight v.passive_name with k html_tag "b" %}
+            Q: {% highlight v.q_name with k html_tag "b" %}
+            W: {% highlight v.w_name with k html_tag "b" %}
+            E: {% highlight v.e_name with k html_tag "b" %}
+            R: {% highlight v.r_name with k html_tag "b" %}
+            <br>
+	       </div>
+          {% elif type == "Player" %}
+	       <div class="col-sm-2">
+	         <img src="{{ v.image }}" height=100px>
+	       </div>
+	       <div class="col-sm-10 text-left">
+
+	         <h4>{% highlight v.page_title with k html_tag "b" %}</h4>
+	         <b></b>
+	         {% highlight v.bio with k  max_length 500 html_tag "b" %}<br>
+	         <b>Role:</b> {% highlight v.role with k html_tag "b" %}
+	         <b>Team:</b> {% highlight v.team_name with k html_tag "b" %}<br>
+	       </div>
+          {% elif type == "Item" %}
+          <div class="col-sm-2">
+	         <img src="{{ v.image }}">
+	       </div>
+          <div class="col-sm-10 text-left">
+
+	         <h4>{% highlight v.page_title with k html_tag "b" %}</h4>
+	         <b></b>
+	         {% highlight v.description with k html_tag "b" %} ...<br>
+	       </div>
+          {% endif %}
+	     </a>
       </div>
+      <br><br>
+	   {% endfor %}
       {% endfor %}
+      {% endfor %}
+    </div>
     {% endif %}
 
     <!-- Footer -->
