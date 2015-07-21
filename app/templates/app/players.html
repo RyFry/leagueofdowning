@@ -1,138 +1,198 @@
 <html lang="en">
-
-  <head>
-    <title>Players</title>
-	 {% include "app/header.html" %}
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script>
-      var app = angular.module('app', []);
-
-      app.controller('appController', function($scope, $http) {
-      $scope.items;
-      $scope.sortType = '';
-      $scope.sortReverse = false;
-
-      $http.get("http://leagueofdowning.me/api/players/").then(function(response) {
-      $scope.players = response.data;
-      })
-
-      $http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
-      $scope.champions = response.data;
-      })
-      });
-
-      app.filter('orderObjectBy', function() {
-      return function(input, attribute, reverse) {
-      var array = [];
-      for (var objectKey in input) {
-      array.push(input[objectKey]);
-      };
-      array.sort(function(a, b) {
-      return (a[attribute] > b[attribute] ? 1 : -1);
-      });
-      if (reverse) array.reverse();
-      return array;
-      };
-      });
-    </script>
-
-  </head>
-  
-  <body>
-	 {% include "app/navigation.html" %}
-
-	 <!-- Intro Header -->
-    <header class="intro">
-      <div class="intro-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <h1 class="brand-heading">Players</h1>
-              
-              <a href="#table" class="btn btn-circle page-scroll">
-                <i class="fa fa-angle-double-down animated"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-
-
-	 <!-- Section for tables of Items -->
-	 <section id="table" class="container content-section text-center">
-	   <div class="container" ng-app="app" ng-controller="appController">
-        <!--	    <div class="jumbotron">
-	                <div class="row placeholders">
-		               <div class="col-xs-6 col-sm-9 placeholders">
-		                 <h1>Players</h1>
-		               </div>
-	                </div>
-	     </div>
-        -->	    
-	     <table class="table table-hover">
-	       <thead>
-		      <div class="row">
-		        <tr>
-		          <div class="col-xs-6">
-		    	      <td></td>
-		            <td>
-			           <a href="" ng-click="sortType = 'player_id'; sortReverse = !sortReverse">
-			             Player
-		            </td>
-		          </div>
-		          <td>
-		            <a href="" ng-click="sortType = 'ign'; sortReverse = !sortReverse">
-			           Name
-		          </td>
-		          <td>
-		            <a href="" ng-click="sortType = 'team_name'; sortReverse = !sortReverse">
-			           Team Name
-		          </td>
-		          <td>
-		            <a href="" ng-click="sortType = 'role'; sortReverse = !sortReverse">
-			           Role
-		          </td>
-		          <td>
-		            <a href="" ng-click="sortType = 'kda'; sortReverse = !sortReverse">
-			           KDA
-		          </td>
-		          <td>
-		            <a href="" ng-click="sortType = 'gpm'; sortReverse = !sortReverse">
-			           GPM
-		          </td>
-		          <td>
-		          	Most Played Champions
-		          </td>
-		        </tr>
-		      </div>
-	       </thead>
-	       
-	       <tbody>
-		      {% verbatim %}
-
-		      <tr ng-repeat="player in players | orderObjectBy:sortType:sortReverse">
-              
-		        <td><a ng-href="{{ player.player_id }}"><img ng-src="{{ player.image }}" height=100></a></td>
-              <td>{{ player.player_id }}</td>
-		        <td><a ng-href="{{ player.player_id }}">{{ player.ign }}</a></td>
-		        <td>{{ player.team_name }}</td>
-		        <td>{{ player.role }}</td>
-		        <td>{{ player.kda|number:2 }}</td>
-		        <td>{{ player.gpm|number:2 }} <img src="http://a.deviantart.net/avatars/p/a/pay-attention.png?1" height=25px></td>
-		        <td><span ng-repeat="champion in player.most_played_champions track by $index"><a ng-href="http://leagueofdowning.me/champions/{{ champion }}">{{ player.most_played_champion_names[$index] }}</a><br></span></td>
-              
-		      </tr>
-		      {% endverbatim %}
-	       </tbody>
-	       
-	     </table>
-	     
-	   </div>
-	 </section>
-	 
-  </body>
-  {% include "app/footer.html" %}
+	<head>
+		<title>Players</title>
+		{% include "app/header.html" %}
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script>
+			var app = angular.module('app', []);
+			
+			app.controller('appController', function($scope, $http) {
+			$scope.items;
+			$scope.sortType = '';
+			$scope.sortReverse = false;
+			
+			$http.get("http://leagueofdowning.me/api/players/").then(function(response) {
+			$scope.players = response.data;
+			})
+			
+			$http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
+			$scope.champions = response.data;
+			})
+			});
+			
+			app.filter('orderObjectBy', function() {
+			return function(input, attribute, reverse) {
+			var array = [];
+			for (var objectKey in input) {
+			array.push(input[objectKey]);
+			};
+			array.sort(function(a, b) {
+			return (a[attribute] > b[attribute] ? 1 : -1);
+			});
+			if (reverse) array.reverse();
+			return array;
+			};
+			});
+		</script>
+		<style type="text/css">
+			.carousel {
+			height: 700px;
+			overflow: hidden;
+			.item img {
+			width: 100%;
+			height: auto;
+			position: center;
+			}
+			}
+		</style>
+	</head>
+	<body>
+		{% include "app/navigation.html" %}
+		<!-- Carousel =========================================== -->
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<!-- <li data-target="#myCarousel" data-slide-to="3"></li> -->
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img class="first-slide" src="http://i.ytimg.com/vi/Rimlc5LvsUw/maxresdefault.jpg" alt="First slide 1920x1080">
+					<div class="container">
+						<div class="carousel-caption">
+							<p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
+								<i class="fa fa-angle-double-down animated"></i>
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img class="second-slide" src="http://static.ongamers.com/uploads/scale_super/0/3/2948-3238491884-23089.jpg" alt="Second slide">
+					<div class="container">
+						<div class="carousel-caption">
+							<p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
+								<i class="fa fa-angle-double-down animated"></i>
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img class="third-slide" src="http://i.imgur.com/Vn6ffOm.png" alt="Third slide">
+					<div class="container">
+						<div class="carousel-caption">
+							<p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
+								<i class="fa fa-angle-double-down animated"></i>
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="item">
+					<img class="third-slide" src="http://d3psvddqt9zx7g.cloudfront.net/blog/wp-content/uploads/2015/04/League-of-Legends-Worlds-Venue.jpg" alt="Fourth slide">
+					<div class="container">
+					    <div class="carousel-caption">
+					        <p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
+					          <i class="fa fa-angle-double-down animated"></i>
+					          </a></p>
+					    </div>
+					</div>
+					</div> -->
+			</div>
+			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+			</a>
+		</div>
+		<!-- /.carousel -->
+		<!-- Intro Header -->
+		<!-- <header class="intro">
+			<div class="intro-body">
+			  <div class="container">
+			    <div class="row">
+			      <div class="col-md-8 col-md-offset-2">
+			        <h1 class="brand-heading">Players</h1>
+			        
+			        <a href="#table" class="btn btn-circle page-scroll">
+			          <i class="fa fa-angle-double-down animated"></i>
+			        </a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			</header> -->
+		<!-- Section for tables of Items -->
+		<section id="table" class="container content-section text-center">
+			<div class="container" ng-app="app" ng-controller="appController">
+				<!--	    <div class="jumbotron">
+					<div class="row placeholders">
+					<div class="col-xs-6 col-sm-9 placeholders">
+					  <h1>Players</h1>
+					</div>
+					</div>
+					</div>
+					-->	    
+				<table class="table table-hover">
+					<thead>
+						<div class="row">
+							<tr>
+								<div class="col-xs-6">
+									<td></td>
+									<td>
+										<a href="" ng-click="sortType = 'player_id'; sortReverse = !sortReverse">
+											Player
+									</td>
+								</div>
+								<td>
+								<a href="" ng-click="sortType = 'ign'; sortReverse = !sortReverse">
+								Name
+								</td>
+								<td>
+								<a href="" ng-click="sortType = 'team_name'; sortReverse = !sortReverse">
+								Team Name
+								</td>
+								<td>
+								<a href="" ng-click="sortType = 'role'; sortReverse = !sortReverse">
+								Role
+								</td>
+								<td>
+								<a href="" ng-click="sortType = 'kda'; sortReverse = !sortReverse">
+								KDA
+								</td>
+								<td>
+								<a href="" ng-click="sortType = 'gpm'; sortReverse = !sortReverse">
+								GPM
+								</td>
+								<td>
+								Most Played Champions
+								</td>
+							</tr>
+						</div>
+					</thead>
+					<tbody>
+					{% verbatim %}
+					<tr ng-repeat="player in players | orderObjectBy:sortType:sortReverse">
+					<td><a ng-href="{{ player.player_id }}"><img ng-src="{{ player.image }}" height=100></a></td>
+					<td>{{ player.player_id }}</td>
+					<td><a ng-href="{{ player.player_id }}">{{ player.ign }}</a></td>
+					<td>{{ player.team_name }}</td>
+					<td>{{ player.role }}</td>
+					<td>{{ player.kda|number:2 }}</td>
+					<td>{{ player.gpm|number:2 }} <img src="http://a.deviantart.net/avatars/p/a/pay-attention.png?1" height=25px></td>
+					<td><span ng-repeat="champion in player.most_played_champions track by $index"><a ng-href="http://leagueofdowning.me/champions/{{ champion }}">{{ player.most_played_champion_names[$index] }}</a><br></span></td>
+					</tr>
+					{% endverbatim %}
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</body>
+	{% include "app/footer.html" %}
 </html>
-
