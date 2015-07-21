@@ -86,7 +86,7 @@ def player_search(query):
                     'text' : q.text,
                     'page_title' : q.first_name + ' "' + q.ign + '" ' + q.last_name,
                     'role' : q.player_role,
-                    'link' : 'http://leagueofdowning.me/players/' + str(q.player_id),
+                    'link' : 'http://leagueofdowning.link/players/' + str(q.player_id),
                     'bio' : q.bio,
                     'team_name' : q.team_name,
                     'image' : q.player_image,
@@ -123,7 +123,7 @@ def champion_search(query):
                 { 
                     'page_title' : q.champion_name,
                     'role' : q.champion_role, 
-                    'link' : 'http://leagueofdowning.me/champions/' + str(q.champion_id),
+                    'link' : 'http://leagueofdowning.link/champions/' + str(q.champion_id),
                     'lore' : q.lore,
                     'passive_name' : q.passive_name,
                     'q_name' : q.q_name,
@@ -163,7 +163,7 @@ def item_search(query):
                 { 
                     'page_title' : q.item_name,
                     'description' : q.item_description,
-                    'link' : 'http://leagueofdowning.me/items/' + str(q.item_id),
+                    'link' : 'http://leagueofdowning.link/items/' + str(q.item_id),
                     'image' : q.item_image.replace('5.13.1', '5.2.1'),
                 }
             ]
