@@ -61,6 +61,16 @@ def search_results(request):
         'or_entries' : or_data,
     })
     return HttpResponse(template.render(context))
+def unittests(request):
+    template = loader.get_template('app/unittests.html')
+    context = RequestContext(request, {})
+    return HttpResponse(template.render(context))
+    """
+    def unittests(request):
+    #context = {"results": tests.unittests()}
+    return render(request, "unittests.html", context)
+    return HttpResponse(tests.unittests(), content_type="application/json")
+    """
     
 
 #
@@ -412,9 +422,4 @@ def Item_ID_API(request, id):
         h = HttpResponse(json.dumps({"error": "Item ID " + id + " does not exist."}),   content_type="application/json")
         h.status_code = 404
         return h
-
-def unittests(request):
-  #context = {"results": tests.unittests()}
-  #return render(request, "unittests.html", context)
-  return HttpResponse(tests.unittests(), content_type="application/json")
 
