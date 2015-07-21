@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table
-from sqlalchemy import create_engine, insert
+from sqlalchemy import create_engine, insert, update
+from sqlalchemy.sql import text
 from sqlalchemy.orm import relationship, sessionmaker, backref
 from sqlalchemy.ext.declarative import declarative_base
 import json
@@ -224,38 +225,43 @@ def load_item_to_item(items, session):
         session.commit()
 
 
-def load_champions(champions, session):
+def load_champions(champions, session, engine):
     with session.no_autoflush :
         for k, v in champions.items() :
-            if not session.query(Champion).filter_by(champion_id=int(v['key'])).first() :
-                champion = Champion(champion_id = int(v['key']),
-                                    name = v['name'],
-                                    role = v['role'],
-                                    title = v['title'],
-                                    lore = v['lore'],
-                                    image = v['image'],
-                                    passive_name = v['passive_name'],
-                                    passive_image = v['passive_image'],
-                                    passive_description = v['passive_description'],
-                                    q_name = v['q_name'],
-                                    q_image = v['q_image'],
-                                    q_description = v['q_description'],
-                                    w_name = v['w_name'],
-                                    w_image = v['w_image'],
-                                    w_description = v['w_description'],
-                                    e_name = v['e_name'],
-                                    e_image = v['e_image'],
-                                    e_description = v['e_description'],
-                                    r_name = v['r_name'],
-                                    r_image = v['r_image'],
-                                    r_description = v['r_description'])
-                try:
-                    for item in v['recommended_items'] :
-                        i = session.query(Item).filter_by(item_id=int(item)).first()
-                        champion.recommended_items.append(i)
-                        session.add(champion)
-                except KeyError as e:
-                    pass
+            engine.execute(text('update "Champion" set q_description = :desc where champion_id = :id'), desc = v['q_description'].replace('<br>', '\n'), id = int(v['key'])) 
+            engine.execute(text('update "Champion" set w_description = :desc where champion_id = :id'), desc = v['w_description'].replace('<br>', '\n'), id = int(v['key'])) 
+            engine.execute(text('update "Champion" set e_description = :desc where champion_id = :id'), desc = v['e_description'].replace('<br>', '\n'), id = int(v['key'])) 
+            engine.execute(text('update "Champion" set r_description = :desc where champion_id = :id'), desc = v['r_description'].replace('<br>', '\n'), id = int(v['key'])) 
+            '''
+            champion = Champion(champion_id = int(v['key']),
+                                name = v['name'],
+                                role = v['role'],
+                                title = v['title'],
+                                lore = v['lore'],
+                                image = v['image'],
+                                passive_name = v['passive_name'],
+                                passive_image = v['passive_image'],
+                                passive_description = v['passive_description'],
+                                q_name = v['q_name'],
+                                q_image = v['q_image'],
+                                q_description = v['q_description'],
+                                w_name = v['w_name'],
+                                w_image = v['w_image'],
+                                w_description = v['w_description'],
+                                e_name = v['e_name'],
+                                e_image = v['e_image'],
+                                e_description = v['e_description'],
+                                r_name = v['r_name'],
+                                r_image = v['r_image'],
+                                r_description = v['r_description'])
+            try:
+                for item in v['recommended_items'] :
+                    i = session.query(Item).filter_by(item_id=int(item)).first()
+                    champion.recommended_items.append(i)
+                    session.add(champion)
+            except KeyError as e:
+                pass
+            '''
         session.commit()
 
     
@@ -282,7 +288,7 @@ if __name__ == "__main__" :
     players = json.load(open("players"))
 
     load_items(items, session)
-    load_champions(champions, session)
+    load_champions(champions, session, engine)
     load_players(players, session)
     load_players_to_champions(players, session)
     load_item_to_item(items, session)

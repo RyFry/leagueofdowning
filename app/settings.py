@@ -109,6 +109,10 @@ HAYSTACK_CONNECTIONS = {
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
+# Uncommenting this enables the custom highlighter, which just doesn't delete the stuff before
+# the first highlight
+#HAYSTACK_CUSTOM_HIGHLIGHTER = 'app.highlighter.BoldHighlighter'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
