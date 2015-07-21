@@ -50,7 +50,7 @@ class ModelTestCase (TestCase):
     def test_champion_model1(self):
         champtest = {"Nidalee": {"role": "Assassin", "name": "Nidalee"}}
         self.assertEqual(champtest['Nidalee']['name'], "Nidalee")
-        self.assertEqual(champtest['Nidaleeweqwer']['role'], "Assassin")
+        self.assertEqual(champtest['Nidalee']['role'], "Assassin")
 
     def test_champion_model2(self):
         cs = open("app/database/champions")
