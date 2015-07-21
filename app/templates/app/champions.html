@@ -130,6 +130,17 @@
       </div>-->
       <table class="table table-hover">
 
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Search Champions" ng-model="searchChamp">
+
+      </div>      
+    </div>
+  </form>
+
 	<thead>
 	  <tr>
       <td>
@@ -152,7 +163,7 @@
 
 	<tbody>
 	  {% verbatim %}
-	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse">
+	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse | filter:searchChamp">
       <td><a ng-href="{{ champion.champion_id }}"><img ng-src="{{ champion.image }}"></a></td>
 	    <td>{{ champion.champion_id}}</td>
 	    <td><a ng-href="{{ champion.champion_id }}">{{ champion.name }}</a></td>
