@@ -31,13 +31,15 @@ before_script:
     - pip3 --version
     - pip3 freeze
     - python3 --version
-    - curl -XGET 'http://localhost:9200/'
 
 script:
     - date
     - ./nohupserver.sh
     - ls -al
+    - /usr/share/elasticsearch/bin/elasticsearch
+    - curl -XGET 'http://localhost:9200/'
     - python3 manage.py test
     - ls -al
     - pydoc3 -w ./app/models.py
     - ls -al
+
