@@ -45,15 +45,13 @@
         <div class="row">
           <div class="center-block">
             <h3>Results</h3>
-                {% extends "layout.html" %}
 
-                {% block content %}
 
                 {% for item in queryset %}
                 <center> {{ item.results }} </center>
                 {% endfor %}
 
-                {% endblock %}
+
 
             
             <!-- Total Wins: {{ total_wins|linebreaks }}
