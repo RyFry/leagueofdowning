@@ -134,24 +134,25 @@
       </div>      
     </div>
   </form>
-  <table width="80%">
-      <thead>
-    <tr>
+<div style="height:750px; overflow:auto;">
+      <table class="table table-hover">
+
+	<thead>
+	  <tr>
       <td>
-        <p></p>
       </td>
-      <td>
-        <a href="" ng-click="sortType = 'item_id'; sortReverse = !sortReverse">
-        Item
-      </td>
-      <td>
-        <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-        Name
-      </td>
-      <td>
-        <a href="" ng-click="sortType = 'base_gold'; sortReverse = !sortReverse">
-        Base Gold
-      </td>
+	    <td>
+	      <a href="" ng-click="sortType = 'item_id'; sortReverse = !sortReverse">
+		    Item
+	    </td>
+	    <td>
+	      <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+		    Name
+	    </td>
+	    <td>
+	      <a href="" ng-click="sortType = 'base_gold'; sortReverse = !sortReverse">
+		    Base Gold
+	    </td>
       <td>
         <a href="" ng-click="sortType = 'sell_gold'; sortReverse = !sortReverse">
         Sell Gold
@@ -160,11 +161,8 @@
         <a href="" ng-click="sortType = 'total_gold'; sortReverse = !sortReverse">
         Total Gold
       </td>
-    </tr>
-  </thead>
-  </table>
-<div style="height:750px; overflow:auto;">
-      <table class="table table-hover">
+	  </tr>
+	</thead>
 
 	<tbody>
       {% verbatim %}
