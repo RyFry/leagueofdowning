@@ -31,5 +31,10 @@ urlpatterns = [
     url(r'^api/items/$',  views.Item_List_API),
     url(r'^api/items/(?P<id>.*)/$',  views.Item_ID_API),   
 
+    url(r'^api/championstable/$', views.Champion_Table_API),
+    url(r'^api/itemstable/$', views.Item_Table_API),
+    url(r'^api/playerstable/$', views.Player_Table_API),
+    
+
     url(r'^.*/$', views.error)
 ]

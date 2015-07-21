@@ -14,11 +14,11 @@
         $scope.sortType = '';
         $scope.sortReverse = false;
 
-        $http.get("http://leagueofdowning.me/api/champions/").then(function(response) {
+        $http.get("http://leagueofdowning.link/api/championstable/").then(function(response) {
           $scope.champions = response.data;
         })
 
-        $http.get("http://leagueofdowning.me/api/items/").then(function(response) {
+        $http.get("http://leagueofdowning.link/api/itemstable/").then(function(response) {
           $scope.items = response.data;
         })
       });
@@ -54,7 +54,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="http://i1-news.softpedia-static.com/images/news2/Download-Now-League-of-Legends-Patch-5-6-to-Get-New-Buffs-to-Old-Champions-476749-5.jpg" alt="First slide 1920x1080">
+          <img class="first-slide" src="http://i1-news.softpedia-static.com/images/news2/Download-Now-League-of-Legends-Patch-5-6-to-Get-New-Buffs-to-Old-Champions-476749-5.jpg" alt="First slide 1920x1080" height="1080px" align="center">
           <div class="container">
             <div class="carousel-caption">
               <p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="http://i.imgur.com/V8QRJU0.jpg" alt="Second slide">
+          <img class="second-slide" src="http://i.imgur.com/V8QRJU0.jpg" alt="Second slide" height="1080px" align="center">
           <div class="container">
             <div class="carousel-caption">
               <p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
@@ -76,7 +76,7 @@
           </div>
         </div>
         <div class="item">
-          <img class="third-slide" src="http://i.imgur.com/xDC4nmh.jpg" alt="Third slide">
+          <img class="third-slide" src="http://i.imgur.com/xDC4nmh.jpg" alt="Third slide" height="1080px" align="center">
           <div class="container">
             <div class="carousel-caption">
               <p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
@@ -128,6 +128,7 @@
 	  </div>
 	</div>
       </div>-->
+      <div style="height:750px; overflow:auto;">
       <table class="table table-hover">
 
 	<thead>
@@ -150,24 +151,44 @@
 	  </tr>
 	</thead>
 
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Filters Champions" ng-model="searchChamp" style="width:200px;">
+
+      </div>      
+    </div>
+  </form>
+
 	<tbody>
 	  {% verbatim %}
-	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse">
+	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse | filter:searchChamp">
       <td><a ng-href="{{ champion.champion_id }}"><img ng-src="{{ champion.image }}"></a></td>
 	    <td>{{ champion.champion_id}}</td>
 	    <td><a ng-href="{{ champion.champion_id }}">{{ champion.name }}</a></td>
 	    <td>{{ champion.role }}</td>
-	    <td><span ng-repeat="item in champion.recommended_items track by $index"><a ng-href="http://leagueofdowning.me/items/{{ item }}">{{ champion.recommended_item_names[$index] }}</a><br></span></td>
+	    <td><span ng-repeat="item in champion.recommended_items track by $index"><a ng-href="http://leagueofdowning.link/items/{{ item }}">{{ champion.recommended_item_names[$index] }}</a><br></span></td>
 	  </tr>
 	  {% endverbatim %}
 	</tbody>
 
       </table>
+    </div>
 
     </div>
+    <br>
+    <br>
+    <br>
   </section>
 
   </body>
 	{% include "app/footer.html" %}
+  <footer>
+            <div class="container-fluid text-center">
+                <p>Copyright &copy; League of Downing 2015</p>
+            </div>
+        </footer>
 </html>
 

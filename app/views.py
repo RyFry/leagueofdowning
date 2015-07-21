@@ -61,6 +61,17 @@ def search_results(request):
         'or_entries' : or_data,
     })
     return HttpResponse(template.render(context))
+    """
+    def unittests(request):
+    template = loader.get_template('app/unittests.html')
+    context = RequestContext(request, tests.unittests())
+    return HttpResponse(template.render(context))
+    """
+def unittests(request):
+    context = {"results": tests.unittests()}
+    return render(request, 'app/unittests.html', context)
+    #return HttpResponse(tests.unittests(), content_type="application/json")
+    
     
 
 #
@@ -413,8 +424,55 @@ def Item_ID_API(request, id):
         h.status_code = 404
         return h
 
-def unittests(request):
-  #context = {"results": tests.unittests()}
-  #return render(request, "unittests.html", context)
-  return HttpResponse(tests.unittests(), content_type="application/json")
+def Champion_Table_API(request):
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Champion" where name != \'dummy\'')
+    List = {}
+    for row in result:
+        champ_name = row['champion_id']
+        List[row['champion_id']] = {'champion_id': row['champion_id'], 'name': row['name'], 'role': row['role'],  'image': re.sub("5.13.1", "5.2.1", row['image'])}
+        result1 = engine.execute('select c.item_id, i.name from "ChampionToItem" c inner join "Item" i on c.item_id = i.item_id where champion_id = %s' % champ_name)
+        dic = List[champ_name]
+        dic_name = List[champ_name]
+        itemNameList = []
+        itemlist = []
+        for row1 in result1:
+            itemlist.append(row1['item_id'])
+            itemNameList.append(row1['name'])
+        dic['recommended_items'] = itemlist
+        dic_name['recommended_item_names'] = itemNameList
+
+    return HttpResponse(json.dumps(List), content_type='application/json')
+
+def Item_Table_API(request):
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Item"')
+    List = {}
+    for row in result:
+
+        List[row['item_id']] = {'item_id': row['item_id'], 'name': row['name'], 'base_gold': row['base_gold'], 'sell_gold': row['sell_gold'], 'total_gold': row['total_gold'], 'image': 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/' + row['image'][-8:]}
+
+    return HttpResponse(json.dumps(List), content_type='application/json')
+
+def Player_Table_API(request):
+    engine = create_engine ('postgresql://postgres:h1Ngx0@localhost/leagueofdowning')
+
+    result = engine.execute('select * from "Player"')
+    List = {}
+    for row in result:
+        player_name = row['player_id']
+        result1 = engine.execute('select c.champion_id, c2.name from "PlayerToChampion" c inner join "Champion" c2 on c.champion_id = c2.champion_id where player_id = %d' % player_name)
+
+        itemlist = []
+        itemNameList = []
+        for row1 in result1:
+            if row1['champion_id'] != 0 :
+                itemlist.append(row1['champion_id'])
+                itemNameList.append(row1['name'])
+
+        List[row['player_id']] = {'player_id': row['player_id'], 'team_name': row['team_name'], 'ign': row['ign'], 'image': re.sub("5.13.1", "5.2.1", row['image']), 'role': row['role'], 'kda': row['kda'], 'gpm': row['gpm'], 'most_played_champions' : itemlist, 'most_played_champion_names' : itemNameList}
+
+    return HttpResponse(json.dumps(List), content_type='application/json')
 
