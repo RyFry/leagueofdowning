@@ -36,7 +36,7 @@ script:
     - date
     - ./nohupserver.sh
     - ls -al
-    - /usr/share/elasticsearch/bin/elasticsearch
+    - sudo /usr/share/elasticsearch/bin/elasticsearch
     - curl -XGET 'http://localhost:9200/'
     - python3 manage.py test
     - ls -al
