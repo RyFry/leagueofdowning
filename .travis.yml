@@ -22,6 +22,7 @@ install:
     - pip3 install django
     - pip3 install SQLAlchemy
     - pip3 install django-haystack
+    - pip3 install psycopg2
 
 before_script:
     - uname -a
