@@ -19,12 +19,6 @@ install:
     - pip3 install --upgrade pip
     - pip3 install coverage
     - pip3 install requests
-    - pip3 install django
-    - pip3 install SQLAlchemy
-    - pip3 install django-haystack
-    - pip3 install psycopg2
-    - pip3 install elasticsearch
-    - sudo apt-get install elasticsearch
 
 before_script:
     - uname -a
@@ -35,11 +29,8 @@ before_script:
 
 script:
     - date
-    - ./nohupserver.sh
     - ls -al
-    - sudo /usr/share/elasticsearch/bin/elasticsearch -d
-    - curl -XGET 'http://localhost:9200/'
-    - python3 manage.py test
+    - python3 tests.py
     - ls -al
     - pydoc3 -w ./app/models.py
     - ls -al

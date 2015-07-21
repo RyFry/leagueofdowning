@@ -1,9 +1,9 @@
 import os
 import sys
 import json
-from django.test.utils import setup_test_environment
-from django.core.urlresolvers import reverse
-from django.core.management import call_command
+#from django.test.utils import setup_test_environment
+#from django.core.urlresolvers import reverse
+#from django.core.management import call_command
 
 from urllib.request import urlopen
 import urllib
@@ -11,15 +11,15 @@ import re
 import requests
 
 #New Imports
-from django.utils import unittest
-from django.test import TestCase
-from django.http import HttpResponse
+#from django.utils import unittest
+#from django.test import TestCase
+#from django.http import HttpResponse
 from unittest import main, TestCase
 
 from json import dumps, loads
 
-from django.test import TestCase
-from app.models import *
+#from django.test import TestCase
+#from app.models import *
 
 
 try:
@@ -47,6 +47,7 @@ class ModelTestCase (TestCase):
         cs = open("app/database/champions")
         champion_test_dict = json.load(cs)
         cs.close()
+
         champtest1 = champion_test_dict
         self.assertEqual(champtest1['Nidalee']['name'], "Nidalee")
         self.assertEqual(champtest1['Nidalee']['role'], "Assassin")
