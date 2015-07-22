@@ -1,3 +1,160 @@
+commit 75e16a344fa4a3dcacbabe960e2e8e126047ac50
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Wed Jul 22 02:36:25 2015 +0000
+
+    Finishing the about page
+
+commit 6b14520d57e89d75d26ef23d0d55699d8ed42d8a
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Wed Jul 22 02:30:33 2015 +0000
+
+    Removing dumb #*# files
+
+commit ef75a16021405b0c7d0a868a2286533d085b7298
+Merge: a0cbcd8 8354d27
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Wed Jul 22 02:27:15 2015 +0000
+
+    Merge branch 'dev'
+
+commit a0cbcd80a3e9e6825d32c2c695bd46f8fac72edf
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Wed Jul 22 02:27:13 2015 +0000
+
+    Idk why it's complaining
+
+commit 8354d27a62890454a04eefbb415bbeeac81cafdb
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Wed Jul 22 02:26:03 2015 +0000
+
+    fixing some permissions
+
+commit 565ba30c8a8a2daa470d50ea84c7bfb683637ec4
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Wed Jul 22 02:22:29 2015 +0000
+
+    Merging
+
+commit b97a9d7e91ddd2bbbf3fbfc1db9ab84386b93082
+Author: Ryan <ryanlorey@outlook.com>
+Date:   Wed Jul 22 02:01:24 2015 +0000
+
+    fixed the centering on the about.html page
+
+commit a2128bba72619a11595a36d2d4606bec2ab1dea3
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 20:58:47 2015 -0500
+
+    final about additions
+
+commit dbfe06b13acfa8e8d4e01a52ae24a44616ab27be
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 20:58:13 2015 -0500
+
+    final about additions
+
+commit 9d462cede26087b91f5da253649215cbbe7f6065
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 20:56:31 2015 -0500
+
+    final about additions
+
+commit e29b64fa313ff36ac5b9ba36ff424f64539bd424
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 20:55:36 2015 -0500
+
+    final about additions
+
+commit 9882dff9315394ba29a1ae0fa71bddbff6ed310c
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 20:48:16 2015 -0500
+
+    final changes
+
+commit 84362dc6c71e70d105ca9fad2ebb61e6757926e6
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 20:40:56 2015 -0500
+
+    changes
+
+commit 8a612ddbc5a1087526eb475a419c47a65f1e2a31
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 20:39:25 2015 -0500
+
+    changes
+
+commit 2723af793bd46251bacbd9c34c6069a0b193d19f
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 20:36:55 2015 -0500
+
+    changes
+
+commit 4f79ddd5e0d5d581c03877371bb82da77ad3716d
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 19:28:43 2015 -0500
+
+    revise picture on players page
+
+commit 99926211da24c204f2baeebb42778d93e1393e72
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 19:21:53 2015 -0500
+
+    changed images to all imgur hosting
+
+commit 3dbb018575149e6c43ab59d16268ea3dd5f750f8
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 19:04:58 2015 -0500
+
+    editing about
+
+commit bb362305ae7095792b333d207c12b8c5f9155bb8
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 19:01:23 2015 -0500
+
+    editing about
+
+commit 9f44eef7442c233de35bbf19fbc6b805a37240b7
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 18:54:20 2015 -0500
+
+    revising about
+
+commit c881c03763af071f0dc5ae37b4132567b3bd4e41
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 18:52:44 2015 -0500
+
+    revising about
+
+commit 393af6f804a4ec7d81c46360ca2f4ba47591bd84
+Author: Bao Nguyen <mannywrxnguyen@gmail.com>
+Date:   Tue Jul 21 18:39:15 2015 -0500
+
+    made changes to about page
+
+commit d99a2fb82116b95b4af5a2ba271d526c11e0e2b1
+Author: Bao Nguyen <mannyxnguyen@utexas.edu>
+Date:   Tue Jul 21 16:37:44 2015 -0500
+
+    edited about page
+
+commit fd97129e276311a95abb2435ea117378ef4cde24
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Tue Jul 21 15:44:59 2015 -0500
+
+    add link to presentation
+
+commit 6128d2fc7df71ff98cc53bdee48b6acb8249ee66
+Author: Nathan Williamson <npw1990@utexas.edu>
+Date:   Tue Jul 21 15:43:43 2015 -0500
+
+    add link to presentation
+
+commit 8385bb9857639af59bac572ab73c2434fa3836c2
+Author: Michael Cantu <mc44696@cs.utexas.edu>
+Date:   Tue Jul 21 15:24:46 2015 -0500
+
+    adding log
+
 commit 27f8e720b94c995ab0aa33444077435bb736d09c
 Author: Ryan <ryanlorey@outlook.com>
 Date:   Tue Jul 21 20:24:11 2015 +0000
