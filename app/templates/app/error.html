@@ -1,0 +1,43 @@
+<html lang="en">
+  <head>
+    <title>League of Downing</title>
+    
+    {% include "app/header.html" %}
+    
+    <style>
+      .jumbotronwidth {
+         max-width: 100%;
+      }
+      
+      .footer
+      {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      /* Set the fixed height of the footer here */
+      height: 60px;
+      background-color: #f5f5f5;
+      }
+    </style>
+    
+  </head>
+
+  
+  <body style="margin-bottom: 60px">
+        <header class="intro">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <!-- <div class="col-md-8 col-md-offset-2"> -->
+                        <div class="product-img">
+                            <img class="jumbotronwidth center-block" src="http://i.imgur.com/X0rN35B.jpg">
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </header>
+
+    {% include "app/footer.html" %}
+
+  </body>
+</html>

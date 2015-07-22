@@ -27,6 +27,72 @@ teamurl = 'http://na.lolesports.com:80/api/team/'
 
 pp = pprint.PrettyPrinter(indent=1)
 
+artisturl = 'http://volumemax.me/api/artists/1'
+artist_info = urlopen(artisturl).info()
+raw_artist = urlopen(artisturl).read().decode(artist_info.get_content_charset('utf8'))
+artist = json.loads(raw_artist)  
+
+pp.pprint(artist)
+
+
+
+
+championlist_info = urlopen(championlisturl).info()
+raw_championlist = urlopen(championlisturl).read().decode(championlist_info.get_content_charset('utf8'))
+championlist = json.loads(raw_championlist)    
+
+entries = ['lore', 'key', 'name', 'title'] #spells, passive, items
+
+champion_data = {}
+
+
+for k in championlist["data"] :
+    tempurl = championurl + k + ".json"
+    champion_info = urlopen(tempurl).info()
+    raw_champion = urlopen(tempurl).read().decode(champion_info.get_content_charset('utf8'))
+    championdata = json.loads(raw_champion)
+    #pp.pprint(championdata)
+    for k1, champion in championdata.items() :
+        if(k1 == 'data') :
+            for k2, v in champion.items() :
+                champion_data[k2] = {}
+                champion_data[k2]['passive_description'] = v['passive']['description']
+                champion_data[k2]['passive_image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/passive/' + v['passive']['image']['full']
+                champion_data[k2]['passive_name'] = v['passive']['name']
+                
+                champion_data[k2]['q_description'] = v['spells'][0]['description']
+                champion_data[k2]['q_image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/spell/' + v['spells'][0]['image']['full']
+                champion_data[k2]['q_name'] =  v['spells'][0]['name']                 
+                champion_data[k2]['w_description'] = v['spells'][1]['description']
+                champion_data[k2]['w_image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/spell/' + v['spells'][1]['image']['full']
+                champion_data[k2]['w_name'] =  v['spells'][1]['name']  
+                champion_data[k2]['e_description'] = v['spells'][2]['description']
+                champion_data[k2]['e_image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/spell/' + v['spells'][2]['image']['full']
+                champion_data[k2]['e_name'] =  v['spells'][2]['name']  
+                champion_data[k2]['r_description'] = v['spells'][3]['description']
+                champion_data[k2]['r_image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/spell/' + v['spells'][3]['image']['full']
+                champion_data[k2]['r_name'] =  v['spells'][3]['name']  
+                champion_data[k2]['role'] = v['tags'][0]
+                champion_data[k2]['image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/champion/' + v['image']['full']
+
+                for i in range(len(v['recommended'])):
+                    if(v['recommended'][i]['map'] == 'SR'):
+                        item_array = []
+                        x = v['recommended'][i]['blocks']
+                        for p in range(len(x)):
+                            item_array.append(x[p]['items'][0]['id'])
+                        
+                        champion_data[k2]['recommended_items'] = item_array
+                    
+
+                for i in entries :
+                    if('lore' == i):
+                        champion_data[k2][i] = re.sub("<br>", "\n", v[i])
+                        champion_data[k2][i] = re.sub("<.*?>", "", champion_data[k2][i])
+                    else:
+                        champion_data[k2][i] = v[i]
+
+pp.pprint(champion_data)
 
 playerlist = json.loads(raw_playerlist)
 
@@ -55,9 +121,11 @@ for k in playerlist :
         for p in player2[k] :
             championarray.append(p.get('cid'))
         player_data[k]['champions'] = championarray
-    pp.pprint(player_data[k])  
-        
-
+    #pp.pprint(player_data[k])  
+'''       
+with open('players', 'w') as outfile:
+    json.dump(player_data, outfile)
+'''
 
 item_info = urlopen(itemsurl).info()
 raw_items = urlopen(itemsurl).read().decode(item_info.get_content_charset('utf8'))
@@ -78,69 +146,21 @@ for k, v in items['data'].items() :
         if i == 'description' :
             item_data[k][i] = re.sub("<br>", "\n", item_data[k][i])
             item_data[k][i] = re.sub("<.*?>", "", item_data[k][i])
-    pp.pprint(item_data[k])
+    #pp.pprint(item_data[k])
+'''
+with open('items', 'w') as outfile1:
+    json.dump(item_data, outfile1)
+'''
 
 
+'''
+        with open('champions', 'w') as outfile2:
+            json.dump(champion_data, outfile2)
 
 
-championlist_info = urlopen(championlisturl).info()
-raw_championlist = urlopen(championlisturl).read().decode(championlist_info.get_content_charset('utf8'))
-championlist = json.loads(raw_championlist)    
-
-entries = ['lore', 'key', 'name', 'title'] #spells, passive, items
-
-champion_data = {}
-
-for k in championlist["data"] :
-    tempurl = championurl + k + ".json"
-    champion_info = urlopen(tempurl).info()
-    raw_champion = urlopen(tempurl).read().decode(champion_info.get_content_charset('utf8'))
-    championdata = json.loads(raw_champion)
-    #pp.pprint(championdata)
-    for k1, champion in championdata.items() :
-        if(k1 == 'data') :
-            for k2, v in champion.items() :
-                champion_data[k1] = {}
-                champion_data[k1]['passive_description'] = v['passive']['description']
-                champion_data[k1]['passive_image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/passive/' + v['passive']['image']['full']
-                champion_data[k1]['passive_name'] = v['passive']['name']
-                
-                champion_data[k1]['q_description'] = v['spells'][0]['description']
-                champion_data[k1]['q_image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/spell/' + v['spells'][0]['image']['full']
-                champion_data[k1]['q_name'] =  v['spells'][0]['name']                 
-                champion_data[k1]['w_description'] = v['spells'][1]['description']
-                champion_data[k1]['w_image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/spell/' + v['spells'][1]['image']['full']
-                champion_data[k1]['w_name'] =  v['spells'][1]['name']  
-                champion_data[k1]['e_description'] = v['spells'][2]['description']
-                champion_data[k1]['e_image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/spell/' + v['spells'][2]['image']['full']
-                champion_data[k1]['e_name'] =  v['spells'][2]['name']  
-                champion_data[k1]['r_description'] = v['spells'][3]['description']
-                champion_data[k1]['r_image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/spell/' + v['spells'][3]['image']['full']
-                champion_data[k1]['r_name'] =  v['spells'][3]['name']  
-                champion_data[k1]['role'] = v['tags'][0]
-                champion_data[k1]['image'] = 'http://ddragon.leagueoflegends.com/cdn/5.13.1/img/champion/' + v['image']['full']
-
-                for i in range(len(v['recommended'])):
-                    if(v['recommended'][i]['map'] == 'SR'):
-                        item_array = []
-                        x = v['recommended'][i]['blocks']
-                        for p in range(len(x)):
-                            item_array.append(x[p]['items'][0]['id'])
-                        
-                        champion_data[k1]['recommended_items'] = item_array
-                    
-
-                for i in entries :
-                    if('lore' == i):
-                        champion_data[k1][i] = re.sub("<br>", "\n", v[i])
-                        champion_data[k1][i] = re.sub("<.*?>", "", champion_data[k1][i])
-                    else:
-                        champion_data[k1][i] = v[i]
-                #pp.pprint(champion_data[k1])
     
 
-
-
+'''
 
 
 #pp.pprint(player_data)

@@ -19,7 +19,6 @@ install:
     - pip3 install --upgrade pip
     - pip3 install coverage
     - pip3 install requests
-    - pip3 install django
 
 before_script:
     - uname -a
@@ -31,5 +30,8 @@ before_script:
 script:
     - date
     - ls -al
+    - python3 tests.py
+    - ls -al
     - pydoc3 -w ./app/models.py
     - ls -al
+

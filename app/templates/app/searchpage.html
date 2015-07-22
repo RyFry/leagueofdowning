@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load highlight %}
+    {% include "app/header.html" %}
+    
+    <script type="text/javascript">
+      window.onload = function () {
+      document.getElementById("search_button").onclick = function () {
+      console.log("hello");
+      query = document.getElementById("search_bar");
+      if (query == null)
+      console.log("uh oh");
+      query_value = query.value.trim();
+      query.value = "";
+      if (query_value !== "")
+      window.location.replace("http://leagueofdowning.link/search/" + query_value);
+      }
+      }
+
+      function handle (e) {
+      query = document.getElementById("search_bar");
+      if (query == null)
+      console.log("uh oh");
+      query_value = query.value.trim();
+      query.value = "";
+      if (query_value !== "")
+      window.location.replace("http://leagueofdowning.link/search/" + query_value);
+      }
+
+    </script>
+
+    <title>
+      Search
+    </title>
+  </head>
+  <body>
+    {% include "app/navigation.html" %}
+    <!--
+    <header class="search">
+      <section id="search" class="container content-section text-center">
+
+        <div class="container">
+          <div class="featurette">
+            <div class="featurette-inner text-center">
+              <form role="form" class="search" onsubmit="handle">
+                <h3 class="no-margin-top h1">Search League of Downing</h3>
+                <div class="input-group input-group-lg">
+
+                  
+                  <input id="search_bar" type="search" placeholder="search" class="form-control" onkeypress="handle">
+                  <span class="input-group-btn">
+                    <button id="search_button" class="btn btn-danger" type="button">
+		      Search
+		    </button>
+                  </span>
+                </div>
+       
+              </form>
+       
+
+            </div>
+       
+          </div>  
+
+        </div>
+      </section>
+    </header>
+    -->
+    <header class="search">
+      <section id="search" class="container content-section text-center">
+        <div class="container">
+          <div class="featurette">
+
+            <form class="search" role="search">
+              <div class="input-group search">
+                <input type="" class="form-control" placeholder="Search" name="q">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>  Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <section id="table" class="container content-section"></section>
+
+    {% if query_string %}
+
+    <div class="container text-center">
+      <!-- /.max-width on this form -->
+	   <p>
+	     You searched for "{{ query_string }}" and the results are listed below.
+	   </p>
+      
+	   {% for type, data in and_entries.items %}
+      {% for v in data %}
+      <div class="row">
+	     <a href={{ v.link }}>	 
+          {% if type == "Champion" %}
+          <div class="col-sm-2">
+	         <img src="{{ v.image }}">
+	       </div>
+	       <div class="col-sm-10 text-left">
+
+	         <h4>{% highlight v.page_title with query_string html_tag "b" %}</h4>
+	         <b>Lore:</b>
+	         {% highlight v.lore with query_string max_length 500  html_tag "b" %}<br>
+	         <b>Role:</b> {% highlight v.role with query_string  html_tag "b" %}<br>
+	         <b>Abilities:</b>
+            Passive: {% highlight v.passive_name with query_string  html_tag "b" %}
+            Q: {% highlight v.q_name with query_string html_tag "b" %}
+            W: {% highlight v.w_name with query_string html_tag "b" %} 
+            E: {% highlight v.e_name with query_string html_tag "b" %}
+            R: {% highlight v.r_name with query_string html_tag "b" %}
+            <br>
+	       </div>
+          {% elif type == "Player" %}
+          <div class="col-sm-2">
+	         <img src="{{ v.image }}" height=100px>
+	       </div>
+	       <div class="col-sm-10 text-left">
+
+	         <h4>{% highlight v.page_title with query_string html_tag "b" %}</h4>
+	         <b></b>
+	         {% highlight v.bio with query_string max_length 500 html_tag "b" %}<br>
+	         <b>Role:</b> {% highlight v.role with query_string html_tag "b" %}
+	         <b>Team:</b> {% highlight v.team_name with query_string html_tag "b" %}<br>
+	       </div>
+          {% elif type == "Item" %}
+          <div class="col-sm-2">
+	         <img src="{{ v.image }}">
+	       </div>
+          <div class="col-sm-10 text-left">
+
+	         <h4>{% highlight v.page_title with query_string html_tag "b" %}</h4>
+	         <b></b>
+	         {% highlight v.description with query_string html_tag "b" %} ...<br>
+	       </div>
+          {% endif %}
+	     </a>
+      </div>
+      <br><br>
+	   {% endfor %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if query_list|length > 1 %}
+
+    <div class="container text-center">
+
+      {% for k, value in or_entries.items %}
+      <br><br><br><br><br><br>  
+      <p>
+	     You searched for "{{ k }}" and the results are listed below.
+	   </p>
+
+	   {% for type, data in value.items %}
+      {% for v in data %}
+      <div class="row">
+	     <a href={{ v.link }}>	 
+          {% if type == "Champion" %}
+          <div class="col-sm-2">
+	         <img src="{{ v.image }}">
+	       </div>
+	       <div class="col-sm-10 text-left">
+	         <h4>{% highlight v.page_title with k html_tag "b" %}</h4>
+	         <b>Lore:</b>
+	         {% highlight v.lore with k max_length 500 html_tag "b" %}<br>
+	         <b>Role:</b> {% highlight v.role with k html_tag "b" %}<br>
+	         <b>Abilities:</b>
+            Passive: {% highlight v.passive_name with k html_tag "b" %}
+            Q: {% highlight v.q_name with k html_tag "b" %}
+            W: {% highlight v.w_name with k html_tag "b" %}
+            E: {% highlight v.e_name with k html_tag "b" %}
+            R: {% highlight v.r_name with k html_tag "b" %}
+            <br>
+	       </div>
+          {% elif type == "Player" %}
+	       <div class="col-sm-2">
+	         <img src="{{ v.image }}" height=100px>
+	       </div>
+	       <div class="col-sm-10 text-left">
+
+	         <h4>{% highlight v.page_title with k html_tag "b" %}</h4>
+	         <b></b>
+	         {% highlight v.bio with k  max_length 500 html_tag "b" %}<br>
+	         <b>Role:</b> {% highlight v.role with k html_tag "b" %}
+	         <b>Team:</b> {% highlight v.team_name with k html_tag "b" %}<br>
+	       </div>
+          {% elif type == "Item" %}
+          <div class="col-sm-2">
+	         <img src="{{ v.image }}">
+	       </div>
+          <div class="col-sm-10 text-left">
+
+	         <h4>{% highlight v.page_title with k html_tag "b" %}</h4>
+	         <b></b>
+	         {% highlight v.description with k html_tag "b" %} ...<br>
+	       </div>
+          {% endif %}
+	     </a>
+      </div>
+      <br><br>
+	   {% endfor %}
+      {% endfor %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <p>Copyright &copy; League of Downing 2015</p>
+      </div>
+    </footer>
+    {% include "app/footer.html" %}
+  </body>
+</html>

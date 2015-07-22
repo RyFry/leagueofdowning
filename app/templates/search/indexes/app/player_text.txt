@@ -1,0 +1,12 @@
+{{ player.player_id }} 
+{{ player.first_name }} 
+{{ player.last_name }} 
+{{ player.team_name }} 
+{{ player.ign }} 
+{{ player.bio }} 
+{{ player.player_image }} 
+{{ player.player_role }} 
+{{ player.kda }} 
+{{ player.gpm }} 
+{{ player.total_gold }} 
+{{ player.games_played }} 

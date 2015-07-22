@@ -1,136 +1,194 @@
 <html lang="en">
 
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-
-    <!-- Bootstrap -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-    <title>Champions</title>
-
+    <title>
+      Champions
+    </title>
+	{% include "app/header.html" %}
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script>
-      var app = angular.module('app', [])
+      var app = angular.module('app', []);
 
-      app.controller('appController', function($scope) {
-      $scope.sortType = 'name';
-      $scope.sortReverse = false;
+      app.controller('appController', function($scope, $http) {
+        $scope.items;
+        $scope.sortType = '';
+        $scope.sortReverse = false;
 
-      $scope.players = [
+        $http.get("http://leagueofdowning.link/api/championstable/").then(function(response) {
+          $scope.champions = response.data;
+        })
 
-      {name: 'Bjergsen', age: 19, position: "mid", totalWins: 9, seasonWins: 9, 
-      seasonLosses: 3, team: "TSM", avgKDA: 4.7, avgGPM: 308, avgTotalGold: 18000,
-      champions: ['Azir', 'Ezreal', 'Ekko'], url: "bjergsen.html"},
+        $http.get("http://leagueofdowning.link/api/itemstable/").then(function(response) {
+          $scope.items = response.data;
+        })
+      });
 
-      {name: 'Doublelift', age: 21, position: "adc", totalWins: 7, seasonWins: 7, 
-      seasonLosses: 5, team: "CLG", avgKDA: 4.1, avgGPM: 426, avgTotalGold: 16000,
-      champions: ['Ashe', 'Sivir', 'Kalista'], url: "doublelift.html"},
-
-      {name: 'Balls', age: 21, position: "top", totalWins: 3, seasonWins: 3, 
-      seasonLosses: 9, team: "C9", avgKDA: 1.8, avgGPM: 301, avgTotalGold: 11000,
-      champions: ['Fizz', 'Maokai', 'Rumble'], url: "balls.html"}
-      ];
-
-      $scope.champions = [
-
-      {name: 'Azir', role: 'Mage', lane: 'Mid', counters: ['Ziggs', 'Talon', 'Xerath'],
-      items: ['Sorcerer\'s Shoes', 'Athene\'s Unholy Grail', 'Rabadon\'s Deathcap'],
-      abilities: ['Shurima\'s Legacy', 'Conquering Sands', 'Arise!', 'Shifting Sands',
-      'Emperor\'s Divide'], url: "azir.html"},
-
-      {name: 'Ezreal', role: 'Adc', lane: 'Bot', counters: ['Draven', 'Graves', 'Miss Fortune'],
-      items: ['Berserker\'s Greaves', 'Trinity Force', 'Bloodthirster'],
-      abilities: ['Rising Spell Force', 'Mystic Shot', 'Essence Flux', 'Arcane Shift',
-      'Trueshot Barrage'], url: "ezreal.html"},
-
-      {name: 'Dr. Mundo', role: 'Fighter', lane: 'Top', counters: ['Olaf', 'Kog\'Maw', 'Trundle'],
-      items: ['Sunfire Cape', 'Spirit Visage', 'Randuin\'s Omen'],
-      abilities: ['Adrenaline Rush', 'Infected Cleaver', 'Burning Agony', 'Masochism', 'Sadism'], url: "dr_mundo.html"}
-      ];
-
-      $scope.items = [
-
-      {name: 'Sorcerer\'s Shoes', stats: ['+15 Magic Penetration'], recFor: 'Mage',
-      cost: 1100, recipe: ['Boots of Speed'], url: "sorcerers_shoes.html"},
-
-      {name: 'Athene\'s Unholy Grail', stats: ['+60 Ability Power', '+25 Magic Resist',
-      '+20% Cooldown Reduction', '+100% Base Mana Regen'],
-      recFor: 'Mage', cost: 2700, recipe: ['Fiendish Codex', 'Chalice ofHarmony'], url: "athenes_unholy_grail.html"},
-
-      {name: 'Rabadon\'s Deathcap', stats: ['+120 Ability Power'], recFor: 'Mage',
-      cost: 3300, recipe: ['Blasting Wand', 'Needlessly Large Rod'],
-      url: "rabadons_deathcap.html"},
-      ];
+      app.filter('orderObjectBy', function() {
+        return function(input, attribute, reverse) {
+          var array = [];
+          for (var objectKey in input) {
+            array.push(input[objectKey]);
+          };
+          array.sort(function(a, b) {
+            return (a[attribute] > b[attribute] ? 1 : -1);
+          });
+          if (reverse) array.reverse();
+          return array;
+        };
       });
     </script>
 
   </head>
 
   <body>
+    {% include "app/navigation.html" %}
+
+    <!-- Carousel =========================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <!-- <li data-target="#myCarousel" data-slide-to="3"></li> -->
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img class="first-slide" src="http://i.imgur.com/iEn7oXm.jpg" alt="First slide 1920x1080" width="100%">
+          <div class="container">
+            <div class="carousel-caption">
+              <p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
+                <i class="fa fa-angle-double-down animated"></i>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="second-slide" src="http://i.imgur.com/TL8ea0T.jpg" alt="Second slide" width="100%">
+          <div class="container">
+            <div class="carousel-caption">
+              <p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
+                <i class="fa fa-angle-double-down animated"></i>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="third-slide" src="http://i.imgur.com/794kg5l.jpg" alt="Third slide" width="100%">
+          <div class="container">
+            <div class="carousel-caption">
+              <p><a href="#table" class="btn btn-circle page-scroll scroll-mod cmod">
+                <i class="fa fa-angle-double-down animated"></i>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <!-- /.carousel -->
+
+
+        <!-- Intro Header -->
+        <!-- <header class="intro">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h1 class="brand-heading">Champions</h1>
+                            
+                            <a href="#table" class="btn btn-circle page-scroll">
+                                <i class="fa fa-angle-double-down animated"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header> -->
+
+
+	
+    <!-- Section for tables of Champions -->
+        <section id="table" class="container content-section text-center">
+          <h1 align="center">Champions</h1>
     <div class="container" ng-app="app" ng-controller="appController">
-      <div class="jumbotron">
+<!--      <div class="jumbotron">
 	<div class="row placeholders">
 	  <div class="col-xs-6 col-sm-9 placeholders">
 	    <h1>Champions</h1>
 	  </div>
 	</div>
-      </div>
+      </div>-->
+      <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Filters Champions" ng-model="searchChamp" style="width:200px;">
+
+      </div>      
+    </div>
+  </form>
+      <div style="height:750px; overflow:auto;">
       <table class="table table-hover">
 
 	<thead>
 	  <tr>
+      <td>
+      </td>
 	    <td>
-	      <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+	      <a href="" ng-click="sortType = 'champion_id'; sortReverse = !sortReverse">
 		Champion
 	    </td>
+      <td>
+        <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+    Name
+      </td>
 	    <td>
-	      <a href="#" ng-click="sortType = 'role'; sortReverse = !sortReverse">
+	      <a href="" ng-click="sortType = 'role'; sortReverse = !sortReverse">
 		Role
 	    </td>
-	    <td>
-	      <a href="#" ng-click="sortType = 'lane'; sortReverse = !sortReverse">
-		Lane
-	    </td>
-	    <td>
-	      Counters
-	    </td>
-	    <td>
-	      Items
-	    </td>
-	    <td>
-
-	      Abilities
-	    </td>
+	    <td>Recommended Items</td>
 	  </tr>
 	</thead>
 
 	<tbody>
 	  {% verbatim %}
-	  <tr ng-repeat="champion in champions | orderBy:sortType:sortReverse">
-	    <td><a ng-href="http://leagueofdowning.me/champions/{{ champion.url }}">{{ champion.name }}</a></td>
+	  <tr ng-repeat="champion in champions | orderObjectBy:sortType:sortReverse | filter:searchChamp">
+      <td><a ng-href="{{ champion.champion_id }}"><img ng-src="{{ champion.image }}"></a></td>
+	    <td>{{ champion.champion_id}}</td>
+	    <td><a ng-href="{{ champion.champion_id }}">{{ champion.name }}</a></td>
 	    <td>{{ champion.role }}</td>
-	    <td>{{ champion.lane }}</td>
-	    <td><p ng-repeat="counter in champion.counters">{{ counter }}</td>
-	    <td>
-	      <p ng-if="champion.name == 'Azir'" ng-repeat="item in items"><a ng-href="http://leagueofdowning.me/items/{{ item.url }}">{{ item.name }}</a>
-	      <p ng-if="champion.name != 'Azir'" ng-repeat="item in champion.items">{{ item }}
-	    </td>
-	    <td><p ng-repeat="ability in champion.abilities">{{ ability }}</td>
+	    <td><span ng-repeat="item in champion.recommended_items track by $index"><a ng-href="http://leagueofdowning.link/items/{{ item }}">{{ champion.recommended_item_names[$index] }}</a><br></span></td>
 	  </tr>
 	  {% endverbatim %}
 	</tbody>
 
       </table>
-
     </div>
 
-  </body>
+    </div>
+    <br>
+    <br>
+    <br>
+  </section>
 
+  </body>
+	{% include "app/footer.html" %}
+  <footer>
+            <div class="container-fluid text-center">
+                <p>Copyright &copy; League of Downing 2015</p>
+            </div>
+        </footer>
 </html>
 

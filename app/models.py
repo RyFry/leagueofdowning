@@ -4,67 +4,124 @@ from django.contrib.auth.models import User
 from django.utils.html import format_html
 from django.conf import settings
 
-    # -------------
-    # Champion_model
-    # -------------
+# ------------
+# Item_model
+# ------------
 
-class Champion(models.Model):
+class Item(models.Model):
     """
-    The model contains a Champion name, role, lane, counters, items, and abilities.
-    The __str__ method is used to return the name of the Champion as string.
-    """
+    The model contains an item id, name, description, base gold, sell gold, total gold, and an image.
 
-    champion_name = models.CharField(max_length=200)
-    champion_role = models.CharField(max_length=100)
-    champion_lane = models.CharField(max_length=100)
-    champion_counters = models.CharField(max_length=500)
-    champion_items = models.CharField(max_length=1000)
-
-    # champion Statistics
-    champion_abilities = models.CharField(max_length=2000)
-
+    The __str__ method is used to return the item name. 
+    The get_absolute_url method overrides the default url so that watson get the correct url as a link. 
     """
-    champion_passive = models.CharField(max_length=2000)
-    champion_Q = models.CharField(max_length=2000)
-    champion_W = models.CharField(max_length=2000)
-    champion_E = models.CharField(max_length=2000)
-    champion_R = models.CharField(max_length=2000)
-    """
+    class Meta:
+        db_table = 'Item'
+
+    item_id = models.IntegerField(default=0, db_column = 'item_id')
+    name = models.CharField(max_length=200, db_column = 'name')
+    description = models.CharField(max_length=5000, db_column = 'description')
+    base_gold = models.IntegerField(default=0, db_column = 'base_gold')
+    sell_gold = models.IntegerField(default=0, db_column = 'sell_gold')
+    total_gold = models.IntegerField(default=0, db_column = 'total_gold')
+    image = models.CharField(max_length=100, db_column = 'image')
 
 
     def get_absolute_url(self):
-        return "/champions/%s/" % self.champion_name
+        return "/items/%d/" % self.item_name
 
     def __str__ (self):
-        return self.champion_name
+        return self.item_name
 
 
-    # ------------
-    # player_model
-    # ------------
+class ItemToItem(models.Model):
+    class Meta:
+        db_table = 'ItemToItem'
+
+    id = models.IntegerField(primary_key = True)
+    into_id = models.ForeignKey(Item, related_name='into_id')
+    from_id = models.ForeignKey(Item, related_name='from_id')
+
+
+# -------------
+# model
+# -------------
+
+class Champion(models.Model):
+    """
+    The model contains a champion id, name, role, title, lore, image, the name, image, and description for each ability, and recommended items.
+    The __str__ method is used to return the name of the champion as string.
+    """
+    class Meta:
+        db_table = 'Champion'
+
+    champion_id = models.IntegerField(default=0, db_column = 'champion_id')
+    name = models.CharField(max_length=200, db_column = 'name')
+    role = models.CharField(max_length=100, db_column = 'role')
+    title = models.CharField(max_length=100, db_column = 'title')
+    lore = models.CharField(max_length=5000, db_column = 'lore')
+    image = models.CharField(max_length=100, db_column = 'image')
+    passive_name = models.CharField(max_length=100, db_column = 'passive_name')
+    passive_image = models.CharField(max_length=100, db_column = 'passive_image')
+    passive_description = models.CharField(max_length=1000, db_column = 'passive_description')
+    q_name = models.CharField(max_length=100, db_column = 'q_name')
+    q_image = models.CharField(max_length=100, db_column = 'q_image')
+    q_description = models.CharField(max_length=1000, db_column = 'q_description')
+    w_name = models.CharField(max_length=100, db_column = 'w_name')
+    w_image = models.CharField(max_length=100, db_column = 'w_image')
+    w_description = models.CharField(max_length=1000, db_column = 'w_description')
+    e_name = models.CharField(max_length=100, db_column = 'e_name')
+    e_image = models.CharField(max_length=100, db_column = 'e_image')
+    e_description = models.CharField(max_length=1000, db_column = 'e_description')
+    r_name = models.CharField(max_length=100, db_column = 'r_name')
+    r_image = models.CharField(max_length=100, db_column = 'r_image')
+    r_description = models.CharField(max_length=1000, db_column = 'r_description')
+
+
+    def get_absolute_url(self):
+        return "/champions/%s/" % self.name
+
+    def __str__ (self):
+        return self.name
+
+
+class ChampionToItem(models.Model):
+    class Meta:
+        db_table = 'ChampionToItem'
+
+    id = models.IntegerField(primary_key = True)
+    champion_id = models.ForeignKey(Champion)
+    item_id = models.ForeignKey(Item)
+
+
+# ------------
+# player_model
+# ------------
 
 class Player(models.Model):
     """
-    The model contains a player name, age, position, total_wins, season_wins, season_losses, team_name, average_kda, 
-    average_gold_item, average_gold_total, pref_champions.
+    The model contains a player id, first name, last name, team name, in-game name, bio, image, role, kda, gpm, total gold, games played, and played champions.
 
     The __str__ method is used to return the name of the player.
     The get_absolute_url method overrides the default url so that watson get the correct url as a link.
     """
 
-    player_name = models.CharField(max_length=200)
-    player_age = models.IntegerField(default=0)
-    
-    player_position = models.CharField(max_length=50)
-    season_wins = models.IntegerField(default=0)
-    season_losses = models.IntegerField(default=0)
-    team_name = models.CharField(max_length=200)
+    class Meta:
+        db_table = 'Player'
 
-    average_kda = models.IntegerField(default=0)
-    average_gold_min = models.IntegerField(default=0)
-    average_gold_total = models.IntegerField(default=0)
+    player_id = models.IntegerField(default=0, db_column = 'player_id')
+    first_name = models.CharField(max_length=100, db_column = 'first_name')
+    last_name = models.CharField(max_length=100, db_column = 'last_name')
+    team_name = models.CharField(max_length=100, db_column = 'team_name')
+    ign = models.CharField(max_length=100, db_column = 'ign')
+    bio = models.CharField(max_length=5000, db_column = 'bio')
+    image = models.CharField(max_length=100,db_column = 'image')
+    role = models.CharField(max_length=100, db_column = 'role')
+    kda = models.FloatField(default=0, db_column = 'kda')
+    gpm = models.FloatField(default=0, db_column = 'gpm')
+    total_gold = models.IntegerField(default=0, db_column = 'total_gold')
+    games_played = models.IntegerField(default=0, db_column = 'games_played')
 
-    pref_champions = models.CharField(max_length=1000)
 
 
     """
@@ -75,51 +132,15 @@ class Player(models.Model):
     def __str__ (self):
         return self.player_name
 
-    # ------------
-    # Item_model
-    # ------------
+class PlayerToChampion(models.Model):
+    class Meta:
+        db_table = 'PlayerToChampion'
 
-class Item(models.Model):
-    """
-    The model contains a item_name, item_stats, recommended_for, item_cost, item_recipe.
-
-    The __str__ method is used to return the item name. 
-    The get_absolute_url method overrides the default url so that watson get the correct url as a link. 
-    """
-
-    item_name = models.CharField(max_length=200)
-    item_stats = models.CharField(max_length=2000)
-    item_description = models.CharField(max_length=2000)
-    recommended_for = models.CharField(max_length=20)
-    item_cost = models.IntegerField(default=0)
-    item_recipe = models.CharField(max_length=2000)
-    item_picture = models.CharField(max_length=2000)
-
-    def get_absolute_url(self):
-        return "/items/%d/" % self.item_name
-
-    def __str__ (self):
-        return self.item_name
+    id = models.IntegerField(primary_key = True)
+    player_id = models.ForeignKey(Player)
+    champion_id = models.ForeignKey(Champion)
 
 
 
 
-#import watson
 
-"""
-This is where the models are registered. Only the text fields can be registered or else and error will
-occur. 
-"""
-
-#watson.register(Champion,fields=("champion_name","champion_role", "champion_lane", "champion_counters", 
-#                                    "champion_items", "champion_abilities"))
-
-#watson.register(Player,fields=("player_name","player_age","player_position", "total_wins", "season_wins", 
-#                               "season_losses", "team_name", "average_kda", "average_gold_match", 
-#                               "average_gold_total", "pref_champions" ))
-
-#watson.register(Item,fields=("item_name", "item_stats", "recommended_for", "item_cost", "item_recipe"))
-
-# watson.register(Champion)
-# watson.register(Player)
-# watson.register(Item)

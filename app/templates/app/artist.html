@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "app/header.html" %}
+
+    <title>
+      {{ full_name }}
+    </title>
+  </head>
+  <style>
+    #index {
+    color: "black";
+    text:"green";
+    }
+  </style>
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    {% include "app/navigation.html" %}
+
+    <!-- Intro Header -->
+        <header class="intro">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="center-block">
+                            <h1>{{ full_name }} </h1>
+                            
+                        </div>
+                        <div class="center-block">
+                          <img src="{{ image_url }}" class="img-square" height="470px"><br>
+
+                          <a href="#player" class="btn btn-circle page-scroll">
+                              <i class="fa fa-angle-double-down animated"></i>
+                          </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+    <section id="player" class="container content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="center-block">
+            <h3>Information</h3>
+            <h4>Origin:</h4> {{ origin|linebreaks }}
+            <h4>Genre:</h4> {{ genre|linebreaks }}
+            <h4>Popularity:</h4> {{ popularity|linebreaks }}
+            <h4>Spotify URI:</h4> <br><iframe src="https://embed.spotify.com/?uri={{ spotify_artist_uri }}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe><br><br>
+            <h4>Bio:</h4> {{ biography|linebreaks }}
+
+            
+            <!-- Total Wins: {{ total_wins|linebreaks }}
+            Season Record: {{ season_record|linebreaks }}
+            Team: {{ team|linebreaks }} -->
+
+<!--
+            Most played champions:<br>
+            <div class="col-sm-4">
+              <img src="{{ most_played.first }}" height="120px" width="120px" class="img-circle">
+            </div>
+            <div class="col-sm-4">
+              <img src="{{ most_played.second }}" height="120px" width="120px" class="img-circle">
+            </div>
+            <div class="col-sm-3">
+              <img src="{{ most_played.third }}" height="120px" width="120px" class="img-circle">
+            </div>
+-->
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <p>Copyright &copy; League of Downing 2015</p>
+    </div>
+  </footer>
+
+  {% include "app/footer.html" %}
+
+</html>

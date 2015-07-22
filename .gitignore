@@ -62,5 +62,8 @@ target/
 node_modules/*
 
 # Temp files
-#*#
+\#*\#
 *~
+
+# Nohup output files
+nohup.out

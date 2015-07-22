@@ -4,26 +4,37 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^about', views.about, name='about'),
-    url(r'^test', views.test, name='test'),
+    url(r'^about/$', views.about, name='about'),
+    url(r'^unittests/$', views.unittests, name='unittests'),
+    url(r'^search/$', views.search_results, name='search'),
     
-    url(r'^champions/$', views.champions, name='champions'),
-    url(r'^champions/dr_mundo', views.mundo, name='dr_mundo'),
-    url(r'^champions/azir', views.azir, name='azir'),
-    url(r'^champions/ezreal', views.ezreal, name='ezreal'),
-    url(r'^champions/*', views.champions, name='champions'),
+    url(r'^champions/$', views.champions),
+    url(r'^champions/(?P<id>.*)', views.champion),
+    url(r'^champions/*', views.champions),
     
-    url(r'^items/$', views.items, name='items'),
-    url(r'^items/athenes_unholy_grail', views.athenes, name='athenes'),
-    url(r'^items/rabadons_deathcap', views.rabadons, name='rabadons'),
-    url(r'^items/sorcerers_shoes', views.sorc_shoes, name='sorc_shoes'),
-    url(r'^items/*', views.items, name='items'),
+    url(r'^items/$', views.items),
+    url(r'^items/(?P<id>.*)', views.item),
+    url(r'^items/*', views.items),
 
-    url(r'^players/$', views.players, name='players'),
-    url(r'^players/balls', views.balls, name='balls'),
-    url(r'^players/bjergsen', views.bjergsen, name='bjergsen'),
-    url(r'^players/doublelift', views.doublelift, name='doublelift'),
-    url(r'^players/*', views.players, name='players'),
+    url(r'^players/$', views.players),
+    url(r'^players/(?P<id>.*)', views.player),
+    url(r'^players/*', views.players),
 
-    url(r'^.*/$', views.index, name='index')
+    url(r'^artists/$', views.artists),
+    url(r'^artists/(?P<id>.*)', views.artist),
+    url(r'^artists/*', views.artists),
+
+    url(r'^api/champions/$', views.Champion_List_API),
+    url(r'^api/champions/(?P<id>.*)/$',  views.Champion_ID_API),   
+    url(r'^api/players/$',  views.Player_List_API),
+    url(r'^api/players/(?P<id>.*)/$',  views.Player_ID_API),   
+    url(r'^api/items/$',  views.Item_List_API),
+    url(r'^api/items/(?P<id>.*)/$',  views.Item_ID_API),   
+
+    url(r'^api/championstable/$', views.Champion_Table_API),
+    url(r'^api/itemstable/$', views.Item_Table_API),
+    url(r'^api/playerstable/$', views.Player_Table_API),
+    
+
+    url(r'^.*/$', views.error)
 ]
